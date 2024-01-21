@@ -1,0 +1,47 @@
+<div class="modal-container" *ngIf="isOpen">
+    <div class="customModal">
+        <div class="modal-header">
+            <h2>Add Post</h2>
+            <div class="close-btn" (click)="closeModal()">&Cross;</div>
+        </div>
+        <form>
+            <div class="modal-body">
+                <div class="post-context">
+                    <div class="mb-3">
+                        <input type="text" class="" id="postTitle" placeholder="Enter your post title">
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="" id="postContent" rows="4" placeholder="Enter your post content"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <div class="upload-container">
+                            <input type="file" id="multipleFiles" (change)="handleMultipleFileUpload($event)" multiple
+                                accept=".jpg, .jpeg, .png" class="visually-hidden">
+                            <label for="multipleFiles" class="upload-label">
+                                <span>Click to upload</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-uploads">
+                    <!-- Display Uploaded Files in Grid -->
+                    @if(uploadedFiles.length > 0){
+                    <div class="file-grid">
+                        @for(file of uploadedFiles; track $index){
+                        <div class="file-item">
+                            <span class="remove-icon" (click)="removeFile($index)">✕</span>
+                            <img *ngIf="isImage(file)" [src]="getSafeUrl(file)" alt="File">
+                            <span *ngIf="!isImage(file)">{{ file.name }}</span>
+                        </div>
+                        }
+                    </div>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" (click)="closeModal()">Cancel</button>
+                <button type="submit" class="btn btn-sm btn-primary" (click)="submitPost()">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

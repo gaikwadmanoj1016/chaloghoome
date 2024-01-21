@@ -1,0 +1,37 @@
+<section>
+    <div class="left-sidebar"></div>
+    <div class="dashboard-feed">
+        <section class="feeds">
+            <!-- Search Bar -->
+        @if(showSearchBar()){
+            <form class="d-flex ms-2">
+                <input class="form-control me-2" type="search" placeholder="Search for feeds" aria-label="Search">
+                <button class="btn" type="submit">Search</button>
+            </form>
+        }
+
+        <div class="new-post">
+            <!-- app.component.html -->
+            <button type="button" class="btn btn-sm btn-primary" (click)="openModal()">
+                <div class="main-text">
+                    <span>Create Your Post / Feed</span> <span class="plus-btn">&plus;</span>
+                </div>
+                <small>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, aliquam?</small>
+            </button>
+        </div>
+        <div class="post">
+            <app-posts></app-posts>
+        </div>
+        </section>
+    </div>
+    <div class="right-sidebar">
+        <ul class="">
+            <!--  <span class="badge rounded-pill bg-primary">4</span> -->
+            <li class=""><label><div class="icon"><img src="" alt="Events icon"></div>Events</label> <span class="badge rounded-pill bg-primary">4</span></li>
+            <li class=""><label><div class="icon"><img src="" alt="Messanger icon"></div>Messanger</label> <span class="badge rounded-pill bg-primary">4</span></li>
+            <li class=""><label><div class="icon"><img src="" alt="bell icon"></div>Notifications</label> <span class="badge rounded-pill bg-primary">4</span></li>
+            <li class=""><label><div class="icon"><img src="" alt="Like icon"></div>Liked Feeds</label> <span class="badge rounded-pill bg-primary">4</span></li>
+          </ul>
+    </div>
+</section>
+<app-add-new-post [isOpen]="isModalOpen" (toggelModal)="toggleModal($event)"></app-add-new-post>

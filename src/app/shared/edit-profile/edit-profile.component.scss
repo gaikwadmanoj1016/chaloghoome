@@ -1,0 +1,145 @@
+.modal-container {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: all 1s;
+
+    .customModal {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        width: 100%;
+        position: relative;
+        /* Ensure relative positioning */
+        z-index: 1100;
+        /* Ensure a higher z-index than the container */
+
+        @media (max-width: 786px) {
+            .customModal {
+                max-width: 95%;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #dcdcdc;
+            padding: 10px 20px;
+
+            h2 {
+                font-size: 30px;
+                font-weight: 500;
+            }
+
+            .close-btn {
+                cursor: pointer;
+                font-size: 30px;
+            }
+        }
+
+        .modal-body {
+            padding: 20px;
+            max-height: 70vh;
+            overflow: auto;
+
+            form {
+                .user-details-form {
+                    max-width: 1200px;
+                    margin: 0 auto;
+
+                    h2 {
+                        font-size: 24px;
+                        margin-bottom: 15px;
+                    }
+
+                    .mb-3 {
+                        margin-bottom: 20px;
+                        /* Adjusted margin for better spacing */
+                    }
+
+                    .form-label {
+                        font-weight: bold;
+                        color: #333;
+                        /* Darkened label color for better readability */
+                    }
+
+                    .form-control {
+                        width: 100%;
+                        padding: 10px;
+                        margin-top: 8px;
+                        border: 1px solid #ddd;
+                        border-radius: 6px;
+                        transition: border-color 0.3s;
+
+                        &:focus {
+                            border-color: #007bff;
+                        }
+                    }
+
+                    .row {
+                        margin-bottom: -20px;
+                        /* Counteract default margin between columns */
+                    }
+
+                    .col-md-6 {
+                        flex: 0 0 50%;
+                        max-width: 50%;
+                    }
+
+                    .form-check {
+                        margin-bottom: 15px;
+                        /* Adjusted margin for better spacing */
+                    }
+
+                    .form-check-input {
+                        margin-top: 5px;
+                        /* Improved alignment */
+                    }
+
+                    .modal-body {
+                        padding: 20px;
+                        /* Added padding for better spacing */
+                    }
+
+                    .modal-footer {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 15px;
+                        /* Added padding for better spacing */
+                    }
+
+                    .btn-primary {
+                        background-color: #007bff;
+                        color: #fff;
+                        padding: 12px 20px;
+                        border: none;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        transition: background-color 0.3s;
+
+                        &:hover {
+                            background-color: #0056b3;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .modal-footer {
+            border-top: 2px solid #dcdcdc;
+            padding: 20px;
+            gap: 10px;
+        }
+    }
+}

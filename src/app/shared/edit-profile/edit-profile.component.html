@@ -1,0 +1,170 @@
+<!-- custom-modal.component.html -->
+<div class="modal-container" *ngIf="isOpen">
+    <div class="customModal">
+        <div class="modal-header">
+            <h2>Edit Profile</h2>
+            <div class="close-btn" (click)="closeModal()">&Cross;</div>
+        </div>
+        <form>
+            <div class="modal-body">
+                <div class="user-details-form">
+                    <h2>Personal Information</h2>
+                    <!-- Full Name -->
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input class="form-control" type="text" id="fullName" name="fullName" required>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input class="form-control" type="email" id="email" name="email" required>
+                    </div>
+
+                    <!-- Date of Birth -->
+                    <div class="mb-3">
+                        <label for="dob" class="form-label">Date of Birth</label>
+                        <input class="form-control" type="date" id="dob" name="dob">
+                    </div>
+
+                    <!-- Bio -->
+                    <div class="mb-3">
+                        <label for="bio" class="form-label">Bio</label>
+                        <textarea class="form-control" id="bio" name="bio" rows="4"></textarea>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input class="form-control" type="text" id="location" name="location">
+                    </div>
+
+                    <!-- Languages -->
+                    <div class="mb-3">
+                        <label for="languages" class="form-label">Languages</label>
+                        <input class="form-control" type="text" id="languages" name="languages">
+                    </div>
+                    <!-- Gender -->
+                    <div class="mb-3">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select class="form-select" id="gender" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <h2>Contact Information</h2>
+                    <!-- Phone -->
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input class="form-control" type="tel" id="phone" name="phone">
+                    </div>
+
+                    <!-- Alternate Phone -->
+                    <div class="mb-3">
+                        <label for="alternatePhone" class="form-label">Alternate Phone</label>
+                        <input class="form-control" type="tel" id="alternatePhone" name="alternatePhone">
+                    </div>
+
+                    <!-- Address Information -->
+                    <h2>Address Information</h2>
+                    <!-- City -->
+                    <div class="mb-3">
+                        <label for="city" class="form-label">City</label>
+                        <input class="form-control" type="text" id="city" name="city">
+                    </div>
+
+                    <!-- State -->
+                    <div class="mb-3">
+                        <label for="state" class="form-label">State</label>
+                        <input class="form-control" type="text" id="state" name="state">
+                    </div>
+
+                    <!-- Country -->
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Country</label>
+                        <input class="form-control" type="text" id="country" name="country">
+                    </div>
+
+                    <!-- Address -->
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <textarea class="form-control" id="address" name="address" rows="4"></textarea>
+                    </div>
+
+                    <!-- Pincode -->
+                    <div class="mb-3">
+                        <label for="pincode" class="form-label">Pincode</label>
+                        <input class="form-control" type="text" id="pincode" name="pincode">
+                    </div>
+
+                    <!-- Experience -->
+                    <h2>Experience</h2>
+                    <!-- Numeric Input for Experience -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="experience" class="form-label">Experience</label>
+                            <input class="form-control" type="number" id="experience" name="experience">
+                        </div>
+    
+                        <!-- Duration of Experience (Months, Years, Days) -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Duration</label>
+                            <select class="form-control" name="duration" id="duration">
+                                <option value="">Select Duration</option>
+                                <option value="Days">Days</option>
+                                <option value="Months">Months</option>
+                                <option value="Years">Years</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Working Area -->
+                    <h2>Working Area</h2>
+                    <!-- Radio Buttons for Working Area -->
+                    <div class="mb-3">
+                        <label class="form-label">Working Area</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="workingArea" id="domestic"
+                                value="domestic">
+                            <label class="form-check-label" for="domestic">Domestic</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="workingArea" id="international"
+                                value="international">
+                            <label class="form-check-label" for="international">International</label>
+                        </div>
+                    </div>
+
+                    <!-- Specialization -->
+                    <h2>Specialization</h2>
+                    <div class="mb-3">
+                        <label for="specialization" class="form-label">Specialization</label>
+                        <input class="form-control" type="text" id="specialization" name="specialization">
+                    </div>
+
+                    <!-- About -->
+                    <h2>Service Description</h2>
+                    <div class="mb-3">
+                        <label for="about" class="form-label">Service Description</label>
+                        <textarea class="form-control" id="about" name="about" rows="4"></textarea>
+                    </div>
+
+                    <!-- Interests -->
+                    <h2>Interests</h2>
+                    <div class="mb-3">
+                        <label for="interests" class="form-label">Interests</label>
+                        <input class="form-control" type="text" id="interests" name="interests">
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" (click)="closeModal()">Cancel</button>
+                <button type="submit" class="btn btn-sm btn-primary" (click)="submit()">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

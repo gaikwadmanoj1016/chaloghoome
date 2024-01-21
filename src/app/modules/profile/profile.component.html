@@ -1,0 +1,168 @@
+<!-- profile-page.component.html -->
+<div class="profile-page">
+    <div class="left-side">
+        <div class="profile-header">
+            <!-- Poster Image -->
+            <div class="poster-image">
+                <div class="poster-upload">
+                    <input id="posterFileInput" type="file" (change)="uploadPoster($event)" accept="image/*"
+                        style="display: none">
+
+                    <button type="button" class="btn cam-icon" (click)="openPosterFileInput()"><img
+                            src="../../../assets/icons/cam-icon-blue.png" alt=""></button>
+                </div>
+                @if(posterUrl){
+                <img [src]="posterUrl" alt="Poster Image" class="poster">
+                }@else {
+                <img [src]="posterDefaultUrl" alt="Poster Image" class="poster">
+                }
+            </div>
+            <div class="profile-picture">
+                <div class="profile-upload">
+                    <input id="profileFileInput" type="file" (change)="uploadProfile($event)" accept="image/*"
+                        style="display: none">
+
+                    <button type="button" class="btn cam-icon" (click)="openProfileFileInput()"><img
+                            src="../../../assets/icons/cam-icon-blue.png" alt=""></button>
+                </div>
+                @if(profileUrl){
+                <img [src]="profileUrl" alt="Profile Picture" class="profile">
+                }
+                @else {
+                <img [src]="profileDefaultUrl" alt="Profile Picture" class="profile">
+                }
+            </div>
+            <!-- <button (click)="handleFileUpload()">Upload Image</button>
+-->
+            @if(showModal){
+            <app-custom-cropper-modal (onCloseModal)="closeModal()" [imageChangedEvent]="imageChangedEvent"
+                (onImageCropped)="onPosterSelected($event)" [fileName]="fileName"
+                [aspectRatio]="aspectRatio"></app-custom-cropper-modal>
+            }
+
+        </div>
+        <div class="profile-content">
+            <!-- User Details -->
+            <div class="row user-details">
+                <div class="col-md-8 left">
+                    <h2>Vipul Gawade</h2>
+                    <h6><small>&commat;vipulgawade</small></h6>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque sequi inventore quo. Nam, saepe
+                        aliquid hic distinctio laboriosam adipisci quod? Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Atque sequi inventore quo. Nam, saepe
+                        aliquid hic distinctio laboriosam adipisci quod?</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="right">
+                        <div class="analytics">
+                            <h1>350</h1>
+                            <h2>Followers</h2>
+                            <img src="../../../assets/icons/user.png" alt="">
+                        </div>
+                        <div class="analytics">
+                            <h1>150</h1>
+                            <h2>Following</h2>
+                            <img src="../../../assets/icons/buddies-group.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions mt-4">
+                <button type="button" class="btn btn-primary" (click)="openModal()">Edit Profile</button>
+                <button type="button" class="btn btn-primary">Follow <span>&plus;</span></button>
+            </div>
+
+            <!-- Post Section (Placeholder) -->
+            <div class="connection-section">
+                <div class="head">
+                    <h2>My Buddies</h2>
+                    <button type="button" class="btn"> See all </button>
+                </div>
+                <!-- Placeholder for posts -->
+                <div class="connections">
+                    <div class="horizontal-list">
+                        <div class="card-container">
+                            @for(profile of profiles; track $index){
+                            <div class="card">
+                                <img [src]="profile.image" alt="{{ profile.name }}" class="card-image">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ profile.name }}</h5>
+                                    <button class="btn btn-primary">Explore</button>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="post-section">
+                <div class="section-header">
+                    <h2>My Activities</h2>
+                </div>
+                <!-- Placeholder for posts -->
+                <div class="post">
+                    <app-posts></app-posts>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Right Sidebar -->
+    <div class="right-side">
+        <!-- contacts -->
+        <div class="contact-section">
+            <div class="section-header">
+                <h3>Contact Information</h3>
+            </div>
+            <div class="section-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div>Contact</div>
+                        <div class="value">9695848494</div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>Altername Contact</div>
+                        <div class="value">9695848494</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="language-section">
+            <div class="section-header">
+                <h3>Languages</h3>
+            </div>
+            <div class="section-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div>English</div>
+                        <div class="value">Read, Write, Talk</div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>Hindi</div>
+                        <div class="value">Read, Write, Talk</div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>Spanish</div>
+                        <div class="value">Talk</div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>French</div>
+                        <div class="value">Write, Talk</div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>Arabi</div>
+                        <div class="value">Read, Talk</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="suggestions-section">
+            <div class="section-header">
+                <h3>Suggestions</h3>
+            </div>
+            <div class="section-body">
+            </div>
+        </div>
+    </div>
+</div>
+<app-edit-profile [isOpen]="isModalOpen" (toggelModal)="toggleModal($event)"></app-edit-profile>

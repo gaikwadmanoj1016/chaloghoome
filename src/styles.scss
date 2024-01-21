@@ -1,1 +1,80 @@
-/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+body,
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+// body {
+//     font-family: 'Roboto', sans-serif;
+//     font-size: 16px;
+// }
+
+// h1,
+// h2,
+// h3 {
+//     font-family: 'Open Sans', sans-serif;
+// }
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* main.css */
+// a {
+//     text-decoration: none;
+//     color: #333;
+// }
+
+// /* Apply a subtle hover effect on links */
+// a:hover {
+//     color: #555;
+// }
+
+button {
+    cursor: pointer;
+}
+
+/* Add some spacing between elements */
+.margin-bottom {
+    margin-bottom: 1em;
+}
+
+/* main.css */
+@media (max-width: 768px) {
+
+    body {
+        font-size: 14px;
+    }
+}
+
+/* main.css */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #e74c3c;
+}
+
+body {
+    color: #333;
+    background-color: #fff;
+}
+
+textarea {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

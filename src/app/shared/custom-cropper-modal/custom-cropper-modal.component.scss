@@ -1,0 +1,116 @@
+.modal-container {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: all 1s;
+
+    .customModal {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        max-width: 800px;
+        width: 100%;
+        position: relative;
+        /* Ensure relative positioning */
+        z-index: 1100;
+        /* Ensure a higher z-index than the container */
+
+        @media (max-width: 786px) {
+            .customModal {
+                max-width: 95%;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #dcdcdc;
+            padding: 10px 20px;
+
+            h2 {
+                font-size: 30px;
+                font-weight: 500;
+            }
+
+            .close-btn {
+                cursor: pointer;
+                font-size: 30px;
+            }
+        }
+
+        .modal-body {
+            padding: 20px;
+            max-height: 70vh;
+            overflow: auto;
+
+            // display: flex;
+            // align-items: center;
+            // justify-content: space-between;
+            .row {
+                align-items: center;
+
+                .cropper {
+                    max-height: 100%;
+                }
+
+                .preview {
+                    display: flex;
+                    max-width: 100%;
+                    align-items: center;
+                    justify-content: flex-end;
+                    flex-direction: column;
+
+                    img {
+                        max-height: 100%;
+                        max-width: 500px;
+                        width: 100%;
+                        min-height: 200px;
+                    }
+                }
+            }
+        }
+
+        .modal-footer {
+            border-top: 2px solid #dcdcdc;
+            padding: 20px;
+            gap: 10px;
+        }
+    }
+}
+
+@media (max-width: 786px) {
+    .modal-container {
+        .customModal {
+            width: 95%;
+
+            .modal-body {
+
+                .row {
+                    align-items: normal;
+
+                    .preview {
+                        padding: 20px;
+                        display: flex;
+                        max-width: 100%;
+                        align-items: center;
+                        justify-content: center !important;
+
+                        img {
+                            min-height: 100px !important;
+                            // aspect-ratio: 3/1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

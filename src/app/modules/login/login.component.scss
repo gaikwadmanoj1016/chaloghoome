@@ -1,0 +1,99 @@
+/* login.component.scss */
+
+.login-container {
+    height: 100vh;
+    background-image: url('../../../assets/imgs/pexels-nina-uhlikova-287240.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.glass-morphism {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    /* Ensure the form takes the full width */
+    max-width: 340px;
+    /* Limit the maximum width */
+    margin: 0 auto;
+}
+
+form {
+    text-align: center;
+
+    label {
+        display: block;
+        text-align: left;
+        margin-bottom: 5px;
+        color: #fff;
+    }
+
+    input {
+        width: 100%;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        // background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(255, 255, 255, 0.489);
+        border: 1px solid #fff;
+        color: #fff;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+
+        &:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+
+    h2 {
+        color: #fff;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .login-btn {
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        width: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #2980b9;
+        }
+    }
+
+    .sign-in-block {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        color: white;
+    }
+
+    .text-danger {
+        text-align: left;
+        color: #e74c3c;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .glass-morphism {
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+    }
+
+    form {
+        max-width: 100%;
+        /* Allow the form to take full width on smaller screens */
+    }
+}

@@ -1,0 +1,86 @@
+main {
+    nav {
+        margin: 0;
+        padding: 0;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        transition: box-shadow 0.3s ease;
+
+        .custom-container {
+            color: white;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 40px;
+            background: #444444;
+
+            .navbar-brand {
+                color: white;
+                text-transform: uppercase;
+            }
+
+            .profile-card {
+                position: absolute;
+                top: 70px;
+                right: 30px;
+                z-index: 100;
+                min-width: 250px;
+
+                .card-header {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    .profile-pic {
+                        width: 100px;
+                        aspect-ratio: 1;
+                        border-radius: 100%;
+                    }
+
+                    .user-details {
+                        h3 {
+                            font-weight: 500;
+                            font-size: 20px;
+                        }
+                    }
+                }
+
+                .card-body {
+                    padding: 0px;
+
+                    ul {
+                        padding: 0;
+                        margin: 0;
+                        border-radius: 0;
+
+                        li {
+                            padding: 10px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .card-footer {
+                    text-align: end;
+                }
+            }
+
+            .profile-section {
+                position: relative;
+
+                .profile-pic {
+                    width: 40px;
+                    aspect-ratio: 1;
+                    border-radius: 100%;
+                }
+            }
+        }
+
+        &.shadow {
+            box-shadow: 0px 2px 14px rgb(104, 104, 104) !important;
+        }
+    }
+}

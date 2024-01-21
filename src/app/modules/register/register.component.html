@@ -1,0 +1,92 @@
+<!-- registration.component.html -->
+<div class="registration-container">
+    <div class="glass-morphism">
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <h2>Registration</h2>
+            @if(pageNumber === 1){
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullName" placeholder="Enter your full name"
+                    formControlName="fullName">
+                @if(registrationForm.get('fullName')?.invalid && (registrationForm.get('fullName')?.dirty ||
+                registrationForm.get('fullName')?.touched)){
+                <div class="text-danger">
+                    Full Name is required.
+                </div>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter your username"
+                    formControlName="username">
+                @if(registrationForm.get('username')?.invalid && (registrationForm.get('username')?.dirty ||
+                registrationForm.get('username')?.touched)){
+                <div class="text-danger">
+                    Username is required.
+                </div>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email"
+                    formControlName="email">
+                @if(registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty ||
+                registrationForm.get('email')?.touched)){
+                <div class="text-danger">
+                    Email is required.
+                </div>
+                }
+                @if(registrationForm.get('email')?.hasError('email') && (registrationForm.get('email')?.dirty ||
+                registrationForm.get('email')?.touched)){
+                <div class="text-danger">
+                    Please enter a valid email address.
+                </div>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter your phone number"
+                    formControlName="phoneNumber">
+                @if(registrationForm.get('phoneNumber')?.hasError('pattern')){
+                <div class="text-danger">
+                    Please enter a valid 10-digit phone number.
+                </div>
+                }
+            </div>
+            <div class="mb-3 d-flex custom-checkbox">
+                <input type="checkbox" formControlName="isGuide" name="isGuide" id="isGuide">
+                <label for="isGuide" class="form-label">Interested to be Guide ?</label>
+            </div>
+            }
+            @if(pageNumber === 2){
+            <div class="mb-3">
+                <label for="location" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="location" placeholder="Enter your location"
+                    formControlName="location">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Service Description</label>
+                <textarea class="form-control" id="description" placeholder="Enter your description"
+                    formControlName="description" rows="4"></textarea>
+            </div>
+            }
+            <div class="action-btns">
+                @if(registrationForm.get('isGuide')?.value === true && pageNumber === 1){
+                <button type="button" class="register-btn" (click)="goToNextPage()">Next</button>
+                }
+                @else if (pageNumber === 2) {
+                <button type="button" class="register-btn" (click)="goToPreviousPage()">Previous</button>
+                }
+                @if((registrationForm.get('isGuide')?.value === false && pageNumber === 1) ||
+                (registrationForm.get('isGuide')?.value === true && pageNumber === 2)){
+                <button type="submit" class="register-btn" [disabled]="registrationForm.invalid">Register</button>
+                }
+            </div>
+            <div class="mb-3 mt-3 sign-in-block"> Already an account ?
+                <a  href="javascript:void(0)" routerLink="login">
+                    <button type="button" class="btn btn-outline-primary btn-sm"> Sign In </button>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

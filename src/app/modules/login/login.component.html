@@ -1,0 +1,33 @@
+<div class="login-container">
+    <div class="glass-morphism">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <h2>Login</h2>
+            <div class="mb-3 mt-3">
+                <label for="username" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter your username"
+                    formControlName="username">
+                @if(loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty ||
+                loginForm.get('username')?.touched)){
+                <div class="text-danger">
+                    Username is required.
+                </div>
+                }
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter your password"
+                    formControlName="password">
+                @if(loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty ||
+                loginForm.get('password')?.touched)){
+                <div class="text-danger">
+                    password is required.
+                </div>
+                }
+            </div>
+            <button type="submit" class="login-btn" [disabled]="loginForm.invalid">Login</button>
+            <div class="mb-3 mt-3 sign-in-block">
+                Create an account ?<a href="javascript:void(0)" routerLink="/register" routerLink="register"><button type="button" class="btn btn-outline-primary btn-sm"> Sign Up</button></a>
+            </div>
+        </form>
+    </div>
+</div>
