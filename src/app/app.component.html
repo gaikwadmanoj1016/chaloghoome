@@ -1,58 +1,125 @@
 <!-- navigation.component.html -->
 <main>
-    @if (showNav()) {
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" [class.shadow]="isScrolled">
-        <div class="custom-container">
-            <!-- Hamburger Menu for Mobile -->
-            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button> -->
-    
-            <a class="navbar-brand" href="javascript:void(0)" routerLink="/dashboard">
-                <!-- <img src="assets/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-top"> -->
-                Logo
-            </a>
-    
-            <!-- Profile Button -->
-            <div class="d-flex align-items-center profile-section">
-                <img src="../assets/avatars/2.jpg" (click)="openProfile()" alt="Profile Picture" class="profile-pic me-2">
-            </div>
-            @if(profileModal){
-            <div class="card profile-card">
-                <div class="card-header">
-                    <img src="../assets/avatars/2.jpg" (click)="openProfile()" alt="Profile Picture"
-                        class="profile-pic me-2">
-                    <div class="user-details">
-                        <h3>Vipul Gawade</h3>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group">
-                        <li class="list-group-item" (click)="redirectTo('profile')">View Profile</li>
+    <header>
+        @if (showNav()) {
+        <nav class="navbar navbar-expand-lg navbar-light" [class.shadow]="isScrolled">
+            <div class="custom-container" [class.bgColor]="addClass()">
+                <!-- Hamburger Menu for Mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand" href="javascript:void(0)" (click)="navigateTo('home')">
+                    <!-- <img src="assets/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-top"> -->
+                    Logo
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="custom-navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" routerLink="/public_stories">Public Stories</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Featured</a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="javascript:void(0)" (click)="scrollTo('wonders_of_world')">Wonders
+                                of the World</a></li>
+                              <li><a class="dropdown-item" href="javascript:void(0)" (click)="scrollTo('hidden_gems')">Hidden
+                                Gems</a></li>
+                              <li><a class="dropdown-item" href="javascript:void(0)" (click)="scrollTo('most_visited_places')">Most
+                                Visited Places</a></li>
+                            </ul>
+                          </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('wonders_of_world')">Wonders
+                                of the World</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('hidden_gems')">Hidden
+                                Gems</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('most_visited_places')">Most
+                                Visited Places</a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('about_us')">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('contact_us')">Contact
+                                Us</a>
+                        </li>
+                        @if (false) {
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" routerLink="/register">Sign In</a>
+                        </li>
+                        }
+                        <div class="d-flex align-items-center profile-section">
+                            <img src="../assets/avatars/2.jpg" (click)="openProfile()" alt="Profile Picture"
+                                class="profile-pic me-2">
+                        </div>
                     </ul>
                 </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-sm btn-outline-danger">Logout</button>
+                @if(profileModal){
+                <div class="card profile-card">
+                    <div class="card-header">
+                        <img src="../assets/avatars/2.jpg" (click)="openProfile()" alt="Profile Picture"
+                            class="profile-pic me-2">
+                        <div class="user-details">
+                            <h3>Vipul Gawade</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" (click)="redirectTo('profile')">View Profile</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-sm btn-outline-danger">Logout</button>
+                    </div>
+                </div>
+                }
+            </div>
+        </nav>
+        }
+    </header>
+    <router-outlet></router-outlet>
+    <footer>
+        <div class="content">
+            <div class="section1">
+                <div class="logo">
                 </div>
             </div>
-            }
-    
-            <!-- <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)" routerLink="/profile">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)" routerLink="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)" routerLink="/register">Signup</a>
-                    </li>
+            <div class="section2">
+                <div class="left">
+                <h4>Important Links</h4>
+                <ul>
+                    <li>Hidden Gems</li>
+                    <li>Wonders of the World</li>
+                    <li>Most Visited Places</li>
+                    <li>Posted Travel Stories</li>
                 </ul>
-            </div> -->
+            </div>
+            <div class="right">
+                <h4>Referances</h4>
+                <ul>
+                    <li><a href="wikipedia.com">Wikipedia</a></li>
+                    <li><a href="travelindia.gov.in">travelindia.gov.in</a></li>
+                </ul>
+            </div>
+            </div>
+            <div class="section3"></div>
+            <div class="section4">
+                <h4>Our Social Media Links</h4>
+                <div class="social-media-links">
+                    <div class="link"></div>
+                    <div class="link"></div>
+                    <div class="link"></div>
+                </div>
+            </div>
         </div>
-    </nav>
-    }
-    <router-outlet></router-outlet>
+        <div class="copyright-msg">
+            <p>&copy; 2024 chaloghoome.com | All Rights Reserved</p>
+        </div>
+    </footer>
 </main>

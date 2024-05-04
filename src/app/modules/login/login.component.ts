@@ -19,6 +19,9 @@ export class LoginComponent {
     });
   }
 
+  goToSignUpPage(){
+    this.commonService.navigateTo('register')
+  }
   // Method to handle form submission
   onSubmit() {
     if (this.loginForm.valid) {

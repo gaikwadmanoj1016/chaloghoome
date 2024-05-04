@@ -1,97 +1,186 @@
-<!-- profile-page.component.html -->
+<div class="poster-image">
+    <div class="poster-upload">
+        <input id="posterFileInput" type="file" (change)="uploadPoster($event)" accept="image/*" style="display: none">
+        <button type="button" class="btn cam-icon" (click)="openPosterFileInput()"><img
+                src="../../../assets/icons/cam-icon-blue.png" alt=""></button>
+    </div>
+    @if(posterUrl){
+    <img [src]="posterUrl" alt="Poster Image" class="poster">
+    }@else {
+    <img [src]="posterDefaultUrl" alt="Poster Image" class="poster">
+    }
+</div>
 <div class="profile-page">
     <div class="left-side">
         <div class="profile-header">
-            <!-- Poster Image -->
-            <div class="poster-image">
-                <div class="poster-upload">
-                    <input id="posterFileInput" type="file" (change)="uploadPoster($event)" accept="image/*"
-                        style="display: none">
+            <div class="profile-card">
+                <div class="profile-picture">
+                    <div class="profile-upload">
+                        <input id="profileFileInput" type="file" (change)="uploadProfile($event)" accept="image/*"
+                            style="display: none">
 
-                    <button type="button" class="btn cam-icon" (click)="openPosterFileInput()"><img
-                            src="../../../assets/icons/cam-icon-blue.png" alt=""></button>
+                        <button type="button" class="btn cam-icon" (click)="openProfileFileInput()"><img
+                                src="../../../assets/icons/cam-icon-blue.png" alt=""></button>
+                    </div>
+                    @if(profileUrl){
+                    <img [src]="profileUrl" alt="Profile Picture" class="profile">
+                    }
+                    @else {
+                    <img [src]="profileDefaultUrl" alt="Profile Picture" class="profile">
+                    }
                 </div>
-                @if(posterUrl){
-                <img [src]="posterUrl" alt="Poster Image" class="poster">
-                }@else {
-                <img [src]="posterDefaultUrl" alt="Poster Image" class="poster">
-                }
-            </div>
-            <div class="profile-picture">
-                <div class="profile-upload">
-                    <input id="profileFileInput" type="file" (change)="uploadProfile($event)" accept="image/*"
-                        style="display: none">
-
-                    <button type="button" class="btn cam-icon" (click)="openProfileFileInput()"><img
-                            src="../../../assets/icons/cam-icon-blue.png" alt=""></button>
+                <div class="user-info">
+                    <div class="nameAndRating">
+                        <h2>Vipul Gawade</h2>
+                        <div class="ratings">
+                            <span class="star fill">&starf;</span>
+                            <span class="star fill">&starf;</span>
+                            <span class="star fill">&starf;</span>
+                            <span class="star fill">&starf;</span>
+                            <span class="star">&star;</span>
+                            <span class="count">200</span>
+                        </div>
+                        <!-- <div class="rate">
+    <input type="radio" id="star5" name="rate" value="5" />
+    <label for="star5" title="text">5 stars</label>
+    <input type="radio" id="star4" name="rate" value="4" />
+    <label for="star4" title="text">4 stars</label>
+    <input type="radio" id="star3" name="rate" value="3" />
+    <label for="star3" title="text">3 stars</label>
+    <input type="radio" id="star2" name="rate" value="2" />
+    <label for="star2" title="text">2 stars</label>
+    <input type="radio" id="star1" name="rate" value="1" />
+    <label for="star1" title="text">1 star</label>
+  </div> -->
+                    </div>
+                    <a href="">&commat;vipulgawade</a>
+                    <div class="business-info">
+                        <span>Guide</span>
+                        <span>(Grand Resort)</span>
+                        <span>Raigad</span>
+                    </div>
+                    <div class="checks">
+                        <div class="chip">
+                            <img src="../../../assets/svgs/certificate-icon.svg" alt="">
+                            <h4>Verified</h4>
+                        </div>
+                        <div class="chip">
+                            <img src="../../../assets/svgs/certificate-icon.svg" alt="">
+                            <h4>Certified</h4>
+                        </div>
+                    </div>
                 </div>
-                @if(profileUrl){
-                <img [src]="profileUrl" alt="Profile Picture" class="profile">
-                }
-                @else {
-                <img [src]="profileDefaultUrl" alt="Profile Picture" class="profile">
-                }
+                <div class="notification">
+                    <img src="../../../assets/svgs/bell-icon.svg" alt="">
+                    <div class="dot"></div>
+                </div>
             </div>
-            <!-- <button (click)="handleFileUpload()">Upload Image</button>
--->
-            @if(showModal){
-            <app-custom-cropper-modal (onCloseModal)="closeModal()" [imageChangedEvent]="imageChangedEvent"
-                (onImageCropped)="onPosterSelected($event)" [fileName]="fileName"
-                [aspectRatio]="aspectRatio"></app-custom-cropper-modal>
-            }
-
         </div>
         <div class="profile-content">
             <!-- User Details -->
             <div class="row user-details">
-                <div class="col-md-8 left">
-                    <h2>Vipul Gawade</h2>
-                    <h6><small>&commat;vipulgawade</small></h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque sequi inventore quo. Nam, saepe
+                <div class="col-md-6 bio">
+                    <h2 class="label">Bio : </h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque sequi inventore quo. Nam,
+                        saepe
                         aliquid hic distinctio laboriosam adipisci quod? Lorem ipsum dolor sit amet consectetur
                         adipisicing elit. Atque sequi inventore quo. Nam, saepe
                         aliquid hic distinctio laboriosam adipisci quod?</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="right">
-                        <div class="analytics">
-                            <h1>350</h1>
-                            <h2>Followers</h2>
-                            <img src="../../../assets/icons/user.png" alt="">
-                        </div>
-                        <div class="analytics">
-                            <h1>150</h1>
-                            <h2>Following</h2>
-                            <img src="../../../assets/icons/buddies-group.png" alt="">
-                        </div>
+                <div class="col-md-6 links">
+                    <h2 class="label">Links : </h2>
+                    <ul>
+                        <li class="link"><a href="#">www.example1.com</a></li>
+                        <li class="link"><a href="#">www.example2.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="button" class="btn btn-primary">Make Buddy</button>
+                <button type="button" class="btn btn-light text-black">Message</button>
+                <button type="button" class="btn btn-light text-black">Contact</button>
+                <button type="button" class="btn btn-light text-black" (click)="openModal()">Edit Profile</button>
+                <button type="button" class="btn btn-light text-black">Share Profile</button>
+            </div>
+            <div class="analytics-details">
+                <div class="card">
+                    <img src="../../../assets/svgs/story-book.svg" alt="">
+                    <div class="det">
+                        <h2>30</h2>
+                        <h6>Travel Stories</h6>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../../../assets/svgs/multiple-user-icon.svg" alt="">
+                    <div class="det">
+                        <h2>440</h2>
+                        <h6>Buddies</h6>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../../../assets/svgs/guide-with-user.svg" alt="">
+                    <div class="det">
+                        <h2>320</h2>
+                        <h6>Travel Guides</h6>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../../../assets/svgs/service-icon.svg" alt="">
+                    <div class="det">
+                        <h2>30</h2>
+                        <h6>Services</h6>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../../../assets/svgs/certificate-icon.svg" alt="">
+                    <div class="det">
+                        <h2>30</h2>
+                        <h6>Certificates</h6>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../../../assets/svgs/achievement-icon.svg" alt="">
+                    <div class="det">
+                        <h2>30</h2>
+                        <h6>Achievements</h6>
                     </div>
                 </div>
             </div>
-            <div class="actions mt-4">
-                <button type="button" class="btn btn-primary" (click)="openModal()">Edit Profile</button>
-                <button type="button" class="btn btn-primary">Follow <span>&plus;</span></button>
-            </div>
-
             <!-- Post Section (Placeholder) -->
-            <div class="connection-section">
-                <div class="head">
-                    <h2>My Buddies</h2>
-                    <button type="button" class="btn"> See all </button>
-                </div>
-                <!-- Placeholder for posts -->
-                <div class="connections">
-                    <div class="horizontal-list">
-                        <div class="card-container">
-                            @for(profile of profiles; track $index){
-                            <div class="card">
-                                <img [src]="profile.image" alt="{{ profile.name }}" class="card-image">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ profile.name }}</h5>
-                                    <button class="btn btn-primary">Explore</button>
+            <div class="buddy-section">
+                <div class="buddies-list">
+                    <div class="head">
+                        <h2>People You may know</h2>
+                        <button type="button" class="see-all-btn">See All <span><img src="../../../assets/svgs/back-arrow-black.svg"
+                            alt=""></span></button>
+                    </div>
+                    <div class="card-container">
+                        @for(profile of profiles; track $index){
+                        <div class="profile-card">
+                            <div class="card-image">
+                                <img [src]="profile.image" alt="{{ profile.name }}" class="">
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h2>{{ profile.name }}</h2>
+                                    <a href="#">&#64;john_doe</a>
+                                </div>
+                                <div class="more-data">
+                                    <div class="stories">
+                                        <h2>45</h2>
+                                        <h6>Travel Stories</h6>
+                                    </div>
+                                    <div class="buddies">
+                                        <h2>4500</h2>
+                                        <h6>Buddies</h6>
+                                    </div>
                                 </div>
                             </div>
-                            }
+                            <div class="card-footer">
+                                <button class="btn btn-light text-black">Make Buddy</button>
+                            </div>
                         </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -166,3 +255,8 @@
     </div>
 </div>
 <app-edit-profile [isOpen]="isModalOpen" (toggelModal)="toggleModal($event)"></app-edit-profile>
+@if(showModal){
+<app-custom-cropper-modal (onCloseModal)="closeModal()" [imageChangedEvent]="imageChangedEvent"
+    (onImageCropped)="onPosterSelected($event)" [fileName]="fileName"
+    [aspectRatio]="aspectRatio"></app-custom-cropper-modal>
+}

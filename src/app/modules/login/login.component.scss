@@ -1,89 +1,181 @@
 /* login.component.scss */
 
-.login-container {
+.main-container {
     height: 100vh;
-    background-image: url('../../../assets/imgs/pexels-nina-uhlikova-287240.jpg');
+    background-image: url('../../../assets/imgs/pexels-pawan-yadav-2577274.jpg');
     background-size: cover;
-    background-position: center top;
+    background-position: center center;
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
-}
 
-.glass-morphism {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    /* Ensure the form takes the full width */
-    max-width: 340px;
-    /* Limit the maximum width */
-    margin: 0 auto;
-}
-
-form {
-    text-align: center;
-
-    label {
-        display: block;
-        text-align: left;
-        margin-bottom: 5px;
-        color: #fff;
-    }
-
-    input {
+    .glass-morphism {
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         width: 100%;
-        padding: 5px 10px;
-        box-sizing: border-box;
-        // background-color: rgba(255, 255, 255, 0.1);
-        background-color: rgba(255, 255, 255, 0.489);
-        border: 1px solid #fff;
-        color: #fff;
-        border-radius: 5px;
-        transition: background-color 0.3s;
+        /* Ensure the form takes the full width */
+        max-width: 400px;
+        max-height: 100vh;
+        /* Limit the maximum width */
+        margin: 0 auto;
 
-        &:focus {
-            background-color: rgba(255, 255, 255, 0.2);
+        form {
+            text-align: center;
+            padding: 20px 10px;
+
+            .form-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 60px;
+                position: relative;
+
+                .back-btn {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+                h2 {
+                    width: 100%;
+                    text-align: center;
+                    font-size: 36px;
+                    font-weight: 500;
+                    margin: 0 !important;
+                    padding: 0;
+                    color: #fff;
+                    margin-bottom: 10px;
+                }
+            }
+
+            .form-body {
+
+                label {
+                    display: block;
+                    text-align: left;
+                    margin-bottom: 5px;
+                    font-size: 16px;
+                    color: #fff;
+                }
+
+                input {
+                    width: 100%;
+                    padding: 5px 0px;
+                    box-sizing: border-box;
+                    background-color: transparent;
+                    border: none;
+                    border-bottom: 2px solid #cacaca;
+                    color: #fff;
+                    border-radius: 0px;
+                    transition: background-color 0.3s;
+
+                    &:focus,
+                    &:-webkit-autofill,
+                    &:active,
+                    &:disabled,
+                    &.input-box:focus,
+                    &.input-box:-webkit-autofill,
+                    &.input-box:active,
+                    &.input-box:disabled {
+                        background-color: transparent;
+                        outline: none;
+                        box-shadow: none;
+                        font-size: 14px;
+                    }
+
+                    &::placeholder {
+                        color: #CACACA;
+                    }
+                }
+
+                .username-block {
+                    margin-bottom: 40px;
+                }
+
+                .password-block {
+                    margin-bottom: 20px;
+                }
+
+                .forgot-password-block {
+                    margin-bottom: 20px;
+                    text-align: end;
+
+                    .login-btn {}
+
+                    a {
+                        color: white;
+                    }
+                }
+
+                .form-cta {
+
+                    .login-btn {
+                        background-color: #fff;
+                        color: #000;
+                        padding: 12px 20px;
+                        margin-bottom: 10px;
+                        border: none;
+                        border-radius: 100px;
+                        font-weight: 500;
+                        font-size: 22px;
+                        width: 100%;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                        transition: background-color 0.3s;
+                    }
+
+                    .sign-in-block {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        font-size: 16px;
+                        justify-content: center;
+                        color: white;
+
+                        a {
+                            margin: 0;
+                            padding: 0;
+                        }
+
+                        button {
+                            color: #fff;
+                            font-size: 14px;
+                            padding: 4px 6px;
+
+                            &:hover {
+                                color: white;
+                            }
+
+                            // font-size: 12px;
+                        }
+                    }
+                }
+
+                .text-danger {
+                    text-align: left;
+                    color: #e74c3c;
+                }
+
+                .error-msg {
+                    text-align: left;
+                    background: #f26758;
+                    border-radius: 0 0 6px 6px;
+                    padding: 0 4px;
+                    font-size: 10px;
+                    color: white;
+                }
+            }
         }
-    }
-
-    h2 {
-        color: #fff;
-        margin-bottom: 10px;
-        font-weight: 600;
-    }
-
-    .login-btn {
-        background-color: #3498db;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        width: 50%;
-        cursor: pointer;
-        transition: background-color 0.3s;
-
-        &:hover {
-            background-color: #2980b9;
-        }
-    }
-
-    .sign-in-block {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-        color: white;
-    }
-
-    .text-danger {
-        text-align: left;
-        color: #e74c3c;
     }
 }
+
+
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {

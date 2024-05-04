@@ -1,5 +1,101 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
+// variables.scss
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$success-color: #28a745;
+$danger-color: #dc3545;
+$warning-color: #ffc107;
+
+$font-family-base: 'Arial';
+$font-size-base: 16px;
+
+$border-radius: 4px;
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+$navbar-height: 50px;
+:root {
+    --navbar-height: 50px;
+    --negative-navbar-height: 50px;
+    --black: black;
+}
+// mixins.scss
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin hover-color($color) {
+    &:hover {
+        background-color: $color;
+    }
+}
+
+// Global styles
+
+body {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    margin: 0;
+    padding: 0;
+}
+
+// Button styles
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+
+    &.primary {
+        background-color: $primary-color;
+        @include hover-color(darken($primary-color, 10%));
+    }
+
+    &.secondary {
+        background-color: $secondary-color;
+        @include hover-color(darken($secondary-color, 10%));
+    }
+
+    &.success {
+        background-color: $success-color;
+        @include hover-color(darken($success-color, 10%));
+    }
+
+    &.danger {
+        background-color: $danger-color;
+        @include hover-color(darken($danger-color, 10%));
+    }
+
+    &.warning {
+        background-color: $warning-color;
+        @include hover-color(darken($warning-color, 10%));
+    }
+}
+
+// Example component styles
+.component-container {
+    @include flex-center;
+    background-color: $secondary-color;
+
+    .component-button {
+        @extend .btn;
+        margin-top: 1rem;
+    }
+
+    .component-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .component-text {
+        color: $secondary-color;
+    }
+}
+
 body,
 h1,
 h2,
@@ -9,38 +105,12 @@ p {
     padding: 0;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-}
-
-// body {
-//     font-family: 'Roboto', sans-serif;
-//     font-size: 16px;
-// }
-
-// h1,
-// h2,
-// h3 {
-//     font-family: 'Open Sans', sans-serif;
-// }
 
 ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-
-/* main.css */
-// a {
-//     text-decoration: none;
-//     color: #333;
-// }
-
-// /* Apply a subtle hover effect on links */
-// a:hover {
-//     color: #555;
-// }
 
 button {
     cursor: pointer;
@@ -76,5 +146,12 @@ textarea {
     -moz-appearance: none !important;
     appearance: none !important;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+input [type="number"]{
+    appearance: none !important;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit, Signal, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit, Signal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { CommonService } from './services/common.service';
@@ -26,7 +26,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   user = this.users()[1];
   profileModal: boolean = false;
-  constructor(private router: Router, private commonService: CommonService) { }
+  scrollToDivId: string | null = '';
+  constructor(private router: Router, private commonService: CommonService, private route: ActivatedRoute, private cdRef: ChangeDetectorRef) { }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -36,9 +37,19 @@ export class AppComponent implements OnInit, OnDestroy {
 
   }
 
+  public scrollTo(path: string){
+    this.commonService.navigateToQueryParams('home', { section: path})
+  }
+  public navigateTo(path: string){
+    this.commonService.navigateTo(path);
+  }
   showNav(): boolean {
     const currentRoute = this.router.url;
     return !currentRoute.includes('login') && !currentRoute.includes('register');
+  }
+  addClass(): boolean {
+    const currentRoute = this.router.url;
+    return currentRoute.includes('home') || currentRoute.includes('profile');
   }
 
   openProfile() {

@@ -1,32 +1,45 @@
-<div class="login-container">
+<div class="main-container">
     <div class="glass-morphism">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <h2>Login</h2>
-            <div class="mb-3 mt-3">
-                <label for="username" class="form-label">User Name</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter your username"
-                    formControlName="username">
-                @if(loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty ||
-                loginForm.get('username')?.touched)){
-                <div class="text-danger">
-                    Username is required.
-                </div>
-                }
+            <div class="form-header">
+                <div class="back-btn"><img src="../../../assets/svgs/back-arrow.svg" alt=""></div>
+                <h2>Login</h2>
             </div>
-            <div class="mb-3 mt-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password"
-                    formControlName="password">
-                @if(loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty ||
-                loginForm.get('password')?.touched)){
-                <div class="text-danger">
-                    password is required.
+            <div class="form-body">
+                <div class="username-block">
+                    <!-- <label for="username" class="form-label">User Name/Email/Mobile</label> -->
+                    <input type="text" class="" id="username" placeholder="Enter User Name"
+                        formControlName="username">
+                    @if(loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty ||
+                    loginForm.get('username')?.touched)){
+                    <div class="text-danger">
+                        Username is required.
+                    </div>
+                    }
                 </div>
-                }
-            </div>
-            <button type="submit" class="login-btn" [disabled]="loginForm.invalid">Login</button>
-            <div class="mb-3 mt-3 sign-in-block">
-                Create an account ?<a href="javascript:void(0)" routerLink="/register" routerLink="register"><button type="button" class="btn btn-outline-primary btn-sm"> Sign Up</button></a>
+                <div class="password-block">
+                    <!-- <label for="password" class="form-label">Password</label> -->
+                    <input type="password" class="" id="password" placeholder="Enter Password"
+                        formControlName="password">
+                    @if(loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty ||
+                    loginForm.get('password')?.touched)){
+                    <div class="text-danger">
+                        Password is required.
+                    </div>
+                    }
+                </div>
+                <div class="forgot-password-block">
+                    <a href="#">Forget Password ?</a>
+                </div>
+                <div class="form-cta">
+                    <button type="submit" class="login-btn" [disabled]="loginForm.invalid">Login</button>
+                    <div class="sign-in-block">
+                        Create an account ?
+                        <a href="javascript:void(0)" (click)="goToSignUpPage()">
+                            <button type="button" class="btn btn-primary">Sign Up</button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </form>
     </div>

@@ -15,24 +15,30 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder, private commonService: CommonService) {
     this.registrationForm = this.fb.group({
       fullName: ['', Validators.required],
-      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.pattern(/^\d{10}$/)], // Assuming 10-digit phone number
-      isGuide: [false]
+      phoneNumber: [''],
+      isGuide: [false],
+      username: ['', Validators.required],
+      businessName: [''],
     });
   }
 
   onSubmit() {
+    console.log(this.registrationForm)
     if (this.registrationForm.valid) {
       // Implement your registration logic here
-      this.commonService.navigateTo('login');
     }
+    this.commonService.navigateTo('dashboard');
   }
 
   goToNextPage() {
     this.pageNumber = 2;
   }
   goToPreviousPage() {
-    this.pageNumber = 1;
+    if(this.pageNumber === 2){
+      this.pageNumber = 1;
+    }else{
+      this.commonService.navigateTo('login');
+    }
   }
 }

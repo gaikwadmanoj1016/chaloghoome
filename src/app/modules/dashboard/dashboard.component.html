@@ -3,35 +3,121 @@
     <div class="dashboard-feed">
         <section class="feeds">
             <!-- Search Bar -->
-        @if(showSearchBar()){
-            <form class="d-flex ms-2">
-                <input class="form-control me-2" type="search" placeholder="Search for feeds" aria-label="Search">
-                <button class="btn" type="submit">Search</button>
+            @if(showSearchBar()){
+            <form class="d-flex">
+                <input class="form-control search-btn" type="search" placeholder="Search..." aria-label="Search">
+                <button class="btn" type="submit"><mat-icon>search</mat-icon></button>
             </form>
-        }
-
-        <div class="new-post">
-            <!-- app.component.html -->
-            <button type="button" class="btn btn-sm btn-primary" (click)="openModal()">
-                <div class="main-text">
-                    <span>Create Your Post / Feed</span> <span class="plus-btn">&plus;</span>
-                </div>
-                <small>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, aliquam?</small>
-            </button>
-        </div>
-        <div class="post">
-            <app-posts></app-posts>
-        </div>
+            }
+            <div class="new-post">
+                <button type="button" class="btn btn-sm btn-primary" (click)="openModal()">
+                    <div class="main-text">
+                        <h2>Add Travel Story</h2>
+                    </div>
+                    <small>Write your travel experience here!</small>
+                </button>
+            </div>
+            <div class="post">
+                <app-posts></app-posts>
+            </div>
         </section>
     </div>
     <div class="right-sidebar">
-        <ul class="">
-            <!--  <span class="badge rounded-pill bg-primary">4</span> -->
-            <li class=""><label><div class="icon"><img src="" alt="Events icon"></div>Events</label> <span class="badge rounded-pill bg-primary">4</span></li>
-            <li class=""><label><div class="icon"><img src="" alt="Messanger icon"></div>Messanger</label> <span class="badge rounded-pill bg-primary">4</span></li>
-            <li class=""><label><div class="icon"><img src="" alt="bell icon"></div>Notifications</label> <span class="badge rounded-pill bg-primary">4</span></li>
-            <li class=""><label><div class="icon"><img src="" alt="Like icon"></div>Liked Feeds</label> <span class="badge rounded-pill bg-primary">4</span></li>
-          </ul>
+        <div class="shortcuts">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="user-profile">
+                        <img src="../../../assets/avatars/1.jpg" alt="profile-pic" class="profile-pic">
+                    </div>
+                    <div class="user-info">
+                        <span class="username">Manoj Gaikwad</span>
+                        <div class="location">
+                            India
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <div class="dots">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-body">
+                    <div class="count-details">
+                        <div class="count">356</div>
+                        <div class="label">Travel Stories</div>
+                    </div>
+                    <div class="count-details">
+                        <div class="count">356k</div>
+                        <div class="label">Buddies</div>
+                    </div>
+                </div>
+                <div class="cta">
+                    <ul>
+                        <li>Notifications</li>
+                        <li>Liked Stories</li>
+                        <li>Buddies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="shortcuts mt-3">
+            <div class="shortcuts-card">
+                <div class="cta">
+                    <ul>
+                        <li>Trending Stories</li>
+                        <li>Guides by Location</li>
+                        <li>Guides by Services</li>
+                        <li>Travel Stories by Location</li>
+                        <li>Travel Stories by Service</li>
+                        <li>Travel Stories by Guides</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="shortcuts mt-3">
+            <div class="shortcuts-card">
+                <div class="mixed-cta">
+                    <ul>
+                        <li class="main">Most Picked</li>
+                        <li>Top Guides
+                            <div class="cards">
+                                @for (item of [1,2]; track $index) {
+                                <div class="guide-card">
+                                    <div class="user-profile">
+                                        <img src="../../../assets/avatars/1.jpg" alt="profile-pic" class="profile-pic">
+                                    </div>
+                                    <div class="user-info">
+                                        <span class="username">Manoj Gaikwad <span class="businessName">(Grand
+                                                Resort)</span></span>
+                                        <div class="location">
+                                            India
+                                        </div>
+                                        <div class="down-arrow" [class.up]="isShow" (click)="isShow = !isShow"><img src="../../../assets/svgs/down-arrrow-filled.svg" alt=""></div>
+                                        @if (isShow) {
+                                            <div class="skills">
+                                                @for (item of ['rappling', 'climbing', 'camping','rappling', 'climbing', 'camping','rappling','rappling', 'car']; track $index) {
+                                                    <span class="chip">{{item}}</span>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- <ul class="">
+             <span class="badge rounded-pill bg-primary">4</span>
+            <li class="" (click)="navigateTo('events')"><label><mat-icon color="primary" size="48">event_note</mat-icon> Events</label> <span class="badge rounded-pill bg-primary">4</span></li>
+            <li class="" (click)="navigateTo('buddies')"><label><mat-icon color="primary" size="48">people</mat-icon> Buddies</label> <span class="badge rounded-pill bg-primary">14</span></li>
+            <li class="" (click)="navigateTo('notifications')"><label><mat-icon color="primary" size="48">notifications</mat-icon>Notifications</label> <span class="badge rounded-pill bg-primary">34</span></li>
+            <li class="" (click)="navigateTo('liked_feeds')"><label><mat-icon color="primary" size="48">thumb_up_alt</mat-icon>Liked Feeds</label> <span class="badge rounded-pill bg-primary">45</span></li>
+        </ul> -->
     </div>
 </section>
 <app-add-new-post [isOpen]="isModalOpen" (toggelModal)="toggleModal($event)"></app-add-new-post>

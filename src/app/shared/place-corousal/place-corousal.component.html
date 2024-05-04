@@ -1,0 +1,22 @@
+<div class="places-corousal most-visited-places" [id]="id">
+    <div class="head">
+        <h3>{{title}}</h3>
+        <button type="button" class="see-all-btn">See All <span><img src="../../../assets/svgs/back-arrow-black.svg"
+                    alt=""></span></button>
+    </div>
+    <div class="corousal" [ngClass]="grid ? 'grid-container' : 'flex-container'">
+        @for (item of placesList; track $index) {
+        <div class="place-card">
+            <div class="place-image">
+                <img src="../../../assets/imgs/How to travel Bora Bora on a Budget.jpg" alt="">
+            </div>
+            <div class="place-info">
+                <h4>Bora Bora</h4>
+                <h5>London, United Kingdom</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium accusantium ipsum
+                    autem minima obcaecati, quo odit qui non deleniti tempora nobis sit officiis aspern</p>
+            </div>
+        </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,124 @@
+<div class="post">
+    <div class="user-info">
+        <div class="user-profile">
+            <img [src]="post.user.userProfile" alt="profile-pic" class="profile-pic">
+        </div>
+        <div class="postedBy">
+            <span class="username">{{ post.user.username }}</span>
+            <div class="location">
+                <div>London</div>
+                <div class="dot"></div>
+                <div class="time">30-12-2023</div>
+            </div>
+        </div>
+    </div>
+    <div class="post-details">
+        <div class="post-images" (dblclick)="likePostByDblClick(post)">
+            @if(post.postDetails.images.length === 1){
+            <img [src]="post.postDetails.images[0]" alt="Post Image" class="post-image single-image">
+            }
+
+            @if(post.postDetails.images.length > 1){
+            <div class="multiple-images">
+                @for(image of post.postDetails.images; track $index){
+                <div class="image-container">
+                    <img [src]="image" alt="Post Image" class="post-image multiple-image">
+                </div>
+                }
+            </div>
+            }
+            @if(showLikeAnimation){
+            <img src="../../../assets/special-icons/heart.png" class="like-animation" alt="like-animation">
+            }
+        </div>
+        <div class="post-context">
+            <h3 class="title">{{post.postDetails.title}}</h3>
+            <p>{{post.postDetails.postDescription}}</p>
+            @for(tag of post.postDetails.tags; track $index){
+            <span>&nbsp;<a href="javascript:void(0)">#{{tag}}</a></span>
+            }
+        </div>
+        <div class="guide-details">
+            @if (post?.postDetails?.guideDetails?.name) {
+            <div class="mt-3">
+                Guide Name : <span class="guide-name">{{post.postDetails.guideDetails.name}}</span>
+            </div>
+            }
+        </div>
+        <!-- <div class="interactions">
+            <div class="likes">
+                <img [src]="post.liked ? 'assets/special-icons/heart.png' : 'assets/special-icons/empty-heart.png'"
+                    alt="heart">
+                <span>{{ post.postDetails.likes }}</span>
+            </div>
+            <div class="comments">
+                <img src="../../../assets/special-icons/message-icon.png" alt="comment">
+                <span>{{ post.postDetails.comments }}</span>
+            </div>
+        </div> -->
+        <div class="post-actions">
+            @if(post.liked){
+            <button type="button" class="custom-action-btn" (click)="likePostBySingleClick(post)"><mat-icon
+                    color="primary" size="48">thumb_up_alt</mat-icon></button>
+            }
+            @else {
+            <button type="button" class="custom-action-btn" (click)="likePostBySingleClick(post)"><img
+                    src="../../../../assets/svgs/thumb-icon.svg" alt=""></button>
+            }
+            <button type="button" class="custom-action-btn" (click)="toggleCommentSection()"><mat-icon>
+                    chat_bubble_outline</mat-icon></button>
+            <button type="button" class="custom-action-btn"><img src="../../../../assets/svgs/share-icon-outline.svg"
+                    alt=""></button>
+        </div>
+
+        @if (showHideCommentBox) {
+        <div class="comment-box">
+            <div class="add-comment">
+                <div class="user-avatar"></div>
+                <div class="comment-block">
+                    <app-auto-expanding-textarea></app-auto-expanding-textarea>
+                    <button class="btn btn-primary">Post</button>
+                </div>
+            </div>
+            @for (comment of post.comments; track $index) {
+            <div class="comments">
+                <div class="user-info">
+                    <div class="user-profile">
+                        <img [src]="comment.userProfile" alt="profile-pic" class="profile-pic">
+                    </div>
+                    <div class="postedBy">
+                        <span class="username">{{ comment.username }}</span>
+                        <div class="location">
+                            <div class="time">1 D</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="comment">
+                    {{comment.comment}}
+                </p>
+                @for (reply of comment.reply; track $index) {
+                <div class="reply">
+                    <div class="user-info">
+                        <div class="user-profile">
+                            <img [src]="reply.userProfile" alt="profile-pic" class="profile-pic">
+                        </div>
+                        <div class="postedBy">
+                            <span class="username">{{ reply.username }}</span>
+                            <div class="location">
+                                <div class="time">1 D</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="comment">
+                        {{reply.comment}}
+                    </p>
+                </div>
+                }
+            </div>
+            }
+        </div>
+        }
+    </div>
+</div>

@@ -11,7 +11,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 })
 export class ProfileComponent implements OnInit {
   isModalOpen: boolean = false;
-  public posterUrl: string = '../../../assets/imgs/Dolomites Italy - Best Places To Visit in the Dolomites + 1-Week Itinerary.jpg';
+  public posterUrl: string = '../../../assets/imgs/pexels-pixabay-531602.jpg';
   public profileUrl: string = '../../../assets/imgs/feniglia2.jpg';
   posterDefaultUrl: string = '';
   profileDefaultUrl: string = '';

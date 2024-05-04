@@ -6,6 +6,10 @@ import { PostsComponent } from './posts/posts.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { CustomCropperModalComponent } from './custom-cropper-modal/custom-cropper-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { PostComponent } from './posts/post/post.component';
+import { AutoExpandingTextareaComponent } from './auto-expanding-textarea/auto-expanding-textarea.component';
+import { PlaceCorousalComponent } from './place-corousal/place-corousal.component';
 
 
 
@@ -14,18 +18,25 @@ import { MatDialogModule } from '@angular/material/dialog';
     AddNewPostComponent,
     EditProfileComponent,
     PostsComponent,
-    CustomCropperModalComponent
+    CustomCropperModalComponent,
+    PostComponent,
+    AutoExpandingTextareaComponent,
+    PlaceCorousalComponent
   ],
   imports: [
     CommonModule,
     ImageCropperModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   exports: [
     AddNewPostComponent,
     EditProfileComponent,
     PostsComponent,
-    CustomCropperModalComponent
+    CustomCropperModalComponent,
+    PostComponent,
+    AutoExpandingTextareaComponent,
+    PlaceCorousalComponent
   ]
 })
 export class SharedModule { }
