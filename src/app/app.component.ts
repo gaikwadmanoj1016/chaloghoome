@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit, Signal, 
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { CommonService } from './services/common.service';
+import { SharedModule } from './shared/shared.module';
 
 interface UserInterface {
   id: number,
@@ -11,7 +12,7 @@ interface UserInterface {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, SharedModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -26,7 +27,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   user = this.users()[1];
   profileModal: boolean = false;
-  scrollToDivId: string | null = '';
   constructor(private router: Router, private commonService: CommonService, private route: ActivatedRoute, private cdRef: ChangeDetectorRef) { }
 
   @HostListener('window:scroll', [])
@@ -34,14 +34,18 @@ export class AppComponent implements OnInit, OnDestroy {
     this.isScrolled = window.scrollY > 50;
   }
   ngOnInit(): void {
-
+    
   }
 
-  public scrollTo(path: string){
-    this.commonService.navigateToQueryParams('home', { section: path})
+  public scrollTo(path: string) {
+    this.commonService.navigateToQueryParams('home', { section: path })
   }
-  public navigateTo(path: string){
-    this.commonService.navigateTo(path);
+  public navigateTo(path: string) {
+    if (path === 'hidden_gems' || path === 'wonders_of_world' || path === 'most_visited_places') {
+      this.commonService.navigateToQueryParams('home', { section: path })
+    } else {
+      this.commonService.navigateTo(path);
+    }
   }
   showNav(): boolean {
     const currentRoute = this.router.url;
@@ -52,8 +56,11 @@ export class AppComponent implements OnInit, OnDestroy {
     return currentRoute.includes('home') || currentRoute.includes('profile');
   }
 
-  openProfile() {
+  toggleProfileMenu() {
     this.profileModal = !this.profileModal;
+  }
+  closeProfileMenu() {
+    this.profileModal = false;
   }
 
   redirectTo(path: string) {

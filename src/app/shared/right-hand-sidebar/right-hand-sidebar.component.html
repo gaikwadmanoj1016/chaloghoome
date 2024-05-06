@@ -1,0 +1,90 @@
+<div class="shortcuts">
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="user-profile" (click)="navigateTo('profile')">
+                <img src="../../../assets/avatars/1.jpg" alt="profile-pic" class="profile-pic">
+            </div>
+            <div class="user-info">
+                <span class="username" (click)="navigateTo('profile')">Manoj Gaikwad</span>
+                <div class="type">
+                    Traveller
+                </div>
+            </div>
+            <div class="menu">
+                <div class="dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+        <div class="profile-body">
+            <div class="count-details" (click)="navigateTo('/')">
+                <div class="count">356</div>
+                <div class="label">Travel Stories</div>
+            </div>
+            <div class="count-details" (click)="navigateTo('buddies')">
+                <div class="count">356k</div>
+                <div class="label">Buddies</div>
+            </div>
+        </div>
+        <div class="cta">
+            <ul>
+                <li>Notifications</li>
+                <li>Liked Stories</li>
+                <li>Buddies</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="shortcuts mt-3">
+    <div class="shortcuts-card">
+        <div class="cta">
+            <ul>
+                <li>Trending Stories</li>
+                <li>Guides by Location</li>
+                <li>Guides by Services</li>
+                <li>Travel Stories by Location</li>
+                <li>Travel Stories by Service</li>
+                <li>Travel Stories by Guides</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="shortcuts mt-3">
+    <div class="shortcuts-card">
+        <div class="mixed-cta">
+            <ul>
+                <li class="main">Most Picked</li>
+                <li>Top Guides
+                    <div class="cards">
+                        @for (item of [1,2]; track $index) {
+                        <div class="guide-card">
+                            <div class="user-profile">
+                                <img src="../../../assets/avatars/1.jpg" alt="profile-pic" class="profile-pic">
+                            </div>
+                            <div class="user-info">
+                                <span class="username">Manoj Gaikwad <span class="businessName">(Grand
+                                        Resort)</span></span>
+                                <div class="location">
+                                    India
+                                </div>
+                                <div class="down-arrow" [class.up]="isShow" (click)="isShow = !isShow"><img
+                                        src="../../../assets/svgs/down-arrrow-filled.svg" alt=""></div>
+                                @if (isShow) {
+                                <div class="skills">
+                                    @for (item of ['rappling', 'climbing', 'camping','rappling', 'climbing',
+                                    'camping','rappling','rappling', 'car']; track $index) {
+                                    <span class="chip">{{item}}</span>
+                                    }
+                                </div>
+                                }
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

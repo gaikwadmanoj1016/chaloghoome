@@ -1,0 +1,10 @@
+<div class="place-card" (click)="navigateTo(item)">
+    <div class="place-image">
+        <img [src]="item.imageUrl" alt="{{item.location}}, {{item.address}}" loading="lazy">
+    </div>
+    <div class="place-info">
+        <h4>{{item.location}}</h4>
+        <h5>{{item.address}}</h5>
+        <p>{{item.description | truncate: 120}}</p>
+    </div>
+</div>

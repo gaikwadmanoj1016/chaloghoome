@@ -31,6 +31,40 @@ main {
                         gap: 20px;
                         align-items: center;
 
+                        .nav-item {
+
+                            a {
+                                cursor: pointer;
+                                text-decoration: none;
+                                position: relative;
+
+                                &:hover {
+                                    text-decoration: none;
+
+                                    &:before {
+                                        content: '';
+                                        position: absolute;
+                                        left: 0;
+                                        bottom: -2px;
+                                        width: 100%;
+                                        height: 2px;
+                                        background-color: #ffffff; // Change this to your desired color
+                                        animation: underlineAnim 0.4s forwards;
+                                    }
+                                }
+
+                                @keyframes underlineAnim {
+                                    from {
+                                        width: 0;
+                                    }
+
+                                    to {
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+
                         .dropdown {
 
                             .dropdown-menu {
@@ -41,7 +75,7 @@ main {
                                         color: white;
 
                                         &:hover {
-                                            color: #353535;
+                                            background-color: #353535;
                                         }
                                     }
                                 }
@@ -52,58 +86,57 @@ main {
 
                 .profile-card {
                     position: absolute;
-                    top: 70px;
-                    right: 30px;
+                    top: 45px;
+                    right: 20px;
                     z-index: 100;
                     min-width: 250px;
 
-                    .card-header {
-                        display: flex;
-                        align-items: center;
-                        flex-direction: column;
-                        gap: 10px;
-
-                        .profile-pic {
-                            width: 100px;
-                            aspect-ratio: 1;
-                            border-radius: 100%;
-                        }
-
-                        .user-details {
-                            h3 {
-                                font-weight: 500;
-                                font-size: 20px;
-                            }
-                        }
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: -5px;
+                        right: 3px;
+                        width: 0;
+                        height: 0;
+                        border-left: 5px solid transparent;
+                        border-right: 5px solid transparent;
+                        border-bottom: 5px solid rgb(255, 255, 255);
                     }
 
                     .card-body {
                         padding: 0px;
+                        border: none;
+                        border-radius: 10px;
+                        overflow: hidden;
 
                         ul {
                             padding: 0;
                             margin: 0;
                             border-radius: 0;
+                            border: none;
 
                             li {
                                 padding: 10px;
                                 cursor: pointer;
+                                border: none;
+
+                                &:not(:last-child) {
+                                    border-bottom: 1px solid #dcdcdc;
+                                }
                             }
                         }
-                    }
-
-                    .card-footer {
-                        text-align: end;
                     }
                 }
 
                 .profile-section {
                     position: relative;
+                    padding: 5px;
 
                     .profile-pic {
-                        width: 40px;
+                        width: 35px;
                         aspect-ratio: 1;
                         border-radius: 100%;
+                        box-shadow: 0 0 5px 0px #f2f2f282;
                     }
                 }
             }
@@ -166,6 +199,37 @@ main {
             .section2 {
                 display: flex;
                 gap: 80px;
+
+                a {
+                    cursor: pointer;
+                    text-decoration: none;
+                    position: relative;
+
+                    &:hover {
+                        text-decoration: none;
+
+                        &:after {
+                            content: '';
+                            position: absolute;
+                            left: 0;
+                            bottom: -2px;
+                            width: 100%;
+                            height: 2px;
+                            background-color: #ffffff; // Change this to your desired color
+                            animation: underlineAnim 0.4s forwards;
+                        }
+                    }
+
+                    @keyframes underlineAnim {
+                        from {
+                            width: 0;
+                        }
+
+                        to {
+                            width: 100%;
+                        }
+                    }
+                }
             }
 
             .section2,

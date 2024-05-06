@@ -1,0 +1,72 @@
+@import '../edit-profile/edit-profile.component.scss';
+
+.customModal {
+    max-width: 1200px !important;
+    height: 80%;
+
+    .modal-body {
+
+        .row {
+            height: 100%;
+            padding: 0;
+
+            .list {
+                height: 100%;
+                overflow: auto;
+                background-color: #f2f2f2;
+
+                ul {
+                    padding: 0;
+
+                    li {
+                        padding: 10px;
+                        border-bottom: 1px solid #dcdcdc;
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: #dcdcdc;
+                        }
+                    }
+                }
+            }
+
+            .preview {
+                height: 100%;
+                overflow: auto;
+                padding: 10px;
+
+                .certificate {
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    .handleOverflow {
+        height: 80%;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 786px) {
+    .customModal {
+        height: auto !important;
+
+        .handleOverflow {
+            overflow: auto !important;
+
+            .preview {
+                height: auto !important;
+                overflow: hidden !important;
+            }
+
+            .list {
+                height: auto !important;
+            }
+        }
+    }
+}

@@ -1,43 +1,13 @@
 <section>
     <div class="dashboard-feed">
-        <h1>Buddy Requests</h1>
+        <h1>Travel Buddies</h1>
         <section class="feeds">
             @for (buddie of buddies; track $index) {
-            <div class="buddy-card">
-                <div class="card-head">
-                    <div class="top-bg"></div>
-                    <img [src]="buddie.profilePicture" alt="Buddy Image" />
-                </div>
-                <div class="card-body">
-                    <div class="buddy-info">
-                        <h3 class="position-relative">{{ buddie.name }}
-                        </h3>
-                        <p>{{ buddie.bio.length <= 50 ? buddie.bio : (buddie.bio.slice(0, 50) + '...') }}</p>
-                    </div>
-                    <div class="button-container">
-                        <button class="btn btn-primary add-button" (click)="addBuddy(buddie)">Add Buddy</button>
-                        <button class="btn btn-danger cancel-button" (click)="cancelRequest(buddie)">Cancel</button>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="stats">
-                        <div>Followers : <strong>300k</strong></div>
-                        <div>Followings : <strong>30</strong></div>
-                    </div>
-                </div>
-            </div>
+            <app-buddy-card [buddyDetails]="buddie"></app-buddy-card>
             }
         </section>
     </div>
     <div class="right-sidebar">
-        <ul class="">
-            <li class="" (click)="navigateTo('events')"><label><mat-icon color="primary" size="48">how_to_reg</mat-icon>
-                    All Buddies</label> <span class="badge rounded-pill bg-primary">4</span></li>
-            <li class="" (click)="navigateTo('buddies')"><label><mat-icon color="primary" size="48">people</mat-icon>
-                    Suggestions</label> <span class="badge rounded-pill bg-primary">14</span></li>
-            <li class="" (click)="navigateTo('notifications')"><label><mat-icon color="primary"
-                        size="48">move_to_inbox</mat-icon>Requests</label> <span
-                    class="badge rounded-pill bg-primary">34</span></li>
-        </ul>
+        <app-right-hand-sidebar></app-right-hand-sidebar>
     </div>
 </section>

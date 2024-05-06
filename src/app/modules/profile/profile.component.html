@@ -103,14 +103,14 @@
                 <button type="button" class="btn btn-light text-black">Share Profile</button>
             </div>
             <div class="analytics-details">
-                <div class="card">
+                <div class="card" (click)="scrollTo('activities')">
                     <img src="../../../assets/svgs/story-book.svg" alt="">
                     <div class="det">
                         <h2>30</h2>
                         <h6>Travel Stories</h6>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" (click)="navigateTo('buddies')">
                     <img src="../../../assets/svgs/multiple-user-icon.svg" alt="">
                     <div class="det">
                         <h2>440</h2>
@@ -131,7 +131,7 @@
                         <h6>Services</h6>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" (click)="openCertificateModal()">
                     <img src="../../../assets/svgs/certificate-icon.svg" alt="">
                     <div class="det">
                         <h2>30</h2>
@@ -151,40 +151,17 @@
                 <div class="buddies-list">
                     <div class="head">
                         <h2>People You may know</h2>
-                        <button type="button" class="see-all-btn">See All <span><img src="../../../assets/svgs/back-arrow-black.svg"
-                            alt=""></span></button>
+                        <button type="button" class="see-all-btn">See All <span><img
+                                    src="../../../assets/svgs/back-arrow-black.svg" alt=""></span></button>
                     </div>
                     <div class="card-container">
-                        @for(profile of profiles; track $index){
-                        <div class="profile-card">
-                            <div class="card-image">
-                                <img [src]="profile.image" alt="{{ profile.name }}" class="">
-                            </div>
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <h2>{{ profile.name }}</h2>
-                                    <a href="#">&#64;john_doe</a>
-                                </div>
-                                <div class="more-data">
-                                    <div class="stories">
-                                        <h2>45</h2>
-                                        <h6>Travel Stories</h6>
-                                    </div>
-                                    <div class="buddies">
-                                        <h2>4500</h2>
-                                        <h6>Buddies</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-light text-black">Make Buddy</button>
-                            </div>
-                        </div>
+                        @for(buddy of buddies; track $index){
+                        <app-buddy-card [buddyDetails]="buddy"></app-buddy-card>
                         }
                     </div>
                 </div>
             </div>
-            <div class="post-section">
+            <div class="post-section" id="activities">
                 <div class="section-header">
                     <h2>My Activities</h2>
                 </div>
@@ -259,4 +236,7 @@
 <app-custom-cropper-modal (onCloseModal)="closeModal()" [imageChangedEvent]="imageChangedEvent"
     (onImageCropped)="onPosterSelected($event)" [fileName]="fileName"
     [aspectRatio]="aspectRatio"></app-custom-cropper-modal>
+}
+@if (commonService.showHideCertificateModal) {
+    <app-certificates (toggelModal)="openCertificateModal()"></app-certificates>
 }

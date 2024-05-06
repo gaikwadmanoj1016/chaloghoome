@@ -1,0 +1,28 @@
+<div class="modal-container">
+    <div class="customModal">
+        <div class="modal-header">
+            <h2>Certificates</h2>
+            <div class="close-btn" (click)="closeModal()">&Cross;</div>
+        </div>
+        <div class="modal-body handleOverflow">
+            <div class="row">
+                <div class="col-md-6 preview">
+                    <div class="certificate">
+                        @if (certificate && certificate.url) {
+                        <img [src]="certificate.url" [alt]="certificate.name">
+                        }@else {
+                        <img [src]="" [alt]="">
+                        }
+                    </div>
+                </div>
+                <div class="col-md-6 list">
+                    <ul>
+                        @for (item of certificates; track $index) {
+                        <li (click)="openCertificate(item)">{{item.name}}</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

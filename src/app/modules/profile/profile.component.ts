@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,7 @@ export class ProfileComponent implements OnInit {
   public profileUrl: string = '../../../assets/imgs/feniglia2.jpg';
   posterDefaultUrl: string = '';
   profileDefaultUrl: string = '';
-  profiles: any[] = [
+  buddies: any[] = [
     { id: 1, name: 'John Doe', image: 'assets/avatars/1.jpg' },
     { id: 2, name: 'Jane Smith', image: 'assets/avatars/2.jpg' },
     { id: 3, name: 'Alice Johnson', image: 'assets/avatars/3.jpg' },
@@ -29,18 +30,7 @@ export class ProfileComponent implements OnInit {
   fileName: string = '';
   aspectRatio: number = 1;
 
-  // constructor(public dialog: MatDialog) {}
-
-  // openCustomModal(): void {
-  //   const dialogRef = this.dialog.open(CustomCropperModalComponent, {
-  //     width: '300px',
-  //     data: { title: 'Custom Modal', message: 'This is a simple custom modal!' }
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //   });
-  // }
+  constructor(public commonService: CommonService) {}
 
   closeModal() {
     // Close the modal
@@ -106,5 +96,16 @@ export class ProfileComponent implements OnInit {
 
   toggleModal(flag: boolean) {
     this.isModalOpen = flag;
+  }
+
+  public scrollTo(path: string){
+    this.commonService.scrollToDiv(path);
+  }
+  public navigateTo(path: string){
+    this.commonService.navigateTo(path);
+  }
+
+  public openCertificateModal(){
+    this.commonService.showHideCertificateModal = !this.commonService.showHideCertificateModal;
   }
 }

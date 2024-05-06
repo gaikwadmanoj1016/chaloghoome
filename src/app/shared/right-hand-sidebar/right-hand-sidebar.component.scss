@@ -1,0 +1,234 @@
+.shortcuts {
+    // position: sticky;
+    background-color: #EFEFEF;
+    // top: 70px;
+
+    .profile-card,
+    .shortcuts-card {
+        box-shadow: 0 4px 6px 0 rgb(216, 216, 216);
+        border-radius: 10px 10px 0 0;
+
+        .profile-header {
+            // border-radius: 10px;
+            font-weight: bold;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+            padding: 15px 20px;
+            position: relative;
+            border-bottom: 1px solid #dcdcdc;
+
+            .user-profile {
+                cursor: pointer;
+                .profile-pic {
+                    height: 45px;
+                    aspect-ratio: 1;
+                    border-radius: 100%;
+                    object-fit: cover;
+
+                    img {
+                        object-fit: cover;
+                    }
+                }
+            }
+
+            .user-info {
+                display: flex;
+                flex-direction: column;
+                line-height: 15px;
+                padding: 5px;
+                gap: 10px;
+
+                .username {
+                    font-size: 16px;
+                    color: #000000;
+                    font-weight: 600;
+                    cursor: pointer;
+                }
+
+                .type {
+                    color: #9d9d9d;
+                    font-size: 12px;
+                    font-weight: 500;
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                }
+
+            }
+
+            .menu {
+                position: absolute;
+                right: 20px;
+
+                .dots {
+                    cursor: pointer;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+
+                    .dot {
+                        background-color: #000000;
+                        width: 4px;
+                        aspect-ratio: 1;
+                        border-radius: 100%;
+                    }
+                }
+            }
+        }
+
+        .profile-body {
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            .count-details {
+                text-align: center;
+                flex: 1;
+                cursor: pointer;
+
+                .count {
+                    font-weight: 600;
+                }
+
+                .label {
+                    color: #9d9d9d;
+                    font-weight: 500;
+                }
+            }
+
+        }
+
+        .cta {
+            background-color: #f5f5f5;
+
+            ul {
+                margin: 0;
+                padding: 0;
+
+                li {
+                    padding: 10px 20px;
+                    font-size: 12px;
+                    font-weight: 500;
+                    // color: #5B58AD;
+                    cursor: pointer;
+                    border-bottom: 1px solid #dcdcdc;
+                    background: #f5f5f5;
+
+                    &:hover {
+                        background: linear-gradient(90deg, rgba(255, 255, 255, 1)0%, rgba(245, 245, 245, 1)100%);
+                    }
+                }
+            }
+        }
+
+        .mixed-cta {
+            li {
+                padding: 15px;
+                font-size: 14px;
+                font-weight: 500;
+                color: #5B58AD;
+                cursor: pointer;
+                // border-bottom: 1px solid #dcdcdc;
+                background: #f5f5f5;
+
+                .cards {
+                    margin-top: 20px;
+
+                    .guide-card {
+                        display: flex;
+                        gap: 10px;
+                        border-radius: 10px;
+                        padding: 10px;
+                        background-color: white;
+                        margin-bottom: 5px;
+                        position: relative;
+
+                        .user-profile {
+                            .profile-pic {
+                                height: 40px;
+                                aspect-ratio: 1;
+                                border-radius: 100%;
+
+                                img {
+                                    object-fit: cover;
+                                }
+                            }
+                        }
+
+                        .user-info {
+                            display: flex;
+                            flex-direction: column;
+                            line-height: 15px;
+                            padding: 5px;
+                            gap: 6px;
+
+                            .username {
+                                font-size: 12px;
+                                color: #000000;
+                                font-weight: 600;
+
+                                .businessName {
+                                    font-size: 10px;
+                                    font-weight: 400;
+                                }
+                            }
+
+                            .location {
+                                color: #9d9d9d;
+                                font-size: 10px;
+                                font-weight: 500;
+                                display: flex;
+                                align-items: center;
+                            }
+
+                            .down-arrow {
+                                position: absolute;
+                                right: 10px;
+                                top: 25px;
+                                opacity: 0.6;
+
+                                img {
+                                    width: 10px;
+                                }
+
+                                &.up {
+                                    img {
+                                        transform: rotate(180deg);
+                                    }
+                                }
+                            }
+
+                            .skills {
+                                margin-top: 8px;
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 4px;
+
+                                .chip {
+                                    padding: 4px 8px;
+                                    border-radius: 10px;
+                                    font-size: 10px;
+                                    background: #5B58AD;
+                                    color: white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .main {
+                font-weight: 600;
+                color: black;
+                border-bottom: 2px solid #EFEFEF;
+            }
+        }
+    }
+
+    .shortcuts-card {
+        border-radius: 10px;
+    }
+}

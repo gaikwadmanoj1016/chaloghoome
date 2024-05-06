@@ -1,3 +1,4 @@
 export class environment {
-    public apiUrl = '';
+    static readonly apiUrl = '';
+    static readonly webUrl: string = 'localhost:4200/';
 }

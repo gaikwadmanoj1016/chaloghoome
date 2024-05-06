@@ -12,11 +12,11 @@ export class EditProfileComponent {
   public multipleFiles: File[] = [];
   public uploadedFiles: File[] = [];
 
-  constructor(){}
+  constructor() { }
   closeModal() {
     this.toggelModal.emit(false);
   }
-public submit(){
-  
-}
+  public submit() {
+
+  }
 }

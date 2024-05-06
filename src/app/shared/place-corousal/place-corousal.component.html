@@ -1,20 +1,19 @@
 <div class="places-corousal most-visited-places" [id]="id">
     <div class="head">
         <h3>{{title}}</h3>
-        <button type="button" class="see-all-btn">See All <span><img src="../../../assets/svgs/back-arrow-black.svg"
+        <button type="button" (click)="navigateTo('places')" class="see-all-btn">See All <span><img src="../../../assets/svgs/back-arrow-black.svg"
                     alt=""></span></button>
     </div>
     <div class="corousal" [ngClass]="grid ? 'grid-container' : 'flex-container'">
         @for (item of placesList; track $index) {
-        <div class="place-card">
+        <div class="place-card" (click)="explorePlace(item.id)">
             <div class="place-image">
-                <img src="../../../assets/imgs/How to travel Bora Bora on a Budget.jpg" alt="">
+                <img [src]="item.imageUrl" alt="{{item.location}}, {{item.address}}">
             </div>
             <div class="place-info">
-                <h4>Bora Bora</h4>
-                <h5>London, United Kingdom</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium accusantium ipsum
-                    autem minima obcaecati, quo odit qui non deleniti tempora nobis sit officiis aspern</p>
+                <h4>{{item.location}}</h4>
+                <h5>{{item.address}}</h5>
+                <p>{{item.description | truncate: 120}}</p>
             </div>
         </div>
         }

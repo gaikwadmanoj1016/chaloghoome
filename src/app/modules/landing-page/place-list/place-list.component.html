@@ -1,1 +1,10 @@
-<p>place-list works!</p>
+<main>
+    <div class="title">
+        <h3>Hidden Gems</h3>
+    </div>
+    <div class="places">
+        @for (item of list; track $index) {
+        <app-place-card [item]="item" (onNavigateTo)="navigateTo($event)"></app-place-card>
+        }
+    </div>
+</main>

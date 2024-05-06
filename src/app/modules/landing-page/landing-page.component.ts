@@ -14,13 +14,12 @@ import { CommonService } from '../../services/common.service';
 })
 export class LandingPageComponent implements OnInit {
   scrollToDivId: string | null = '';
-  constructor(private route: ActivatedRoute, private commonService: CommonService, private cdRef: ChangeDetectorRef) { }
+  constructor(private route: ActivatedRoute, public commonService: CommonService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
       if (params && params.get("section")) {
         this.scrollToDivId = params.get("section");
-        console.log(this.scrollToDivId);
         this.commonService.scrollToDiv(this.scrollToDivId);
       } else {
         this.commonService.scrollToTop();
@@ -37,7 +36,7 @@ export class LandingPageComponent implements OnInit {
     }
   }
 
-  redirectTo(path: string, query: {}){
+  redirectTo(path: string, query: {}) {
     this.commonService.navigateToQueryParams(path, query);
   }
 }

@@ -1,0 +1,83 @@
+.buddies-card {
+    border: 1px solid #dcdcdc;
+    min-width: 230px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+
+    .card-image {
+        width: 100%;
+        background: radial-gradient(circle farthest-corner at 10% 20%, rgb(79 174 219) 0%, rgb(1 64 101) 90%);
+        height: 60px;
+
+        img {
+            position: relative;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            aspect-ratio: 1;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 100%;
+            border: 5px solid white;
+        }
+    }
+
+    .card-body {
+        padding: 10px;
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+
+        .card-title {
+            text-align: center;
+            margin-top: 30px;
+
+            h2 {
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        .more-data {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            .stories,
+            .buddies {
+                text-align: center;
+
+                h2 {
+                    font-size: 16px;
+                    margin: 0;
+                    padding: 0;
+                    font-weight: 600;
+                }
+
+                h6 {
+                    font-size: 14px;
+                    margin: 0;
+                    padding: 0;
+                    font-weight: 500;
+                    color: #989898;
+                }
+            }
+        }
+    }
+
+    .card-footer {
+        background-color: #f5f5f5;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+
+        button {
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 24px;
+            box-shadow: 0 2px 4px 0 #dcdcdc;
+        }
+    }
+}

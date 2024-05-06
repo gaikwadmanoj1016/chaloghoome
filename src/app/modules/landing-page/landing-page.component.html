@@ -10,26 +10,26 @@
                     their services, and available packages. Conversely, tour guides can efficiently showcase their
                     offerings directly to interested travelers, facilitating a direct and transparent exchange of
                     information.</p>
-                <button type="button" class="btn btn-outline-primary" (click)="redirectTo('home', {scrollTo : 'about_us'})">Explore</button>
+                <button type="button" class="btn btn-outline-primary" (click)="redirectTo('home', {section: 'about_us'})">Explore</button>
             </div>
         </div>
     </section>
     <section>
         <div class="section2" id="wonders_of_world">
-            <app-place-corousal [title]="'Wonders of the World'" [id]="''"
-                [placesList]="[1,2,3,5,3,3]"></app-place-corousal>
+            <app-place-corousal [title]="'Wonders of the World'" [id]="'wonders_of_world'"
+                [placesList]="commonService.wonders"></app-place-corousal>
         </div>
     </section>
     <section>
         <div class="section3" id="hidden_gems">
-            <app-place-corousal [title]="'Hidden Gems'" [id]="''" [placesList]="[1,2,3,4]"
+            <app-place-corousal [title]="'Hidden Gems'" [id]="'hidden_gems'" [placesList]="commonService.hiddenGems"
                 [grid]="true"></app-place-corousal>
         </div>
     </section>
     <section>
         <div class="section4" id="most_visited_places">
-            <app-place-corousal [title]="'Most Visited Places'" [id]="''"
-                [placesList]="[1,2,3,5,3,3]"></app-place-corousal>
+            <app-place-corousal [title]="'Most Visited Places'" [id]="'most_visited_places'"
+                [placesList]="commonService.mostVisited"></app-place-corousal>
         </div>
     </section>
     <section>
