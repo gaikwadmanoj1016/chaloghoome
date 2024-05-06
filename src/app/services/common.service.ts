@@ -48,7 +48,6 @@ export class CommonService {
     { "id": 29, imageUrl: 'assets/imgs/most-visited/mount-fuji.jpg', location: 'Mount Fuji', address: 'Honshu Island, Japan', description: 'Mount Fuji, located on Honshu Island, is the highest mountain in Japan at 3,776.24 m (12,389 ft) and is one of Japan\'s "Three Holy Mountains" along with Mount Tate and Mount Haku.' },
     { "id": 30, imageUrl: 'assets/imgs/most-visited/masai-mara.jpg', location: 'Masai Mara National Reserve', address: 'Kenya', description: 'The Maasai Mara National Reserve is a large game reserve in Narok County, Kenya, contiguous with the Serengeti National Park in Tanzania. It is named in honor of the Maasai people, the ancestral inhabitants of the area, who migrated to the area from the Nile Basin.' },
     { "id": 31, imageUrl: 'assets/imgs/most-visited/hiroshima-peace-memorial.jpg', location: 'Hiroshima Peace Memorial', address: 'Hiroshima, Japan', description: 'The Hiroshima Peace Memorial, originally the Hiroshima Prefectural Industrial Promotion Hall, is the historic building that remains closest to the hypocenter of the atomic bomb explosion on 6 August 1945.' }
-
   ];
 
   constructor(private router: Router) { }
