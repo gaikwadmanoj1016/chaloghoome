@@ -36,8 +36,20 @@ main {
                     margin-bottom: 20px;
                 }
 
+                @media (max-width: 550px) {
+                    h1 {
+                        font-size: 32px !important;
+                        line-height: 40px;
+                        margin: 0 !important;
+                    }
+
+                    p {
+                        width: 85%;
+                    }
+                }
+
                 p {
-                    width: 45%;
+                    width: 85%;
                     line-height: 18px;
                     margin-top: 10px;
                 }
@@ -164,6 +176,16 @@ main {
                             }
                         }
                     }
+
+                }
+                @media (max-width: 550px) {
+                    .body{
+                        flex-direction: column-reverse;
+
+                        .left, .right{
+                            width: 100%;
+                        }
+                    }
                 }
             }
         }
@@ -202,6 +224,7 @@ main {
                 width: 50%;
                 color: black;
                 position: relative;
+
                 // font-size: 1px;
                 &::before {
                     content: '';
@@ -213,6 +236,12 @@ main {
                     border-left: 10px solid transparent;
                     border-right: 10px solid transparent;
                     border-bottom: 10px solid #dcdcdc;
+                }
+            }
+
+            @media (max-width: 550px) {
+                p{
+                    width: 90%;
                 }
             }
         }

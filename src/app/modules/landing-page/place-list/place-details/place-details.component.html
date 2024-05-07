@@ -1,0 +1,38 @@
+<main>
+    <section class="gallery">
+        <!-- Iterate over highlights -->
+        @for (highlight of placeDetails?.highlights; track $index) {
+        <img [src]="highlight.image" alt="{{ highlight.title }}" (click)="openPreview(highlight.image)">
+        }
+    </section>
+
+    <section class="information">
+        <h2>About {{ placeDetails?.name }}</h2>
+        <p>{{ placeDetails?.description }}</p>
+        <!-- Display other information as needed -->
+        <p><strong>Area:</strong> {{ placeDetails?.area }}</p>
+        <p><strong>Year Established:</strong> {{ placeDetails?.yearEstablished }}</p>
+        <p><strong>Unique Feature:</strong> {{ placeDetails?.uniqueFeature }}</p>
+        <p><strong>Other Features:</strong></p>
+        <ol>
+            @for (feature of placeDetails?.otherFeatures; track $index) {
+                <li>{{ feature }}</li>
+            }
+        </ol>
+    </section>
+    <section class="travel-guide">
+        <h2>Travel Guide</h2>
+        @for (guide of placeDetails?.travelGuide; track $index) {
+        <div class="guide-section">
+            <h3>{{ guide.title }}</h3>
+            <p>{{ guide.para }}</p>
+            <ol>
+                @for (item of guide.bulletPoints; track $index) {
+                <li>{{item}}</li>
+                }
+            </ol>
+        </div>
+        }
+    </section>
+
+</main>

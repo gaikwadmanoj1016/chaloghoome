@@ -1,0 +1,141 @@
+/* styles.scss */
+
+$primary-color: #2ECC71; // Define primary color
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-position: center;
+    max-height: 90vh;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.information, .travel-guide {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.travel-guide ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.travel-guide ul li {
+    margin-bottom: 10px;
+}
+
+.hero {
+    text-align: center;
+    padding-bottom: 2rem;
+
+    img {
+        width: 100%; /* Responsive image */
+        max-height: 400px; /* Limit image height */
+        object-fit: cover;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Larger heading for emphasis */
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1.1rem; /* Slightly larger paragraph text */
+        margin-bottom: 1rem;
+    }
+
+    a {
+        background-color: $primary-color; /* Green button color */
+        color: #fff; /* White button text */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer; /* Indicate clickable button */
+    }
+}
+
+.about-park {
+    margin-bottom: 2rem;
+
+    p {
+        text-align: justify; /* Justify text for better readability on wider screens */
+        line-height: 1.5; /* Increase line spacing for easier reading */
+    }
+}
+
+.highlights {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.highlight-card {
+    width: 32%; /* Responsive card width */
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd; /* Light border for separation */
+    border-radius: 5px;
+    // text-align: center;
+
+    img {
+        width: 100%;
+        max-height: 150px; /* Limit card image height */
+        object-fit: cover;
+        margin-bottom: 1rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.travel-guide {
+    margin-bottom: 2rem;
+
+    h2 {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+}
+
+.guide-section {
+    margin-bottom: 1rem;
+
+    h3 {
+        font-size: 1.1rem;
+        font-weight: 500;
+        border-bottom: 2px solid #dcdcdc;
+        margin-bottom: 0.5rem;
+    }
+}

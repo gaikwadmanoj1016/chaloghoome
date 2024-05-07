@@ -53,6 +53,17 @@
         }
     }
 
+    @media (max-width: 550px) {
+        .place-info {
+            padding: 15px 15px;
+            display: flex;
+            gap: 2px;
+            flex-direction: column;
+            transition: all 0.9s;
+            justify-content: end;
+        }
+    }
+
     &:hover {
         transform: scale(1.03);
         box-shadow: 0 0 16px 5px #36363670;

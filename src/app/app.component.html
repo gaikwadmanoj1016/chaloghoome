@@ -4,22 +4,23 @@
         @if (showNav()) {
         <nav class="navbar navbar-expand-lg navbar-light" [class.shadow]="isScrolled">
             <div class="custom-container" [class.bgColor]="addClass()">
-                <!-- Hamburger Menu for Mobile -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
                 <a class="navbar-brand" href="javascript:void(0)" (click)="navigateTo('home')">
-                    <!-- <img src="assets/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-top"> -->
-                    Logo
+                    <img src="../assets/icons/chalo-ghoome-title-logo.png" alt="Logo" class="image1">
+                    <img src="assets/icons/ChaloGhoome-logo-new.png" alt="Logo" class="image2">
                 </a>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="custom-navbar-nav">
-                        <li class="nav-item">
+                <div style="    text-align: end;">
+                    <!-- Hamburger Menu for Mobile -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+
+                        <ul class="custom-navbar-nav">
+                            <!-- <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)" (click)="navigateTo('/')">Travel Stories</a>
-                        </li>
-                        <li class="nav-item dropdown">
+                        </li> -->
+                            <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Featured</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="javascript:void(0)"
@@ -32,27 +33,29 @@
                                         (click)="scrollTo('most_visited_places')">Most
                                         Visited Places</a></li>
                             </ul>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('wonders_of_world')">Wonders
-                                of the World</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('hidden_gems')">Hidden
-                                Gems</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('most_visited_places')">Most
-                                Visited Places</a>
                         </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('about_us')">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('contact_us')">Contact
-                                Us</a>
-                        </li>
-                        @if (false) {
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)"
+                                    (click)="scrollTo('wonders_of_world')">Wonders
+                                    of the World</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('hidden_gems')">Hidden
+                                    Gems</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)"
+                                    (click)="scrollTo('most_visited_places')">Most
+                                    Visited Places</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('about_us')">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('contact_us')">Contact
+                                    Us</a>
+                            </li>
+                            <!-- @if (false) {
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)" routerLink="/register">Sign In</a>
                         </li>
@@ -69,8 +72,9 @@
                                 </div>
                             </div>
                             }
-                        </div>
-                    </ul>
+                        </div> -->
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -81,13 +85,14 @@
         <div class="content">
             <div class="section1">
                 <div class="logo">
+                    <img src="assets/icons/ChaloGhoome-logo-new.png" alt="Logo" class="">
                 </div>
             </div>
             <div class="section2">
                 <div class="left">
                     <h4>Important Links</h4>
                     <ul>
-                        <li><a (click)="navigateTo('public_stories')">Travel Stories</a></li>
+                        <!-- <li><a (click)="navigateTo('/')">Travel Stories</a></li> -->
                         <li><a (click)="navigateTo('hidden_gems')">Hidden Gems</a></li>
                         <li><a (click)="navigateTo('wonders_of_world')">Wonders of the World</a></li>
                         <li><a (click)="navigateTo('most_visited_places')">Most Visited Places</a></li>
@@ -105,9 +110,10 @@
             <div class="section4">
                 <h4>Our Social Media Links</h4>
                 <div class="social-media-links">
-                    <div class="link"></div>
-                    <div class="link"></div>
-                    <div class="link"></div>
+                    <div class="link"><a href="https://twitter.com/chalo_ghoome" target="_blank"><img
+                                src="../assets/icons/twitter-x.png" alt=""></a></div>
+                    <div class="link"><a href="www.linkedin.com/company/chalo-ghoome" target="_blank"><img
+                                src="../assets/icons/linkedin.png" alt=""></a></div>
                 </div>
             </div>
         </div>
