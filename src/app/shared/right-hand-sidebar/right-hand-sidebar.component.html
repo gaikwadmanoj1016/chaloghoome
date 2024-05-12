@@ -2,7 +2,7 @@
     <div class="profile-card">
         <div class="profile-header">
             <div class="user-profile" (click)="navigateTo('profile')">
-                <img src="../../../assets/avatars/1.jpg" alt="profile-pic" class="profile-pic">
+                <img loading="lazy" src="../../../assets/avatars/1.jpg" alt="profile-pic" class="profile-pic">
             </div>
             <div class="user-info">
                 <span class="username" (click)="navigateTo('profile')">Manoj Gaikwad</span>
@@ -61,7 +61,7 @@
                         @for (item of [1,2]; track $index) {
                         <div class="guide-card">
                             <div class="user-profile">
-                                <img src="../../../assets/avatars/1.jpg" alt="profile-pic" class="profile-pic">
+                                <img loading="lazy" src="../../../assets/avatars/1.jpg" alt="profile-pic" class="profile-pic">
                             </div>
                             <div class="user-info">
                                 <span class="username">Manoj Gaikwad <span class="businessName">(Grand

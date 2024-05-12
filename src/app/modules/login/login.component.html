@@ -2,7 +2,7 @@
     <div class="glass-morphism">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-header">
-                <div class="back-btn"><img src="../../../assets/svgs/back-arrow.svg" alt=""></div>
+                <div class="back-btn"><img loading="lazy" src="../../../assets/svgs/back-arrow.svg" alt=""></div>
                 <h2>Login</h2>
             </div>
             <div class="form-body">
@@ -18,7 +18,6 @@
                     }
                 </div>
                 <div class="password-block">
-                    <!-- <label for="password" class="form-label">Password</label> -->
                     <input type="password" class="" id="password" placeholder="Enter Password"
                         formControlName="password">
                     @if(loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty ||

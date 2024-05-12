@@ -20,6 +20,7 @@ import { ApiService } from '../services/api.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonService } from '../services/common.service';
 import { HttpRequestsService } from '../services/http-request.service';
+import { ProgressiveImageComponent } from './progressive-image/progressive-image.component';
 
 
 
@@ -38,6 +39,7 @@ import { HttpRequestsService } from '../services/http-request.service';
     CertificatesComponent,
     TruncatePipe,
     PlaceCardComponent,
+    ProgressiveImageComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +61,8 @@ import { HttpRequestsService } from '../services/http-request.service';
     ClickOutsideDirective,
     CertificatesComponent,
     TruncatePipe,
-    PlaceCardComponent
+    PlaceCardComponent,
+    ProgressiveImageComponent
   ],
   providers: [ApiService]
 })

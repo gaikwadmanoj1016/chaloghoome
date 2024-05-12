@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonService } from '../../services/common.service';
 import { SharedModule } from '../shared.module';
 
@@ -7,13 +7,20 @@ import { SharedModule } from '../shared.module';
   templateUrl: './place-corousal.component.html',
   styleUrl: './place-corousal.component.scss',
 })
-export class PlaceCorousalComponent {
+export class PlaceCorousalComponent implements OnInit {
   @Input() title: string = '';
   @Input() id: string = '';
+  @Input() showCount!: number;
   @Input() grid: boolean = false;
   @Input() placesList: any[] = [];
 
   constructor(private commonService: CommonService) { }
+
+  ngOnInit(): void {
+      if(this.placesList && this.placesList.length > this.showCount){
+        this.placesList = this.placesList.slice(0, this.showCount);
+      }
+  }
   public navigateTo(path: string) {
     this.commonService.navigateToQueryParams(path, { filter: this.id });
   }

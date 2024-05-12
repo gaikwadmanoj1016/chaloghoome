@@ -1,7 +1,10 @@
 <main>
     <section>
         <div class="section1">
-            <img class="main-image" src="../../../assets/imgs/pexels-pixabay-257092.jpg" alt="">
+            <div class="main-img">
+                <app-progressive-image [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'"
+                    [image]="'../../../assets/imgs/pexels-pixabay-257092.jpg'"></app-progressive-image>
+            </div>
             <div class="context">
                 <h1>Travel <span>Smarter,</span></h1>
                 <h1>Explore Better with Chalo Ghoome!</h1>
@@ -10,26 +13,27 @@
                     their services, and available packages. Conversely, tour guides can efficiently showcase their
                     offerings directly to interested travelers, facilitating a direct and transparent exchange of
                     information.</p>
-                <button type="button" class="btn btn-outline-primary" (click)="redirectTo('home', {section: 'about_us'})">Explore</button>
+                <button type="button" class="btn btn-outline-primary"
+                    (click)="redirectTo('home', {section: 'about_us'})">Explore</button>
             </div>
         </div>
     </section>
     <section>
         <div class="section2" id="wonders_of_world">
             <app-place-corousal [title]="'Wonders of the World'" [id]="'wonders_of_world'"
-                [placesList]="commonService.wonders"></app-place-corousal>
+                [placesList]="commonService.wonders" [showCount]="7"></app-place-corousal>
         </div>
     </section>
     <section>
         <div class="section3" id="hidden_gems">
             <app-place-corousal [title]="'Hidden Gems'" [id]="'hidden_gems'" [placesList]="commonService.hiddenGems"
-                [grid]="true"></app-place-corousal>
+                [grid]="true" [showCount]="6"></app-place-corousal>
         </div>
     </section>
     <section>
         <div class="section4" id="most_visited_places">
             <app-place-corousal [title]="'Most Visited Places'" [id]="'most_visited_places'"
-                [placesList]="commonService.mostVisited"></app-place-corousal>
+                [placesList]="commonService.mostVisited" [showCount]="5"></app-place-corousal>
         </div>
     </section>
     <section>
@@ -51,7 +55,8 @@
                             first adventure, our platform is designed to inspire and guide you every step of the way.
                             <br><br>
                             <span class="highlight">For travellers, Chalo Ghoome</span> offers a platform to share your
-                            travel Stories, seek inspiration for your next journey, and connect with fellow globetrotters.
+                            travel Stories, seek inspiration for your next journey, and connect with fellow
+                            globetrotters.
                             From <span class="highlight">budget-friendly tips to luxury travel experiences</span>, our
                             community-driven platform has something for every type of <span
                                 class="highlight">traveller</span>.
@@ -71,7 +76,8 @@
                         </p>
                     </div>
                     <div class="right">
-                        <img src="../../../assets/imgs/travel_guys_about-us.png" alt="">
+                        <app-progressive-image [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'"
+                            [image]="'../../../assets/imgs/travel_guys_about-us.png'"></app-progressive-image>
                     </div>
                 </div>
             </div>
@@ -80,7 +86,12 @@
     <section class="paralax">
         <div class="info">
             <h3>Why choose us ? </h3>
-            <p>The tourism sector is rapidly embracing technology, reducing manual work. However, it's struggling to capture the attention of targeted customers. Taking this challenge seriously, we offer a separate platform for tourism enthusiasts to share their travel stories. Travelers can tag the guides they booked with us or without us. This approach is particularly beneficial for guides, helping them reach a targeted audience and grow their business. Travelers can also conveniently access information about available services remotely. Join us to explore, share, and connect!</p>
+            <p>The tourism sector is rapidly embracing technology, reducing manual work. However, it's struggling to
+                capture the attention of targeted customers. Taking this challenge seriously, we offer a separate
+                platform for tourism enthusiasts to share their travel stories. Travelers can tag the guides they booked
+                with us or without us. This approach is particularly beneficial for guides, helping them reach a
+                targeted audience and grow their business. Travelers can also conveniently access information about
+                available services remotely. Join us to explore, share, and connect!</p>
         </div>
     </section>
     <section>
@@ -93,7 +104,8 @@
                     <div class="right">
                         <form #contactForm="ngForm" (submit)="onSubmit(contactForm)">
                             <div class="custom-form-group mb-4">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" required>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name"
+                                    required>
                             </div>
                             <div class="custom-form-group mb-4">
                                 <input type="email" class="form-control" name="email" id="email"
@@ -115,7 +127,8 @@
                         <div class="contact-info">
                             <h3>Have a question or need assistance ?</h3>
 
-                            <p>Feel free to reach out to us! Our dedicated team is here to help you with any inquiries you may have. You can contact us through the following methods:</p>
+                            <p>Feel free to reach out to us! Our dedicated team is here to help you with any inquiries
+                                you may have. You can contact us through the following methods:</p>
 
                             <p><strong>Email :</strong> support&#64;chaloghoome.com</p>
 

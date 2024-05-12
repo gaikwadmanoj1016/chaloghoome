@@ -28,7 +28,7 @@
             </div>
             }
             @if(showLikeAnimation){
-            <img src="../../../assets/special-icons/heart.png" class="like-animation" alt="like-animation">
+            <img loading="lazy" src="../../../assets/special-icons/heart.png" class="like-animation" alt="like-animation">
             }
         </div>
         <div class="post-context">
@@ -52,7 +52,7 @@
                 <span>{{ post.postDetails.likes }}</span>
             </div>
             <div class="comments">
-                <img src="../../../assets/special-icons/message-icon.png" alt="comment">
+                <img loading="lazy" src="../../../assets/special-icons/message-icon.png" alt="comment">
                 <span>{{ post.postDetails.comments }}</span>
             </div>
         </div> -->
@@ -67,7 +67,7 @@
             }
             <button type="button" class="custom-action-btn" (click)="toggleCommentSection()"><mat-icon>
                     chat_bubble_outline</mat-icon></button>
-            <button type="button" class="custom-action-btn"><img src="../../../../assets/svgs/share-icon-outline.svg"
+            <button type="button" class="custom-action-btn"><img loading="lazy" src="../../../../assets/svgs/share-icon-outline.svg"
                     alt=""></button>
         </div>
 

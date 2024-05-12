@@ -1,14 +1,15 @@
 <div class="places-corousal most-visited-places" [id]="id">
     <div class="head">
         <h3>{{title}}</h3>
-        <button type="button" (click)="navigateTo('places')" class="see-all-btn">See All <span><img src="../../../assets/svgs/back-arrow-black.svg"
+        <button type="button" (click)="navigateTo('places')" class="see-all-btn">See All <span><img loading="lazy" src="../../../assets/svgs/back-arrow-black.svg"
                     alt=""></span></button>
     </div>
     <div class="corousal" [ngClass]="grid ? 'grid-container' : 'flex-container'">
         @for (item of placesList; track $index) {
         <div class="place-card" (click)="explorePlace(item.id)">
             <div class="place-image">
-                <img [src]="item.imageUrl" alt="{{item.location}}, {{item.address}}">
+                <app-progressive-image [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'" [image]="item.imageUrl"></app-progressive-image>
+                <!-- <img [src]="item.imageUrl" alt="{{item.location}}, {{item.address}}" loading="lazy"> -->
             </div>
             <div class="place-info">
                 <h4>{{item.location}}</h4>

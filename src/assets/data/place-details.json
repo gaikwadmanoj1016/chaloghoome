@@ -37,11 +37,7 @@
             },
             {
                 "title": "Activities",
-                "para": "Popular activities at the Taj Mahal include exploring the monument and its surroundings,",
-                "bulletPoints": [
-                    "taking photographs",
-                    "learning about its history and architecture from local guides."
-                ]
+                "para": "Popular activities at the Taj Mahal include exploring the monument and its surroundings, taking photographs, and learning about its history and architecture from local guides."
             },
             {
                 "title": "Things to Pack",
@@ -52,6 +48,10 @@
                     "Water bottle",
                     "Respectful attire for visiting the mosque"
                 ]
+            },
+            {
+                "title": "Additional Information",
+                "para": "Visitors are advised not to touch or lean on the walls of the Taj Mahal to preserve its beauty and integrity."
             }
         ]
     },
@@ -59,7 +59,7 @@
         "id": 2,
         "name": "Machu Picchu",
         "description": "Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a 2,430-meter (7,970 ft) mountain ridge. It is located in the Machupicchu District within Urubamba Province above the Sacred Valley, which is 80 kilometers (50 mi) northwest of Cuzco. Built in the classical Inca style, with polished dry-stone walls, Machu Picchu is one of the most important archaeological sites in South America and a UNESCO World Heritage Site.",
-        "area": 2430,
+        "area": "2430",
         "yearEstablished": "1450",
         "uniqueFeature": "Machu Picchu is renowned for its sophisticated dry-stone walls that fuse huge blocks without the use of mortar, intriguing buildings that play on astronomical alignments, and panoramic views.",
         "otherFeatures": [
@@ -110,9 +110,13 @@
                     "Water bottle and snacks",
                     "Camera and binoculars"
                 ]
+            },
+            {
+                "title": "Additional Information",
+                "para": "Visitors are advised to respect the site's rules and regulations, including not touching or climbing on the ruins."
             }
         ]
-    },
+    },    
     {
         "id": 3,
         "name": "Eiffel Tower",
@@ -185,23 +189,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Getting to the Great Wall of China depends on which section you wish to visit. The most popular sections near Beijing are Badaling and Mutianyu, both reachable by bus or taxi from the city center.",
-                "bulletPoints": []
+                "para": "Getting to the Great Wall of China depends on which section you wish to visit. The most popular sections near Beijing are Badaling and Mutianyu, both reachable by bus or taxi from the city center."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The best time to visit the Great Wall of China is during the spring (April to May) and autumn (September to October) when the weather is mild and the crowds are thinner.",
-                "bulletPoints": []
+                "para": "The best time to visit the Great Wall of China is during the spring (April to May) and autumn (September to October) when the weather is mild and the crowds are thinner."
             },
             {
                 "title": "Accommodation",
-                "para": "There are no accommodations directly on the Great Wall itself, but there are plenty of hotels and guesthouses in nearby towns and cities, such as Beijing.",
-                "bulletPoints": []
+                "para": "There are no accommodations directly on the Great Wall itself, but there are plenty of hotels and guesthouses in nearby towns and cities, such as Beijing."
             },
             {
                 "title": "Activities",
-                "para": "Popular activities on the Great Wall of China include hiking, photography, and learning about its history.",
-                "bulletPoints": []
+                "para": "Popular activities on the Great Wall of China include hiking, photography, and learning about its history."
             },
             {
                 "title": "Things to Pack",
@@ -241,23 +241,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Petra is located in southern Jordan, about 3 hours drive from the capital, Amman. The nearest airport is in Aqaba, about 2 hours drive away.",
-                "bulletPoints": []
+                "para": "Petra is located in southern Jordan, about 3 hours drive from the capital, Amman. The nearest airport is in Aqaba, about 2 hours drive away."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The best time to visit Petra is during the spring (March to May) and autumn (September to November) when the weather is mild.",
-                "bulletPoints": []
+                "para": "The best time to visit Petra is during the spring (March to May) and autumn (September to November) when the weather is mild."
             },
             {
                 "title": "Accommodation",
-                "para": "There are several hotels and guesthouses in Petra catering to different budgets. It's advisable to book in advance, especially during peak tourist seasons.",
-                "bulletPoints": []
+                "para": "There are several hotels and guesthouses in Petra catering to different budgets. It's advisable to book in advance, especially during peak tourist seasons."
             },
             {
                 "title": "Activities",
-                "para": "In Petra, you can explore the ancient city, visit the various archaeological sites, hike in the surrounding mountains, and experience local culture and cuisine.",
-                "bulletPoints": []
+                "para": "In Petra, you can explore the ancient city, visit the various archaeological sites, hike in the surrounding mountains, and experience local culture and cuisine."
             },
             {
                 "title": "Things to Pack",
@@ -293,23 +289,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Chichen Itza is located in the Yucatán Peninsula of Mexico. The nearest airport is in Merida, which is about a 1.5-hour drive from the archaeological site.",
-                "bulletPoints": []
+                "para": "Chichen Itza is located in the Yucatán Peninsula of Mexico. The nearest airport is in Merida, which is about a 1.5-hour drive from the archaeological site."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The best time to visit Chichen Itza is during the cooler, drier months of November to February.",
-                "bulletPoints": []
+                "para": "The best time to visit Chichen Itza is during the cooler, drier months of November to February."
             },
             {
                 "title": "Accommodation",
-                "para": "There are several accommodation options near Chichen Itza, ranging from budget-friendly hotels to luxury resorts.",
-                "bulletPoints": []
+                "para": "There are several accommodation options near Chichen Itza, ranging from budget-friendly hotels to luxury resorts."
             },
             {
                 "title": "Activities",
-                "para": "In Chichen Itza, you can explore the ancient ruins, learn about Mayan history and culture, and enjoy the natural beauty of the Yucatán Peninsula.",
-                "bulletPoints": []
+                "para": "In Chichen Itza, you can explore the ancient ruins, learn about Mayan history and culture, and enjoy the natural beauty of the Yucatán Peninsula."
             },
             {
                 "title": "Things to Pack",
@@ -322,7 +314,7 @@
                 ]
             }
         ]
-    },
+    },    
     {
         "id": 8,
         "name": "Colosseum",
@@ -355,23 +347,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "The Colosseum is located in the center of Rome, easily accessible by public transport. The nearest metro station is Colosseo (Line B).",
-                "bulletPoints": []
+                "para": "The Colosseum is located in the center of Rome, easily accessible by public transport. The nearest metro station is Colosseo (Line B)."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The best time to visit the Colosseum is early in the morning or late in the afternoon to avoid crowds and the heat of the day.",
-                "bulletPoints": []
+                "para": "The best time to visit the Colosseum is early in the morning or late in the afternoon to avoid crowds and the heat of the day."
             },
             {
                 "title": "Accommodation",
-                "para": "There are many hotels and accommodations near the Colosseum, offering a range of options to suit different budgets and preferences.",
-                "bulletPoints": []
+                "para": "There are many hotels and accommodations near the Colosseum, offering a range of options to suit different budgets and preferences."
             },
             {
                 "title": "Activities",
-                "para": "Apart from visiting the Colosseum, you can explore other nearby attractions such as the Roman Forum and Palatine Hill.",
-                "bulletPoints": []
+                "para": "Apart from visiting the Colosseum, you can explore other nearby attractions such as the Roman Forum and Palatine Hill."
             },
             {
                 "title": "Things to Pack",
@@ -403,23 +391,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Christ the Redeemer is located in the Tijuca Forest National Park in Rio de Janeiro. The most common way to reach the statue is by van or taxi from the city center.",
-                "bulletPoints": []
+                "para": "Christ the Redeemer is located in the Tijuca Forest National Park in Rio de Janeiro. The most common way to reach the statue is by van or taxi from the city center."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The best time to visit Christ the Redeemer is during the early morning or late afternoon to avoid the crowds and enjoy the view.",
-                "bulletPoints": []
+                "para": "The best time to visit Christ the Redeemer is during the early morning or late afternoon to avoid the crowds and enjoy the view."
             },
             {
                 "title": "Accommodation",
-                "para": "There are plenty of accommodation options in Rio de Janeiro, ranging from budget hostels to luxury hotels.",
-                "bulletPoints": []
+                "para": "There are plenty of accommodation options in Rio de Janeiro, ranging from budget hostels to luxury hotels."
             },
             {
                 "title": "Activities",
-                "para": "Besides visiting Christ the Redeemer, you can explore the vibrant city of Rio de Janeiro, enjoy its beautiful beaches, and experience its rich culture.",
-                "bulletPoints": []
+                "para": "Besides visiting Christ the Redeemer, you can explore the vibrant city of Rio de Janeiro, enjoy its beautiful beaches, and experience its rich culture."
             },
             {
                 "title": "Things to Pack",
@@ -432,6 +416,7 @@
             }
         ]
     },
+    
     {
         "id": 10,
         "name": "Petronas Towers",
@@ -461,23 +446,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "The Petronas Towers are located in the Kuala Lumpur City Centre (KLCC) area, easily accessible by public transportation including trains and buses.",
-                "bulletPoints": []
+                "para": "The Petronas Towers are located in the Kuala Lumpur City Centre (KLCC) area, easily accessible by public transportation including trains and buses."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The best time to visit the Petronas Towers is early in the morning or late in the evening to avoid crowds.",
-                "bulletPoints": []
+                "para": "The best time to visit the Petronas Towers is early in the morning or late in the evening to avoid crowds."
             },
             {
                 "title": "Accommodation",
-                "para": "There are several hotels and accommodations near the Petronas Towers, ranging from luxury hotels to budget-friendly options.",
-                "bulletPoints": []
+                "para": "There are several hotels and accommodations near the Petronas Towers, ranging from luxury hotels to budget-friendly options."
             },
             {
                 "title": "Activities",
-                "para": "Besides visiting the Petronas Towers, visitors can explore the KLCC Park, shop at the Suria KLCC mall, and visit nearby attractions such as the Aquaria KLCC and the KL Tower.",
-                "bulletPoints": []
+                "para": "Besides visiting the Petronas Towers, visitors can explore the KLCC Park, shop at the Suria KLCC mall, and visit nearby attractions such as the Aquaria KLCC and the KL Tower."
             },
             {
                 "title": "Things to Pack",
@@ -545,13 +526,11 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "The Athenian Acropolis, including the Parthenon, is easily accessible by metro, bus, or taxi in Athens. Consider purchasing a combo ticket for entry to the Acropolis and other archaeological sites in Athens.",
-                "bulletPoints": []
+                "para": "The Athenian Acropolis, including the Parthenon, is easily accessible by metro, bus, or taxi in Athens. Consider purchasing a combo ticket for entry to the Acropolis and other archaeological sites in Athens."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The Athenian Acropolis is a popular tourist destination. To avoid crowds, consider visiting during the shoulder seasons (spring and fall) or early mornings. Be prepared for hot weather during the summer months.",
-                "bulletPoints": []
+                "para": "The Athenian Acropolis is a popular tourist destination. To avoid crowds, consider visiting during the shoulder seasons (spring and fall) or early mornings. Be prepared for hot weather during the summer months."
             },
             {
                 "title": "Things to Pack",
@@ -563,11 +542,11 @@
             },
             {
                 "title": "Additional Information",
-                "para": "The Parthenon is a UNESCO World Heritage Site. Be mindful of proper etiquette while visiting the site. Dress modestly when entering religious buildings located on the Acropolis grounds. Photography is permitted for non-commercial purposes.",
-                "bulletPoints": []
+                "para": "The Parthenon is a UNESCO World Heritage Site. Be mindful of proper etiquette while visiting the site. Dress modestly when entering religious buildings located on the Acropolis grounds. Photography is permitted for non-commercial purposes."
             }
         ]
     },
+    
     {
         "id": 110,
         "name": "Sydney Opera House",
@@ -597,23 +576,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "The Sydney Opera House is located in the Sydney CBD, close to Circular Quay. It is easily accessible by train, bus, ferry, or on foot.",
-                "bulletPoints": []
+                "para": "The Sydney Opera House is located in the Sydney CBD, close to Circular Quay. It is easily accessible by train, bus, ferry, or on foot."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The best time to visit the Sydney Opera House is during the Australian summer (December to February) when the weather is warm and there are often outdoor events.",
-                "bulletPoints": []
+                "para": "The best time to visit the Sydney Opera House is during the Australian summer (December to February) when the weather is warm and there are often outdoor events."
             },
             {
                 "title": "Accommodation",
-                "para": "There are many hotels and accommodations near the Sydney Opera House, ranging from luxury hotels to budget options.",
-                "bulletPoints": []
+                "para": "There are many hotels and accommodations near the Sydney Opera House, ranging from luxury hotels to budget options."
             },
             {
                 "title": "Activities",
-                "para": "Aside from attending performances, visitors can take guided tours of the Opera House, dine in its restaurants, or enjoy the views from nearby attractions like the Sydney Harbour Bridge.",
-                "bulletPoints": []
+                "para": "Aside from attending performances, visitors can take guided tours of the Opera House, dine in its restaurants, or enjoy the views from nearby attractions like the Sydney Harbour Bridge."
             },
             {
                 "title": "Things to Pack",
@@ -653,23 +628,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Stonehenge is located near Amesbury in Wiltshire, England. It is easily accessible by car or bus from nearby towns and cities.",
-                "bulletPoints": []
+                "para": "Stonehenge is located near Amesbury in Wiltshire, England. It is easily accessible by car or bus from nearby towns and cities."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The best time to visit Stonehenge is during the spring (March to May) and autumn (September to November) when the weather is mild and the crowds are smaller.",
-                "bulletPoints": []
+                "para": "The best time to visit Stonehenge is during the spring (March to May) and autumn (September to November) when the weather is mild and the crowds are smaller."
             },
             {
                 "title": "Accommodation",
-                "para": "There are several hotels and guesthouses in the nearby towns of Amesbury and Salisbury, offering a range of accommodations to suit different budgets.",
-                "bulletPoints": []
+                "para": "There are several hotels and guesthouses in the nearby towns of Amesbury and Salisbury, offering a range of accommodations to suit different budgets."
             },
             {
                 "title": "Activities",
-                "para": "At Stonehenge, you can explore the ancient monument, visit the visitor center to learn about its history, and enjoy the surrounding landscape.",
-                "bulletPoints": []
+                "para": "At Stonehenge, you can explore the ancient monument, visit the visitor center to learn about its history, and enjoy the surrounding landscape."
             },
             {
                 "title": "Things to Pack",
@@ -682,6 +653,7 @@
             }
         ]
     },
+    
     {
         "id": 13,
         "name": "Sapa",
@@ -709,23 +681,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Sapa is accessible by overnight train or bus from Hanoi, the capital city of Vietnam. Taxis and motorbikes are readily available for transportation within Sapa.",
-                "bulletPoints": []
+                "para": "Sapa is accessible by overnight train or bus from Hanoi, the capital city of Vietnam. Taxis and motorbikes are readily available for transportation within Sapa."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The ideal time to visit Sapa depends on your preference. September and October offer stunning rice terrace views, while spring (March to May) boasts pleasant weather. Winter (December to February) can be chilly but provides a unique landscape experience.",
-                "bulletPoints": []
+                "para": "The ideal time to visit Sapa depends on your preference. September and October offer stunning rice terrace views, while spring (March to May) boasts pleasant weather. Winter (December to February) can be chilly but provides a unique landscape experience."
             },
             {
                 "title": "Accommodation",
-                "para": "Sapa offers a variety of accommodation options, from budget homestays nestled amidst rice paddies to luxurious hotels with stunning mountain views. Consider your budget and desired experience when choosing your stay.",
-                "bulletPoints": []
+                "para": "Sapa offers a variety of accommodation options, from budget homestays nestled amidst rice paddies to luxurious hotels with stunning mountain views. Consider your budget and desired experience when choosing your stay."
             },
             {
                 "title": "Activities",
-                "para": "Sapa caters to a range of interests. Explore the vibrant local markets, embark on trekking adventures through rice terraces and valleys, visit traditional villages of ethnic minorities, or simply relax and soak in the breathtaking scenery.",
-                "bulletPoints": []
+                "para": "Sapa caters to a range of interests. Explore the vibrant local markets, embark on trekking adventures through rice terraces and valleys, visit traditional villages of ethnic minorities, or simply relax and soak in the breathtaking scenery."
             },
             {
                 "title": "Things to Pack",
@@ -766,23 +734,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Reaching Valley of Flowers requires a journey to Joshimath, followed by a trek. Taxis or jeeps can take you to Joshimath from major cities in Uttarakhand. The trek to the valley can be completed in a day or spread over multiple days, depending on your preference.",
-                "bulletPoints": []
+                "para": "Reaching Valley of Flowers requires a journey to Joshimath, followed by a trek. Taxis or jeeps can take you to Joshimath from major cities in Uttarakhand. The trek to the valley can be completed in a day or spread over multiple days, depending on your preference."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The ideal time to visit Valley of Flowers is from July to September when the meadows are in full bloom. However, keep in mind that monsoon season coincides with this period. The weather can be unpredictable, so be prepared for rain.",
-                "bulletPoints": []
+                "para": "The ideal time to visit Valley of Flowers is from July to September when the meadows are in full bloom. However, keep in mind that monsoon season coincides with this period. The weather can be unpredictable, so be prepared for rain."
             },
             {
                 "title": "Accommodation",
-                "para": "Accommodation options near Valley of Flowers are limited. Homestays and guesthouses are available in Joshimath, offering a basic yet comfortable stay. Camping within the park is strictly regulated.",
-                "bulletPoints": []
+                "para": "Accommodation options near Valley of Flowers are limited. Homestays and guesthouses are available in Joshimath, offering a basic yet comfortable stay. Camping within the park is strictly regulated."
             },
             {
                 "title": "Activities",
-                "para": "The primary activity in Valley of Flowers National Park is trekking. Explore the designated trails, marvel at the diverse flora, and immerse yourself in the beauty of the Himalayas. Photography is another popular activity, with the vibrant flowers and stunning landscapes providing incredible capture opportunities.",
-                "bulletPoints": []
+                "para": "The primary activity in Valley of Flowers National Park is trekking. Explore the designated trails, marvel at the diverse flora, and immerse yourself in the beauty of the Himalayas. Photography is another popular activity, with the vibrant flowers and stunning landscapes providing incredible capture opportunities."
             },
             {
                 "title": "Things to Pack",
@@ -797,6 +761,7 @@
             }
         ]
     },
+    
     {
         "id": 15,
         "name": "Cappadocia",
@@ -819,23 +784,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Cappadocia is accessible by domestic flights from major Turkish cities like Istanbul and Ankara. Alternatively, you can take an overnight bus from various locations in Turkey. Hot air balloon rides often provide pick-up and drop-off services from your hotel.",
-                "bulletPoints": []
+                "para": "Cappadocia is accessible by domestic flights from major Turkish cities like Istanbul and Ankara. Alternatively, you can take an overnight bus from various locations in Turkey. Hot air balloon rides often provide pick-up and drop-off services from your hotel."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "Spring (April-May) and autumn (September-October) offer pleasant weather for exploring Cappadocia. The summer months (June-August) can be hot, but ideal for hot air balloon rides. Winters (November-March) are cold with occasional snowfall, but provide a less crowded experience.",
-                "bulletPoints": []
+                "para": "Spring (April-May) and autumn (September-October) offer pleasant weather for exploring Cappadocia. The summer months (June-August) can be hot, but ideal for hot air balloon rides. Winters (November-March) are cold with occasional snowfall, but provide a less crowded experience."
             },
             {
                 "title": "Accommodation",
-                "para": "Cappadocia offers a variety of accommodation options, from cave hotels carved into rock formations to luxurious resorts with stunning views. Choose your stay based on your budget and desired experience.",
-                "bulletPoints": []
+                "para": "Cappadocia offers a variety of accommodation options, from cave hotels carved into rock formations to luxurious resorts with stunning views. Choose your stay based on your budget and desired experience."
             },
             {
                 "title": "Activities",
-                "para": "Explore Cappadocia's diverse offerings. Hike through valleys dotted with fairy chimneys, delve into underground cities, visit historical sites like the Göreme Open Air Museum, or experience the thrill of a hot air balloon ride at sunrise for a breathtaking view of the landscape.",
-                "bulletPoints": []
+                "para": "Explore Cappadocia's diverse offerings. Hike through valleys dotted with fairy chimneys, delve into underground cities, visit historical sites like the Göreme Open Air Museum, or experience the thrill of a hot air balloon ride at sunrise for a breathtaking view of the landscape."
             },
             {
                 "title": "Things to Pack",
@@ -871,23 +832,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Reaching Socotra can be challenging. Limited flights operate from mainland Yemen, and travel restrictions may apply. Consider using a local tour operator to navigate the logistics.",
-                "bulletPoints": []
+                "para": "Reaching Socotra can be challenging. Limited flights operate from mainland Yemen, and travel restrictions may apply. Consider using a local tour operator to navigate the logistics."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The most favorable time to visit Socotra is from October to April when the weather is mild and dry. Avoid the hottest summer months (May to September) and be aware of potential monsoon rains during the winter months.",
-                "bulletPoints": []
+                "para": "The most favorable time to visit Socotra is from October to April when the weather is mild and dry. Avoid the hottest summer months (May to September) and be aware of potential monsoon rains during the winter months."
             },
             {
                 "title": "Accommodation",
-                "para": "Accommodation options on Socotra are limited. Basic guesthouses and eco-lodges are available, offering a chance to experience the island's natural beauty in a sustainable way. Camping is also a possibility, but proper permits and responsible practices are essential.",
-                "bulletPoints": []
+                "para": "Accommodation options on Socotra are limited. Basic guesthouses and eco-lodges are available, offering a chance to experience the island's natural beauty in a sustainable way. Camping is also a possibility, but proper permits and responsible practices are essential."
             },
             {
                 "title": "Activities",
-                "para": "Socotra caters to adventurous travelers. Explore the island's diverse landscapes, hike through valleys dotted with dragon blood trees, swim in pristine beaches, go scuba diving to discover the rich marine life, or simply relax and soak in the unique atmosphere of this isolated paradise.",
-                "bulletPoints": []
+                "para": "Socotra caters to adventurous travelers. Explore the island's diverse landscapes, hike through valleys dotted with dragon blood trees, swim in pristine beaches, go scuba diving to discover the rich marine life, or simply relax and soak in the unique atmosphere of this isolated paradise."
             },
             {
                 "title": "Things to Pack",
@@ -934,23 +891,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Lauterbrunnen Valley is easily accessible from Interlaken by train. Local buses and cable cars connect to various villages within the valley.",
-                "bulletPoints": []
+                "para": "Lauterbrunnen Valley is easily accessible from Interlaken by train. Local buses and cable cars connect to various villages within the valley."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "Lauterbrunnen Valley offers year-round beauty. Summer (June-August) is ideal for hiking and outdoor activities. Winter (December-February) transforms the valley into a winter wonderland, perfect for skiing and snowboarding. Spring (April-May) and autumn (September-October) offer pleasant weather for sightseeing and exploring.",
-                "bulletPoints": []
+                "para": "Lauterbrunnen Valley offers year-round beauty. Summer (June-August) is ideal for hiking and outdoor activities. Winter (December-February) transforms the valley into a winter wonderland, perfect for skiing and snowboarding. Spring (April-May) and autumn (September-October) offer pleasant weather for sightseeing and exploring."
             },
             {
                 "title": "Accommodation",
-                "para": "Lauterbrunnen Valley offers a range of accommodation options, from traditional chalets and guesthouses to luxury hotels. Choose your stay based on your budget, desired location, and preferred amenities.",
-                "bulletPoints": []
+                "para": "Lauterbrunnen Valley offers a range of accommodation options, from traditional chalets and guesthouses to luxury hotels. Choose your stay based on your budget, desired location, and preferred amenities."
             },
             {
                 "title": "Activities",
-                "para": "Lauterbrunnen Valley caters to a variety of interests. Hike through scenic trails, explore charming villages, visit the Trümmelbach Falls hidden inside a mountain, take a thrilling ride on the Jungfrau Railway, or experience the exhilaration of paragliding with breathtaking panoramic views.",
-                "bulletPoints": []
+                "para": "Lauterbrunnen Valley caters to a variety of interests. Hike through scenic trails, explore charming villages, visit the Trümmelbach Falls hidden inside a mountain, take a thrilling ride on the Jungfrau Railway, or experience the exhilaration of paragliding with breathtaking panoramic views."
             },
             {
                 "title": "Things to Pack",
@@ -996,23 +949,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "The Faroe Islands are located in southern Jordan, about 3 hours drive from the capital, Amman. The nearest airport is in Aqaba, about 2 hours drive away.",
-                "bulletPoints": []
+                "para": "The Faroe Islands are located in southern Jordan, about 3 hours drive from the capital, Amman. The nearest airport is in Aqaba, about 2 hours drive away."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The best time to visit the Faroe Islands is during the spring (March to May) and autumn (September to November) when the weather is mild. However, keep in mind that the Faroe Islands can be rainy any time of year.",
-                "bulletPoints": []
+                "para": "The best time to visit the Faroe Islands is during the spring (March to May) and autumn (September to November) when the weather is mild. However, keep in mind that the Faroe Islands can be rainy any time of year."
             },
             {
                 "title": "Accommodation",
-                "para": "There are several hotels and guesthouses in the Faroe Islands catering to different budgets. It's advisable to book in advance, especially during peak tourist seasons.",
-                "bulletPoints": []
+                "para": "There are several hotels and guesthouses in the Faroe Islands catering to different budgets. It's advisable to book in advance, especially during peak tourist seasons."
             },
             {
                 "title": "Activities",
-                "para": "In the Faroe Islands, you can explore the dramatic landscapes, visit the traditional villages, hike the many trails, and experience the local culture and cuisine. Kayaking and boat tours are also popular activities.",
-                "bulletPoints": []
+                "para": "In the Faroe Islands, you can explore the dramatic landscapes, visit the traditional villages, hike the many trails, and experience the local culture and cuisine. Kayaking and boat tours are also popular activities."
             },
             {
                 "title": "Things to Pack",
@@ -1026,6 +975,7 @@
             }
         ]
     },
+    
     {
         "id": 19,
         "name": "Bagan",
@@ -1053,28 +1003,24 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Bagan is accessible by domestic flights from major cities in Myanmar like Yangon and Mandalay. Alternatively, take a scenic boat ride up the Ayeyarwaddy River.",
-                "bulletPoints": []
+                "para": "Bagan is accessible by domestic flights from major cities in Myanmar like Yangon and Mandalay. Alternatively, take a scenic boat ride up the Ayeyarwaddy River."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The dry season (November to March) offers pleasant weather for exploring Bagan. However, this is also the peak tourist season. The shoulder seasons (April-May and September-October) can be favorable with slightly fewer crowds.",
-                "bulletPoints": []
+                "para": "The dry season (November to March) offers pleasant weather for exploring Bagan. However, this is also the peak tourist season. The shoulder seasons (April-May and September-October) can be favorable with slightly fewer crowds."
             },
             {
                 "title": "Accommodation",
-                "para": "Bagan offers a variety of accommodation options, from budget-friendly guesthouses to luxurious hotels with stunning views of the plains. Consider your desired location, comfort level, and budget when choosing your stay.",
-                "bulletPoints": []
+                "para": "Bagan offers a variety of accommodation options, from budget-friendly guesthouses to luxurious hotels with stunning views of the plains. Consider your desired location, comfort level, and budget when choosing your stay."
             },
             {
                 "title": "Activities",
-                "para": "Explore the numerous pagodas and temples of Bagan by bicycle, e-bike, or even hot air balloon for a unique perspective. Visit local markets, witness traditional lacquerware production, and enjoy cultural performances to delve deeper into Bagan's rich heritage.",
-                "bulletPoints": []
+                "para": "Explore the numerous pagodas and temples of Bagan by bicycle, e-bike, or even hot air balloon for a unique perspective. Visit local markets, witness traditional lacquerware production, and enjoy cultural performances to delve deeper into Bagan's rich heritage."
             },
             {
                 "title": "Things to Pack",
                 "bulletPoints": [
-                    "Comfortable walking shoes",
+                    "Comfortable walking shoes (essential for hiking)",
                     "Loose, lightweight clothing (respectful for temple visits)",
                     "Sunscreen and hat",
                     "Cash (credit cards may not be widely accepted by smaller vendors)",
@@ -1110,23 +1056,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Svalbard is not directly accessible by commercial flights from most destinations. Travelers typically fly to Longyearbyen, the main settlement, from Oslo, Tromsø, or other Norwegian cities.",
-                "bulletPoints": []
+                "para": "Svalbard is not directly accessible by commercial flights from most destinations. Travelers typically fly to Longyearbyen, the main settlement, from Oslo, Tromsø, or other Norwegian cities."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The ideal time to visit Svalbard depends on your preferences. Summer (June to August) offers mild weather, the midnight sun phenomenon, and opportunities for outdoor activities. Winter (December to February) provides a chance to witness the polar night and the northern lights, but temperatures are very cold, and daylight is limited.",
-                "bulletPoints": []
+                "para": "The ideal time to visit Svalbard depends on your preferences. Summer (June to August) offers mild weather, the midnight sun phenomenon, and opportunities for outdoor activities. Winter (December to February) provides a chance to witness the polar night and the northern lights, but temperatures are very cold, and daylight is limited."
             },
             {
                 "title": "Accommodation",
-                "para": "Accommodation options in Svalbard are limited, mainly consisting of hotels and guesthouses located in Longyearbyen. Due to the remote location, plan your stay well in advance, especially during peak seasons.",
-                "bulletPoints": []
+                "para": "Accommodation options in Svalbard are limited, mainly consisting of hotels and guesthouses located in Longyearbyen. Due to the remote location, plan your stay well in advance, especially during peak seasons."
             },
             {
                 "title": "Activities",
-                "para": "Svalbard caters to adventurous travelers. Embark on dog sledding or snowmobile tours, explore glaciers and fjords by kayak, go wildlife watching, or hike through the dramatic arctic landscapes. Be sure to prioritize safety and follow proper guidelines for arctic exploration.",
-                "bulletPoints": []
+                "para": "Svalbard caters to adventurous travelers. Embark on dog sledding or snowmobile tours, explore glaciers and fjords by kayak, go wildlife watching, or hike through the dramatic arctic landscapes. Be sure to prioritize safety and follow proper guidelines for arctic exploration."
             },
             {
                 "title": "Things to Pack",
@@ -1140,6 +1082,7 @@
             }
         ]
     },
+    
     {
         "id": 21,
         "name": "Sagano Bamboo Forest",
@@ -1167,23 +1110,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "The Sagano Bamboo Forest is easily accessible by train or bus from Kyoto Station. Take the JR Sagano Line to Arashiyama Station, followed by a short walk or ride on a rickshaw.",
-                "bulletPoints": []
+                "para": "The Sagano Bamboo Forest is easily accessible by train or bus from Kyoto Station. Take the JR Sagano Line to Arashiyama Station, followed by a short walk or ride on a rickshaw."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The Sagano Bamboo Forest can be enjoyed year-round. However, spring (April-May) and autumn (September-November) offer pleasant weather, while the summer months (June-August) can be hot and crowded. Winter (December-March) provides a serene atmosphere with fewer visitors, but some paths may be icy.",
-                "bulletPoints": []
+                "para": "The Sagano Bamboo Forest can be enjoyed year-round. However, spring (April-May) and autumn (September-November) offer pleasant weather, while the summer months (June-August) can be hot and crowded. Winter (December-March) provides a serene atmosphere with fewer visitors, but some paths may be icy."
             },
             {
                 "title": "Accommodation",
-                "para": "A wide range of accommodation options are available in Kyoto, catering to various budgets and preferences. Choose a hotel, ryokan (traditional Japanese inn), or guesthouse based on your needs and desired location. Consider staying near Arashiyama for convenient access to the bamboo forest.",
-                "bulletPoints": []
+                "para": "A wide range of accommodation options are available in Kyoto, catering to various budgets and preferences. Choose a hotel, ryokan (traditional Japanese inn), or guesthouse based on your needs and desired location. Consider staying near Arashiyama for convenient access to the bamboo forest."
             },
             {
                 "title": "Activities",
-                "para": "While the main attraction is the Sagano Bamboo Forest itself, the Arashiyama district offers other experiences. Visit the Tenryuji Temple, a UNESCO World Heritage Site, explore the Okochi Sanso Garden, or take a scenic boat ride down the Hozugawa River. Renting a bicycle is a great way to explore the surrounding area.",
-                "bulletPoints": []
+                "para": "While the main attraction is the Sagano Bamboo Forest itself, the Arashiyama district offers other experiences. Visit the Tenryuji Temple, a UNESCO World Heritage Site, explore the Okochi Sanso Garden, or take a scenic boat ride down the Hozugawa River. Renting a bicycle is a great way to explore the surrounding area."
             },
             {
                 "title": "Things to Pack",
@@ -1223,23 +1162,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "The Eiffel Tower is easily accessible by metro, RER train, bus, or boat. The closest metro stations are Bir-Hakeim, Trocadéro, and Champ de Mars-Tour Eiffel. Several bus lines also stop near the tower, and the Batobus water shuttle offers a scenic route along the Seine River.",
-                "bulletPoints": []
+                "para": "The Eiffel Tower is easily accessible by metro, RER train, bus, or boat. The closest metro stations are Bir-Hakeim, Trocadéro, and Champ de Mars-Tour Eiffel. Several bus lines also stop near the tower, and the Batobus water shuttle offers a scenic route along the Seine River."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The Eiffel Tower can be visited year-round, but expect crowds during peak tourist seasons (summer months and around major holidays). Consider visiting early in the morning or later in the evening to avoid long lines. Purchasing tickets online in advance is recommended.",
-                "bulletPoints": []
+                "para": "The Eiffel Tower can be visited year-round, but expect crowds during peak tourist seasons (summer months and around major holidays). Consider visiting early in the morning or later in the evening to avoid long lines. Purchasing tickets online in advance is recommended."
             },
             {
                 "title": "Accommodation",
-                "para": "Paris offers a vast variety of accommodation options, from luxurious hotels with Eiffel Tower views to budget-friendly hostels. Choose your stay based on your desired location, comfort level, and budget. Consider areas near the Champ de Mars or the Seine River for convenient access to the Eiffel Tower.",
-                "bulletPoints": []
+                "para": "Paris offers a vast variety of accommodation options, from luxurious hotels with Eiffel Tower views to budget-friendly hostels. Choose your stay based on your desired location, comfort level, and budget. Consider areas near the Champ de Mars or the Seine River for convenient access to the Eiffel Tower."
             },
             {
                 "title": "Activities",
-                "para": "A visit to the Eiffel Tower is just one part of the Parisian experience. Explore the Louvre Museum, admire the Notre Dame Cathedral, stroll through the Champs-Élysées, or take a scenic boat ride on the Seine River. Paris offers a wealth of cultural attractions, historical landmarks, and charming neighborhoods to discover.",
-                "bulletPoints": []
+                "para": "A visit to the Eiffel Tower is just one part of the Parisian experience. Explore the Louvre Museum, admire the Notre Dame Cathedral, stroll through the Champs-Élysées, or take a scenic boat ride on the Seine River. Paris offers a wealth of cultural attractions, historical landmarks, and charming neighborhoods to discover."
             },
             {
                 "title": "Things to Pack",
@@ -1285,23 +1220,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "The Statue of Liberty is accessible by ferry from Battery Park in Lower Manhattan or Liberty State Park in New Jersey. Ferries depart regularly throughout the day, and tickets can be purchased in advance.",
-                "bulletPoints": []
+                "para": "The Statue of Liberty is accessible by ferry from Battery Park in Lower Manhattan or Liberty State Park in New Jersey. Ferries depart regularly throughout the day, and tickets can be purchased in advance."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The Statue of Liberty can be visited year-round, but spring (March-May) and fall (September-November) offer pleasant weather. Summer months (June-August) can be hot and crowded. Consider purchasing tickets in advance, especially during peak season.",
-                "bulletPoints": []
+                "para": "The Statue of Liberty can be visited year-round, but spring (March-May) and fall (September-November) offer pleasant weather. Summer months (June-August) can be hot and crowded. Consider purchasing tickets in advance, especially during peak season."
             },
             {
                 "title": "Accommodation",
-                "para": "New York City offers a vast selection of accommodation options, catering to all budgets and preferences. Choose your stay based on your desired location, comfort level, and budget. Consider areas near Battery Park or Lower Manhattan for convenient access to the ferry terminals.",
-                "bulletPoints": []
+                "para": "New York City offers a vast selection of accommodation options, catering to all budgets and preferences. Choose your stay based on your desired location, comfort level, and budget. Consider areas near Battery Park or Lower Manhattan for convenient access to the ferry terminals."
             },
             {
                 "title": "Activities",
-                "para": "A visit to the Statue of Liberty is just one part of the New York City experience. Explore iconic landmarks like the Empire State Building and Times Square, visit world-class museums like the Metropolitan Museum of Art, or stroll through Central Park. New York City offers a vibrant mix of culture, history, and entertainment.",
-                "bulletPoints": []
+                "para": "A visit to the Statue of Liberty is just one part of the New York City experience. Explore iconic landmarks like the Empire State Building and Times Square, visit world-class museums like the Metropolitan Museum of Art, or stroll through Central Park. New York City offers a vibrant mix of culture, history, and entertainment."
             },
             {
                 "title": "Things to Pack",
@@ -1342,23 +1273,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "The Pyramids of Giza are located on the outskirts of Cairo, Egypt.  Travelers can reach Giza by taxi, ride-sharing services, or public bus from Cairo. Organized tours are also readily available.",
-                "bulletPoints": []
+                "para": "The Pyramids of Giza are located on the outskirts of Cairo, Egypt.  Travelers can reach Giza by taxi, ride-sharing services, or public bus from Cairo. Organized tours are also readily available."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The ideal time to visit the Pyramids of Giza depends on your preference. The weather is generally pleasant between October and April, with mild temperatures and minimal rain. However, this is also the peak tourist season. The shoulder seasons (May and September) offer slightly fewer crowds and comfortable temperatures.",
-                "bulletPoints": []
+                "para": "The ideal time to visit the Pyramids of Giza depends on your preference. The weather is generally pleasant between October and April, with mild temperatures and minimal rain. However, this is also the peak tourist season. The shoulder seasons (May and September) offer slightly fewer crowds and comfortable temperatures."
             },
             {
                 "title": "Accommodation",
-                "para": "A wide range of accommodation options are available in Cairo, catering to various budgets and preferences. Choose a hotel near the pyramids for convenient access, or opt for a hotel in central Cairo to experience the city's vibrant atmosphere.",
-                "bulletPoints": []
+                "para": "A wide range of accommodation options are available in Cairo, catering to various budgets and preferences. Choose a hotel near the pyramids for convenient access, or opt for a hotel in central Cairo to experience the city's vibrant atmosphere."
             },
             {
                 "title": "Activities",
-                "para": "Exploring the pyramids is just one part of the Egyptian adventure. Visit the Egyptian Museum in Cairo to delve deeper into ancient Egyptian history, take a day trip to Luxor to see the Valley of the Kings and Karnak Temple, or explore the bustling city of Cairo with its mosques, markets, and historical landmarks.",
-                "bulletPoints": []
+                "para": "Exploring the pyramids is just one part of the Egyptian adventure. Visit the Egyptian Museum in Cairo to delve deeper into ancient Egyptian history, take a day trip to Luxor to see the Valley of the Kings and Karnak Temple, or explore the bustling city of Cairo with its mosques, markets, and historical landmarks."
             },
             {
                 "title": "Things to Pack",
@@ -1372,6 +1299,7 @@
             }
         ]
     },
+    
     {
         "id": 25,
         "name": "Santorini (Thira)",
@@ -1405,23 +1333,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Santorini is accessible by ferry from mainland Greece, most notably Athens and Piraeus. During peak season, direct flights from various European cities are also available. Consider arriving by ferry for a scenic journey through the Aegean Sea.",
-                "bulletPoints": []
+                "para": "Santorini is accessible by ferry from mainland Greece, most notably Athens and Piraeus. During peak season, direct flights from various European cities are also available. Consider arriving by ferry for a scenic journey through the Aegean Sea."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The peak tourist season in Santorini is from June to August, offering pleasant weather and vibrant nightlife. However, this also coincides with larger crowds and higher prices. The shoulder seasons (April-May and September-October) offer comfortable weather with fewer crowds. Consider these options depending on your preference for weather and atmosphere.",
-                "bulletPoints": []
+                "para": "The peak tourist season in Santorini is from June to August, offering pleasant weather and vibrant nightlife. However, this also coincides with larger crowds and higher prices. The shoulder seasons (April-May and September-October) offer comfortable weather with fewer crowds. Consider these options depending on your preference for weather and atmosphere."
             },
             {
                 "title": "Accommodation",
-                "para": "Santorini offers a variety of accommodation options, from luxurious hotels with caldera views to traditional cave houses and budget-friendly hostels. Choose your stay based on your desired location, comfort level, and budget. Popular areas include Fira, Oia, Imerovigli, and Kamari.",
-                "bulletPoints": []
+                "para": "Santorini offers a variety of accommodation options, from luxurious hotels with caldera views to traditional cave houses and budget-friendly hostels. Choose your stay based on your desired location, comfort level, and budget. Popular areas include Fira, Oia, Imerovigli, and Kamari."
             },
             {
                 "title": "Activities",
-                "para": "Beyond exploring the villages and beaches, Santorini offers various activities. Visit the archaeological site of Akrotiri, a Minoan settlement buried by volcanic ash. Embark on a boat tour around the caldera, explore volcanic islands like Nea Kameni and Palea Kameni, or indulge in wine tasting at local wineries. Hiking, kayaking, and ATV rentals are other popular options.",
-                "bulletPoints": []
+                "para": "Beyond exploring the villages and beaches, Santorini offers various activities. Visit the archaeological site of Akrotiri, a Minoan settlement buried by volcanic ash. Embark on a boat tour around the caldera, explore volcanic islands like Nea Kameni and Palea Kameni, or indulge in wine tasting at local wineries. Hiking, kayaking, and ATV rentals are other popular options."
             },
             {
                 "title": "Things to Pack",
@@ -1463,23 +1387,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Angkor Wat is located near Siem Reap, Cambodia.  Travelers can reach Siem Reap by plane from major Asian cities. Taxis, tuk-tuks, and ride-sharing services are available for transport to the temple complex from Siem Reap.",
-                "bulletPoints": []
+                "para": "Angkor Wat is located near Siem Reap, Cambodia.  Travelers can reach Siem Reap by plane from major Asian cities. Taxis, tuk-tuks, and ride-sharing services are available for transport to the temple complex from Siem Reap."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The dry season (November to April) offers pleasant weather for exploring Angkor Wat. However, this coincides with peak tourist season. The shoulder seasons (May, June, September, and October) can be hot but have fewer crowds. Consider the trade-off between weather and crowds when planning your visit.",
-                "bulletPoints": []
+                "para": "The dry season (November to April) offers pleasant weather for exploring Angkor Wat. However, this coincides with peak tourist season. The shoulder seasons (May, June, September, and October) can be hot but have fewer crowds. Consider the trade-off between weather and crowds when planning your visit."
             },
             {
                 "title": "Accommodation",
-                "para": "Siem Reap offers a wide range of accommodation options, from luxurious hotels to budget-friendly guesthouses. Choose your stay based on your desired location, comfort level, and budget. Many hotels are conveniently located near the temple complex.",
-                "bulletPoints": []
+                "para": "Siem Reap offers a wide range of accommodation options, from luxurious hotels to budget-friendly guesthouses. Choose your stay based on your desired location, comfort level, and budget. Many hotels are conveniently located near the temple complex."
             },
             {
                 "title": "Activities",
-                "para": "Angkor Wat is part of the Angkor Archaeological Park, encompassing multiple temples. Explore Ta Prohm, an atmospheric temple enveloped by trees, Bayon with its enigmatic smiling faces, and Banteay Srei, the ‘Citadel of Women’ known for its intricate carvings. Consider purchasing an Angkor Pass for access to multiple temples within the park.",
-                "bulletPoints": []
+                "para": "Angkor Wat is part of the Angkor Archaeological Park, encompassing multiple temples. Explore Ta Prohm, an atmospheric temple enveloped by trees, Bayon with its enigmatic smiling faces, and Banteay Srei, the ‘Citadel of Women’ known for its intricate carvings. Consider purchasing an Angkor Pass for access to multiple temples within the park."
             },
             {
                 "title": "Things to Pack",
@@ -1493,10 +1413,11 @@
             }
         ]
     },
+    
     {
         "id": 27,
         "name": "Sydney Harbour Bridge",
-        "description": "The Sydney Harbour Bridge, a steel through arch bridge in Sydney, New South Wales, Australia, is a global icon and landmark. Nicknamed 'The Coathanger' because of its arch-based design, it carries rail, vehicular, bicycle and pedestrian traffic.  The bridge spans Sydney Harbour from the central business district (CBD) to the North Shore.",
+        "description": "The Sydney Harbour Bridge, a steel through arch bridge in Sydney, New South Wales, Australia, is a global icon and landmark. Nicknamed 'The Coathanger' because of its arch-based design, it carries rail, vehicular, bicycle, and pedestrian traffic. The bridge spans Sydney Harbour from the central business district (CBD) to the North Shore.",
         "totalLength": "1,149 meters",
         "yearEstablished": "1932",
         "uniqueFeature": "Largest Steel Arch Bridge (at the time of construction)",
@@ -1526,23 +1447,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "The Sydney Harbour Bridge is easily accessible by train, bus, or ferry. The closest train stations are Milsons Point and Wynyard. Several bus routes also stop near the bridge, and ferries offer a scenic route across the harbor.",
-                "bulletPoints": []
+                "para": "The Sydney Harbour Bridge is easily accessible by train, bus, or ferry. The closest train stations are Milsons Point and Wynyard. Several bus routes also stop near the bridge, and ferries offer a scenic route across the harbor."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "Sydney enjoys a pleasant climate year-round. However, spring (September-November) and autumn (March-May) offer the most comfortable weather. Winter (June-August) can be mild with occasional rain, while summer (December-February) can be hot and humid. Consider visiting during BridgeClimb Sydney's Vivid Climb for a special light show experience (held annually).",
-                "bulletPoints": []
+                "para": "Sydney enjoys a pleasant climate year-round. However, spring (September-November) and autumn (March-May) offer the most comfortable weather. Winter (June-August) can be mild with occasional rain, while summer (December-February) can be hot and humid. Consider visiting during BridgeClimb Sydney's Vivid Climb for a special light show experience (held annually)."
             },
             {
                 "title": "Accommodation",
-                "para": "Sydney offers a vast variety of accommodation options, catering to all budgets and preferences. Choose your stay based on your desired location, comfort level, and budget. Consider areas near The Rocks, Circular Quay, or Darling Harbour for convenient access to the bridge.",
-                "bulletPoints": []
+                "para": "Sydney offers a vast variety of accommodation options, catering to all budgets and preferences. Choose your stay based on your desired location, comfort level, and budget. Consider areas near The Rocks, Circular Quay, or Darling Harbour for convenient access to the bridge."
             },
             {
                 "title": "Activities",
-                "para": "The Sydney Harbour Bridge is a central landmark, but Sydney offers a plethora of experiences. Visit the Sydney Opera House, explore the Rocks historical district, take a ferry to Manly Beach, or visit Luna Park amusement park. Sydney offers something for everyone.",
-                "bulletPoints": []
+                "para": "The Sydney Harbour Bridge is a central landmark, but Sydney offers a plethora of experiences. Visit the Sydney Opera House, explore the Rocks historical district, take a ferry to Manly Beach, or visit Luna Park amusement park. Sydney offers something for everyone."
             },
             {
                 "title": "Things to Pack",
@@ -1558,7 +1475,7 @@
     {
         "id": 28,
         "name": "Niagara Falls",
-        "description": "Niagara Falls, a group of three waterfalls at the southern end of Niagara Gorge, spans the border between the province of Ontario, Canada and the state of New York, USA. It's a renowned natural wonder, captivating visitors with its immense power and beauty. The largest of the three waterfalls is Horseshoe Falls, also known as Canadian Falls, situated on the Canadian side.",
+        "description": "Niagara Falls, a group of three waterfalls at the southern end of Niagara Gorge, spans the border between the province of Ontario, Canada, and the state of New York, USA. It's a renowned natural wonder, captivating visitors with its immense power and beauty. The largest of the three waterfalls is Horseshoe Falls, also known as Canadian Falls, situated on the Canadian side.",
         "location": {
             "canada": "Ontario",
             "usa": "New York"
@@ -1588,38 +1505,24 @@
                 "image": "assets/imgs/most-visited/niagara-falls-3.jpg",
                 "title": "Walk Behind the Falls on the Cave of the Winds Tour (US Side)",
                 "description": "(Accessible on the US side) Don a raincoat and embark on an unforgettable adventure on the Cave of the Winds tour. Walk on wooden walkways behind the American Falls and experience the power and majesty of the cascading water from a thrilling perspective."
-            },
-            {
-                "image": "assets/imgs/most-visited/niagara-falls-4.jpg",
-                "title": "Walk Behind the Falls on the Cave of the Winds Tour (US Side)",
-                "description": "(Accessible on the US side) Don a raincoat and embark on an unforgettable adventure on the Cave of the Winds tour. Walk on wooden walkways behind the American Falls and experience the power and majesty of the cascading water from a thrilling perspective."
-            },
-            {
-                "image": "assets/imgs/most-visited/niagara-falls-6.jpg",
-                "title": "Walk Behind the Falls on the Cave of the Winds Tour (US Side)",
-                "description": "(Accessible on the US side) Don a raincoat and embark on an unforgettable adventure on the Cave of the Winds tour. Walk on wooden walkways behind the American Falls and experience the power and majesty of the cascading water from a thrilling perspective."
             }
         ],
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Niagara Falls is easily accessible from both the Canadian and American sides.  By air, airports are located in Toronto (Canada) and Buffalo (USA). Trains, buses, and cars are other options. Consider purchasing a Falls Pass for access to various attractions on both sides of the border.",
-                "bulletPoints": []
+                "para": "Niagara Falls is easily accessible from both the Canadian and American sides. By air, airports are located in Toronto (Canada) and Buffalo (USA). Trains, buses, and cars are other options. Consider purchasing a Falls Pass for access to various attractions on both sides of the border."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "Niagara Falls can be enjoyed year-round. However, the summer months (June-August) offer pleasant weather and extended hours for attractions. Spring (April-May) and fall (September-November) provide comfortable temperatures with fewer crowds. Winter (December-March) transforms the falls into a wonderland with ice formations, but some attractions may have limited hours.",
-                "bulletPoints": []
+                "para": "Niagara Falls can be enjoyed year-round. However, the summer months (June-August) offer pleasant weather and extended hours for attractions. Spring (April-May) and fall (September-November) provide comfortable temperatures with fewer crowds. Winter (December-March) transforms the falls into a wonderland with ice formations, but some attractions may have limited hours."
             },
             {
                 "title": "Accommodation",
-                "para": "A wide range of accommodation options are available on both sides of the border, catering to various budgets and preferences. Choose your stay based on your desired location, comfort level, and budget. Areas near the Falls on either side offer convenient access to attractions.",
-                "bulletPoints": []
+                "para": "A wide range of accommodation options are available on both sides of the border, catering to various budgets and preferences. Choose your stay based on your desired location, comfort level, and budget. Areas near the Falls on either side offer convenient access to attractions."
             },
             {
                 "title": "Activities",
-                "para": "Niagara Falls is the main attraction, but both sides offer additional experiences. Explore Niagara-on-the-Lake (Canada) or Niagara Falls State Park (USA) for scenic beauty. Take a helicopter tour for breathtaking aerial views, or visit casinos and entertainment options. Consider planning activities on both sides of the border for a well-rounded Niagara Falls experience.",
-                "bulletPoints": []
+                "para": "Niagara Falls is the main attraction, but both sides offer additional experiences. Explore Niagara-on-the-Lake (Canada) or Niagara Falls State Park (USA) for scenic beauty. Take a helicopter tour for breathtaking aerial views, or visit casinos and entertainment options. Consider planning activities on both sides of the border for a well-rounded Niagara Falls experience."
             },
             {
                 "title": "Things to Pack",
@@ -1632,6 +1535,7 @@
             }
         ]
     },
+    
     {
         "id": 29,
         "name": "Mount Fuji (富士山, Fujisan)",
@@ -1662,23 +1566,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Mount Fuji is accessible from Tokyo and surrounding areas by train, bus, or car. The journey takes approximately 2-3 hours. Consider purchasing a Fuji Excursion Pass for convenient transportation access.",
-                "bulletPoints": []
+                "para": "Mount Fuji is accessible from Tokyo and surrounding areas by train, bus, or car. The journey takes approximately 2-3 hours. Consider purchasing a Fuji Excursion Pass for convenient transportation access."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The best time to visit Mount Fuji depends on your preferences. For scenic views, spring (late March to May) and fall (late September to November) offer pleasant weather and vibrant foliage. The climbing season is typically from July to September. Winter offers a unique snowy landscape but most climbing routes are closed.",
-                "bulletPoints": []
+                "para": "The best time to visit Mount Fuji depends on your preferences. For scenic views, spring (late March to May) and fall (late September to November) offer pleasant weather and vibrant foliage. The climbing season is typically from July to September. Winter offers a unique snowy landscape but most climbing routes are closed."
             },
             {
                 "title": "Accommodation",
-                "para": "Accommodation options range from traditional Japanese ryokans and hotels near the base towns to campsites on the mountain during the climbing season. Choose your stay based on your desired location, comfort level, and budget. Popular areas include Fujiyoshida, Fujinomiya, and Kawaguchiko (Lake Kawaguchi).",
-                "bulletPoints": []
+                "para": "Accommodation options range from traditional Japanese ryokans and hotels near the base towns to campsites on the mountain during the climbing season. Choose your stay based on your desired location, comfort level, and budget. Popular areas include Fujiyoshida, Fujinomiya, and Kawaguchiko (Lake Kawaguchi)."
             },
             {
                 "title": "Activities",
-                "para": "While viewing and climbing Mount Fuji are primary activities, the region offers more. Explore the Five Fuji Lakes, visit historical sites like the Fujisan Sengen Shrine, or indulge in local hot springs (onsen) experiences. Consider attending traditional festivals throughout the year.",
-                "bulletPoints": []
+                "para": "While viewing and climbing Mount Fuji are primary activities, the region offers more. Explore the Five Fuji Lakes, visit historical sites like the Fujisan Sengen Shrine, or indulge in local hot springs (onsen) experiences. Consider attending traditional festivals throughout the year."
             },
             {
                 "title": "Things to Pack",
@@ -1724,23 +1624,19 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "The Masai Mara National Reserve can be accessed by plane or car. Several domestic flights operate from Nairobi to Mara airstrips. Alternatively, road trips are possible from Nairobi, although these can be lengthy. Consider booking a safari package that includes transportation.",
-                "bulletPoints": []
+                "para": "The Masai Mara National Reserve can be accessed by plane or car. Several domestic flights operate from Nairobi to Mara airstrips. Alternatively, road trips are possible from Nairobi, although these can be lengthy. Consider booking a safari package that includes transportation."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The best time to visit the Masai Mara depends on your priorities. The dry season (June-October) offers pleasant weather and prime viewing of the Great Migration (July-August). However, this coincides with peak tourist season and higher prices. The shoulder seasons (April-May and November) offer good weather with fewer crowds. Keep in mind that wildlife viewing is possible year-round.",
-                "bulletPoints": []
+                "para": "The best time to visit the Masai Mara depends on your priorities. The dry season (June-October) offers pleasant weather and prime viewing of the Great Migration (July-August). However, this coincides with peak tourist season and higher prices. The shoulder seasons (April-May and November) offer good weather with fewer crowds. Keep in mind that wildlife viewing is possible year-round."
             },
             {
                 "title": "Accommodation",
-                "para": "Masai Mara offers a variety of accommodation options, ranging from luxurious safari lodges and tented camps to budget-friendly campsites. Choose your stay based on your desired location, comfort level, and budget. Popular areas include Mara Triangle, Sekenani, and the Mara River area.",
-                "bulletPoints": []
+                "para": "Masai Mara offers a variety of accommodation options, ranging from luxurious safari lodges and tented camps to budget-friendly campsites. Choose your stay based on your desired location, comfort level, and budget. Popular areas include Mara Triangle, Sekenani, and the Mara River area."
             },
             {
                 "title": "Activities",
-                "para": "Beyond wildlife viewing on traditional jeep safaris, the Masai Mara offers a variety of activities. Take a hot air balloon ride for a unique perspective, go on a guided bush walk with a Maasai guide, visit a local Maasai marketplace, or participate in cultural experiences. Consider combining a Masai Mara safari with a visit to other Kenyan parks like Amboseli or Tsavo National Park for a well-rounded wildlife experience.",
-                "bulletPoints": []
+                "para": "Beyond wildlife viewing on traditional jeep safaris, the Masai Mara offers a variety of activities. Take a hot air balloon ride for a unique perspective, go on a guided bush walk with a Maasai guide, visit a local Maasai marketplace, or participate in cultural experiences. Consider combining a Masai Mara safari with a visit to other Kenyan parks like Amboseli or Tsavo National Park for a well-rounded wildlife experience."
             },
             {
                 "title": "Things to Pack",
@@ -1795,13 +1691,11 @@
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Hiroshima Peace Memorial Park is conveniently located in central Hiroshima and easily accessible by public transportation. Take trams or buses to the closest stops (Heiwa-kinen-koen-mae or Kenbaku Dome-mae). Alternatively, taxis are readily available.",
-                "bulletPoints": []
+                "para": "Hiroshima Peace Memorial Park is conveniently located in central Hiroshima and easily accessible by public transportation. Take trams or buses to the closest stops (Heiwa-kinen-koen-mae or Kenbaku Dome-mae). Alternatively, taxis are readily available."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "Hiroshima enjoys a pleasant climate year-round. However, spring (March-May) and autumn (September-November) offer the most comfortable weather. Consider visiting during the Hiroshima Peace Memorial Ceremony held annually on August 6th to witness a solemn commemoration of the bombing.",
-                "bulletPoints": []
+                "para": "Hiroshima enjoys a pleasant climate year-round. However, spring (March-May) and autumn (September-November) offer the most comfortable weather. Consider visiting during the Hiroshima Peace Memorial Ceremony held annually on August 6th to witness a solemn commemoration of the bombing."
             },
             {
                 "title": "Things to Pack",

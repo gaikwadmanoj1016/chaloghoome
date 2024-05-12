@@ -11,11 +11,11 @@ import { PlaceDetailsComponent } from './modules/landing-page/place-list/place-d
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: '', component: DashboardComponent },
+    // { path: '', component: DashboardComponent },
     { path: 'home', component: LandingPageComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'buddies', component: BuddiesComponent },
     { path: 'places', component: PlaceListComponent },
     { path: 'place-details', component: PlaceDetailsComponent },
-    // { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirect to login by default
+    { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect to login by default
 ];

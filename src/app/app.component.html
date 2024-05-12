@@ -5,10 +5,14 @@
         <nav class="navbar navbar-expand-lg navbar-light" [class.shadow]="isScrolled">
             <div class="custom-container" [class.bgColor]="addClass()">
                 <a class="navbar-brand" href="javascript:void(0)" (click)="navigateTo('home')">
-                    <img src="../assets/icons/chalo-ghoome-title-logo.png" alt="Logo" class="image1">
-                    <img src="assets/icons/ChaloGhoome-logo-new.png" alt="Logo" class="image2">
+                    <img loading="lazy" src="../assets/icons/chalo-ghoome-title-logo.png" alt="Logo" class="image1">
+                    <img loading="lazy" src="assets/icons/ChaloGhoome-logo-new.png" alt="Logo" class="image2">
+                    <!-- <picture>
+                        <source srcset="assets/icons/ChaloGhoome-logo-new.webp" type="image/webp">
+                        <img src="assets/icons/ChaloGhoome-logo-new.png" alt="Description">
+                    </picture> -->
                 </a>
-                <div style="    text-align: end;">
+                <div style="text-align: end;">
                     <!-- Hamburger Menu for Mobile -->
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +65,7 @@
                         </li>
                         }
                         <div class="d-flex align-items-center profile-section" (click)="toggleProfileMenu()" (clickOutside)="closeProfileMenu()">
-                            <img src="../assets/avatars/2.jpg" alt="Profile Picture" class="profile-pic">
+                            <img loading="lazy" src="../assets/avatars/2.jpg" alt="Profile Picture" class="profile-pic">
                             @if(profileModal){
                             <div class="card profile-card">
                                 <div class="card-body">
@@ -85,7 +89,7 @@
         <div class="content">
             <div class="section1">
                 <div class="logo">
-                    <img src="assets/icons/ChaloGhoome-logo-new.png" alt="Logo" class="">
+                    <img loading="lazy" src="assets/icons/ChaloGhoome-logo-new.png" alt="Logo" class="">
                 </div>
             </div>
             <div class="section2">
@@ -110,10 +114,10 @@
             <div class="section4">
                 <h4>Our Social Media Links</h4>
                 <div class="social-media-links">
-                    <div class="link"><a href="https://twitter.com/chalo_ghoome" target="_blank"><img
+                    <div class="link"><a href="https://twitter.com/chalo_ghoome" target="_blank"><img loading="lazy"
                                 src="../assets/icons/twitter-x.png" alt=""></a></div>
                     <div class="link"><a href="www.linkedin.com/company/chalo-ghoome" target="_blank"><img
-                                src="../assets/icons/linkedin.png" alt=""></a></div>
+                                loading="lazy" src="../assets/icons/linkedin.png" alt=""></a></div>
                 </div>
             </div>
         </div>

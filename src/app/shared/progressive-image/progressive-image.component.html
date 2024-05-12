@@ -1,0 +1,3 @@
+<div class="blur-img" [class.placeholder-loaded]="isLoaded" style="background-image: url('../../../assets/imgs/pexels-pixabay-257092-small.jpg');">
+    <img [src]="image" alt="" [class.image-loaded]="isLoaded" loading="lazy" (load)="onImageLoad()">
+</div>

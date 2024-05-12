@@ -14,11 +14,13 @@ $border-radius: 4px;
 $box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 $navbar-height: 50px;
+
 :root {
     --navbar-height: 50px;
     --negative-navbar-height: 50px;
     --black: black;
 }
+
 // mixins.scss
 @mixin flex-center {
     display: flex;
@@ -147,13 +149,14 @@ textarea {
     appearance: none !important;
 }
 
-input [type="number"]{
+input [type="number"] {
     appearance: none !important;
 }
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 
@@ -161,5 +164,11 @@ input[type=number]::-webkit-outer-spin-button {
 .custom-dialog-container {
     max-width: 90vw;
     max-height: 90vh;
-  }
-  
+}
+
+img {
+    height: auto;
+    aspect-ratio: 1280 / 720;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
