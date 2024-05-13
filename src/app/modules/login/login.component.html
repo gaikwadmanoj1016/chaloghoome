@@ -2,7 +2,9 @@
     <div class="glass-morphism">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-header">
-                <div class="back-btn"><img loading="lazy" src="../../../assets/svgs/back-arrow.svg" alt=""></div>
+                <div class="back-btn">
+                    <img loading="lazy" src="../../../assets/svgs/back-arrow.svg" alt="back button">
+                </div>
                 <h2>Login</h2>
             </div>
             <div class="form-body">
@@ -34,7 +36,7 @@
                     <button type="submit" class="login-btn" [disabled]="loginForm.invalid">Login</button>
                     <div class="sign-in-block">
                         Create an account ?
-                        <a href="javascript:void(0)" (click)="goToSignUpPage()">
+                        <a routerLink="register">
                             <button type="button" class="btn btn-primary">Sign Up</button>
                         </a>
                     </div>

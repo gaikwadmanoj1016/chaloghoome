@@ -2,7 +2,7 @@
     <section class="gallery">
         <!-- Iterate over highlights -->
         @for (highlight of placeDetails?.highlights; track $index) {
-        <img [src]="highlight.image" alt="{{ highlight.title }}" (click)="openPreview(highlight.image)">
+        <img [src]="highlight.image" alt="ChaloGhoome: {{ highlight.title }}" (click)="openPreview(highlight.image)">
         }
     </section>
 

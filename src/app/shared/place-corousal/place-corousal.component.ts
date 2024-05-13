@@ -28,4 +28,9 @@ export class PlaceCorousalComponent implements OnInit {
   public explorePlace(id: number) {
     this.commonService.navigateToQueryParams('place-details', { placeId: id });
   }
+
+  onImageLoad(item: any){
+    console.log("event loaded ", item.location);
+    item.loaded = true;
+  }
 }

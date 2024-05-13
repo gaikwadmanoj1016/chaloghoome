@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit, Signal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonService } from './services/common.service';
 import { SharedModule } from './shared/shared.module';
 
@@ -12,7 +12,7 @@ interface UserInterface {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, SharedModule],
+  imports: [CommonModule, RouterOutlet, SharedModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

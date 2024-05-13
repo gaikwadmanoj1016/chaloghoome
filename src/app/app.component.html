@@ -5,8 +5,8 @@
         <nav class="navbar navbar-expand-lg navbar-light" [class.shadow]="isScrolled">
             <div class="custom-container" [class.bgColor]="addClass()">
                 <a class="navbar-brand" href="javascript:void(0)" (click)="navigateTo('home')">
-                    <img loading="lazy" src="../assets/icons/chalo-ghoome-title-logo.png" alt="Logo" class="image1">
-                    <img loading="lazy" src="assets/icons/ChaloGhoome-logo-new.png" alt="Logo" class="image2">
+                    <img loading="lazy" src="../assets/icons/chalo-ghoome-title-logo.png" alt="Chalo Ghoome logo" class="image1">
+                    <img loading="lazy" src="assets/icons/ChaloGhoome-logo-new.png" alt="Chalo Ghoome logo" class="image2">
                     <!-- <picture>
                         <source srcset="assets/icons/ChaloGhoome-logo-new.webp" type="image/webp">
                         <img src="assets/icons/ChaloGhoome-logo-new.png" alt="Description">
@@ -38,25 +38,27 @@
                                         Visited Places</a></li>
                             </ul>
                         </li> -->
+                        <!--  (click)="scrollTo('wonders_of_world')" -->
                             <li class="nav-item">
-                                <a class="nav-link" href="javascript:void(0)"
-                                    (click)="scrollTo('wonders_of_world')">Wonders
-                                    of the World</a>
+                                <a class="nav-link" routerLink="home" [queryParams]="{section: 'wonders_of_world'}">
+                                   Wonders of the World
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('hidden_gems')">Hidden
-                                    Gems</a>
+                                <a class="nav-link" routerLink="home" [queryParams]="{section: 'hidden_gems'}">
+                                    Hidden Gems
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="javascript:void(0)"
-                                    (click)="scrollTo('most_visited_places')">Most
-                                    Visited Places</a>
+                                <a class="nav-link" routerLink="home" [queryParams]="{section: 'most_visited_places'}">
+                                    Most Visited Places
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('about_us')">About</a>
+                                <a class="nav-link" routerLink="home" [queryParams]="{section: 'about_us'}">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="javascript:void(0)" (click)="scrollTo('contact_us')">Contact
+                                <a class="nav-link" routerLink="home" [queryParams]="{section: 'contact_us'}">Contact
                                     Us</a>
                             </li>
                             <!-- @if (false) {
@@ -89,7 +91,7 @@
         <div class="content">
             <div class="section1">
                 <div class="logo">
-                    <img loading="lazy" src="assets/icons/ChaloGhoome-logo-new.png" alt="Logo" class="">
+                    <img loading="lazy" src="assets/icons/ChaloGhoome-logo-new.png" alt="Chalo Ghoome logo" class="">
                 </div>
             </div>
             <div class="section2">
@@ -97,16 +99,16 @@
                     <h4>Important Links</h4>
                     <ul>
                         <!-- <li><a (click)="navigateTo('/')">Travel Stories</a></li> -->
-                        <li><a (click)="navigateTo('hidden_gems')">Hidden Gems</a></li>
-                        <li><a (click)="navigateTo('wonders_of_world')">Wonders of the World</a></li>
-                        <li><a (click)="navigateTo('most_visited_places')">Most Visited Places</a></li>
+                        <li><a routerLink="home" [queryParams]="{section: 'wonders_of_world'}">Hidden Gems</a></li>
+                        <li><a routerLink="home" [queryParams]="{section: 'hidden_gems'}">Wonders of the World</a></li>
+                        <li><a routerLink="home" [queryParams]="{section: 'most_visited_places'}">Most Visited Places</a></li>
                     </ul>
                 </div>
                 <div class="right">
                     <h4>Referances</h4>
                     <ul>
-                        <li><a href="wikipedia.com">Wikipedia</a></li>
-                        <li><a href="travelindia.gov.in">travelindia.gov.in</a></li>
+                        <li><a href="https://www.wikipedia.com" target="_blank">Wikipedia</a></li>
+                        <li><a href="https://www.travelindia.gov.in" target="_blank">travelindia.gov.in</a></li>
                     </ul>
                 </div>
             </div>
@@ -114,10 +116,16 @@
             <div class="section4">
                 <h4>Our Social Media Links</h4>
                 <div class="social-media-links">
-                    <div class="link"><a href="https://twitter.com/chalo_ghoome" target="_blank"><img loading="lazy"
-                                src="../assets/icons/twitter-x.png" alt=""></a></div>
-                    <div class="link"><a href="www.linkedin.com/company/chalo-ghoome" target="_blank"><img
-                                loading="lazy" src="../assets/icons/linkedin.png" alt=""></a></div>
+                    <div class="link">
+                        <a href="https://www.twitter.com/chalo_ghoome" target="_blank">
+                            <img loading="lazy" src="../assets/icons/twitter-x.png" alt="Chalo Ghoome Twitter">
+                        </a>
+                    </div>
+                    <div class="link">
+                        <a href="https://www.linkedin.com/company/chalo-ghoome" target="_blank">
+                            <img loading="lazy" src="../assets/icons/linkedin.png" alt="Chalo Ghoome LinkedIn">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

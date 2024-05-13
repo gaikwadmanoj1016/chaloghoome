@@ -36,10 +36,10 @@ export class CommonService {
     { "id": 22, imageUrl: 'assets/imgs/most-visited/eiffel-tower.jpg', location: 'Eiffel Tower', address: 'Paris, France', description: 'The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower. It was constructed from 1887 to 1889 as the entrance to the 1889 World\'s Fair and was initially criticized by some of France\'s leading artists and intellectuals for its design.' },
     { "id": 23, imageUrl: 'assets/imgs/most-visited/statue-of-liberty.jpg', location: 'Statue of Liberty', address: 'New York City, USA', description: 'The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. The copper statue, a gift from the people of France to the people of the United States, was designed by French sculptor Frédéric Auguste Bartholdi and its metal framework was built by Gustave Eiffel. Dedicated on October 28, 1886, the statue commemorates the centennial of the signing of the United States Declaration of Independence and was a gesture of friendship from France to the United States.' },
     { "id": 24, imageUrl: 'assets/imgs/most-visited/pyramids-of-giza.jpg', location: 'Pyramids of Giza', address: 'Cairo, Egypt', description: 'The Giza Pyramid Complex, also called the Giza Necropolis, is the site on the Giza Plateau in Egypt that includes the Great Pyramid of Giza, the Pyramid of Khafre, and the Pyramid of Menkaure, along with their associated pyramid complexes and the Great Sphinx of Giza. It is one of the most famous archaeological sites in the world and a UNESCO World Heritage Site.' },
-    { "id": 1, imageUrl: 'assets/imgs/wonders/machu-pichu.jpg', location: 'Machu Picchu', address: 'Peru', description: 'Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a 2,430-meter (7,970 ft) mountain ridge. It is located in the Machupicchu District within Urubamba Province above the Sacred Valley, which is 80 kilometers (50 mi) northwest of Cuzco.' },
-    { "id": 2, imageUrl: 'assets/imgs/wonders/taj-mahal.jpg', location: 'Taj Mahal', address: 'Agra, Delhi, India', description: 'The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in the Indian city of Agra. It was commissioned in 1632 by the Mughal emperor, Shah Jahan, to house the tomb of his favorite wife, Mumtaz Mahal.' },
-    { "id": 11, imageUrl: 'assets/imgs/most-visited/sydney-opera-house.jpg', location: 'Sydney Opera House', address: 'Sydney, Australia', description: 'The Sydney Opera House is a multi-venue performing arts center at Sydney Harbour in Sydney, New South Wales, Australia. It is one of the 20th century\'s most famous and distinctive buildings.' },
-    { "id": 8, imageUrl: 'assets/imgs/wonders/collessium.jpg', location: 'Colosseum', address: 'Rome, Italy', description: 'The Colosseum is an oval amphitheater in the center of the city of Rome, Italy, just east of the Roman Forum. It is the largest ancient amphitheater ever built, and is still the largest standing amphitheater in the world today, despite its age.' },
+    { "id": 4, imageUrl: 'assets/imgs/wonders/machu-pichu.jpg', location: 'Machu Picchu', address: 'Peru', description: 'Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a 2,430-meter (7,970 ft) mountain ridge. It is located in the Machupicchu District within Urubamba Province above the Sacred Valley, which is 80 kilometers (50 mi) northwest of Cuzco.' },
+    { "id": 1, imageUrl: 'assets/imgs/wonders/taj-mahal.jpg', location: 'Taj Mahal', address: 'Agra, Delhi, India', description: 'The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in the Indian city of Agra. It was commissioned in 1632 by the Mughal emperor, Shah Jahan, to house the tomb of his favorite wife, Mumtaz Mahal.' },
+    { "id": 10, imageUrl: 'assets/imgs/most-visited/sydney-opera-house.jpg', location: 'Sydney Opera House', address: 'Sydney, Australia', description: 'The Sydney Opera House is a multi-venue performing arts center at Sydney Harbour in Sydney, New South Wales, Australia. It is one of the 20th century\'s most famous and distinctive buildings.' },
+    { "id": 7, imageUrl: 'assets/imgs/wonders/collessium.jpg', location: 'Colosseum', address: 'Rome, Italy', description: 'The Colosseum is an oval amphitheater in the center of the city of Rome, Italy, just east of the Roman Forum. It is the largest ancient amphitheater ever built, and is still the largest standing amphitheater in the world today, despite its age.' },
     { "id": 25, imageUrl: 'assets/imgs/most-visited/santorini.jpg', location: 'Santorini', address: 'Greece', description: 'Santorini is an island in the southern Aegean Sea, about 200 km southeast of Greece\'s mainland. It is the largest island of a small, circular archipelago, which bears the same name and is the remnant of a volcanic caldera. Santorini is famous for its stunning sunsets, white-washed buildings, and blue-domed churches.' },
     { "id": 26, imageUrl: 'assets/imgs/most-visited/angkor-wat.jpg', location: 'Angkor Wat', address: 'Siem Reap, Cambodia', description: 'Angkor Wat is a temple complex in Cambodia and the largest religious monument in the world, with the site measuring 162.6 hectares. It was originally constructed in the early 12th century as a Hindu temple dedicated to the god Vishnu, and gradually transformed into a Buddhist temple towards the end of the 12th century.' },
     { "id": 27, imageUrl: 'assets/imgs/most-visited/sydney-harbour.jpg', location: 'Sydney Harbour Bridge', address: 'Sydney, Australia', description: 'The Sydney Harbour Bridge is a heritage-listed steel through arch bridge across Sydney Harbour that carries rail, vehicular, bicycle, and pedestrian traffic between the Sydney central business district and the North Shore. The bridge is an iconic symbol of Sydney and Australia, known for its stunning views of the harbor and the Sydney Opera House.' },
@@ -77,10 +77,16 @@ export class CommonService {
 
   // 
   navigateTo(path: string) {
-    this.router.navigate([path]);
+    this.router.navigate([path]).then(() => {
+      window.scrollTo(0, 0);
+    });
   }
   navigateToQueryParams(path: string, query: any) {
-    this.router.navigate([path], { queryParams: query });
+    this.router.navigate([path], { queryParams: query }).then(() => {
+      if(!query['section']){
+        window.scrollTo(0, 0);
+      }
+    });;
   }
 
   scrollToDiv(elementId: string | null): void {

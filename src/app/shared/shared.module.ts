@@ -21,6 +21,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonService } from '../services/common.service';
 import { HttpRequestsService } from '../services/http-request.service';
 import { ProgressiveImageComponent } from './progressive-image/progressive-image.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -46,7 +47,8 @@ import { ProgressiveImageComponent } from './progressive-image/progressive-image
     ImageCropperModule,
     MatDialogModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   exports: [
     AddNewPostComponent,

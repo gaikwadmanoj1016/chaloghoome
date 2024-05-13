@@ -2,8 +2,12 @@
     <section>
         <div class="section1">
             <div class="main-img">
-                <app-progressive-image [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'"
-                    [image]="'../../../assets/imgs/pexels-pixabay-257092.jpg'"></app-progressive-image>
+                <app-progressive-image 
+                    [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'"
+                    [image]="'../../../assets/imgs/pexels-pixabay-257092.jpg'"
+                    [srcSet]="'../../../assets/imgs/pexels-pixabay-257092.webp'"
+                    [altText]="'chalo ghoome poster'"
+                ></app-progressive-image>
             </div>
             <div class="context">
                 <h1>Travel <span>Smarter,</span></h1>
@@ -13,8 +17,7 @@
                     their services, and available packages. Conversely, tour guides can efficiently showcase their
                     offerings directly to interested travelers, facilitating a direct and transparent exchange of
                     information.</p>
-                <button type="button" class="btn btn-outline-primary"
-                    (click)="redirectTo('home', {section: 'about_us'})">Explore</button>
+                <button type="button" class="btn btn-outline-primary" routerLink="home" [queryParams]="{section: 'contact_us'}">Explore</button>
             </div>
         </div>
     </section>
@@ -40,44 +43,33 @@
         <div class="section5" id="about_us">
             <div class="content">
                 <div class="head">
-                    <h3>About Us</h3>
+                    <h2>About Us</h2>
                 </div>
                 <div class="body">
                     <div class="left">
                         <p>
-                            Welcome to <span class="highlight">Chalo Ghoome</span>, the ultimate hub for travel
-                            enthusiasts worldwide. We're here to ignite your wanderlust and connect you with experiences
-                            that go beyond the ordinary.
+                            Welcome to <span class="highlight">Chalo Ghoome</span>, the premier destination for travel enthusiasts worldwide. We're here to fuel your wanderlust and connect you with extraordinary experiences that transcend the ordinary.
                             <br><br>
-                            At <span class="highlight">Chalo Ghoome</span>, we understand that travel is more than just
-                            visiting a place; it's about immersing yourself in new cultures, exploring hidden gems, and
-                            creating unforgettable memories. Whether you're a seasoned traveller or embarking on your
-                            first adventure, our platform is designed to inspire and guide you every step of the way.
+                            At <span class="highlight">Chalo Ghoome</span>, we recognize that travel is more than just visiting a destination; it's about immersing yourself in diverse cultures, uncovering hidden treasures, and crafting memories that last a lifetime. Whether you're an experienced globetrotter or setting out on your maiden voyage, our platform is designed to inspire and assist you at every turn.
                             <br><br>
-                            <span class="highlight">For travellers, Chalo Ghoome</span> offers a platform to share your
-                            travel Stories, seek inspiration for your next journey, and connect with fellow
-                            globetrotters.
-                            From <span class="highlight">budget-friendly tips to luxury travel experiences</span>, our
-                            community-driven platform has something for every type of <span
-                                class="highlight">traveller</span>.
+                            <span class="highlight">For travellers, Chalo Ghoome</span> offers a platform to share your Travel Tales, seek inspiration for your next escapade, and connect with like-minded adventurers.
+                            From <span class="highlight">savvy budget tips to luxurious travel escapades</span>, our community-driven platform caters to every kind of explorer.
                             <br><br>
-                            <span class="highlight">For guides, Chalo Ghoome</span> is your platform to showcase your
-                            expertise, <span class="highlight">connect with a global audience</span>, and create
-                            personalized travel experiences. Whether you're a local guide offering unique insights or a
-                            seasoned tour operator, our platform empowers you to share your passion for travel and <span
-                                class="highlight">create unforgettable adventures for travellers around the
-                                world</span>.
+                            <span class="highlight">For guides, Chalo Ghoome</span>is your platform to showcase your expertise, <span class="highlight">engage with a global audience</span>, and create
+                            personalized travel experiences. Whether you're a local guru offering insider insights or a seasoned travel operator, our platform empowers you to  <span
+                                class="highlight">share your love for travel and craft unforgettable journeys for explorers worldwide.</span>
                             <br><br>
                             <span class="highlight">Join us at Chalo Ghoome</span> and unlock a world of travel
-                            possibilities. Whether you're dreaming of a relaxing beach vacation, a <span
-                                class="highlight">thrilling adventure</span> in the mountains, or a cultural immersion
-                            in a vibrant city, <span class="highlight">Chalo Ghoome is here to make your travel dreams a
-                                reality</span>.
+                            possibilities. Whether you dream of a serene beach getaway, an <span
+                                class="highlight">adrenaline-pumping mountain expedition</span>or an immersive cultural experience in a bustling city <span class="highlight">Chalo Ghoome is your gateway to turning travel dreams into reality.</span>
                         </p>
                     </div>
                     <div class="right">
-                        <app-progressive-image [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'"
-                            [image]="'../../../assets/imgs/travel_guys_about-us.png'"></app-progressive-image>
+                        <app-progressive-image 
+                            [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'"
+                            [image]="'../../../assets/imgs/travel_guys_about-us.png'"
+                            [altText]="'chalo ghoome about us boys'"
+                        ></app-progressive-image>
                     </div>
                 </div>
             </div>
@@ -85,7 +77,7 @@
     </section>
     <section class="paralax">
         <div class="info">
-            <h3>Why choose us ? </h3>
+            <h2>Why choose us ? </h2>
             <p>The tourism sector is rapidly embracing technology, reducing manual work. However, it's struggling to
                 capture the attention of targeted customers. Taking this challenge seriously, we offer a separate
                 platform for tourism enthusiasts to share their travel stories. Travelers can tag the guides they booked
@@ -98,7 +90,7 @@
         <div class="section6" id="contact_us">
             <div class="content">
                 <div class="head">
-                    <h3>Contact Us</h3>
+                    <h2>Contact Us</h2>
                 </div>
                 <div class="body">
                     <div class="right">

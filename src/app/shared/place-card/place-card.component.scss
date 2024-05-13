@@ -6,6 +6,7 @@
     padding: 5px;
     transition: all 0.4s;
     border-radius: 10px;
+    box-shadow: 0 0 7px 1px #b0b0b0;
 
     .place-image {
         position: relative;
@@ -31,14 +32,14 @@
         inset: 5px;
         display: none;
 
-        h4 {
+        h3 {
             font-size: 14px;
             font-weight: 500;
             padding: 0;
             margin: 0;
         }
 
-        h5 {
+        h4 {
             font-size: 10px;
             font-weight: 600;
             color: #dcdcdc;
@@ -63,7 +64,10 @@
             justify-content: end;
         }
     }
+}
 
+.image-exist{
+    
     &:hover {
         transform: scale(1.03);
         box-shadow: 0 0 16px 5px #36363670;
@@ -98,5 +102,33 @@
             transition: all 0.9s;
             justify-content: end;
         }
+    }
+}
+
+.skeleton-placeholder {
+    background-color: #dcdcdc;
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 0 0 7px 1px #b0b0b0;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        animation: loading 1.5s infinite;
+    }
+}
+@keyframes loading {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
     }
 }

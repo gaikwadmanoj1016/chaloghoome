@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-progressive-image',
@@ -10,10 +10,13 @@ import { Component, Input } from '@angular/core';
 export class ProgressiveImageComponent {
   @Input() smallImage: string = '';
   @Input() image: string = '';
+  @Input() srcSet: string = '';
+  @Input() altText: string = '';
+  @Output('onImageLoaded') onImageLoaded: EventEmitter<any> = new EventEmitter();
 
   isLoaded: boolean = false;
   onImageLoad() {
-    console.log("object");
     this.isLoaded = true;
+    this.onImageLoaded.emit();
   }
 }

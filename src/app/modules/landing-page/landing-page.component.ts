@@ -2,13 +2,13 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [ReactiveFormsModule, SharedModule, MatIconModule, FormsModule],
+  imports: [ReactiveFormsModule, SharedModule, MatIconModule, FormsModule, RouterModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })

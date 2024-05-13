@@ -1,6 +1,7 @@
 {
   "name": "chalo-ghoome-blogs",
   "version": "0.0.0",
+  "homepage":"https://chaloghoome.com",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
