@@ -21,7 +21,15 @@
             </div>
         </div>
     </section>
-    <section>
+    @for (section of sections; track $index) {
+        <section>
+            <div class="section2" id="wonders_of_world">
+                <app-place-corousal [title]="section.sectionName" [id]="'wonders_of_world'"
+                [placesList]="section.posts" [showCount]="section.posts.length"></app-place-corousal>
+            </div>
+        </section>
+    }
+    <!-- <section>
         <div class="section2" id="wonders_of_world">
             <app-place-corousal [title]="'Wonders of the World'" [id]="'wonders_of_world'"
                 [placesList]="commonService.wonders" [showCount]="7"></app-place-corousal>
@@ -38,7 +46,7 @@
             <app-place-corousal [title]="'Most Visited Places'" [id]="'most_visited_places'"
                 [placesList]="commonService.mostVisited" [showCount]="5"></app-place-corousal>
         </div>
-    </section>
+    </section> -->
     <section>
         <div class="section5" id="about_us">
             <div class="content">
@@ -55,13 +63,19 @@
                             <span class="highlight">For travellers, Chalo Ghoome</span> offers a platform to share your Travel Tales, seek inspiration for your next escapade, and connect with like-minded adventurers.
                             From <span class="highlight">savvy budget tips to luxurious travel escapades</span>, our community-driven platform caters to every kind of explorer.
                             <br><br>
-                            <span class="highlight">For guides, Chalo Ghoome</span>is your platform to showcase your expertise, <span class="highlight">engage with a global audience</span>, and create
+                            <span class="highlight">For guides, Chalo Ghoome</span> is your platform to showcase your expertise, <span class="highlight">engage with a global audience</span>, and create
                             personalized travel experiences. Whether you're a local guru offering insider insights or a seasoned travel operator, our platform empowers you to  <span
                                 class="highlight">share your love for travel and craft unforgettable journeys for explorers worldwide.</span>
-                            <br><br>
-                            <span class="highlight">Join us at Chalo Ghoome</span> and unlock a world of travel
-                            possibilities. Whether you dream of a serene beach getaway, an <span
-                                class="highlight">adrenaline-pumping mountain expedition</span>or an immersive cultural experience in a bustling city <span class="highlight">Chalo Ghoome is your gateway to turning travel dreams into reality.</span>
+                            <br>
+                            <br>
+                            <br>
+                            <a href="#/about_us" class="know-more-btn">
+                                Know More
+                                <div class="arrow-container">
+                                    <div class="arrow-tail"></div>
+                                    <div class="arrow-head">&gt;</div>
+                                </div>
+                            </a>
                         </p>
                     </div>
                     <div class="right">
@@ -84,59 +98,6 @@
                 with us or without us. This approach is particularly beneficial for guides, helping them reach a
                 targeted audience and grow their business. Travelers can also conveniently access information about
                 available services remotely. Join us to explore, share, and connect!</p>
-        </div>
-    </section>
-    <section>
-        <div class="section6" id="contact_us">
-            <div class="content">
-                <div class="head">
-                    <h2>Contact Us</h2>
-                </div>
-                <div class="body">
-                    <div class="right">
-                        <form #contactForm="ngForm" (submit)="onSubmit(contactForm)">
-                            <div class="custom-form-group mb-4">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name"
-                                    required>
-                            </div>
-                            <div class="custom-form-group mb-4">
-                                <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="Enter Email" required>
-                            </div>
-                            <div class="custom-form-group mb-4">
-                                <textarea name="message" class="form-control" placeholder="Enter Message" id="message"
-                                    rows="5" required></textarea>
-                            </div>
-
-                            <!-- cta -->
-                            <div class="cta">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-
-                    </div>
-                    <div class="left">
-                        <div class="contact-info">
-                            <h3>Have a question or need assistance ?</h3>
-
-                            <p>Feel free to reach out to us! Our dedicated team is here to help you with any inquiries
-                                you may have. You can contact us through the following methods:</p>
-
-                            <p><strong>Email :</strong> support&#64;chaloghoome.com</p>
-
-                            <p><strong>Phone :</strong> +91 7264878403</p>
-
-                            <p><strong>Address :</strong> Pandharpur, Maharashtra, India (413304)</p>
-
-                            <p><strong>Social Media :</strong> Connect with us on Twitter & LinkedIn</p>
-
-                            <p><strong>Operating Hours :</strong> 10 am to 10 pm.</p>
-
-                            <p>We look forward to hearing from you and assisting you with your travel needs!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 </main>

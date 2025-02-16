@@ -4,6 +4,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonService } from '../../services/common.service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -14,7 +15,8 @@ import { CommonService } from '../../services/common.service';
 })
 export class LandingPageComponent implements OnInit {
   scrollToDivId: string | null = '';
-  constructor(private route: ActivatedRoute, public commonService: CommonService, private cdRef: ChangeDetectorRef) { }
+  sections: any[] = [];
+  constructor(private route: ActivatedRoute, public commonService: CommonService, private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
@@ -25,15 +27,19 @@ export class LandingPageComponent implements OnInit {
         this.commonService.scrollToTop();
       }
     });
+
+    this.getSections();
   }
 
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      console.log(form.value);
-      // Here you can submit the form data to your backend or perform other actions
-    } else {
-      console.error('Form is invalid');
-    }
+  private getSections() {
+    this.apiService.getSectionWithPosts().subscribe((response: any) => {
+      if (response.result && response.data && response.data.length > 0) {
+        console.log(response);
+        this.sections = response.data.sort((a: any, b: any) => a.order - b.order);
+      } else {
+        this.sections = [];
+      }
+    })
   }
 
   redirectTo(path: string, query: {}) {

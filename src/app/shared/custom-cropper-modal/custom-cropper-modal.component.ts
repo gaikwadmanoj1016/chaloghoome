@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-custom-cropper-modal',
@@ -17,7 +17,7 @@ export class CustomCropperModalComponent implements OnInit {
   croppedImage: any;
   croppedImageBinaryFile: File | undefined;
   constructor(
-    private sanitizer: DomSanitizer
+    public commonService: CommonService
   ) {
   }
   ngOnInit(): void {
@@ -29,10 +29,11 @@ export class CustomCropperModalComponent implements OnInit {
       this.croppedImageBinaryFile = new File([event.blob], 'cropped_image.png');
       console.log(this.croppedImageBinaryFile);
       if (event && typeof event.objectUrl === 'string') {
-        this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
+        this.croppedImage = this.commonService.imgSanitizer(event.objectUrl);
       }
     }
   }
+
   imageLoaded(image: LoadedImage) {
     // show cropper
     console.log(image);

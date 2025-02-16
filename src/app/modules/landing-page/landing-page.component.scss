@@ -189,6 +189,67 @@ main {
             }
         }
 
+        .section5 {
+            
+            .know-more-btn {
+                display: inline-flex;
+                align-items: center;
+                padding: 10px 20px;
+                font-size: 16px;
+                font-weight: bold;
+                color: darkorange;
+                background-color: white;
+                border: 2px solid rgb(242, 178, 100);
+                border-radius: 40px;
+                cursor: pointer;
+                text-decoration: none;
+                position: relative;
+                overflow: hidden;
+                transition: background-color 0.3s ease;
+            }
+        
+            .know-more-btn:hover {
+                color: white;
+                background-color: darkorange;
+            }
+        
+            .arrow-container {
+                display: flex;
+                align-items: center;
+                position: relative;
+                width: 20px;
+                height: 10px;
+                margin-left: 10px;
+            }
+        
+            .arrow-head {
+                font-size: 20px;
+                width: 1px;
+                height: 20px;
+                // border-top: 5px solid transparent;
+                // border-bottom: 5px solid transparent;
+                // border-left: 10px solid #fff;
+                transition: transform 0.3s ease;
+            }
+        
+            .arrow-tail {
+                width: 0;
+                height: 2px;
+                background-color: #fff;
+                position: absolute;
+                left: 0;
+                top: 4px;
+                transition: width 0.3s ease;
+            }
+        
+            .know-more-btn:hover .arrow-head {
+                transform: translateX(16px);
+            }
+        
+            .know-more-btn:hover .arrow-tail {
+                width: 26px;
+            }
+        }
     }
 
     .paralax {

@@ -1,38 +1,106 @@
+<head>
+    <title>Taj Mahal History - A Symbol of Love</title>
+</head>
 <main>
     <section class="gallery">
         <!-- Iterate over highlights -->
         @for (highlight of placeDetails?.highlights; track $index) {
-        <img [src]="highlight.image" alt="ChaloGhoome: {{ highlight.title }}" (click)="openPreview(highlight.image)">
+        <!-- <img [src]="highlight.imagePath" alt="ChaloGhoome {{ highlight.title }}" (click)="openPreview(highlight.imagePath)"> -->
+        <app-progressive-image [smallImage]="commonService.appendAssetUrl(highlight.imagePath)"
+            [image]="commonService.appendAssetUrl(highlight.imagePath)" [altText]="'ChaloGhoome: {{ highlight.title }}'"
+            (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))"></app-progressive-image>
         }
     </section>
 
-    <section class="information">
-        <h2>About {{ placeDetails?.name }}</h2>
-        <p>{{ placeDetails?.description }}</p>
-        <!-- Display other information as needed -->
-        <p><strong>Area:</strong> {{ placeDetails?.area }}</p>
-        <p><strong>Year Established:</strong> {{ placeDetails?.yearEstablished }}</p>
-        <p><strong>Unique Feature:</strong> {{ placeDetails?.uniqueFeature }}</p>
-        <p><strong>Other Features:</strong></p>
-        <ol>
-            @for (feature of placeDetails?.otherFeatures; track $index) {
-                <li>{{ feature }}</li>
+    <article>
+        <section class="information">
+            <h1 class="border-bottom-2">About {{ placeDetails?.postName }}</h1>
+            <p>{{ placeDetails?.summary }}</p>
+            @if (placeDetails?.history) {
+            <h2 class="border-bottom-2">History of {{placeDetails?.postName}}</h2>
+            <p>{{ placeDetails?.history }}</p>
             }
-        </ol>
-    </section>
-    <section class="travel-guide">
-        <h2>Travel Guide</h2>
-        @for (guide of placeDetails?.travelGuide; track $index) {
-        <div class="guide-section">
-            <h3>{{ guide.title }}</h3>
-            <p>{{ guide.para }}</p>
+            @if (placeDetails?.area) {
+            <div class="d-flex">
+                <h3>Area: </h3>
+                <p>{{ placeDetails?.area }}
+                </p>
+            </div>
+            }
+            @if (placeDetails?.yearEstablished) {
+            <div class="d-flex">
+                <h3>Year Established: </h3>
+                <p>
+                    {{ placeDetails?.yearEstablished }}
+                </p>
+            </div>
+            }
+            @if (placeDetails?.specialities) {
+            <div class="d-flex">
+                <h3>Unique Feature: </h3>
+                <p>
+                    @for (specialitiy of placeDetails?.specialities; track $index) {
+                    @if ($index !== 0) {
+                    <span aria-labelledby="">, {{ specialitiy.speciality }}</span>
+                    } @else {
+                    <span>{{ specialitiy.speciality }}</span>
+                    }
+                    }
+                </p>
+            </div>
+            }
+            @if (placeDetails?.specialities) {
+            <h3>
+                Other Features:
+            </h3>
             <ol>
-                @for (item of guide.bulletPoints; track $index) {
-                <li>{{item}}</li>
+                @for (specialities of placeDetails?.specialities; track $index) {
+                <li>{{ specialities.speciality }}</li>
                 }
             </ol>
-        </div>
-        }
-    </section>
-
+            }
+        </section>
+        <section class="row travel-guide">
+            <h2>Travel Guide for {{placeDetails?.postName}}</h2>
+            @if (placeDetails?.bestTimeToVisit) {
+            <div class="col-lg-12">
+                <div class="guide-section">
+                    <h3>Best Time to Visit {{placeDetails?.postName}}</h3>
+                    <p>{{ placeDetails?.bestTimeToVisit }}</p>
+                </div>
+            </div>
+            }
+            @if (placeDetails?.famousFor) {
+            <div class="col-lg-12">
+                <div class="guide-section">
+                    <h3> {{placeDetails?.postName}} is Famous For</h3>
+                    <p>{{ placeDetails?.famousFor }}</p>
+                </div>
+            </div>
+            }
+            @if (placeDetails?.howToGo) {
+            <div class="col-lg-12">
+                <div class="guide-section">
+                    <h3>How to Go {{placeDetails?.postName}}</h3>
+                    <p>{{ placeDetails?.howToGo }}</p>
+                </div>
+            </div>
+            }
+            @for (guide of placeDetails?.travelGuide; track $index) {
+            @if ((guide.para || (guide.bulletPoints && guide.bulletPoints.length > 0)) && guide.title) {
+            <div class="col-lg-12">
+                <div class="guide-section">
+                    <h3>{{ guide.title }}</h3>
+                    <p>{{ guide.para }}</p>
+                    <ol>
+                        @for (item of guide.bulletPoints; track $index) {
+                        <li>{{item}}</li>
+                        }
+                    </ol>
+                </div>
+            </div>
+            }
+            }
+        </section>
+    </article>
 </main>

@@ -1,0 +1,57 @@
+<div class="crud-container">
+    <!-- Header Section -->
+    <div class="header">
+        <h2>Sections</h2>
+        <button (click)="toggleAddForm()">Add Section</button>
+    </div>
+
+    <!-- Add/Edit Form -->
+    @if (showAddForm) {
+    <div class="form-container">
+        <form [formGroup]="sectionForm" (ngSubmit)="saveSection()">
+            <div class="form-group">
+                <label for="sectionName">Section Name</label>
+                <input id="sectionName" type="text" formControlName="sectionName" />
+            </div>
+            <div class="form-group">
+                <label for="order">Order</label>
+                <input id="order" type="number" formControlName="order" />
+            </div>
+            <div class="form-actions">
+                <button type="submit">Save</button>
+                <button type="button" (click)="toggleAddForm()">Cancel</button>
+            </div>
+        </form>
+    </div>
+    }
+
+    <!-- Listing Section -->
+    <div class="listing">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Section Name</th>
+                    <th>Order</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (section of sections; track $index) {
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>
+                        <a href="#" [routerLink]="['/section-detail', section.id]">{{ section.sectionName }}</a>
+                    </td>
+                    <td>{{ section.order }}</td>
+                    <td>
+                        <button (click)="editSection(section)">Edit</button>
+                        <button (click)="deleteSection(section.id)">Delete</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

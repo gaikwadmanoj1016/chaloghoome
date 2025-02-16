@@ -17,9 +17,18 @@ export class PlaceCorousalComponent implements OnInit {
   constructor(private commonService: CommonService) { }
 
   ngOnInit(): void {
-      if(this.placesList && this.placesList.length > this.showCount){
-        this.placesList = this.placesList.slice(0, this.showCount);
-      }
+      // if(this.placesList && this.placesList.length > this.showCount){
+        //   this.placesList = this.placesList.slice(0, this.showCount);
+        // }
+        
+    if(this.placesList && this.placesList.length > 0){
+      this.placesList.map(item => {
+        item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);
+        return item;
+      })
+      
+    }
+    console.log(this.placesList);
   }
   public navigateTo(path: string) {
     this.commonService.navigateToQueryParams(path, { filter: this.id });

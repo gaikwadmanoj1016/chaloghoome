@@ -10,17 +10,29 @@ import { HttpClientModule } from '@angular/common/http';
 
 export interface PlaceDetails {
   name: string;
-  description: string;
   area: string;
   yearEstablished: string;
+  postName: string;
+  summary: string;
+  history: string;
   uniqueFeature: string;
+  bestTimeToVisit: string;
+  famousFor: string;
+  howToGo: string;
   otherFeatures: string[];
   highlights: Highlight[];
   travelGuide: TravelGuide[];
+  specialities: Speciality[];
+}
+
+export interface Speciality {
+  speciality: string;
+  description: string;
+  isUnique: boolean | string;
 }
 
 export interface Highlight {
-  image: string;
+  imagePath: string;
   title: string;
   description: string;
 }
@@ -41,6 +53,7 @@ export interface TravelGuide {
 export class PlaceDetailsComponent implements OnInit {
   placeDetails: PlaceDetails | undefined;
   placeId: number = 0;
+  postId: any;
   constructor(private dialog: MatDialog, private route: ActivatedRoute, public commonService: CommonService, private apiRequest: ApiService) { }
 
   ngOnInit(): void {
@@ -50,8 +63,19 @@ export class PlaceDetailsComponent implements OnInit {
         this.getPlaceDetails();
       }
     })
+    this.route.params.subscribe((param: any) => {
+      if (param && param['postId']) {
+        this.postId = param['postId'];
+        this.getPlaceDetailsByPlaceId();
+      }
+    })
   }
 
+  private getPlaceDetailsByPlaceId() {
+    this.apiRequest.getPostDetails(this.postId).subscribe((response: any) => {
+      this.placeDetails = response.data;
+    })
+  }
   private getPlaceDetails() {
     this.apiRequest.getPlaceDetails().subscribe((response: any) => {
       console.log(response)
@@ -66,6 +90,4 @@ export class PlaceDetailsComponent implements OnInit {
       panelClass: 'custom-dialog-container' // Optional custom styling
     });
   }
-
-
 }

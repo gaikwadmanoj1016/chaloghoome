@@ -1,0 +1,53 @@
+<section>
+    <div class="section6" id="contact_us">
+        <div class="content">
+            <div class="head">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="body">
+                <div class="right">
+                    <form #contactForm="ngForm" (submit)="onSubmit(contactForm)">
+                        <div class="custom-form-group mb-4">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name"
+                                required>
+                        </div>
+                        <div class="custom-form-group mb-4">
+                            <input type="email" class="form-control" name="email" id="email"
+                                placeholder="Enter Email" required>
+                        </div>
+                        <div class="custom-form-group mb-4">
+                            <textarea name="message" class="form-control" placeholder="Enter Message" id="message"
+                                rows="5" required></textarea>
+                        </div>
+
+                        <!-- cta -->
+                        <div class="cta">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="left">
+                    <div class="contact-info">
+                        <h3>Have a question or need assistance ?</h3>
+
+                        <p>Feel free to reach out to us! Our dedicated team is here to help you with any inquiries
+                            you may have. You can contact us through the following methods:</p>
+
+                        <p><strong>Email :</strong> support&#64;chaloghoome.com</p>
+
+                        <p><strong>Phone :</strong> +91 7264878403</p>
+
+                        <p><strong>Address :</strong> Pandharpur, Maharashtra, India (413304)</p>
+
+                        <p><strong>Social Media :</strong> Connect with us on Twitter & LinkedIn</p>
+
+                        <p><strong>Operating Hours :</strong> 10 am to 10 pm.</p>
+
+                        <p>We look forward to hearing from you and assisting you with your travel needs!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

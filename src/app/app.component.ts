@@ -1,8 +1,10 @@
 import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit, Signal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonService } from './services/common.service';
 import { SharedModule } from './shared/shared.module';
+import { HeaderComponent } from './root/header/header.component';
+import { FooterComponent } from './root/footer/footer.component';
 
 interface UserInterface {
   id: number,
@@ -12,7 +14,7 @@ interface UserInterface {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, SharedModule, RouterModule],
+  imports: [CommonModule, RouterOutlet, SharedModule, RouterModule, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -27,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   user = this.users()[1];
   profileModal: boolean = false;
-  constructor(private router: Router, private commonService: CommonService, private route: ActivatedRoute, private cdRef: ChangeDetectorRef) { }
+  constructor(private commonService: CommonService) { }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -46,14 +48,6 @@ export class AppComponent implements OnInit, OnDestroy {
     } else {
       this.commonService.navigateTo(path);
     }
-  }
-  showNav(): boolean {
-    const currentRoute = this.router.url;
-    return !currentRoute.includes('login') && !currentRoute.includes('register');
-  }
-  addClass(): boolean {
-    const currentRoute = this.router.url;
-    return currentRoute.includes('home') || currentRoute.includes('profile');
   }
 
   toggleProfileMenu() {

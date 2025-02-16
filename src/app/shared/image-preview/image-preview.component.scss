@@ -1,0 +1,12 @@
+img {
+    position: relative;
+}
+.close-icon {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 36px;
+    z-index: 2;
+    aspect-ratio: 1;
+    padding: 0;
+}

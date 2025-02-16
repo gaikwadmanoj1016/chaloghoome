@@ -18,7 +18,6 @@ export class PlaceListComponent implements OnInit {
   constructor(private route: ActivatedRoute, private commonService: CommonService) { }
   ngOnInit(): void {
     this.route.queryParams.subscribe((param: any) => {
-      console.log(param);
       if (param && param['filter']) {
         this.filter = param['filter'];
         this.sortFilteredList();

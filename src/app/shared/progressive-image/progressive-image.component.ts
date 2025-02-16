@@ -13,10 +13,15 @@ export class ProgressiveImageComponent {
   @Input() srcSet: string = '';
   @Input() altText: string = '';
   @Output('onImageLoaded') onImageLoaded: EventEmitter<any> = new EventEmitter();
+  @Output('onImagClicked') onImagClicked: EventEmitter<any> = new EventEmitter();
 
   isLoaded: boolean = false;
   onImageLoad() {
     this.isLoaded = true;
     this.onImageLoaded.emit();
+  }
+
+  onClick() {
+    this.onImagClicked.emit();
   }
 }
