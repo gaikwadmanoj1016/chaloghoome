@@ -26,6 +26,8 @@ export class AdminPanelComponent {
     this.sectionForm = new FormGroup({
       sectionName: new FormControl(''),
       order: new FormControl(0),
+      sectionStyle: new FormControl(''),
+      customStyle: new FormControl(''),
     });
 
     this.getSectionsList();
@@ -50,10 +52,14 @@ export class AdminPanelComponent {
     if (this.sectionForm.valid) {
       const section = this.sectionForm.get('sectionName')?.value;
       const order = this.sectionForm.get('order')?.value;
+      const customStyle = this.sectionForm.get('customStyle')?.value;
+      const sectionStyle = this.sectionForm.get('sectionStyle')?.value;
       // this.sections.push(section);
       let req: any = {
         "sectionName": section || '',
-        "order": order || 0
+        "order": order || 0,
+        "customStyle": customStyle,
+        "sectionStyle": sectionStyle
       }
       if (this.selectedSection && this.selectedSection.id) {
         req.id = this.selectedSection.id
@@ -78,5 +84,12 @@ export class AdminPanelComponent {
 
   deleteSection(id: number) {
     this.sections = this.sections.filter((section, index) => index !== id);
+    this.apiService.deleteSection(id).subscribe((response) => {
+      if (response.result) {
+        this.getSectionsList();
+      } else {
+        console.error(response.message || 'Something went wrong');
+      }
+    })
   }
 }

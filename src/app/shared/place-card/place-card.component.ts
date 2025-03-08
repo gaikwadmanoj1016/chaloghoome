@@ -18,6 +18,8 @@ export class PlaceCardComponent implements OnInit {
   // Context menu properties
   contextMenuVisible: boolean = false;
   selectedItem: any;
+  isModalOpen: boolean = false;
+  selectedCard: any;
 
   constructor(public commonService: CommonService) {}
 
@@ -29,6 +31,15 @@ export class PlaceCardComponent implements OnInit {
     this.onNavigateTo.emit(path);
   }
   
+  public addHighlighs(item: any) {
+    this.selectedCard = item;
+    this.isModalOpen = true;
+  }
+  
+  public closeModal() {
+    this.isModalOpen = false;
+  }
+
   public editPlace(item: any) {
     this.onEditClicked.emit(item);
   }

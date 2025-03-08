@@ -1,0 +1,57 @@
+<!-- Highlights Modal -->
+<div class="modal" [class.open]="isModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Add Highlights</h2>
+        </div>
+        <div class="modal-body">
+            <div class="left">
+                <form [formGroup]="highlightForm" (ngSubmit)="saveHighlights('add')">
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <input formControlName="title" type="text" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <textarea formControlName="description" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Image:</label>
+                        <input type="file" (change)="onImageSelect($event)">
+                    </div>
+
+                    <div class="checkbox">
+                        <input formControlName="isThumbnail" type="checkbox">
+                        <label>Set as Thumbnail:</label>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="submit">Add Highlight</button>
+                        <button type="button" (click)="closeModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="right">
+                <!-- Previously Added Highlights -->
+                @if (highlights && highlights.length > 0) {
+                <div>
+                    <h3>Existing Highlights</h3>
+                    <ul>
+                        @for (highlight of highlights; track $index) {
+                        <li>
+                            <input type="checkbox" name="isThumbnail" id="isThumbnail" [checked]="highlight.isThumbnail" (change)="changeThumbnail(highlight)">
+                            <img [src]="commonService.appendAssetUrl(highlight.compressedImagePath)"
+                                alt="{{ highlight.title }}" width="50">
+                            <strong [title]="highlight.title">{{ highlight.title | truncate: 20 }}</strong>: <span [title]="highlight.description">{{ highlight.description | truncate: 60 }}</span>
+                        </li>
+                        }
+                    </ul>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

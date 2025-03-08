@@ -36,7 +36,8 @@ export class SectionComponent implements OnInit {
       howToGo: [''],
       bestTimeToVisit: [''],
       routes: [''],
-      travelGuide: this.fb.array([])
+      travelGuide: this.fb.array([]),
+      isThumbnail: [true]
     });
   }
 
@@ -58,11 +59,11 @@ export class SectionComponent implements OnInit {
 
         if (this.section && this.section.posts && this.section.posts.length > 0) {
           this.section.posts.forEach((item: any) => {
-            item.imageUrl = (item.highlights && item.highlights.length > 0) ? this.commonService.appendAssetUrl(item.highlights[0]?.imagePath) : item.thumbnailImg || '';
+            item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);
           })
         }
         console.log(this.section);
-        
+        this.commonService.setMetaData(this.section.sectionName);
       } else {
         this.section = [];
       }
@@ -207,67 +208,84 @@ export class SectionComponent implements OnInit {
   removeImage(): void {
     this.selectedImage = null; // Clear the selected image
   }
-
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.postForm.valid) {
       console.log('Form submitted:', this.postForm.value);
-
-      // Call createFormData to handle form data creation
-      const formData = this.createFormData();
-
-      // Now, use the formData to send to the backend
-      this.apiService.savePost(formData).subscribe((response: any) => {
-        if (response.result) {
-          this.closePopup();
-          this.getPostBySectionId(this.sectionId);
-        } else {
-          // Handle failure here
-        }
-      });
-    } else {
-      alert("form is not valid");
-    }
-  }
-
-  createFormData(): FormData {
-    const formData = new FormData();
-    const values = this.postForm.value;
-
-    // Loop through all form values
-    Object.keys(values).forEach((key) => {
-      // Handle specialities (which are arrays of objects)
-      if (key === 'specialities') {
-        values[key].forEach((speciality: any, index: number) => {
-          formData.append(`specialities[${index}].speciality`, speciality.speciality || '');
-          formData.append(`specialities[${index}].description`, speciality.description || '');
-          formData.append(`specialities[${index}].isUnique`, speciality.isUnique || '');
-          if (speciality.id) {
-            formData.append(`specialities[${index}].id`, speciality.id);
+      
+      try {
+        // Create the formData (await compressing image if available)
+        const formData = await this.createFormData();
+  
+        // Now, use the formData to send to the backend
+        this.apiService.savePost(formData).subscribe((response: any) => {
+          if (response.result) {
+            this.closePopup();
+            this.getPostBySectionId(this.sectionId);
+          } else {
+            // Handle failure here
           }
         });
+      } catch (error) {
+        console.error('Error creating form data', error);
       }
-      // Handle travel guide (highlights)
-      else if (key === 'travelGuide') {
-        values[key].forEach((highlight: any, index: number) => {
-          formData.append(`travelGuide[${index}].title`, highlight.title || '');
-          formData.append(`travelGuide[${index}].para`, highlight.para || '');
+    } else {
+      alert("Form is not valid");
+    }
+  }
+  
+  createFormData(): Promise<FormData> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const formData = new FormData();
+        const values = this.postForm.value;
+  
+        // Loop through all form values
+        Object.keys(values).forEach((key) => {
+          // Handle specialities (which are arrays of objects)
+          if (key === 'specialities') {
+            values[key].forEach((speciality: any, index: number) => {
+              formData.append(`specialities[${index}].speciality`, speciality.speciality || '');
+              formData.append(`specialities[${index}].description`, speciality.description || '');
+              formData.append(`specialities[${index}].isUnique`, speciality.isUnique || '');
+              if (speciality.id) {
+                formData.append(`specialities[${index}].id`, speciality.id);
+              }
+            });
+          }
+          // Handle travel guide (highlights)
+          else if (key === 'travelGuide') {
+            values[key].forEach((highlight: any, index: number) => {
+              formData.append(`travelGuide[${index}].title`, highlight.title || '');
+              formData.append(`travelGuide[${index}].para`, highlight.para || '');
+            });
+          } else {
+            formData.append(key, values[key] || '');
+          }
         });
-      } else {
-        formData.append(key, values[key] || '');
+  
+        // Add sectionId to formData
+        formData.append('sectionId', this.sectionId.toString());
+        if (this.selectedCard && Object.keys(this.selectedCard).length > 0) {
+          formData.append('id', this.selectedCard.id);
+        }
+  
+        // Append both files if available
+        if (this.file) {
+          // Append original file
+          formData.append('img', this.file);
+  
+          // Compress the image and append as compressedImg
+          const compressedFile = await this.commonService.compressImage(this.file, 0.5); // Scale to 50%
+          formData.append('compressedImg', compressedFile);
+        }
+  
+        resolve(formData);
+      } catch (error) {
+        reject(error);
       }
     });
-
-    // Add sectionId to formData
-    formData.append('sectionId', this.sectionId.toString());
-    if (this.selectedCard && Object.keys(this.selectedCard).length > 0) {
-      formData.append('id', this.selectedCard.id);
-    }
-    if (this.file) {
-      formData.append('img', this.file);
-    }
-    return formData;
   }
-
+  
   // Example usage
   // const postDTO = {
   //   sectionId: 1,

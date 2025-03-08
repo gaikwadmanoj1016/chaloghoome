@@ -21,7 +21,7 @@ export class ApiService {
       })
     )
   }
-  
+
   //#region sections
   public getSectionsList() {
     let API = environment.apiUrl + 'api/sections/get';
@@ -43,9 +43,19 @@ export class ApiService {
       })
     )
   }
-  
+  public deleteSection(id: number) {
+    let API = environment.apiUrl + 'api/sections/delete/'+id;
+    return this.httpRequest.delete(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+
   //#endregion sections
-  
+
   //#region post
   public getSectionWithPosts() {
     // let API = environment.apiUrl + 'api/posts/getSectionPost/' + sectionId;
@@ -79,9 +89,9 @@ export class ApiService {
       })
     )
   }
-  
+
   public getPostDetails(id: number) {
-    let API = environment.apiUrl + 'api/posts/getPostDetails/'+id;
+    let API = environment.apiUrl + 'api/posts/getPostDetails/' + id;
     return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
       map((data) => {
         return data;
@@ -91,7 +101,7 @@ export class ApiService {
     )
   }
   public deletePost(id: number) {
-    let API = environment.apiUrl + 'api/posts/delete/'+id;
+    let API = environment.apiUrl + 'api/posts/delete/' + id;
     return this.httpRequest.delete(API, this.commonService.getRequestOptionArgs()).pipe(
       map((data) => {
         return data;
@@ -100,5 +110,28 @@ export class ApiService {
       })
     )
   }
+
+  public getHighlights(postId: number) {
+    let API = environment.apiUrl + 'api/posts/getHighlights/' + postId;
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  public saveHighlight(highlight: any) {
+    let API = environment.apiUrl + 'api/posts/saveHighlights';
+    return this.httpRequest.put(API, highlight, this.commonService.getRequestForAttachment()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+
+
   //#endregion post
 }

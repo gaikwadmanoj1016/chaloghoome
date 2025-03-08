@@ -29,9 +29,9 @@
         </app-progressive-image>
     </div>
     <div class="place-info" (click)="navigateToPostDetails(item)">
-        <h3>{{item.postName}}</h3>
-        <h4>{{item.location}}</h4>
-        <p>{{item.summary | truncate: 120}}</p>
+        <h3 [title]="item.postName">{{item.postName | truncate : 25 }}</h3>
+        <h4 [title]="item.location">{{item.location | truncate: 25 }}</h4>
+        <p [title]="item.summary">{{item.summary | truncate: 120 }}</p>
     </div>
     <div class="place-cta">
         <!-- <button type="button" class="btn" (click)="editPlace(item)">
@@ -45,8 +45,9 @@
         @if (contextMenuVisible) {
         <div class="context-menu">
             <ul>
-                <li (click)="editPlace(selectedItem)">Edit</li>
-                <li (click)="deletePlace(selectedItem)">Delete</li>
+                <li (click)="addHighlighs(item)">Add Highlights</li>
+                <li (click)="editPlace(item)">Edit</li>
+                <li (click)="deletePlace(item)">Delete</li>
             </ul>
         </div>
         }
@@ -55,4 +56,7 @@
     <!-- Custom Context Menu -->
 </div>
 
+@if (isModalOpen) {
+    <app-highlights-modal [isModalOpen]="isModalOpen" [cardDetails]="selectedCard" (onCloseModal)="closeModal()"></app-highlights-modal>
+}
 <!-- <div class="skeleton-placeholder"></div> -->

@@ -24,8 +24,8 @@
     @for (section of sections; track $index) {
         <section>
             <div class="section2" id="wonders_of_world">
-                <app-place-corousal [title]="section.sectionName" [id]="'wonders_of_world'"
-                [placesList]="section.posts" [showCount]="section.posts.length"></app-place-corousal>
+                <app-place-corousal [section]="section"  [id]="'wonders_of_world'"
+                [placesList]="section.posts" [grid]="section.sectionStyle === 'grid'" [showCount]="section.posts.length"></app-place-corousal>
             </div>
         </section>
     }

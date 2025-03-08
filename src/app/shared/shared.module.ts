@@ -14,7 +14,7 @@ import { BuddyCardComponent } from './buddy-card/buddy-card.component';
 import { RightHandSidebarComponent } from './right-hand-sidebar/right-hand-sidebar.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { CertificatesComponent } from './certificates/certificates.component';
-import { TruncatePipe } from './pipes/truncate.pipe';
+import { TruncatePipe } from '../utils/pipes/truncate.pipe';
 import { PlaceCardComponent } from './place-card/place-card.component';
 import { ApiService } from '../services/api.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -22,6 +22,8 @@ import { CommonService } from '../services/common.service';
 import { HttpRequestsService } from '../services/http-request.service';
 import { ProgressiveImageComponent } from './progressive-image/progressive-image.component';
 import { RouterModule } from '@angular/router';
+import { HighlightsModalComponent } from './place-card/highlights-modal/highlights-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -40,7 +42,8 @@ import { RouterModule } from '@angular/router';
     CertificatesComponent,
     TruncatePipe,
     PlaceCardComponent,
-    ProgressiveImageComponent
+    ProgressiveImageComponent,
+    HighlightsModalComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +51,9 @@ import { RouterModule } from '@angular/router';
     MatDialogModule,
     MatIconModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     AddNewPostComponent,
@@ -64,7 +69,8 @@ import { RouterModule } from '@angular/router';
     CertificatesComponent,
     TruncatePipe,
     PlaceCardComponent,
-    ProgressiveImageComponent
+    ProgressiveImageComponent,
+    HighlightsModalComponent
   ],
   providers: [ApiService]
 })

@@ -1,6 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { environment } from '../../../environment';
 
@@ -53,9 +53,19 @@ export class CommonService {
 
   constructor(private router: Router,
     private sanitizer: DomSanitizer,
+    private titleService: Title,
+    private metaService: Meta
   ) { }
 
   // 
+  setMetaData(title: string, description?: string) {
+      // Dynamically set page title and meta description
+      this.titleService.setTitle(title + ' - Chalo Ghoome');
+      if (description) {
+        this.metaService.updateTag({ name: 'description', content: description });
+      }
+  }
+
   public getFormOptionArgs() {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -114,4 +124,41 @@ export class CommonService {
   appendAssetUrl(url: string){
     return url?.startsWith('http') ? url : environment.assetUrl + url;
   }
+
+  compressImage(file: File, scale: number): Promise<File> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event: any) => {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = () => {
+          // Create canvas and context
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width * scale;
+          canvas.height = img.height * scale;
+          const ctx = canvas.getContext('2d');
+  
+          if (ctx) {
+          // Draw image into canvas with new dimensions
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    
+            // Convert canvas to blob (using same type as the original file)
+            canvas.toBlob((blob) => {
+              if (blob) {
+                // Create a new File from the blob
+                const compressedFile = new File([blob], file.name, { type: file.type });
+                resolve(compressedFile);
+              } else {
+                reject('Compression failed.');
+              }
+            }, file.type, 0.7); // The third parameter is the quality (0.7 here; adjust if needed)
+          }
+        };
+        img.onerror = (error) => reject(error);
+      };
+      reader.onerror = (error) => reject(error);
+    });
+  }
+    
 }

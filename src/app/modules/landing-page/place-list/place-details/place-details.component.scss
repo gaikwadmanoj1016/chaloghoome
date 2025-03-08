@@ -12,27 +12,136 @@ body {
 
 main {
     padding: 2rem;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 20px auto;
     padding: 0 20px;
+
+    @media screen and (max-width: 768px) {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 10px;
+    }
 }
 
+
+// .gallery {
+//     display: grid;
+//     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+//     gap: 10px;
+//     margin-bottom: 20px;
+// }
+
+// .gallery img {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//     background-position: center;
+//     max-height: 90vh;
+//     border-radius: 5px;
+//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+// }
+
+// SCSS for the image carousel
 .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 10px;
-    margin-bottom: 20px;
+    width: 100%;
+    // height: 300px; // Added height
+    overflow: hidden;
+    background-color: black;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background-position: center;
+        max-height: 90vh;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .carousal {
+        display: flex;
+        position: relative;
+        height: 100%; // Ensures the carousel takes the full gallery height
+
+        &-inner {
+            display: flex;
+            align-items: center;
+            transition: transform 0.5s ease-in-out;
+            height: 100%; // Matches the height of the gallery
+            background-color: black;
+        }
+
+        &-item {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%; // Ensures each item takes full height
+            border-radius: 10px;
+
+            app-progressive-image {
+                /* width: 100%; */
+                height: 80vh;
+
+                img {
+                    aspect-ratio: none !important;
+                }
+            }
+        }
+
+        &-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.1);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            height: 100%;
+            width: 20%;
+            filter: blur(0px);
+
+            &.prev {
+                left: 0px;
+            }
+
+            &.next {
+                right: 0px;
+            }
+        }
+    }
 }
 
-.gallery img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    background-position: center;
-    max-height: 90vh;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.carousel-navigation {
+    display: flex;
+    justify-content: center;
+    margin-block: 10px;
+
+    .nav-thumb {
+        width: 25px;
+        height: 30px;
+        margin: 0 2px;
+        object-fit: cover;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        opacity: 0.7;
+
+        &.active {
+            transform: translateY(-6px) scale(1.2);
+            opacity: 1;
+            border: 1px solid #333;
+        }
+
+        &:hover {
+            transform: translateY(-6px) scale(1.2);
+            // transform: scale(1.1);
+            opacity: 1;
+        }
+    }
 }
+
 
 .information,
 .travel-guide {
@@ -45,7 +154,9 @@ main {
 
 .information {
     .d-flex {
-        h3, p {
+
+        h3,
+        p {
             padding: 0;
             margin: 0;
         }

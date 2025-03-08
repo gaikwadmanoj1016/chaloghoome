@@ -2,16 +2,46 @@
     <title>Taj Mahal History - A Symbol of Love</title>
 </head>
 <main>
-    <section class="gallery">
-        <!-- Iterate over highlights -->
-        @for (highlight of placeDetails?.highlights; track $index) {
-        <!-- <img [src]="highlight.imagePath" alt="ChaloGhoome {{ highlight.title }}" (click)="openPreview(highlight.imagePath)"> -->
-        <app-progressive-image [smallImage]="commonService.appendAssetUrl(highlight.imagePath)"
+    <!-- <section class="gallery"> -->
+    <!-- Iterate over highlights -->
+    <!-- <img [src]="highlight.imagePath" alt="ChaloGhoome {{ highlight.title }}" (click)="openPreview(highlight.imagePath)"> -->
+    <!-- @for (highlight of placeDetails?.highlights; track $index) {
+            <app-progressive-image [smallImage]="commonService.appendAssetUrl(highlight.imagePath)"
             [image]="commonService.appendAssetUrl(highlight.imagePath)" [altText]="'ChaloGhoome: {{ highlight.title }}'"
             (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))"></app-progressive-image>
-        }
-    </section>
+        } -->
+    <!-- </section> -->
+    <section class="gallery">
+        <div class="carousal">
+            <div class="carousal-inner"
+                [ngStyle]="{'transform': 'translateX(' + (-currentIndex * 100) + '%)', 'transition': 'transform 0.5s ease-in-out'}">
+                @for (highlight of placeDetails?.highlights; track $index) {
+                <!-- {{highlight.compressedImagePath}} -->
+                <div class="carousal-item" (mouseenter)="pauseAutoSlide()" (mouseleave)="resumeAutoSlide()"
+                    (mousedown)="pauseAutoSlide()" (mouseup)="resumeAutoSlide()">
+                    <app-progressive-image [smallImage]="commonService.appendAssetUrl(highlight.compressedImagePath)"
+                        [image]="commonService.appendAssetUrl(highlight.compressedImagePath)"
+                        [altText]="'ChaloGhoome: ' + highlight.title" [aspectRatio]="false"
+                        (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))">
+                    </app-progressive-image>
+                </div>
+                }
+            </div>
+            <button class="carousal-btn prev" (click)="prevSlide()" [disabled]="currentIndex === 0">❮</button>
+            <button class="carousal-btn next" (click)="nextSlide()">❯</button>
+            <!--  [disabled]="currentIndex === placeDetails?.highlights.length - 1" -->
+        </div>
 
+    </section>
+    <!-- Navigation dots -->
+    <div class="carousel-navigation">
+        @for (highlight of placeDetails?.highlights; track $index) {
+        <img class="nav-thumb" [class.active]="currentIndex === $index"
+            [src]="commonService.appendAssetUrl(highlight.imagePath)"
+            [alt]="'Thumbnail for ' + highlight.title" (click)="goToSlide($index)" (mouseenter)="pauseAutoSlide()"
+            (mouseleave)="resumeAutoSlide()" />
+        }
+    </div>
     <article>
         <section class="information">
             <h1 class="border-bottom-2">About {{ placeDetails?.postName }}</h1>

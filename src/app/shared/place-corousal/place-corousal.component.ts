@@ -8,7 +8,7 @@ import { SharedModule } from '../shared.module';
   styleUrl: './place-corousal.component.scss',
 })
 export class PlaceCorousalComponent implements OnInit {
-  @Input() title: string = '';
+  @Input() section: any;
   @Input() id: string = '';
   @Input() showCount!: number;
   @Input() grid: boolean = false;
