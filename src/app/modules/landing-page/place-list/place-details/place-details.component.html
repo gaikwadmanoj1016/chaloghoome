@@ -69,12 +69,14 @@
             <div class="d-flex">
                 <h3>Unique Feature: </h3>
                 <p>
-                    @for (specialitiy of placeDetails?.specialities; track $index) {
-                    @if ($index !== 0) {
-                    <span aria-labelledby="">, {{ specialitiy.speciality }}</span>
-                    } @else {
-                    <span>{{ specialitiy.speciality }}</span>
-                    }
+                    @for (speciality of placeDetails?.specialities; track $index) {
+                        @if (speciality.unique) {
+                            @if ($index !== 0) {
+                                <span aria-labelledby="">, {{ speciality.speciality }}</span>
+                            } @else {
+                                <span>{{ speciality.speciality }}</span>
+                            }
+                        }
                     }
                 </p>
             </div>
@@ -85,7 +87,9 @@
             </h3>
             <ol>
                 @for (specialities of placeDetails?.specialities; track $index) {
-                <li>{{ specialities.speciality }}</li>
+                    @if (!specialities.unique) {
+                    <li>{{ specialities.speciality }}</li>
+                    }
                 }
             </ol>
             }
@@ -96,7 +100,8 @@
             <div class="col-lg-12">
                 <div class="guide-section">
                     <h3>Best Time to Visit {{placeDetails?.postName}}</h3>
-                    <p>{{ placeDetails?.bestTimeToVisit }}</p>
+                    <!-- <p>{{ placeDetails?.bestTimeToVisit }}</p> -->
+                    <p [innerHTML]="commonService.sanitizeHtml(placeDetails?.bestTimeToVisit)"></p>
                 </div>
             </div>
             }
@@ -104,7 +109,8 @@
             <div class="col-lg-12">
                 <div class="guide-section">
                     <h3> {{placeDetails?.postName}} is Famous For</h3>
-                    <p>{{ placeDetails?.famousFor }}</p>
+                    <!-- <p>{{ placeDetails?.famousFor }}</p> -->
+                    <p [innerHTML]="commonService.sanitizeHtml(placeDetails?.famousFor)"></p>
                 </div>
             </div>
             }
@@ -112,7 +118,8 @@
             <div class="col-lg-12">
                 <div class="guide-section">
                     <h3>How to Go {{placeDetails?.postName}}</h3>
-                    <p>{{ placeDetails?.howToGo }}</p>
+                    <!-- <p>{{ placeDetails?.howToGo }}</p> -->
+                    <p [innerHTML]="commonService.sanitizeHtml(placeDetails?.howToGo)"></p>
                 </div>
             </div>
             }
@@ -121,7 +128,7 @@
             <div class="col-lg-12">
                 <div class="guide-section">
                     <h3>{{ guide.title }}</h3>
-                    <p>{{ guide.para }}</p>
+                    <p [innerHTML]="commonService.sanitizeHtml(guide.para)"></p>
                     <ol>
                         @for (item of guide.bulletPoints; track $index) {
                         <li>{{item}}</li>

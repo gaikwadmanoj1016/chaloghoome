@@ -30,6 +30,10 @@ export class PlaceCorousalComponent implements OnInit {
     }
     console.log(this.placesList);
   }
+  public redirectTo(path: string) {
+    this.commonService.navigateTo(path);
+  }
+
   public navigateTo(path: string) {
     this.commonService.navigateToQueryParams(path, { filter: this.id });
   }

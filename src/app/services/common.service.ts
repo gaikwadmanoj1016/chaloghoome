@@ -120,6 +120,10 @@ export class CommonService {
   imgSanitizer(imgUrl: string) {
     return this.sanitizer.bypassSecurityTrustUrl(imgUrl);
   }
+  sanitizeHtml(html: any) {
+    let content = html.replace(/(\r\n|\n|\r)/g, '</p><p>');
+    return this.sanitizer.bypassSecurityTrustHtml(content);
+  }
 
   appendAssetUrl(url: string){
     return url?.startsWith('http') ? url : environment.assetUrl + url;

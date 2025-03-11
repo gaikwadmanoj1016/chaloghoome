@@ -62,7 +62,6 @@ export class SectionComponent implements OnInit {
             item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);
           })
         }
-        console.log(this.section);
         this.commonService.setMetaData(this.section.sectionName);
       } else {
         this.section = [];
@@ -117,7 +116,7 @@ export class SectionComponent implements OnInit {
         const specialityGroup = this.fb.group({
           speciality: [speciality.speciality, Validators.required],
           description: [speciality.description],
-          isUnique: [speciality.isUnique ? 'yes' : 'no', Validators.required],
+          isUnique: [speciality.isUnique, Validators.required],
           id: [speciality.id],
         });
         specialitiesArray.push(specialityGroup);
@@ -246,7 +245,7 @@ export class SectionComponent implements OnInit {
             values[key].forEach((speciality: any, index: number) => {
               formData.append(`specialities[${index}].speciality`, speciality.speciality || '');
               formData.append(`specialities[${index}].description`, speciality.description || '');
-              formData.append(`specialities[${index}].isUnique`, speciality.isUnique || '');
+              formData.append(`specialities[${index}].isUnique`, String(speciality.isUnique));
               if (speciality.id) {
                 formData.append(`specialities[${index}].id`, speciality.id);
               }

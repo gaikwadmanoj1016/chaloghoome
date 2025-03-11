@@ -17,7 +17,7 @@
                 <p>{{item.summary | truncate: 120}}</p>
             </div>
         </div> -->
-        <app-place-card [item]="item"></app-place-card>
+        <app-place-card [item]="item" [sectionId]="section.id" (onNavigateTo)="redirectTo($event)"></app-place-card>
         }
     </div>
 </div>

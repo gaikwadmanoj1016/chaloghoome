@@ -169,16 +169,18 @@
     position: relative;
     transition: scale .5s ease-in-out;
     width: 300px;
-    overflow: hidden;
+    // overflow: hidden;
     // min-width: 250px;
 
-    
+
     .place-image {
         position: relative;
         z-index: 2;
         // height: 250px;
         // width: 300px;
         height: 180px;
+        border-radius: 10px 10px 0 0;
+        overflow: hidden;
 
         img {
             height: 100%;
