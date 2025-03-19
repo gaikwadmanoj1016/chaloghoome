@@ -1,13 +1,21 @@
+<!-- <app-progressive-image 
+    [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'"
+    [image]="'../../../assets/imgs/pexels-pixabay-257092.jpg'"
+    [srcSet]="'../../../assets/imgs/pexels-pixabay-257092.webp'"
+    [altText]="'chalo ghoome poster'"
+></app-progressive-image> -->
 <main>
     <section>
         <div class="section1">
             <div class="main-img">
-                <app-progressive-image 
+                <!-- <app-progressive-image 
                     [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'"
                     [image]="'../../../assets/imgs/pexels-pixabay-257092.jpg'"
                     [srcSet]="'../../../assets/imgs/pexels-pixabay-257092.webp'"
                     [altText]="'chalo ghoome poster'"
-                ></app-progressive-image>
+                ></app-progressive-image> -->
+                <img src="../../../assets/imgs/pexels-pixabay-257092-small.jpg" alt="chalo ghoome hero image"
+                    srcSet="../../../assets/imgs/pexels-pixabay-257092.webp">
             </div>
             <div class="context">
                 <h1>Travel <span>Smarter,</span></h1>
@@ -17,36 +25,263 @@
                     their services, and available packages. Conversely, tour guides can efficiently showcase their
                     offerings directly to interested travelers, facilitating a direct and transparent exchange of
                     information.</p>
-                <button type="button" class="btn btn-outline-primary" routerLink="home" [queryParams]="{section: 'contact_us'}">Explore</button>
+                <button type="button" class="btn btn-outline-primary" routerLink="home"
+                    [queryParams]="{section: 'contact_us'}">Explore</button>
             </div>
         </div>
     </section>
-    @for (section of sections; track $index) {
-        <section>
-            <div class="section2" id="wonders_of_world">
-                <app-place-corousal [section]="section"  [id]="'wonders_of_world'"
-                [placesList]="section.posts" [grid]="section.sectionStyle === 'grid'" [showCount]="section.posts.length"></app-place-corousal>
-            </div>
-        </section>
-    }
-    <!-- <section>
-        <div class="section2" id="wonders_of_world">
-            <app-place-corousal [title]="'Wonders of the World'" [id]="'wonders_of_world'"
-                [placesList]="commonService.wonders" [showCount]="7"></app-place-corousal>
-        </div>
-    </section>
-    <section>
-        <div class="section3" id="hidden_gems">
-            <app-place-corousal [title]="'Hidden Gems'" [id]="'hidden_gems'" [placesList]="commonService.hiddenGems"
-                [grid]="true" [showCount]="6"></app-place-corousal>
-        </div>
-    </section>
-    <section>
-        <div class="section4" id="most_visited_places">
-            <app-place-corousal [title]="'Most Visited Places'" [id]="'most_visited_places'"
-                [placesList]="commonService.mostVisited" [showCount]="5"></app-place-corousal>
+    <!-- <section class="hero-section">
+        <div class="content">
+            <h1>Travel <span>Smarter,</span></h1>
+            <h1>Explore Better with Chalo Ghoome!</h1>
+            <p>
+                Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and travelers. Our
+                platform serves as a hub where tourists can easily access a wealth of information about tour guides,
+                their services, and available packages.
+            </p>
+            <button class="btn explore-btn" routerLink="home" [queryParams]="{section: 'contact_us'}">Explore</button>
         </div>
     </section> -->
+    
+    <!-- <section class="section-new">
+        <h2>Discover Amazing Places</h2>
+        <p>Explore the world’s most breathtaking destinations, handpicked for adventurous travelers.</p>
+
+        <div class="post-container">
+            <div class="post-card">
+                <img src="../../../assets/imgs/Dolomites Italy - Best Places To Visit in the Dolomites + 1-Week Itinerary.jpg"
+                    alt="Santorini">
+                <div class="post-content">
+                    <h3>Santorini, Greece</h3>
+                    <p>Blue domes, stunning sunsets, and Aegean Sea views.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+
+            <div class="post-card">
+                <img src="../../../assets/imgs/Italian cities and landscapes_ pure beauty_.jpg" alt="Bali">
+                <div class="post-content">
+                    <h3>Bali, Indonesia</h3>
+                    <p>Experience paradise with lush forests & beautiful beaches.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+
+            <div class="post-card">
+                <img src="../../../assets/imgs/Greece Travel Aesthetics __ Greece honeymoon vacation.jpg"
+                    alt="Swiss Alps">
+                <div class="post-content">
+                    <h3>Swiss Alps</h3>
+                    <p>A breathtaking winter wonderland with scenic mountains.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+            <div class="post-card">
+                <img src="../../../assets/imgs/Dolomites Italy - Best Places To Visit in the Dolomites + 1-Week Itinerary.jpg"
+                    alt="Santorini">
+                <div class="post-content">
+                    <h3>Santorini, Greece</h3>
+                    <p>Blue domes, stunning sunsets, and Aegean Sea views.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+
+            <div class="post-card">
+                <img src="../../../assets/imgs/Italian cities and landscapes_ pure beauty_.jpg" alt="Bali">
+                <div class="post-content">
+                    <h3>Bali, Indonesia</h3>
+                    <p>Experience paradise with lush forests & beautiful beaches.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+
+            <div class="post-card">
+                <img src="../../../assets/imgs/Greece Travel Aesthetics __ Greece honeymoon vacation.jpg"
+                    alt="Swiss Alps">
+                <div class="post-content">
+                    <h3>Swiss Alps</h3>
+                    <p>A breathtaking winter wonderland with scenic mountains.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- <section class="adventure-section">
+        <div class="section-content">
+            <h2 class="section-title">Discover New Adventures</h2>
+            <p class="section-description">
+                Explore breathtaking destinations, immerse yourself in cultures, and create memories that last a
+                lifetime. Let your journey begin here.
+            </p>
+
+            <div class="post-cards">
+                <div class="post-card">
+                    <img src="../../../assets/imgs/Dolomites Italy - Best Places To Visit in the Dolomites + 1-Week Itinerary.jpg" alt="Santorini">
+                    <div class="card-content">
+                        <h3>Mystic Mountains</h3>
+                        <p>Hike through breathtaking landscapes and witness the beauty of untouched nature.</p>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <img src="../../../assets/imgs/Italian cities and landscapes_ pure beauty_.jpg" alt="Bali">
+                    <div class="card-content">
+                        <h3>Seaside Escape</h3>
+                        <p>Relax on golden beaches and experience the charm of coastal living.</p>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <img src="../../../assets/imgs/Greece Travel Aesthetics __ Greece honeymoon vacation.jpg">
+                    <div class="card-content">
+                        <h3>Jungle Safari</h3>
+                        <p>Get up close with wildlife and explore the wonders of the rainforest.</p>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+                <div class="post-card">
+                    <img src="../../../assets/imgs/Dolomites Italy - Best Places To Visit in the Dolomites + 1-Week Itinerary.jpg" alt="Santorini">
+                    <div class="card-content">
+                        <h3>Mystic Mountains</h3>
+                        <p>Hike through breathtaking landscapes and witness the beauty of untouched nature.</p>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <img src="../../../assets/imgs/Italian cities and landscapes_ pure beauty_.jpg" alt="Bali">
+                    <div class="card-content">
+                        <h3>Seaside Escape</h3>
+                        <p>Relax on golden beaches and experience the charm of coastal living.</p>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <img src="../../../assets/imgs/Greece Travel Aesthetics __ Greece honeymoon vacation.jpg">
+                    <div class="card-content">
+                        <h3>Jungle Safari</h3>
+                        <p>Get up close with wildlife and explore the wonders of the rainforest.</p>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- <section class="unique-travel-section">
+        <div class="section-content">
+            <h2 class="headline">✈️ Journey Beyond the Ordinary</h2>
+            <p class="description">Embark on an adventure like never before! Discover hidden gems, breathtaking landscapes, and stories waiting to be told.</p>
+            
+            <div class="post-cards">
+                <div class="post-card">
+                    <div class="image-container">
+                       <img src="../../../assets/imgs/Italian cities and landscapes_ pure beauty_.jpg" alt="Bali">
+                    </div>
+                    <h3 class="post-title">Mystical Mountains</h3>
+                    <p class="post-description">Feel the crisp air as you trek through surreal peaks and valleys.</p>
+                </div>
+                
+                <div class="post-card">
+                    <div class="image-container">
+                       <img src="../../../assets/imgs/Greece Travel Aesthetics __ Greece honeymoon vacation.jpg">
+                    </div>
+                    <h3 class="post-title">Golden Shorelines</h3>
+                    <p class="post-description">Sunset hues paint the sky as the waves kiss the shore.</p>
+                </div>
+                
+                <div class="post-card">
+                    <div class="image-container">
+                        <img src="../../../assets/imgs/Dolomites Italy - Best Places To Visit in the Dolomites + 1-Week Itinerary.jpg" alt="Santorini">
+                    </div>
+                    <h3 class="post-title">Neon Nights</h3>
+                    <p class="post-description">Experience the dazzling nightlife of the world's most exciting cities.</p>
+                </div>
+                <div class="post-card">
+                    <div class="image-container">
+                       <img src="../../../assets/imgs/Italian cities and landscapes_ pure beauty_.jpg" alt="Bali">
+                    </div>
+                    <h3 class="post-title">Mystical Mountains</h3>
+                    <p class="post-description">Feel the crisp air as you trek through surreal peaks and valleys.</p>
+                </div>
+                
+                <div class="post-card">
+                    <div class="image-container">
+                       <img src="../../../assets/imgs/Greece Travel Aesthetics __ Greece honeymoon vacation.jpg">
+                    </div>
+                    <h3 class="post-title">Golden Shorelines</h3>
+                    <p class="post-description">Sunset hues paint the sky as the waves kiss the shore.</p>
+                </div>
+                
+                <div class="post-card">
+                    <div class="image-container">
+                        <img src="../../../assets/imgs/Dolomites Italy - Best Places To Visit in the Dolomites + 1-Week Itinerary.jpg" alt="Santorini">
+                    </div>
+                    <h3 class="post-title">Neon Nights</h3>
+                    <p class="post-description">Experience the dazzling nightlife of the world's most exciting cities.</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- <section class="cinematic-travel-section">
+        <div class="cinematic-overlay"></div>
+        <div class="section-content">
+            <h1 class="title">✈️ Journey Beyond Limits</h1>
+            <p class="description">Step into a world of breathtaking landscapes, hidden gems, and unforgettable experiences. Your next adventure starts here.</p>
+            
+            <div class="post-container">
+                <div class="post-card">
+                    <img src="../../../assets/imgs/How To Spend An Amazing Three Days In Upstate New York - The Mandagies.jpg" alt="Santorini">
+                    <div class="post-content">
+                        <h2>🏔️ The Majestic Alps</h2>
+                        <p>Experience the thrill of towering peaks and crisp mountain air.</p>
+                        <button class="read-more">Explore</button>
+                    </div>
+                </div>
+                <div class="post-card">
+                    <img src="../../../assets/imgs/Dolomites Italy - Best Places To Visit in the Dolomites + 1-Week Itinerary.jpg" alt="Santorini">
+                    <div class="post-content">
+                        <h2>🌊 Tropical Escapes</h2>
+                        <p>Unwind on pristine beaches with golden sands and crystal-clear waters.</p>
+                        <button class="read-more">Explore</button>
+                    </div>
+                </div>
+                <div class="post-card">
+                    <img src="../../../assets/imgs/15 Of The Most Beautiful Places In The World To Visit.jpg" alt="Santorini">
+                    <div class="post-content">
+                        <h2>🌃 City of Lights</h2>
+                        <p>Discover vibrant cultures, stunning skylines, and endless nightlife.</p>
+                        <button class="read-more">Explore</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    
+    @for (section of sections; track $index) {
+    <section>
+        <div class="section2" [id]="section.sectionId">
+            <!-- <app-place-corousal [section]="section"  [id]="'wonders_of_world'"
+                [placesList]="section.posts" [grid]="section.sectionStyle === 'grid'" [showCount]="section.posts.length"></app-place-corousal> -->
+            <div class="places-corousal most-visited-places" [id]="section.sectionId">
+                <div class="head">
+                    <h2>{{section.sectionName}}</h2>
+                    <button type="button" (click)="navigateTo(section)" class="see-all-btn">See All <span><img
+                                loading="lazy" src="../../../assets/svgs/back-arrow-black.svg" alt=""></span></button>
+                </div>
+                <div class="corousal" [ngClass]="section.sectionStyle === 'grid' ? 'grid-container' : 'flex-container'">
+                    @for (item of section.posts; track $index) {
+                    <app-place-card [item]="item" [sectionId]="section.id"
+                        (onNavigateTo)="redirectTo($event)"></app-place-card>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    }
+
     <section>
         <div class="section5" id="about_us">
             <div class="content">
@@ -56,16 +291,27 @@
                 <div class="body">
                     <div class="left">
                         <p>
-                            Welcome to <span class="highlight">Chalo Ghoome</span>, the premier destination for travel enthusiasts worldwide. We're here to fuel your wanderlust and connect you with extraordinary experiences that transcend the ordinary.
+                            Welcome to <span class="highlight">Chalo Ghoome</span>, the premier destination for travel
+                            enthusiasts worldwide. We're here to fuel your wanderlust and connect you with extraordinary
+                            experiences that transcend the ordinary.
                             <br><br>
-                            At <span class="highlight">Chalo Ghoome</span>, we recognize that travel is more than just visiting a destination; it's about immersing yourself in diverse cultures, uncovering hidden treasures, and crafting memories that last a lifetime. Whether you're an experienced globetrotter or setting out on your maiden voyage, our platform is designed to inspire and assist you at every turn.
+                            At <span class="highlight">Chalo Ghoome</span>, we recognize that travel is more than just
+                            visiting a destination; it's about immersing yourself in diverse cultures, uncovering hidden
+                            treasures, and crafting memories that last a lifetime. Whether you're an experienced
+                            globetrotter or setting out on your maiden voyage, our platform is designed to inspire and
+                            assist you at every turn.
                             <br><br>
-                            <span class="highlight">For travellers, Chalo Ghoome</span> offers a platform to share your Travel Tales, seek inspiration for your next escapade, and connect with like-minded adventurers.
-                            From <span class="highlight">savvy budget tips to luxurious travel escapades</span>, our community-driven platform caters to every kind of explorer.
+                            <span class="highlight">For travellers, Chalo Ghoome</span> offers a platform to share your
+                            Travel Tales, seek inspiration for your next escapade, and connect with like-minded
+                            adventurers.
+                            From <span class="highlight">savvy budget tips to luxurious travel escapades</span>, our
+                            community-driven platform caters to every kind of explorer.
                             <br><br>
-                            <span class="highlight">For guides, Chalo Ghoome</span> is your platform to showcase your expertise, <span class="highlight">engage with a global audience</span>, and create
-                            personalized travel experiences. Whether you're a local guru offering insider insights or a seasoned travel operator, our platform empowers you to  <span
-                                class="highlight">share your love for travel and craft unforgettable journeys for explorers worldwide.</span>
+                            <span class="highlight">For guides, Chalo Ghoome</span> is your platform to showcase your
+                            expertise, <span class="highlight">engage with a global audience</span>, and create
+                            personalized travel experiences. Whether you're a local guru offering insider insights or a
+                            seasoned travel operator, our platform empowers you to <span class="highlight">share your
+                                love for travel and craft unforgettable journeys for explorers worldwide.</span>
                             <br>
                             <br>
                             <br>
@@ -79,11 +325,9 @@
                         </p>
                     </div>
                     <div class="right">
-                        <app-progressive-image 
-                            [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'"
+                        <app-progressive-image [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'"
                             [image]="'../../../assets/imgs/travel_guys_about-us.png'"
-                            [altText]="'chalo ghoome about us boys'"
-                        ></app-progressive-image>
+                            [altText]="'chalo ghoome about us boys'"></app-progressive-image>
                     </div>
                 </div>
             </div>

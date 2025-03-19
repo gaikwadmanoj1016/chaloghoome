@@ -1,43 +1,16 @@
-<!-- <div class="place-card image-exist">
-    <div class="place-image">
-        
-        <app-progressive-image [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'"
-            [image]="item.themblineImg" [altText]="item.location+','+item.address" (onImageLoaded)="imageLoaded($event)"></app-progressive-image>
-    
-        @if (item.thumbnailImg) {
-        <app-progressive-image [smallImage]="commonService.appendAssetUrl(item.themblineImg)"
-            [image]="commonService.appendAssetUrl(item.thumbnailImg)"
-            [altText]="item.postName+','+item.location" (onImageLoaded)="imageLoaded($event)"></app-progressive-image>
-        }
-    </div>
-    <div class="place-info" (click)="navigateToPostDetails(item)">
-        <h3>{{item.postName}}</h3>
-        <h2>{{item.location}}</h2>
-        <p>{{item.summary | truncate: 120}}</p>
-    </div>
-    <div class="place-cta">
-        <button type="button" class="btn" (click)="editPlace(item)">
-            <img src="../../../assets/svgs/pencil-svgrepo-com.svg" alt="pencil-icon">
-        </button>
-    </div>
-</div> -->
-<!-- ../../../assets/imgs/pexels-pixabay-257092-small.jpg' -->
-<div class="place-card" (click)="onCardClick(item)" (clickOutside)="closeContextMenu()">
+
+<div class="place-card" (click)="navigateToPostDetails(item)" (clickOutside)="closeContextMenu()">
     <div class="place-image">
         <app-progressive-image [smallImage]="'../../../assets/imgs/image-placeholder.jpg'"
             [image]="item.imageUrl" [altText]="item.location + ',' + item.address">
         </app-progressive-image>
     </div>
-    <div class="place-info" (click)="navigateToPostDetails(item)">
+    <div class="place-info">
         <h3 [title]="item.postName">{{item.postName | truncate : 25 }}</h3>
         <h4 [title]="item.location">{{item.location | truncate: 25 }}</h4>
         <p [title]="item.summary">{{item.summary | truncate: 120 }}</p>
     </div>
     <div class="place-cta">
-        <!-- <button type="button" class="btn" (click)="editPlace(item)">
-            <img src="../../../assets/svgs/pencil-svgrepo-com.svg" alt="pencil-icon">
-        </button> -->
-
         <!-- Ellipsis button for context menu -->
         <button type="button" class="btn dots-btn" (click)="openContextMenu(item)">
             <img src="../../../assets/svgs/3-dots.svg" alt="options-icon">
@@ -52,8 +25,6 @@
         </div>
         }
     </div>
-
-    <!-- Custom Context Menu -->
 </div>
 
 @if (isModalOpen) {

@@ -1,4 +1,7 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Nunito:wght@300;400;600&family=Raleway:wght@300;400;600&display=swap');
+
+
 
 // variables.scss
 $primary-color: #007bff;
@@ -7,19 +10,13 @@ $success-color: #28a745;
 $danger-color: #dc3545;
 $warning-color: #ffc107;
 
-$font-family-base: 'Arial';
+// $font-family-base: 'Arial';
 $font-size-base: 16px;
 
 $border-radius: 4px;
 $box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 $navbar-height: 50px;
-
-:root {
-    --navbar-height: 50px;
-    --negative-navbar-height: 50px;
-    --black: black;
-}
 
 // mixins.scss
 @mixin flex-center {
@@ -34,13 +31,28 @@ $navbar-height: 50px;
     }
 }
 
-// Global styles
 
+:root {
+    --primary-color: #0077b6; // Oceanic blue
+    --secondary-color: #f4a261; // Warm sunset orange
+    --bg-color: #fdfcfb; // Light creamy background
+    --text-color: #333; // Dark gray for readability
+    --navbar-height: 50px;
+    --negative-navbar-height: 50px;
+    --black: black;
+    // --primary-color: #3498db;
+    // --secondary-color: #2ecc71;
+    // --accent-color: #e74c3c;
+}
+
+
+
+// Global styles
 body {
-    font-family: $font-family-base;
-    font-size: $font-size-base;
-    margin: 0;
-    padding: 0;
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
 // Button styles
@@ -75,26 +87,6 @@ body {
     &.warning {
         background-color: $warning-color;
         @include hover-color(darken($warning-color, 10%));
-    }
-}
-
-// Example component styles
-.component-container {
-    @include flex-center;
-    background-color: $secondary-color;
-
-    .component-button {
-        @extend .btn;
-        margin-top: 1rem;
-    }
-
-    .component-title {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .component-text {
-        color: $secondary-color;
     }
 }
 
@@ -140,17 +132,15 @@ button {
     }
 }
 
-/* main.css */
-:root {
-    --primary-color: #3498db;
-    --secondary-color: #2ecc71;
-    --accent-color: #e74c3c;
-}
+// /* main.css */
+// :root {
 
-body {
-    color: #333;
-    background-color: #fff;
-}
+// }
+
+// body {
+//     color: #333;
+//     background-color: #fff;
+// }
 
 textarea {
     -webkit-appearance: none !important;
@@ -179,5 +169,13 @@ img {
     height: auto;
     aspect-ratio: 1280 / 720;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

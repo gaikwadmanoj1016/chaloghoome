@@ -20,7 +20,7 @@
                 <div class="carousal-item" (mouseenter)="pauseAutoSlide()" (mouseleave)="resumeAutoSlide()"
                     (mousedown)="pauseAutoSlide()" (mouseup)="resumeAutoSlide()">
                     <app-progressive-image [smallImage]="commonService.appendAssetUrl(highlight.compressedImagePath)"
-                        [image]="commonService.appendAssetUrl(highlight.compressedImagePath)"
+                        [image]="commonService.appendAssetUrl(highlight.imagePath)"
                         [altText]="'ChaloGhoome: ' + highlight.title" [aspectRatio]="false"
                         (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))">
                     </app-progressive-image>

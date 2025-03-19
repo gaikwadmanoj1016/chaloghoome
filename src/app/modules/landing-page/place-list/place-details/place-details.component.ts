@@ -109,14 +109,14 @@ export class PlaceDetailsComponent implements OnInit, AfterViewInit, OnDestroy{
   }
 
   startAutoSlide() {
-    // this.stopAutoSlide(); // Clear any existing interval first
-    // this.autoSlideInterval = setInterval(() => {
-    //   if (this.placeDetails?.highlights && this.currentIndex < this.placeDetails.highlights.length - 1) {
-    //     this.currentIndex++;
-    //   } else {
-    //     this.currentIndex = 0; // Loop back to start
-    //   }
-    // }, 3000); // Change slide every 3 seconds
+    this.stopAutoSlide(); // Clear any existing interval first
+    this.autoSlideInterval = setInterval(() => {
+      if (this.placeDetails?.highlights && this.currentIndex < this.placeDetails.highlights.length - 1) {
+        this.currentIndex++;
+      } else {
+        this.currentIndex = 0; // Loop back to start
+      }
+    }, 3000); // Change slide every 3 seconds
   }
 
   stopAutoSlide() {
@@ -154,6 +154,7 @@ export class PlaceDetailsComponent implements OnInit, AfterViewInit, OnDestroy{
     }
     this.resumeAutoSlide();
   }
+  
 
   goToSlide(index: number) {
     this.pauseAutoSlide();

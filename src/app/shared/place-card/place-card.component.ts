@@ -13,7 +13,6 @@ export class PlaceCardComponent implements OnInit {
   @Output('onNavigateTo') onNavigateTo: EventEmitter<any> = new EventEmitter();
   @Output('onEditClicked') onEditClicked: EventEmitter<any> = new EventEmitter();
   @Output('onDeleteClicked') onDeleteClicked: EventEmitter<any> = new EventEmitter();
-  @Output('onCardClicked') onCardClicked: EventEmitter<any> = new EventEmitter();
 
   // Context menu properties
   contextMenuVisible: boolean = false;
@@ -26,6 +25,12 @@ export class PlaceCardComponent implements OnInit {
   ngOnInit(): void {
       this.item.loaded = false;
   }
+  
+  onImageLoad(item: any) {
+    console.log("Image loaded: ", item.location);
+    item.loaded = true; // Mark image as loaded
+  }
+  
   navigateToPostDetails(item: any){
     let path = `section-detail/${this.sectionId}/post/${item.id}`;
     this.onNavigateTo.emit(path);
@@ -46,10 +51,6 @@ export class PlaceCardComponent implements OnInit {
 
   imageLoaded(event: any){
     this.item.loaded = event;
-  }
-
-  public onCardClick(item: any) {
-    this.onCardClicked.emit();
   }
 
   // Called when the ellipsis button is right-clicked.

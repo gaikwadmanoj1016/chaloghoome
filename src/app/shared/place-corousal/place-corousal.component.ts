@@ -17,16 +17,11 @@ export class PlaceCorousalComponent implements OnInit {
   constructor(private commonService: CommonService) { }
 
   ngOnInit(): void {
-      // if(this.placesList && this.placesList.length > this.showCount){
-        //   this.placesList = this.placesList.slice(0, this.showCount);
-        // }
-        
     if(this.placesList && this.placesList.length > 0){
       this.placesList.map(item => {
         item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);
         return item;
       })
-      
     }
     console.log(this.placesList);
   }
@@ -34,16 +29,16 @@ export class PlaceCorousalComponent implements OnInit {
     this.commonService.navigateTo(path);
   }
 
-  public navigateTo(path: string) {
-    this.commonService.navigateToQueryParams(path, { filter: this.id });
+  public navigateTo() {
+    this.commonService.navigateTo('section-detail/' + this.section.id);
   }
 
-  public explorePlace(id: number) {
-    this.commonService.navigateToQueryParams('place-details', { placeId: id });
-  }
+  // public explorePlace(id: number) {
+  //   this.commonService.navigateToQueryParams('place-details', { placeId: id });
+  // }
 
-  onImageLoad(item: any){
-    console.log("event loaded ", item.location);
-    item.loaded = true;
-  }
+  // onImageLoad(item: any){
+  //   console.log("event loaded ", item.location);
+  //   item.loaded = true;
+  // }
 }

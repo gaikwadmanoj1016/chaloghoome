@@ -84,6 +84,7 @@ table {
           &:first-child {
             background-color: $success-color;
             color: #ffffff;
+            margin: 5px;
 
             &:hover {
               background-color: $success-hover;

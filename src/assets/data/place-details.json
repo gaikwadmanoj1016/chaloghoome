@@ -2,6 +2,8 @@
     {
         "id": 1,
         "name": "Taj Mahal",
+        "SEOKeywords": " Taj Mahal, Taj Mahal history, Seven Wonders of the World, Mughal architecture, UNESCO World Heritage Site, best places to visit in India, Agra travel guide, Indian monuments, Shah Jahan, Mumtaz Mahal, best time to visit Taj Mahal ",
+        "metaDescription": " Discover the rich history, architecture, and travel guide for the **Taj Mahal**, one of the Seven Wonders of the World. Plan your visit with details on the best time to go, nearby attractions, and essential travel tips.",
         "description": "The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in the Indian city of Agra. It was commissioned in 1632 by the Mughal emperor, Shah Jahan, to house the tomb of his favorite wife, Mumtaz Mahal. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularized in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
         "area": "17 hectares",
         "yearEstablished": "1632",
@@ -116,7 +118,7 @@
                 "para": "Visitors are advised to respect the site's rules and regulations, including not touching or climbing on the ruins."
             }
         ]
-    },    
+    },
     {
         "id": 22,
         "name": "Eiffel Tower",
@@ -314,7 +316,7 @@
                 ]
             }
         ]
-    },    
+    },
     {
         "id": 7,
         "name": "Colosseum",
@@ -416,7 +418,6 @@
             }
         ]
     },
-    
     {
         "id": 9,
         "name": "Petronas Towers",
@@ -652,7 +653,6 @@
             }
         ]
     },
-    
     {
         "id": 13,
         "name": "Sapa",
@@ -760,9 +760,9 @@
             }
         ]
     },
-    
     {
         "id": 15,
+        "keywords": "Cappadocia travel, hot air balloon Cappadocia, fairy chimneys, Cappadocia attractions, Turkey travel, best places in Turkey, Cappadocia cave hotels, underground cities, adventure travel, historical sites in Turkey",
         "name": "Cappadocia",
         "description": "Cappadocia, a historical region in central Anatolia, Turkey, is renowned for its otherworldly landscape characterized by unique rock formations called fairy chimneys. These distinctive geological features, carved by erosion over time, have also served as dwellings and hiding places throughout history. Explore Cappadocia's underground cities, rock-cut churches, and vibrant culture for an unforgettable experience.",
         "area": "Approximately 9,883 hectares",
@@ -811,6 +811,7 @@
     },
     {
         "id": 16,
+        "SEOKeywords": "Socotra travel, Dragon Blood Trees, Yemen tourism, Indian Ocean islands, unique travel destinations, off-the-beaten-path adventure, remote beaches, Socotra biodiversity, best eco-travel destinations, snorkeling in Socotra, UNESCO World Heritage Sites, rare plants and trees",
         "name": "Socotra",
         "description": "Socotra, a Yemeni island archipelago in the Indian Ocean, is often referred to as the ‘Galápagos of the Indian Ocean’ due to its unique and isolated ecosystem. Over a third of its plant life is endemic, meaning it exists nowhere else on Earth. Discover Socotra's otherworldly landscapes, including dragon blood trees, bottle trees, and vast stretches of white sand beaches, for an unforgettable adventure.",
         "area": "3,665 square kilometers",
@@ -974,7 +975,6 @@
             }
         ]
     },
-    
     {
         "id": 19,
         "name": "Bagan",
@@ -1081,7 +1081,6 @@
             }
         ]
     },
-    
     {
         "id": 21,
         "name": "Sagano Bamboo Forest",
@@ -1298,7 +1297,6 @@
             }
         ]
     },
-    
     {
         "id": 25,
         "name": "Santorini (Thira)",
@@ -1363,12 +1361,8 @@
         "name": "Angkor Wat",
         "description": "Angkor Wat, a Hindu-Buddhist temple complex in Cambodia, is considered the world's largest religious structure by Guinness World Records. Located on a site measuring 162.6 hectares within the ancient Khmer capital city of Angkor, it is a captivating blend of temple mountain (standard design for the empire's state temples) and concentric galleries, influenced by religious beliefs. The construction suggests celestial significance with features like its east-west orientation and alignments for solstices. Explore the towering towers, intricate carvings, and serene atmosphere of this architectural masterpiece.",
         "history": "Angkor Wat, situated near Siem Reap in Cambodia, is renowned as the world’s largest religious monument, covering an area of over 162 hectares. Built in the early 12th century during the rule of King Suryavarman II, it originally served as the state temple and political center of the Khmer Empire. Dedicated to the Hindu deity Vishnu, the temple marked a shift from the Shaiva traditions embraced by earlier monarchs.
-
         This architectural marvel is a prime example of classical Khmer design, symbolizing Mount Meru, the sacred home of gods in Hindu beliefs. Angkor Wat’s unique structure features a striking arrangement of five towers and intricate bas-reliefs illustrating stories from Hindu mythology. Unlike most temples of its time, it faces west — a direction often associated with Vishnu.
-
-        By the end of the 12th century, the temple gradually transformed into a Buddhist site, mirroring the evolving spiritual landscape of the region. Despite experiencing phases of abandonment, Angkor Wat retained its significance and remained a revered place of worship. Today, it stands as an enduring symbol of Cambodia’s cultural heritage, prominently featured on the national flag, and draws visitors from around the world for its extraordinary beauty and historical importance.",
-        "area": "162.6 hectares",
-        "yearEstablished": "1150 (reign of Suryavarman II)",
+        By the end of the 12th century, the temple gradually transformed into a Buddhist site, mirroring the evolving spiritual landscape of the region. Despite experiencing phases of abandonment, Angkor Wat retained its significance and remained a revered place of worship. Today, it stands as an enduring symbol of Cambodia’s cultural heritage, prominently featured on the national flag, and draws visitors from around the world for its extraordinary beauty and historical importance.","area": "162.6 hectares","yearEstablished": "1150 (reign of Suryavarman II)",
         "uniqueFeature": "Largest Religious Structure (Guinness World Records)",
         "otherFeatures": [
             "Temple Mountain Architecture with Concentric Galleries",
@@ -1417,7 +1411,6 @@
             }
         ]
     },
-    
     {
         "id": 27,
         "name": "Sydney Harbour Bridge",
@@ -1539,7 +1532,6 @@
             }
         ]
     },
-    
     {
         "id": 29,
         "name": "Mount Fuji (富士山, Fujisan)",

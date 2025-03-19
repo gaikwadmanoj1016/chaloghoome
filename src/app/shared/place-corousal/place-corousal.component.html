@@ -1,46 +1,35 @@
 <div class="places-corousal most-visited-places" [id]="id">
     <div class="head">
         <h2>{{section.sectionName}}</h2>
-        <button type="button" (click)="navigateTo('places')" class="see-all-btn">See All <span><img loading="lazy"
+        <button type="button" (click)="navigateTo()" class="see-all-btn">See All <span><img loading="lazy"
                     src="../../../assets/svgs/back-arrow-black.svg" alt=""></span></button>
     </div>
     <div class="corousal" [ngClass]="section.sectionStyle === 'grid' ? 'grid-container' : 'flex-container'">
         @for (item of placesList; track $index) {
-        <!-- <div class="place-card" (click)="explorePlace(item.id)">
-            <div class="place-image">
-                <app-progressive-image [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'"
-                    [image]="item.imageUrl" [altText]="item.location+','+item.address"></app-progressive-image>
-            </div>
-            <div class="place-info">
-                <h3>{{item.postName}}</h3>
-                <h4>{{item.location}}</h4>
-                <p>{{item.summary | truncate: 120}}</p>
-            </div>
-        </div> -->
         <app-place-card [item]="item" [sectionId]="section.id" (onNavigateTo)="redirectTo($event)"></app-place-card>
         }
     </div>
 </div>
 
-<!--         @for (item of placesList; track $index) {
-        <div class="place-card" (click)="explorePlace(item.id)">
-            <div class="place-image" [class.image-loaded]="item.loaded">
-                <app-progressive-image [image]="item.imageUrl" [altText]="item.location+','+item.address"
-                    (onImageLoaded)="onImageLoad(item)"></app-progressive-image>
-            </div>
-            @if (item.loaded) {
-            <div class="place-info">
-                <h3>{{item.location}}</h3>
-                <h4>{{item.address}}</h4>
-                <p>{{item.description | truncate: 120}}</p>
-            </div>
-            }@else {
-            <div class="skeleton-placeholder"></div>
-            <div class="place-info skeleton-text">
-                <h3 class="skeleton-header"></h3>
-                <h4 class="skeleton-paragraph"></h4>
-                <p class="skeleton-paragraph"></p>
-            </div>
-            }
-        </div>
-        } -->
+<!-- <div class="place-card" (click)="explorePlace(item.id)">
+    <div class="place-image" [class.image-loaded]="item.loaded">
+        <app-progressive-image [image]="item.imageUrl" [altText]="item.location + ', ' + item.address"
+            (onImageLoaded)="onImageLoad(item)">
+        </app-progressive-image>
+    </div>
+
+    @if (item.loaded) {
+    <div class="place-info">
+        <h3>{{ item.location }}</h3>
+        <h4>{{ item.address }}</h4>
+        <p>{{ item.description | truncate: 120 }}</p>
+    </div>
+    } @else {
+    <div class="skeleton-placeholder"></div>
+    <div class="place-info skeleton-text">
+        <h3 class="skeleton-header"></h3>
+        <h4 class="skeleton-paragraph"></h4>
+        <p class="skeleton-paragraph"></p>
+    </div>
+    }
+</div> -->
