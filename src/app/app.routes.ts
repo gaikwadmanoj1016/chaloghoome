@@ -18,6 +18,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'admin-panel', component: AdminPanelComponent },
+    { path: 'admin-panel/section-detail/:sectionId', component: SectionComponent },
     { path: 'section-detail/:sectionId', component: SectionComponent },
     { path: 'section-detail/:sectionId/post/:postId', component: ViewPostComponent },
     // { path: '', component: DashboardComponent },

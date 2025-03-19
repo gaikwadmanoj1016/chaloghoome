@@ -12,8 +12,9 @@
     @if (section && section.posts && section.posts.length > 0) {
     <div class="places">
         @for (item of section.posts; track $index) {
-        <app-place-card [item]="item" [sectionId]="sectionId" (onNavigateTo)="navigateTo($event)"
-            (onEditClicked)="onEditCard($event)" (onDeleteClicked)="deletePost($event)"></app-place-card>
+        <app-place-card [item]="item" [editable]="cardEditable" [sectionId]="sectionId"
+            (onNavigateTo)="navigateTo($event)" (onEditClicked)="onEditCard($event)"
+            (onDeleteClicked)="deletePost($event)"></app-place-card>
         }
     </div>
     }
@@ -66,9 +67,16 @@
                     </div>
 
                     <!-- Area -->
-                    <div class="col-lg-12">
-                        <label for="area">Area:</label>
-                        <input id="area" formControlName="area" type="text" />
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="area">Area:</label>
+                            <input id="area" formControlName="area" type="text" />
+                        </div>
+                        <!-- yearEstablished -->
+                        <div class="col-lg-6">
+                            <label for="yearEstablished">Year Of Established:</label>
+                            <input id="yearEstablished" formControlName="yearEstablished" type="text" />
+                        </div>
                     </div>
                 </div>
                 <!-- Summary -->
@@ -84,75 +92,58 @@
                 </div>
 
                 <div class="col-lg-12" formArrayName="specialities">
-                    @for (speciality of specialities.controls; track $index) {
-                    <div class="row specialities-wrapper" [formGroupName]="$index">
+                    <div *ngFor="let speciality of specialities.controls; let i = index" [formGroupName]="i" class="row specialities-wrapper">
                         <div class="col-lg-2">
-                            <label for="specialtyIsUnique{{$index}}">Is Unique:</label>
-                            <select id="specialtyIsUnique{{$index}}" formControlName="isUnique">
-                                <option value="true">Yes</option>
-                                <option value="false">No</option>
+                            <label for="specialtyIsUnique{{i}}">Is Unique:</label>
+                            <select id="specialtyIsUnique{{i}}" formControlName="isUnique">
+                                <option [value]="true">Yes</option>
+                                <option [value]="false">No</option>
                             </select>
                         </div>
                         <div class="col-lg-10">
-                            <label for="specialtyName{{$index}}">Speciality:</label>
-                            <input id="specialtyName{{$index}}" formControlName="speciality" type="text" />
+                            <label for="specialtyName{{i}}">Speciality:</label>
+                            <input id="specialtyName{{i}}" formControlName="speciality" type="text" />
                         </div>
                         <div class="col-lg-12">
-                            <label for="specialtyDescription{{$index}}">Description:</label>
-                            <textarea id="specialtyDescription{{$index}}" formControlName="description"
-                                type="text"></textarea>
+                            <label for="specialtyDescription{{i}}">Description:</label>
+                            <textarea id="specialtyDescription{{i}}" formControlName="description"></textarea>
                         </div>
-                        <button type="button" (click)="removeSpecialty($index)">Remove</button>
+                        <button type="button" (click)="removeSpecialty(i)">Remove</button>
                     </div>
-                    }
-
                     <button type="button" (click)="addSpecialty()">Add Speciality</button>
                 </div>
 
-                <!-- Famous For -->
                 <div class="col-lg-12">
                     <label for="famousFor">Famous For:</label>
                     <textarea id="famousFor" formControlName="famousFor"></textarea>
                 </div>
 
-                <!-- How to Go -->
                 <div class="col-lg-12">
                     <label for="howToGo">How to Go:</label>
                     <textarea id="howToGo" formControlName="howToGo"></textarea>
                 </div>
 
-                <!-- Best Time to Visit -->
                 <div class="col-lg-12">
                     <label for="bestTimeToVisit">Best Time to Visit:</label>
                     <textarea id="bestTimeToVisit" formControlName="bestTimeToVisit"></textarea>
                 </div>
 
-                <!-- Routes -->
                 <div class="col-lg-12">
                     <label for="routes">Routes:</label>
                     <textarea id="routes" formControlName="routes"></textarea>
                 </div>
-                <!-- Additional Images -->
-                <!-- <div class="col-lg-6">
-                    <label for="images">Additional Images:</label>
-                    <input id="images" type="file" (change)="onFileSelected($event, 'images')" multiple />
-                </div> -->
-
-                <!-- Highlights -->
                 <div class="travelinfo-wrapper" formArrayName="travelGuide">
-                    @for (info of travelGuide.controls; track $index;) {
-                    <div class="row" [formGroupName]="$index">
+                    <div *ngFor="let info of travelGuide.controls; let i = index" [formGroupName]="i" class="row">
                         <div class="col-lg-12">
-                            <label for="title">Title:</label>
-                            <input id="title" formControlName="title" type="text" />
+                            <label for="title{{i}}">Title:</label>
+                            <input id="title{{i}}" formControlName="title" type="text" />
                         </div>
                         <div class="col-lg-12">
-                            <label for="para">Description:</label>
-                            <textarea id="para" formControlName="para" type="text"></textarea>
+                            <label for="para{{i}}">Description:</label>
+                            <textarea id="para{{i}}" formControlName="para"></textarea>
                         </div>
-                        <button type="button" (click)="removeInfo($index)">Remove</button>
+                        <button type="button" (click)="removeInfo(i)">Remove</button>
                     </div>
-                    }
                     <button type="button" (click)="addHighlight()">Add Travel Info</button>
                 </div>
 
@@ -162,3 +153,9 @@
         </form>
     </div>
 </div>
+
+<!-- add highlights -->
+@if (commonService.isAddHighlightModal) {
+<app-highlights-modal [isModalOpen]="commonService.isAddHighlightModal" [cardDetails]="commonService.selectedCard"
+    (onCloseModal)="closeHighlightModal()"></app-highlights-modal>
+}

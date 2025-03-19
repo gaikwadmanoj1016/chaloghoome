@@ -13,6 +13,7 @@ export class ProgressiveImageComponent {
   @Input() srcSet: string = '';
   @Input() aspectRatio: boolean = true;
   @Input() altText: string = '';
+  @Input() title: string = '';
   @Output('onImageLoaded') onImageLoaded: EventEmitter<any> = new EventEmitter();
   @Output('onImagClicked') onImagClicked: EventEmitter<any> = new EventEmitter();
 

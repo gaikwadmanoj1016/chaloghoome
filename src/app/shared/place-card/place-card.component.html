@@ -1,18 +1,18 @@
-
-<div class="place-card" (click)="navigateToPostDetails(item)" (clickOutside)="closeContextMenu()">
-    <div class="place-image">
-        <app-progressive-image [smallImage]="'../../../assets/imgs/image-placeholder.jpg'"
-            [image]="item.imageUrl" [altText]="item.location + ',' + item.address">
+<div class="place-card" (clickOutside)="closeContextMenu()">
+    <div class="place-image" (click)="navigateToPostDetails(item)">
+        <app-progressive-image [smallImage]="'../../../assets/imgs/image-placeholder.jpg'" [image]="item.imageUrl"
+            [altText]="item.location + ',' + item.address">
         </app-progressive-image>
     </div>
-    <div class="place-info">
+    <div class="place-info" (click)="navigateToPostDetails(item)">
         <h3 [title]="item.postName">{{item.postName | truncate : 25 }}</h3>
         <h4 [title]="item.location">{{item.location | truncate: 25 }}</h4>
         <p [title]="item.summary">{{item.summary | truncate: 120 }}</p>
     </div>
+    @if (editable) {
     <div class="place-cta">
         <!-- Ellipsis button for context menu -->
-        <button type="button" class="btn dots-btn" (click)="openContextMenu(item)">
+        <button type="button" class="btn dots-btn" (click)="openContextMenu(item);">
             <img src="../../../assets/svgs/3-dots.svg" alt="options-icon">
         </button>
         @if (contextMenuVisible) {
@@ -25,9 +25,7 @@
         </div>
         }
     </div>
+    }
 </div>
 
-@if (isModalOpen) {
-    <app-highlights-modal [isModalOpen]="isModalOpen" [cardDetails]="selectedCard" (onCloseModal)="closeModal()"></app-highlights-modal>
-}
 <!-- <div class="skeleton-placeholder"></div> -->

@@ -10,6 +10,8 @@ import { CommonService } from '../../services/common.service';
 export class PlaceCardComponent implements OnInit {
   @Input() item: any;
   @Input() sectionId!: number;
+
+  @Input() editable: boolean = false;
   @Output('onNavigateTo') onNavigateTo: EventEmitter<any> = new EventEmitter();
   @Output('onEditClicked') onEditClicked: EventEmitter<any> = new EventEmitter();
   @Output('onDeleteClicked') onDeleteClicked: EventEmitter<any> = new EventEmitter();
@@ -22,8 +24,8 @@ export class PlaceCardComponent implements OnInit {
 
   constructor(public commonService: CommonService) {}
 
-  ngOnInit(): void {
-      this.item.loaded = false;
+  ngOnInit(): void {    
+    this.item.loaded = false;
   }
   
   onImageLoad(item: any) {
@@ -37,14 +39,10 @@ export class PlaceCardComponent implements OnInit {
   }
   
   public addHighlighs(item: any) {
-    this.selectedCard = item;
-    this.isModalOpen = true;
+    this.commonService.selectedCard = item;
+    this.commonService.isAddHighlightModal = true;
   }
   
-  public closeModal() {
-    this.isModalOpen = false;
-  }
-
   public editPlace(item: any) {
     this.onEditClicked.emit(item);
   }

@@ -20,8 +20,9 @@
                 <div class="carousal-item" (mouseenter)="pauseAutoSlide()" (mouseleave)="resumeAutoSlide()"
                     (mousedown)="pauseAutoSlide()" (mouseup)="resumeAutoSlide()">
                     <app-progressive-image [smallImage]="commonService.appendAssetUrl(highlight.compressedImagePath)"
-                        [image]="commonService.appendAssetUrl(highlight.imagePath)"
-                        [altText]="'ChaloGhoome: ' + highlight.title" [aspectRatio]="false"
+                        [image]="commonService.appendAssetUrl(highlight.imagePath)" [title]="highlight.title"
+                        [altText]="'ChaloGhoome: ' + highlight.title + ': '+ highlight.description"
+                        [aspectRatio]="false"
                         (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))">
                     </app-progressive-image>
                 </div>
@@ -37,9 +38,8 @@
     <div class="carousel-navigation">
         @for (highlight of placeDetails?.highlights; track $index) {
         <img class="nav-thumb" [class.active]="currentIndex === $index"
-            [src]="commonService.appendAssetUrl(highlight.imagePath)"
-            [alt]="'Thumbnail for ' + highlight.title" (click)="goToSlide($index)" (mouseenter)="pauseAutoSlide()"
-            (mouseleave)="resumeAutoSlide()" />
+            [src]="commonService.appendAssetUrl(highlight.imagePath)" [alt]="'Thumbnail for ' + highlight.title"
+            (click)="goToSlide($index)" (mouseenter)="pauseAutoSlide()" (mouseleave)="resumeAutoSlide()" />
         }
     </div>
     <article>
@@ -65,12 +65,12 @@
                 </p>
             </div>
             }
-            @if (placeDetails?.specialities) {
+            <!-- @if (placeDetails?.specialities) {
             <div class="d-flex">
                 <h3>Unique Feature: </h3>
                 <p>
                     @for (speciality of placeDetails?.specialities; track $index) {
-                        @if (speciality.unique) {
+                        @if (speciality.isUnique) {
                             @if ($index !== 0) {
                                 <span aria-labelledby="">, {{ speciality.speciality }}</span>
                             } @else {
@@ -80,6 +80,18 @@
                     }
                 </p>
             </div>
+            } -->
+            @if (placeDetails?.specialities) {
+            <h3>
+                Unique Features:
+            </h3>
+            <ol>
+                @for (specialities of placeDetails?.specialities; track $index) {
+                @if (specialities.isUnique) {
+                <li>{{ specialities.speciality }}</li>
+                }
+                }
+            </ol>
             }
             @if (placeDetails?.specialities) {
             <h3>
@@ -87,9 +99,9 @@
             </h3>
             <ol>
                 @for (specialities of placeDetails?.specialities; track $index) {
-                    @if (!specialities.unique) {
-                    <li>{{ specialities.speciality }}</li>
-                    }
+                @if (!specialities.isUnique) {
+                <li>{{ specialities.speciality }}</li>
+                }
                 }
             </ol>
             }
@@ -124,16 +136,18 @@
             </div>
             }
             @for (guide of placeDetails?.travelGuide; track $index) {
-            @if ((guide.para || (guide.bulletPoints && guide.bulletPoints.length > 0)) && guide.title) {
+            @if ((guide.para) && guide.title) {
             <div class="col-lg-12">
                 <div class="guide-section">
                     <h3>{{ guide.title }}</h3>
                     <p [innerHTML]="commonService.sanitizeHtml(guide.para)"></p>
+                    @if ((guide.bulletPoints && guide.bulletPoints.length > 0)) {
                     <ol>
                         @for (item of guide.bulletPoints; track $index) {
                         <li>{{item}}</li>
                         }
                     </ol>
+                    }
                 </div>
             </div>
             }

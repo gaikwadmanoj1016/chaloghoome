@@ -421,11 +421,7 @@
     {
         "id": 9,
         "name": "Petronas Towers",
-        "description": "The Petronas Towers, also known as the Petronas Twin Towers, are twin skyscrapers in Kuala Lumpur, Malaysia. They were the tallest buildings in the world from 1998 to 2004 and remain the tallest twin towers in the world.",
-        "height": "451.9 meters (1,483 feet)",
-        "floors": 88,
-        "yearBuilt": 1998,
-        "architect": "César Pelli",
+        "description": "The Petronas Towers, located in Kuala Lumpur, Malaysia, are an iconic pair of skyscrapers recognized for their striking architectural design. Completed in 1998, these towers held the title of the world's tallest buildings until 2004 and continue to be the tallest twin towers globally. Rising to an impressive height of 451.9 meters (1,483 feet) with 88 floors, the structures were designed by renowned architect César Pelli. Their distinctive postmodern style, influenced by Islamic architecture, makes them a landmark of modern engineering and a symbol of Malaysia’s rapid development.",
         "uniqueFeature": "Skybridge connecting the two towers at the 41st and 42nd floors",
         "highlights": [
             {

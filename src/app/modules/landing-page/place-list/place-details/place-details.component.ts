@@ -29,7 +29,7 @@ export interface PlaceDetails {
 export interface Speciality {
   speciality: string;
   description: string;
-  unique: boolean | string;
+  isUnique: boolean;
 }
 
 export interface Highlight {

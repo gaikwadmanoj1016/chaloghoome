@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonService } from '../../../services/common.service';
 import { ApiService } from '../../../services/api.service';
@@ -9,7 +9,7 @@ import { ApiService } from '../../../services/api.service';
   templateUrl: './highlights-modal.component.html',
   styleUrl: './highlights-modal.component.scss'
 })
-export class HighlightsModalComponent implements OnInit {
+export class HighlightsModalComponent implements OnInit, OnDestroy {
   @Output() onCloseModal: EventEmitter<any> = new EventEmitter();
 
   @Input() isModalOpen = false;
@@ -88,5 +88,18 @@ export class HighlightsModalComponent implements OnInit {
   public changeThumbnail(highlight: any) {
     highlight.isThumbnail = true;
     this.saveHighlights('edit', highlight);
+  }
+
+  public deleteHighlight(item: any) {
+    this.apiService.deleteHighlight(item.id).subscribe((response: any) => {
+      if (response.result) {
+        this.getHighlights();
+      } else {
+        console.error(response.message || 'something went wrong');
+      }
+    })
+  }
+  ngOnDestroy(): void {
+    this.commonService.selectedCard = undefined;
   }
 }

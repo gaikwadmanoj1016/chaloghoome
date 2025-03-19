@@ -42,10 +42,16 @@
                     <ul>
                         @for (highlight of highlights; track $index) {
                         <li>
-                            <input type="checkbox" name="isThumbnail" id="isThumbnail" [checked]="highlight.isThumbnail" (change)="changeThumbnail(highlight)">
-                            <img [src]="commonService.appendAssetUrl(highlight.compressedImagePath)"
+                            <div class="highligh-information">
+                                <input type="checkbox" name="isThumbnail" id="isThumbnail" [checked]="highlight.isThumbnail" (change)="changeThumbnail(highlight)">
+                                <img [src]="commonService.appendAssetUrl(highlight.compressedImagePath)"
                                 alt="{{ highlight.title }}" width="50">
-                            <strong [title]="highlight.title">{{ highlight.title | truncate: 20 }}</strong>: <span [title]="highlight.description">{{ highlight.description | truncate: 60 }}</span>
+                                <strong [title]="highlight.title">{{ highlight.title | truncate: 30 }}</strong>
+                            </div>
+                            <div class="cta" >
+                                <button type="button" class="btn btn-sm btn-danger" (click)="deleteHighlight(highlight)"> Delete </button>
+                            </div>
+                            <!-- : <span [title]="highlight.description">{{ highlight.description | truncate: 60 }}</span> -->
                         </li>
                         }
                     </ul>

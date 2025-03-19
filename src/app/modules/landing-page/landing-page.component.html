@@ -42,7 +42,7 @@
             <button class="btn explore-btn" routerLink="home" [queryParams]="{section: 'contact_us'}">Explore</button>
         </div>
     </section> -->
-    
+
     <!-- <section class="section-new">
         <h2>Discover Amazing Places</h2>
         <p>Explore the world’s most breathtaking destinations, handpicked for adventurous travelers.</p>
@@ -273,8 +273,7 @@
                 </div>
                 <div class="corousal" [ngClass]="section.sectionStyle === 'grid' ? 'grid-container' : 'flex-container'">
                     @for (item of section.posts; track $index) {
-                    <app-place-card [item]="item" [sectionId]="section.id"
-                        (onNavigateTo)="redirectTo($event)"></app-place-card>
+                    <app-place-card [item]="item" [sectionId]="section.id" [editable]="false" (onNavigateTo)="redirectTo($event)"></app-place-card>
                     }
                 </div>
             </div>

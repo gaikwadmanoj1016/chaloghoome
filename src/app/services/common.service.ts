@@ -9,6 +9,8 @@ import { environment } from '../../../environment';
 })
 export class CommonService {
   showHideCertificateModal: boolean = false;
+  isAddHighlightModal: boolean = false;
+  selectedCard: any;
   wonders: any[] = [
     { id: 1, name: "Taj Mahal", imageUrl: '/assets/imgs/wonders/taj-mahal.jpg', location: 'Taj Mahal', address: 'Agra, Delhi, India', description: 'The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in the Indian city of Agra. It was commissioned in 1632 by the Mughal emperor, Shah Jahan, to house the tomb of his favorite wife, Mumtaz Mahal. It is also known as the "Crown of Palaces".' },
     { id: 2, name: "Great Wall of China", imageUrl: '/assets/imgs/wonders/great-wall-of-china.jpg', location: 'Great Wall of China', address: 'China', description: 'The Great Wall of China is a series of fortifications made of stone, brick, tamped earth, wood, and other materials, generally built along an east-to-west line across the historical northern borders of China to protect the Chinese states and empires against the raids and invasions of the various nomadic groups of the Eurasian Steppe. It is one of the most impressive architectural feats in history.' },
@@ -121,7 +123,10 @@ export class CommonService {
     return this.sanitizer.bypassSecurityTrustUrl(imgUrl);
   }
   sanitizeHtml(html: any) {
-    let content = html.replace(/(\r\n|\n|\r)/g, '</p><p>');
+    let content = `<p>${html
+      .replace(/(\r\n|\r|\n){2,}/g, '</p><p>') // Double line break → New Paragraph
+      .replace(/(\r\n|\r|\n)/g, '<br>')        // Single line break → Line Break
+    }</p>`;
     return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 

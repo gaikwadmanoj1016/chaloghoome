@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SharedModule } from '../../../shared/shared.module';
 import { CommonService } from '../../../services/common.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgClass } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-section',
   standalone: true,
-  imports: [SharedModule, NgClass, ReactiveFormsModule],
+  imports: [SharedModule, NgClass, ReactiveFormsModule, NgFor],
   templateUrl: './section.component.html',
   styleUrl: './section.component.scss'
 })
@@ -22,8 +22,9 @@ export class SectionComponent implements OnInit {
   section: any;
   file!: File;
   selectedCard: any;
+  cardEditable: boolean = false;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, public commonService: CommonService, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private apiService: ApiService, public commonService: CommonService, private fb: FormBuilder, private cdref: ChangeDetectorRef) {
     // Initialize the form
     this.postForm = this.fb.group({
       postName: ['', Validators.required],
@@ -31,6 +32,7 @@ export class SectionComponent implements OnInit {
       location: ['', Validators.required],
       history: [''],
       area: [''],
+      yearEstablished: [''],
       specialities: this.fb.array([]),
       famousFor: [''],
       howToGo: [''],
@@ -42,6 +44,8 @@ export class SectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.route.snapshot.routeConfig?.path?.includes('admin-panel'));
+    this.cardEditable = this.route.snapshot.routeConfig?.path?.includes('admin-panel') || false;
     this.sectionId = Number(this.route.snapshot.paramMap.get('sectionId'));
     // this.list = this.commonService.wonders;
     if (this.sectionId) {
@@ -99,6 +103,7 @@ export class SectionComponent implements OnInit {
       location: this.selectedCard.location,
       history: this.selectedCard.history,
       area: this.selectedCard.area,
+      yearEstablished: this.selectedCard.yearEstablished,
       famousFor: this.selectedCard.famousFor,
       howToGo: this.selectedCard.howToGo,
       bestTimeToVisit: this.selectedCard.bestTimeToVisit,
@@ -116,10 +121,23 @@ export class SectionComponent implements OnInit {
         const specialityGroup = this.fb.group({
           speciality: [speciality.speciality, Validators.required],
           description: [speciality.description],
-          isUnique: [speciality.isUnique, Validators.required],
+          isUnique: [speciality.isUnique || false, Validators.required],
           id: [speciality.id],
         });
         specialitiesArray.push(specialityGroup);
+      });
+    }
+    const travelGuideArray = this.postForm.get('travelGuide') as FormArray;
+    travelGuideArray.clear();
+
+    if (this.selectedCard.travelGuide && Array.isArray(this.selectedCard.travelGuide)) {
+      this.selectedCard.travelGuide.forEach((travelInfo: any) => {
+        const travelInfoGroup = this.fb.group({
+          title: [travelInfo.title, Validators.required],
+          para: [travelInfo.para],
+          id: [travelInfo.id],
+        });
+        travelGuideArray.push(travelInfoGroup);
       });
     }
   }
@@ -152,6 +170,7 @@ export class SectionComponent implements OnInit {
 
   removeInfo(index: number): void {
     this.travelGuide.removeAt(index);
+    this.cdref.detectChanges();
   }
 
   // Getter for specialities FormArray
@@ -172,6 +191,7 @@ export class SectionComponent implements OnInit {
   // Remove a speciality by index
   removeSpecialty(index: number): void {
     this.specialities.removeAt(index);
+    this.cdref.detectChanges();
   }
 
   // onFileSelected(event: Event, field: string): void {
@@ -245,7 +265,7 @@ export class SectionComponent implements OnInit {
             values[key].forEach((speciality: any, index: number) => {
               formData.append(`specialities[${index}].speciality`, speciality.speciality || '');
               formData.append(`specialities[${index}].description`, speciality.description || '');
-              formData.append(`specialities[${index}].isUnique`, String(speciality.isUnique));
+              formData.append(`specialities[${index}].isUnique`, speciality.isUnique);
               if (speciality.id) {
                 formData.append(`specialities[${index}].id`, speciality.id);
               }
@@ -253,9 +273,12 @@ export class SectionComponent implements OnInit {
           }
           // Handle travel guide (highlights)
           else if (key === 'travelGuide') {
-            values[key].forEach((highlight: any, index: number) => {
-              formData.append(`travelGuide[${index}].title`, highlight.title || '');
-              formData.append(`travelGuide[${index}].para`, highlight.para || '');
+            values[key].forEach((travelInfo: any, index: number) => {
+              formData.append(`travelGuide[${index}].title`, travelInfo.title || '');
+              formData.append(`travelGuide[${index}].para`, travelInfo.para || '');
+              if (travelInfo.id) {
+                formData.append(`travelGuide[${index}].id`, travelInfo.id);
+              }
             });
           } else {
             formData.append(key, values[key] || '');
@@ -284,7 +307,10 @@ export class SectionComponent implements OnInit {
       }
     });
   }
-  
+  public closeHighlightModal() {
+    this.commonService.isAddHighlightModal = false;
+  }
+
   // Example usage
   // const postDTO = {
   //   sectionId: 1,

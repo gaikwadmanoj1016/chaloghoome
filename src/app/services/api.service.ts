@@ -121,6 +121,16 @@ export class ApiService {
       })
     )
   }
+  public deleteHighlight(id: number) {
+    let API = environment.apiUrl + 'api/posts/deleteHighlight/' + id;
+    return this.httpRequest.delete(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
   public saveHighlight(highlight: any) {
     let API = environment.apiUrl + 'api/posts/saveHighlights';
     return this.httpRequest.put(API, highlight, this.commonService.getRequestForAttachment()).pipe(

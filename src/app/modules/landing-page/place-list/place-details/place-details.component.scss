@@ -262,7 +262,7 @@ main {
 
     h3 {
         font-size: 1.2rem;
-        margin-bottom: 0.5rem;
+        margin: 0 !important;
     }
 }
 
@@ -290,6 +290,17 @@ main {
             border-bottom: 2px solid #dcdcdc;
             margin-bottom: 0.5rem;
         }
+    }
+}
+
+.information {
+    h3 {
+        margin: 0;
+        padding: 0;
+    }
+
+    ol {
+        margin-block: 10px;
     }
 }
 
