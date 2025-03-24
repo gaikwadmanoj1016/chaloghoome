@@ -147,3 +147,72 @@ footer {
         }
     }
 }
+
+.section4 {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+
+    ul li {
+        margin-left: 10px;
+    }
+
+    ul li a {
+        width: 50px;
+        height: 50px;
+        background-color: #fff;
+        text-align: center;
+        line-height: 50px;
+        font-size: 30px;
+        display: block;
+        border-radius: 50%;
+        position: relative;
+        overflow: hidden;
+        border: 3px solid #fff;
+        z-index: 1;
+        transition: 0.3s;
+    }
+
+    ul li a .icon {
+        position: relative;
+        color: #262626;
+        transition: 0.5s;
+        z-index: 3;
+    }
+
+    ul li a:hover .icon {
+        color: #fff;
+        transform: rotateY(360deg);
+    }
+
+    ul li a:before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: 0.5s;
+        z-index: 2;
+    }
+
+    ul li a:hover:before {
+        top: 0;
+    }
+
+    /* Twitter/X */
+    ul li:nth-child(1) a:before {
+        background: #000000;
+    }
+
+    /* LinkedIn */
+    ul li:nth-child(2) a:before {
+        background: #0077B5;
+    }
+}

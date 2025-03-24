@@ -52,6 +52,7 @@ export class CommonService {
     { "id": 30, imageUrl: 'assets/imgs/most-visited/masai-mara.jpg', location: 'Masai Mara National Reserve', address: 'Kenya', description: 'The Maasai Mara National Reserve is a large game reserve in Narok County, Kenya, contiguous with the Serengeti National Park in Tanzania. It is named in honor of the Maasai people, the ancestral inhabitants of the area, who migrated to the area from the Nile Basin. The reserve is famous for its exceptional population of lions, leopards, and cheetahs, and the annual migration of zebra, Thomson\'s gazelle, and wildebeest to and from the Serengeti every year.' },
     { "id": 31, imageUrl: 'assets/imgs/most-visited/hiroshima-peace-memorial.jpg', location: 'Hiroshima Peace Memorial', address: 'Hiroshima, Japan', description: 'The Hiroshima Peace Memorial, originally the Hiroshima Prefectural Industrial Promotion Hall, is the historic building that remains closest to the hypocenter of the atomic bomb explosion on 6 August 1945. It is now a UNESCO World Heritage Site and serves as a memorial to the victims of the bombing and a symbol of peace.' }
   ];
+  sections: {sectionName: string, sectionId: string}[] = [];
 
   constructor(private router: Router,
     private sanitizer: DomSanitizer,

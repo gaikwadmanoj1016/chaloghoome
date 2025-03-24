@@ -52,6 +52,7 @@
             }
 
             .left {
+
                 form {
                     display: flex;
                     flex-direction: column;
@@ -141,7 +142,7 @@
                         justify-content: space-between;
                         padding: 8px;
                         border-bottom: 1px solid #eee;
-                        
+
                         .highligh-information {
                             gap: 10px;
                             display: flex;
@@ -158,6 +159,36 @@
                                 font-weight: bold;
                             }
                         }
+                    }
+                }
+            }
+
+            @media (max-width: 550px) {
+                height: 90vh;
+                flex-direction: column-reverse;
+
+                .left,
+                .right {
+                    flex: none;
+                }
+
+                .left {
+                    position: relative;
+
+                    form {
+
+                        .modal-actions {
+                            position: relative;
+                        }
+                    }
+                }
+
+                .right {
+                    height: auto;
+
+                    ul {
+                        height: 180px !important;
+                        overflow: auto;
                     }
                 }
             }
