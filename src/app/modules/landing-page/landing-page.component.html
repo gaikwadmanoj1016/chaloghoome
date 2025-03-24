@@ -11,9 +11,7 @@
                 <source src="../../../assets/videos/88207-602915574_medium.mp4" type="video/mp4">
             </video> -->
             <video autoplay loop muted>
-                <source
-                    src="https://media.istockphoto.com/id/1976735092/video/ascending-together-couple-conquers-mountain-heights-at-sunset.mp4?s=mp4-640x640-is&k=20&c=HNyau2n-zGd3Ggvn445A611qfDgAXf4zj4G_QM7lh2A="
-                    type="video/mp4">
+                <source src="../../../assets/videos/85760-590014855_medium.mp4">
             </video>
         </div>
 
@@ -99,16 +97,17 @@
         @if (section?.isBackgroundVideo) {
         <div class="background">
             <video autoplay loop muted>
-                <source [src]="section?.backgroundVideoSource" type="video/mp4">
+                <source [src]="section?.backgroundVideoSource" loading="lazy" type="video/mp4">
             </video>
         </div>
         }
 
         <h2 class="section-title">{{section?.sectionName}}</h2>
         @if (section?.description) {
-            <p class="section-description"> {{section?.description}} </p>
+        <p class="section-description"> {{section?.description}} </p>
         }
-        <div class="travel-card-container" [ngClass]="section?.sectionStyle === 'grid' ? 'grid-container' : 'flex-container'">
+        <div class="travel-card-container"
+            [ngClass]="section?.sectionStyle === 'grid' ? 'grid-container' : 'flex-container'">
             @for (post of section?.posts; track $index) {
             <!--  (mouseover)="add3DEffect($event)" (mouseleave)="remove3DEffect($event)" -->
             <div class="travel-card" [attr.aria-labelledby]="post.summary" [title]="post.postName">

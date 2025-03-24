@@ -24,57 +24,57 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
 
   scrollToDivId: string | null = '';
   sections: any[] = [];
-  planets = [
-    {
-      id: 1,
-      name: "Neptune",
-      description: "A deep blue gas giant with supersonic winds.",
-      image: "https://media.istockphoto.com/id/175569757/photo/planet-neptune-elements-of-this-image-furnished-by-nasa.jpg?s=1024x1024&w=is&k=20&c=0xlRIr86LuWOqqM89v4690oAVe3yBbrtCRq-Nq5Pvd8="
-    },
-    {
-      id: 2,
-      name: "Mars",
-      description: "The Red Planet, home to the tallest volcano in the solar system.",
-      image: "https://media.istockphoto.com/id/1214890390/photo/planet-mars-in-space.jpg?s=1024x1024&w=is&k=20&c=PLK0sLUiON73M-3KOwfhD56UCmR1W2AAgMTTSUx0oF4="
-    },
-    {
-      id: 3,
-      name: "Saturn",
-      description: "Famous for its stunning rings and numerous moons.",
-      image: "https://media.istockphoto.com/id/482675385/photo/saturn-with-stars-in-the-background.jpg?s=1024x1024&w=is&k=20&c=-ERAWSJeLP2fUHQvGJvDaSJmx3IJrpbOpQa3uSPgclM="
-    },
-    {
-      id: 4,
-      name: "Jupiter",
-      description: "The largest planet, with a massive storm known as the Great Red Spot.",
-      image: "https://media.istockphoto.com/id/173228030/photo/jupiter-on-star-field.jpg?s=1024x1024&w=is&k=20&c=EUvp1jTz6X9lAF9Sz7UcW7LhFU2JY2--ltXjJqo_GS8="
-    },
-    {
-      id: 5,
-      name: "Venus",
-      description: "A scorching world with a thick, toxic atmosphere.",
-      image: "https://media.istockphoto.com/id/1199281415/photo/planet-venus.jpg?s=1024x1024&w=is&k=20&c=9BrGdPKpn5H-uMPBoHSFZ6JiO82txcLv5CpQODx_JHY="
-    },
-    {
-      id: 6,
-      name: "Mercury",
-      description: "The smallest planet, closest to the Sun, with extreme temperature changes.",
-      image: "https://media.istockphoto.com/id/524287351/photo/mercury.jpg?s=1024x1024&w=is&k=20&c=B_iBIp5s9UB7UmWjlzG50v9FehMXk2h-ZNT_k_LlxOs="
-    },
-    {
-      id: 7,
-      name: "Uranus",
-      description: "An icy giant that rotates on its side.",
-      image: "https://media.istockphoto.com/id/1199283538/photo/planet-uranus.jpg?s=1024x1024&w=is&k=20&c=w7aXUMVg_cv8k66xZFjaHuVrlL6bVfHcxgSRIC4RH9Q="
-    },
-    {
-      id: 8,
-      name: "Earth",
-      description: "The only known planet to support life.",
-      // image: "https://media.istockphoto.com/id/1314000171/video/earth-rotation-loopable.mp4?s=mp4-640x640-is&k=20&c=wI4rNMfqQ2k4OfeQddU4bkX-EKzCVW_kr0clHhrbiQ4="
-      image: "https://media.istockphoto.com/id/1457206081/photo/earth-planet-at-night-into-the-dark-cities-light-earth-in-deep-space-with-stars-planet-sphere.jpg?s=612x612&w=is&k=20&c=hZng_mgVgLLmPxVQIWnCZxn_sApfa88h-rResmvSL4o="
-    }
-  ];
+  // planets = [
+  //   {
+  //     id: 1,
+  //     name: "Neptune",
+  //     description: "A deep blue gas giant with supersonic winds.",
+  //     image: "https://media.istockphoto.com/id/175569757/photo/planet-neptune-elements-of-this-image-furnished-by-nasa.jpg?s=1024x1024&w=is&k=20&c=0xlRIr86LuWOqqM89v4690oAVe3yBbrtCRq-Nq5Pvd8="
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Mars",
+  //     description: "The Red Planet, home to the tallest volcano in the solar system.",
+  //     image: "https://media.istockphoto.com/id/1214890390/photo/planet-mars-in-space.jpg?s=1024x1024&w=is&k=20&c=PLK0sLUiON73M-3KOwfhD56UCmR1W2AAgMTTSUx0oF4="
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Saturn",
+  //     description: "Famous for its stunning rings and numerous moons.",
+  //     image: "https://media.istockphoto.com/id/482675385/photo/saturn-with-stars-in-the-background.jpg?s=1024x1024&w=is&k=20&c=-ERAWSJeLP2fUHQvGJvDaSJmx3IJrpbOpQa3uSPgclM="
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Jupiter",
+  //     description: "The largest planet, with a massive storm known as the Great Red Spot.",
+  //     image: "https://media.istockphoto.com/id/173228030/photo/jupiter-on-star-field.jpg?s=1024x1024&w=is&k=20&c=EUvp1jTz6X9lAF9Sz7UcW7LhFU2JY2--ltXjJqo_GS8="
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Venus",
+  //     description: "A scorching world with a thick, toxic atmosphere.",
+  //     image: "https://media.istockphoto.com/id/1199281415/photo/planet-venus.jpg?s=1024x1024&w=is&k=20&c=9BrGdPKpn5H-uMPBoHSFZ6JiO82txcLv5CpQODx_JHY="
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "Mercury",
+  //     description: "The smallest planet, closest to the Sun, with extreme temperature changes.",
+  //     image: "https://media.istockphoto.com/id/524287351/photo/mercury.jpg?s=1024x1024&w=is&k=20&c=B_iBIp5s9UB7UmWjlzG50v9FehMXk2h-ZNT_k_LlxOs="
+  //   },
+  //   {
+  //     id: 7,
+  //     name: "Uranus",
+  //     description: "An icy giant that rotates on its side.",
+  //     image: "https://media.istockphoto.com/id/1199283538/photo/planet-uranus.jpg?s=1024x1024&w=is&k=20&c=w7aXUMVg_cv8k66xZFjaHuVrlL6bVfHcxgSRIC4RH9Q="
+  //   },
+  //   {
+  //     id: 8,
+  //     name: "Earth",
+  //     description: "The only known planet to support life.",
+  //     // image: "https://media.istockphoto.com/id/1314000171/video/earth-rotation-loopable.mp4?s=mp4-640x640-is&k=20&c=wI4rNMfqQ2k4OfeQddU4bkX-EKzCVW_kr0clHhrbiQ4="
+  //     image: "https://media.istockphoto.com/id/1457206081/photo/earth-planet-at-night-into-the-dark-cities-light-earth-in-deep-space-with-stars-planet-sphere.jpg?s=612x612&w=is&k=20&c=hZng_mgVgLLmPxVQIWnCZxn_sApfa88h-rResmvSL4o="
+  //   }
+  // ];
 
   constructor(private route: ActivatedRoute, public commonService: CommonService, private apiService: ApiService) { }
 
@@ -129,7 +129,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
           section.description = "Explore the world’s most breathtaking destinations, handpicked for adventurous travelers.";
           section.class = "section-new";
           section.isBackgroundVideo = true;
-          section.backgroundVideoSource = "https://media.istockphoto.com/id/1976735092/video/ascending-together-couple-conquers-mountain-heights-at-sunset.mp4?s=mp4-640x640-is&k=20&c=HNyau2n-zGd3Ggvn445A611qfDgAXf4zj4G_QM7lh2A=";
+          section.backgroundVideoSource = "../../../assets/videos/2711092-uhd_3840_2160_24fps.mp4";
         } else if (section.sectionId === 'wonders_of_the_world') {
           section.class = "galactic-wonders";
           section.description = "Embark on an adventure like never before! Discover hidden gems, breathtaking landscapes, and stories waiting to be told";
