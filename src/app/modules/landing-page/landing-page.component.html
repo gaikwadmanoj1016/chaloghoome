@@ -7,16 +7,12 @@
 <main>
     <section class="hero-section">
         <div class="background">
-            <!-- <video autoplay loop muted>
-                <source src="../../../assets/videos/88207-602915574_medium.mp4" type="video/mp4">
-            </video> -->
             <video autoplay loop muted>
-                <source src="../../../assets/videos/85760-590014855_medium.mp4">
+                <source src="../../../assets/videos/24746-344986280_tiny.mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="hero-container">
-            <!-- <h2 class="section-title">Explore the Wonders of the World</h2> -->
             <h1> ✈️ <span class="headline">Travel Smarter,</span></h1>
             <h2 class="headline small">Explore Better with Chalo Ghoome!</h2>
             <p>Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and travelers. Our
@@ -54,6 +50,155 @@
             <span class="title">Like</span>
           </li> -->
     </section>
+
+    <!-- todo
+    <section>
+        <div class="stats-section">
+            <div class="stats-content">
+                <h2>🌍 Travel Agency Statistics</h2>
+                <p>Our journey so far in making travel dreams come true.</p>
+            </div>
+        </div>
+        
+        Stats Cards
+        <div class="stats-grid">
+            <div class="stat-card" *ngFor="let stat of stats">
+                <h3 class="counter" #counter [attr.data-count]="stat.value">{{ stat.start }}</h3>
+                <p>{{ stat.icon }} {{ stat.label }}</p>
+                <div *ngIf="stat.hasProgressBar" class="progress-bar">
+                    <div class="progress-fill" [style.width.%]="stat.value"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+-->
+
+    <section class="about">
+        <div class="container">
+            <h2>✨ About Us – Uniting Travelers & Travel Experts</h2>
+            <div class="section">
+                <div class="text">
+                    <p>We are on a mission to revolutionize the travel experience by creating a platform where
+                        travelers, explorers, and service providers connect seamlessly.</p>
+                    <p> At <span class="highlight">Chalo Ghoome</span>, we recognize that travel is more than just
+                        visiting a destination; it's about immersing yourself in diverse cultures, uncovering hidden
+                        treasures, and crafting memories that last a lifetime. Whether you're an experienced
+                        globetrotter or setting out on your maiden voyage, our platform is designed to inspire and
+                        assist you at every turn.
+                    </p>
+                    <a href="#/about_us" class="know-more-btn">
+                        Know More
+                        <div class="arrow-container">
+                            <div class="arrow-tail"></div>
+                            <div class="arrow-head">&gt;</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="image">
+                    <img src="../../../assets/imgs/pexels-vincent-rivaud-2265876.jpg" alt="About Us">
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="about">
+        <div class="container">
+            <h2>📍 What We Do?</h2>
+            <div class="section">
+                <div class="image">
+                    <img src="../../../assets/imgs/what-we-do-2.jpg" alt="Travel Community">
+                </div>
+                <div class="text">
+                    <ul>
+                        <li><strong> ✔ Curated Travel Experiences </strong> <span> – Discover the best travel
+                                destinations, handpicked for you</span></li>
+                        <li><strong> ✔ Authentic Travel Insights </strong> <span>– Get real, first-hand information
+                                about places from fellow travelers.</span></li>
+                        <li><strong> ✔ Virtual Assistance </strong> <span> – Need information before visiting? We
+                                provide detailed guides, local tips, and expert recommendations.</span></li>
+                        <li><strong> ✔ Community Building</strong><span> – We are working towards a unified travel
+                                network
+                                where travelers, local guides, and service providers can connect, collaborate, and share
+                                experiences.</span></li>
+                        <!-- todo <li><strong> ✔ Community-Driven Platform </strong> <span></span></li>
+                        <li><strong> ✔ Local & Regional Travel Guides </strong> <span></span></li>
+                        <li><strong> ✔ Connect with Travel Service Providers </strong> <span></span></li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="paralax">
+        <div class="info">
+            <h2>Why choose us ? </h2>
+            <div class="content">
+                <p>The tourism sector is rapidly embracing technology, reducing manual work. However, it's struggling to
+                    capture the attention of targeted customers. Taking this challenge seriously, we offer a separate
+                    platform for tourism enthusiasts to share their travel stories. Travelers can tag the guides they
+                    booked
+                    with us or without us. This approach is particularly beneficial for guides, helping them reach a
+                    targeted audience and grow their business. Travelers can also conveniently access information about
+                    available services remotely. Join us to explore, share, and connect!
+                </p>
+                <ul>
+                    <li>🚀 Exclusive travel tips to make your journeys unforgettable.</li>
+                    <li>🌎 A vibrant community of explorers ready to help you.</li>
+                    <li>📍 Location-specific insights to discover hidden gems.</li>
+                    <li>📢 Upcoming features like AI-powered planning, travel forums, and local service bookings!
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="vision">
+        <div class="container">
+            <h2>🚀 Our Vision</h2>
+            <div class="section">
+                <div class="text">
+                    <p>We envision an interactive travel ecosystem where travelers can share experiences, get AI-powered
+                        recommendations, and connect with local businesses.</p>
+                </div>
+                <div class="image">
+                    <img src="../../../assets/imgs/vision-3.jpg" alt="Our Vision">
+                </div>
+            </div>
+        </div>
+    </section>
+    @if (false) {
+    <div class="places-section">
+        <h2>Famous Places in India</h2>
+        <p>Discover the most iconic travel destinations in India.</p>
+
+        <div class="places-container">
+            <div class="left">
+                @for (region of regionList; track $index) {
+                <button type="button" class="region" [class.active]="selectedRegionPlaces?.state === region"
+                    (click)="selectRegion(region)">
+                    <span>{{ region }}</span>
+                </button>
+                }
+            </div>
+            <div class="right">
+                <div class="cards">
+                    @for (place of selectedRegionPlaces.places; track $index) {
+                    <div class="place-card">
+                        <div class="image-container">
+                            <img [src]="place.image" [alt]="place.name" />
+                        </div>
+                        <div class="info">
+                            <h4>{{ place.name }}</h4>
+                            <p>{{ place.description }}</p>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+
     <!-- <section>
         <div class="section1">
             <div class="main-img">
@@ -152,6 +297,8 @@
         </div> -->
     </section>
     }
+
+    <app-contact-us></app-contact-us>
 
     <!-- <section class="adventure-section">
         <div class="section-content">
@@ -440,7 +587,7 @@
     </section>
     } -->
 
-    <section>
+    <!-- <section>
         <div class="section5" id="about_us">
             <div class="content">
                 <div class="head">
@@ -490,16 +637,5 @@
                 </div>
             </div>
         </div>
-    </section>
-    <section class="paralax">
-        <div class="info">
-            <h2>Why choose us ? </h2>
-            <p>The tourism sector is rapidly embracing technology, reducing manual work. However, it's struggling to
-                capture the attention of targeted customers. Taking this challenge seriously, we offer a separate
-                platform for tourism enthusiasts to share their travel stories. Travelers can tag the guides they booked
-                with us or without us. This approach is particularly beneficial for guides, helping them reach a
-                targeted audience and grow their business. Travelers can also conveniently access information about
-                available services remotely. Join us to explore, share, and connect!</p>
-        </div>
-    </section>
+    </section> -->
 </main>

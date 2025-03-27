@@ -179,3 +179,11 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+
+p {
+    .highlight {
+        color: darkorange;
+        font-weight: 500;
+    }
+}

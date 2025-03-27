@@ -74,8 +74,6 @@
 
             .right {
                 width: 50%;
-                // background-color: #fff;
-                // border-radius: 20px;
                 overflow: hidden;
                 padding: 30px;
                 box-shadow: 0 0 2px 1px #f2f2f2;
@@ -104,14 +102,19 @@
                     }
                 }
             }
-
         }
         @media (max-width: 550px) {
+            padding: 0;
             .body{
                 flex-direction: column-reverse;
 
                 .left, .right{
                     width: 100%;
+                }
+
+                .right {
+                    padding: 30px 0px;
+                    box-shadow: none;
                 }
             }
         }

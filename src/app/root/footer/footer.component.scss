@@ -53,6 +53,7 @@ footer {
         .section2 {
             display: flex;
             gap: 80px;
+            border-top: 2px solid #525252;
 
             a {
                 cursor: pointer;
@@ -93,6 +94,7 @@ footer {
                 font-weight: 500;
                 font-size: 14px;
                 text-decoration: underline;
+                margin: 0;
             }
 
             ul {
@@ -157,10 +159,11 @@ footer {
         display: flex;
         list-style: none;
         padding: 0;
+        gap: 10px;
     }
 
     ul li {
-        margin-left: 10px;
+        // margin-left: 10px;
     }
 
     ul li a {
@@ -214,5 +217,13 @@ footer {
     /* LinkedIn */
     ul li:nth-child(2) a:before {
         background: #0077B5;
+    }
+
+    @media (max-width: 900px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-top: 2px solid #525252;
+        width: 100%;
     }
 }

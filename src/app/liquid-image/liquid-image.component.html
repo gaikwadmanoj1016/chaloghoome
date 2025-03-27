@@ -1,0 +1,19 @@
+<div #wrapper class="image-wrapper" 
+     (mouseenter)="hover(true)" 
+     (mouseleave)="hover(false)">
+     <img src="../../assets/imgs/pexels-pixabay-531602.jpg" alt="Liquid Effect" />
+
+  <svg style="position: absolute; width: 0; height: 0;">
+    <filter id="liquid">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="3" result="turbulence"/>
+      <feDisplacementMap 
+        #displacement 
+        in2="turbulence" 
+        in="SourceGraphic" 
+        scale="0" 
+        xChannelSelector="R" 
+        yChannelSelector="G" />
+      <feGaussianBlur stdDeviation="1" />
+    </filter>
+  </svg>
+</div>

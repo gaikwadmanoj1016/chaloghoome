@@ -1,29 +1,72 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import { ApiService } from '../../services/api.service';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { NgClass, NgFor } from '@angular/common';
+import { ContactUsComponent } from "../contact-us/contact-us.component";
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [ReactiveFormsModule, SharedModule, MatIconModule, FormsModule, RouterModule, NgClass, NgFor, SharedModule],
+  imports: [SharedModule, MatIconModule, RouterModule, NgClass, NgFor, SharedModule, ContactUsComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
 export class LandingPageComponent implements OnInit, AfterViewInit {
-  // @ViewChild('.section2', { static: true }) section!: ElementRef;
-  // @ViewChild('.head h2', { static: true }) heading!: ElementRef;
-  // @ViewChild('.see-all-btn', { static: true }) seeAllBtn!: ElementRef;
-  // @ViewChildren('app-place-card') cards!: QueryList<ElementRef>;
-
+  @ViewChildren('counter') counters!: QueryList<ElementRef>;
+  placesData = [
+    {
+      state: "Maharashtra",
+      places: [
+        {
+          name: "Gateway of India",
+          image: "../../../assets/imgs/image-placeholder.jpg",
+          description: "A historical monument overlooking the Arabian Sea in Mumbai."
+        },
+        {
+          name: "Ajanta & Ellora Caves",
+          image: "../../../assets/imgs/image-placeholder.jpg",
+          description: "Ancient rock-cut caves with beautiful paintings and sculptures."
+        }
+      ]
+    },
+    {
+      state: "Karnataka",
+      places: [
+        {
+          name: "Mysore Palace",
+          image: "../../../assets/imgs/image-placeholder.jpg",
+          description: "A grand royal residence showcasing Indo-Saracenic architecture."
+        },
+        {
+          name: "Hampi",
+          image: "../../../assets/imgs/image-placeholder.jpg",
+          description: "A UNESCO World Heritage Site with magnificent ruins and temples."
+        }
+      ]
+    },
+    {
+      state: "Rajasthan",
+      places: [
+        {
+          name: "Jaipur - Pink City",
+          image: "../../../assets/imgs/image-placeholder.jpg",
+          description: "Famous for its heritage sites, including Hawa Mahal and Amber Fort."
+        },
+        {
+          name: "Jaisalmer Fort",
+          image: "../../../assets/imgs/image-placeholder.jpg",
+          description: "A golden sandstone fort located in the Thar Desert."
+        }
+      ]
+    }
+  ];
   scrollToDivId: string | null = '';
   sections: any[] = [];
+  regionList: string[] = [];
+  selectedRegionPlaces: any = {};
   // planets = [
   //   {
   //     id: 1,
@@ -87,17 +130,12 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
         this.commonService.scrollToTop();
       }
     });
-
+    this.mapIndiaSection();
     this.getSections();
   }
-  ngAfterViewInit() {
-    // const timeline = gsap.timeline({ delay: 0.3 });
 
-    // timeline
-    //   .to(this.section.nativeElement, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' })
-    //   .to(this.heading.nativeElement, { opacity: 1, x: 0, duration: 1, ease: 'power2.out' }, "-=0.8")
-    //   .to(this.seeAllBtn.nativeElement, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, "-=0.6")
-    //   .to(this.cards.toArray(), { opacity: 1, y: 0, stagger: 0.2, duration: 1, ease: 'power2.out' }, "-=0.4");
+  ngAfterViewInit() {
+    this.animateCounters();
   }
 
   private getSections() {
@@ -129,28 +167,33 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
           section.description = "Explore the world’s most breathtaking destinations, handpicked for adventurous travelers.";
           section.class = "section-new";
           section.isBackgroundVideo = true;
-          section.backgroundVideoSource = "../../../assets/videos/2711092-uhd_3840_2160_24fps.mp4";
+          section.backgroundVideoSource = "../../../assets/videos/253436_tiny.mp4";
         } else if (section.sectionId === 'wonders_of_the_world') {
           section.class = "galactic-wonders";
           section.description = "Embark on an adventure like never before! Discover hidden gems, breathtaking landscapes, and stories waiting to be told";
           section.isBackgroundVideo = true;
-          section.backgroundVideoSource = "https://cdn.pixabay.com/video/2024/06/07/215697_large.mp4";
+          section.backgroundVideoSource = "../../../assets/videos/wonders.mp4";
         } else {
           // section.background = "linear-gradient(to right, rgba(0, 119, 182, 0.8), rgba(244, 162, 97, 0.8)), url("+section.posts[0].imageUrl || section.posts[0].imageUrl+") center/cover no-repeat";
           section.description = "Explore breathtaking destinations, immerse yourself in cultures, and create memories that last a lifetime.";
           section.class = "adventure-section";
         }
+      };
+      if (!this.commonService.sections.find(item => item.sectionId === section.sectionId)) {
+        this.commonService.sections.push({
+          sectionId: section.sectionId,
+          sectionName: section.sectionName
+        });
       }
-      this.commonService.sections.push({
-        "sectionName": section.sectionName,
-        "sectionId": section.sectionId
-      });
     }
   }
+  mapIndiaSection() {
+    this.regionList = this.placesData.map(item => item.state);
+  }
 
-  // redirectWithParams(path: string, query: {}) {
-  //   this.commonService.navigateToQueryParams(path, query);
-  // }
+  public selectRegion(region: string) {
+    this.selectedRegionPlaces = this.placesData.find(item => item.state === region);
+  }
 
   add3DEffect(event: any) {
     event.currentTarget.style.transform = "rotateY(10deg) rotateX(10deg) scale(1.05)";
@@ -166,5 +209,27 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
 
   public navigateTo(section: any) {
     this.commonService.navigateTo('section-detail/' + section.id);
+  }
+
+
+  
+  animateCounters() {
+    this.counters.forEach((counter: ElementRef) => {
+      let count = 0;
+      const target = Number(counter.nativeElement.getAttribute('data-count'));
+      const increment = target / 100;
+      
+      const updateCount = () => {
+        count += increment;
+        if (count < target) {
+          counter.nativeElement.textContent = Math.floor(count);
+          requestAnimationFrame(updateCount);
+        } else {
+          counter.nativeElement.textContent = target;
+        }
+      };
+
+      updateCount();
+    });
   }
 }

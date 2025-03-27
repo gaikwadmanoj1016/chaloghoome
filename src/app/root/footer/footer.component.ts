@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,4 +12,9 @@ import { RouterModule } from '@angular/router';
 })
 export class FooterComponent {
 
+  constructor(public commonService: CommonService) {}
+  
+  scrollTo(sectionId: string) {
+    this.commonService.scrollToDiv(sectionId);
+  }
 }

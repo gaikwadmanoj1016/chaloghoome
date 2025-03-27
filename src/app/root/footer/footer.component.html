@@ -10,9 +10,17 @@
                 <h4>Important Links</h4>
                 <ul>
                     <!-- <li><a (click)="navigateTo('/')">Travel Stories</a></li> -->
-                    <li><a routerLink="home" [queryParams]="{section: 'wonders_of_world'}">Hidden Gems</a></li>
+                    @for (section of commonService.sections; track $index) {
+                    <li>
+                        <a routerLink="home" (click)="scrollTo(section.sectionId)">
+                            {{section.sectionName}}
+                        </a>
+                    </li>
+                    }
+                    <!-- <li><a routerLink="home" [queryParams]="{section: 'wonders_of_world'}">Hidden Gems</a></li>
                     <li><a routerLink="home" [queryParams]="{section: 'hidden_gems'}">Wonders of the World</a></li>
-                    <li><a routerLink="home" [queryParams]="{section: 'most_visited_places'}">Most Visited Places</a></li>
+                    <li><a routerLink="home" [queryParams]="{section: 'most_visited_places'}">Most Visited Places</a>
+                    </li> -->
                 </ul>
             </div>
             <div class="right">
@@ -23,7 +31,7 @@
                 </ul>
             </div>
         </div>
-        <div class="section3"></div>
+        <!-- <div class="section3"></div> -->
         <div class="section4">
             <h4>Our Social Media Links</h4>
             <!-- <div class="social-media-links">

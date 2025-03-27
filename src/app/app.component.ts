@@ -5,6 +5,7 @@ import { CommonService } from './services/common.service';
 import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './root/header/header.component';
 import { FooterComponent } from './root/footer/footer.component';
+import { ApiService } from './services/api.service';
 
 interface UserInterface {
   id: number,
@@ -29,16 +30,35 @@ export class AppComponent implements OnInit, OnDestroy {
 
   user = this.users()[1];
   profileModal: boolean = false;
-  constructor(private commonService: CommonService) { }
+  constructor(private commonService: CommonService, private apiService: ApiService) { }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 50;
   }
   ngOnInit(): void {
-    
+    this.getSectionList();
   }
 
+  private getSectionList() {
+    this.apiService.getSectionWithPosts().subscribe((response: any) => {
+      if (response.result) {
+        response.data.sort((a: any, b: any) => a.order - b.order);
+        this.commonService.sections = response.data.map((item: any) => {
+          item.sectionId = item.sectionName.toLowerCase().split(' ').join('_');
+          if (!this.commonService.sections.find(element => element.sectionId === item.sectionId)) {
+            return {
+              "sectionName": item.sectionName,
+              "sectionId": item.sectionId
+            }
+          }
+          return undefined;
+        });
+      } else {
+        console.error(response.message || "something went wrong");
+      }
+    })
+  }
   public scrollTo(path: string) {
     this.commonService.navigateToQueryParams('home', { section: path })
   }
