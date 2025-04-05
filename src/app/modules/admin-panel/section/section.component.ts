@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SharedModule } from '../../../shared/shared.module';
 import { CommonService } from '../../../services/common.service';
-import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgClass, NgFor } from '@angular/common';
 import { ApiService } from '../../../services/api.service';
 
@@ -230,11 +230,11 @@ export class SectionComponent implements OnInit {
   async onSubmit(): Promise<void> {
     if (this.postForm.valid) {
       console.log('Form submitted:', this.postForm.value);
-      
+
       try {
         // Create the formData (await compressing image if available)
         const formData = await this.createFormData();
-  
+
         // Now, use the formData to send to the backend
         this.apiService.savePost(formData).subscribe((response: any) => {
           if (response.result) {
@@ -251,13 +251,13 @@ export class SectionComponent implements OnInit {
       alert("Form is not valid");
     }
   }
-  
+
   createFormData(): Promise<FormData> {
     return new Promise(async (resolve, reject) => {
       try {
         const formData = new FormData();
         const values = this.postForm.value;
-  
+
         // Loop through all form values
         Object.keys(values).forEach((key) => {
           // Handle specialities (which are arrays of objects)
@@ -284,23 +284,23 @@ export class SectionComponent implements OnInit {
             formData.append(key, values[key] || '');
           }
         });
-  
+
         // Add sectionId to formData
         formData.append('sectionId', this.sectionId.toString());
         if (this.selectedCard && Object.keys(this.selectedCard).length > 0) {
           formData.append('id', this.selectedCard.id);
         }
-  
+
         // Append both files if available
         if (this.file) {
           // Append original file
           formData.append('img', this.file);
-  
+
           // Compress the image and append as compressedImg
           const compressedFile = await this.commonService.compressImage(this.file, 0.5); // Scale to 50%
           formData.append('compressedImg', compressedFile);
         }
-  
+
         resolve(formData);
       } catch (error) {
         reject(error);

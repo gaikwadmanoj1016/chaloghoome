@@ -24,8 +24,6 @@ import { ProgressiveImageComponent } from './progressive-image/progressive-image
 import { RouterModule } from '@angular/router';
 import { HighlightsModalComponent } from './place-card/highlights-modal/highlights-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 
 @NgModule({

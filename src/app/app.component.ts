@@ -1,11 +1,11 @@
-import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit, Signal, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
+import { Component, HostListener, OnDestroy, OnInit, signal } from '@angular/core';
+import { ApiService } from './services/api.service';
 import { CommonService } from './services/common.service';
-import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './root/header/header.component';
 import { FooterComponent } from './root/footer/footer.component';
-import { ApiService } from './services/api.service';
+import { RouterOutlet } from '@angular/router';
+// import gsap from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 interface UserInterface {
   id: number,
@@ -15,10 +15,57 @@ interface UserInterface {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, SharedModule, RouterModule, HeaderComponent, FooterComponent],
+  imports: [HeaderComponent, FooterComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
+// export class AppComponent implements AfterViewInit {
+//   @ViewChild('box', { static: false }) box!: ElementRef;
+//   @ViewChild('string', { static: false }) string!: ElementRef;
+//   @ViewChild('path', { static: false }) path!: ElementRef;
+
+//   intialPath = "M 10 100 Q 250 100 490 100";
+//   finalPath = "M 10 100 Q 250 100 490 100";
+//   y: any;
+//   x: any;
+
+//   ngAfterViewInit() {
+//     gsap.registerPlugin(ScrollTrigger);
+
+//     // gsap.to(this.box.nativeElement, {
+//     //   x: 300, // Moves the box to the right
+//     //   duration: 1,
+//     //   ease: 'power2.out',
+//     //   rotate: 360,
+//     //   borderRadius: "100%",
+//     //   scrollTrigger: {
+//     //     trigger: this.box.nativeElement,
+//     //     start: 'top 50%',  // Animation starts when the box enters 80% of the viewport
+//     //     end: 'top 35%',    // Ends at 30% of the viewport
+//     //     scrub: true,       // Smooth animation with scroll
+//     //     markers: true      // Show start & end markers (Remove in production)
+//     //   }
+//     // });
+
+//   }
+//   public onMouseMove(event: any) {
+//     this.y = event.y;
+//     this.x = event.x;
+//     this.finalPath = `M 10 100 Q ${this.x} ${this.y} 490 100`;
+//     gsap.to(this.path.nativeElement, {
+//       attr: { d: this.finalPath }
+//     })
+//   }
+//   public onMouseLeave(event: any) {
+//     gsap.to(this.path.nativeElement, {
+//       attr: { d: this.intialPath },
+//       duration: 1.2,
+//       ease: "elastic.out(1,0.3)",
+//       // duration: 1.5,
+//       // ease: "elastic.out(1,5.2)"
+//     })
+//   }
+// }
 export class AppComponent implements OnInit, OnDestroy {
   isScrolled = false;
   title = 'chalo-ghoome-blogs';
@@ -30,7 +77,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   user = this.users()[1];
   profileModal: boolean = false;
-  constructor(private commonService: CommonService, private apiService: ApiService) { }
+  constructor(public commonService: CommonService, private apiService: ApiService) { }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -41,19 +88,15 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private getSectionList() {
-    this.apiService.getSectionWithPosts().subscribe((response: any) => {
+    this.apiService.getSectionsAndPostList().subscribe((response: any) => {
       if (response.result) {
         response.data.sort((a: any, b: any) => a.order - b.order);
         this.commonService.sections = response.data.map((item: any) => {
           item.sectionId = item.sectionName.toLowerCase().split(' ').join('_');
-          if (!this.commonService.sections.find(element => element.sectionId === item.sectionId)) {
-            return {
-              "sectionName": item.sectionName,
-              "sectionId": item.sectionId
-            }
-          }
-          return undefined;
+          return item;
         });
+        console.log(response.data);
+        
       } else {
         console.error(response.message || "something went wrong");
       }

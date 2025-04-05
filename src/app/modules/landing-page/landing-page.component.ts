@@ -1,21 +1,27 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import { ApiService } from '../../services/api.service';
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { ContactUsComponent } from "../contact-us/contact-us.component";
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [SharedModule, MatIconModule, RouterModule, NgClass, NgFor, SharedModule, ContactUsComponent],
+  imports: [SharedModule, MatIconModule, RouterModule, NgClass, NgFor, NgIf, SharedModule, ContactUsComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
 export class LandingPageComponent implements OnInit, AfterViewInit {
   @ViewChildren('counter') counters!: QueryList<ElementRef>;
+  @ViewChild('myVideo', { static: true }) myVideoRef!: ElementRef<HTMLVideoElement>;
+
   placesData = [
     {
       state: "Maharashtra",
@@ -72,7 +78,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   //     id: 1,
   //     name: "Neptune",
   //     description: "A deep blue gas giant with supersonic winds.",
-  //     image: "https://media.istockphoto.com/id/175569757/photo/planet-neptune-elements-of-this-image-furnished-by-nasa.jpg?s=1024x1024&w=is&k=20&c=0xlRIr86LuWOqqM89v4690oAVe3yBbrtCRq-Nq5Pvd8="
+  //     image: "https://media.istockphoto.com/id/145569757/photo/planet-neptune-elements-of-this-image-furnished-by-nasa.jpg?s=1024x1024&w=is&k=20&c=0xlRIr86LuWOqqM89v4690oAVe3yBbrtCRq-Nq5Pvd8="
   //   },
   //   {
   //     id: 2,
@@ -118,28 +124,31 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   //     image: "https://media.istockphoto.com/id/1457206081/photo/earth-planet-at-night-into-the-dark-cities-light-earth-in-deep-space-with-stars-planet-sphere.jpg?s=612x612&w=is&k=20&c=hZng_mgVgLLmPxVQIWnCZxn_sApfa88h-rResmvSL4o="
   //   }
   // ];
+  videoLoaded = signal(false);
+  videoError = signal(false);
 
   constructor(private route: ActivatedRoute, public commonService: CommonService, private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe(params => {
-      if (params && params.get("section")) {
-        this.scrollToDivId = params.get("section");
-        this.commonService.scrollToDiv(this.scrollToDivId);
-      } else {
-        this.commonService.scrollToTop();
-      }
-    });
+    // this.route.queryParamMap.subscribe(params => {
+    //   if (params && params.get("section")) {
+    //     this.scrollToDivId = params.get("section");
+    //     this.commonService.scrollToDiv(this.scrollToDivId);
+    //   } else {
+    //     this.commonService.scrollToTop();
+    //   }
+    // });
     this.mapIndiaSection();
     this.getSections();
   }
 
   ngAfterViewInit() {
     this.animateCounters();
+    this.animateUsingGSap();
   }
 
   private getSections() {
-    this.commonService.sections = [];
+    // this.commonService.sections = [];
     this.apiService.getSectionWithPosts().subscribe((response: any) => {
       if (response.result && response.data && response.data.length > 0) {
         this.sections = response.data.sort((a: any, b: any) => a.order - b.order);
@@ -147,23 +156,22 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
         if (this.sections && this.sections.length > 0) {
           this.addSomeStaticContent();
         }
-        console.log(this.sections);
       } else {
         this.sections = [];
       }
     })
   }
-  
+
   public addSomeStaticContent() {
     for (let section of this.sections) {
       section.sectionId = section.sectionName.toLowerCase().split(' ').join('_');
-      if (section.posts && section.posts.length > 0) {
-        section.posts.map((item: any) => {
+      if (section.posts.content && section.posts.content.length > 0) {
+        section.posts.content.map((item: any) => {
           item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);
           return item;
         });
         if ((section.sectionId === 'hidden_gems')) {
-          section.background = "linear-gradient(to right, rgba(0, 119, 182, 0.8), rgba(244, 162, 97, 0.8)), url('../../../assets/imgs/hidden-gems/faroe-islands-2.jpg') center/cover no-repeat";
+          // section.background = "linear-gradient(to right, rgba(0, 119, 182, 0.8), rgba(244, 162, 97, 0.8)), url('../../../assets/imgs/hidden-gems/faroe-islands-2.jpg') center/cover no-repeat";
           section.description = "Explore the world’s most breathtaking destinations, handpicked for adventurous travelers.";
           section.class = "section-new";
           section.isBackgroundVideo = true;
@@ -179,12 +187,12 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
           section.class = "adventure-section";
         }
       };
-      if (!this.commonService.sections.find(item => item.sectionId === section.sectionId)) {
-        this.commonService.sections.push({
-          sectionId: section.sectionId,
-          sectionName: section.sectionName
-        });
-      }
+      // if (!this.commonService.sections.find(item => item.sectionId === section.sectionId)) {
+      //   this.commonService.sections.push({
+      //     sectionId: section.sectionId,
+      //     sectionName: section.sectionName
+      //   });
+      // }
     }
   }
   mapIndiaSection() {
@@ -212,13 +220,13 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   }
 
 
-  
+
   animateCounters() {
     this.counters.forEach((counter: ElementRef) => {
       let count = 0;
       const target = Number(counter.nativeElement.getAttribute('data-count'));
       const increment = target / 100;
-      
+
       const updateCount = () => {
         count += increment;
         if (count < target) {
@@ -232,4 +240,139 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
       updateCount();
     });
   }
+
+  animateUsingGSap() {
+    // for hero section
+    this.heroAnimation();
+    this.aboutAnimation();
+  }
+
+  private heroAnimation() {
+    const tl = gsap.timeline({ defaults: { duration: 1, ease: "power2.out" }, delay: 1.5 });
+
+    tl.from(".hero-container h1", { y: 100, opacity: 0 })
+      .from(".hero-container h2", { y: 100, opacity: 0 }, "-=0.5")
+      .from(".hero-container p", { y: 100, opacity: 0 }, "-=0.5")
+      .from(".hero-btn", { y: 100, opacity: 0 }, "-=0.5");
+
+    gsap.to(".hero-section", {
+      scale: 0.5,
+      top: 0,
+      borderRadius: 100,
+      scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom -30%",
+        scrub: 2,
+        pin: true,
+      }
+    });
+  }
+
+  private aboutAnimation() {
+    // gsap.from(".image-on-right .image", {
+    //   x: 100,
+    //   opacity: 0,
+    //   duration: 1,
+    //   ease: "power3.out",
+    //   scrollTrigger: {
+    //     trigger: ".image-on-right",
+    //     start: "top 50%",
+    //     toggleActions: "play none none reverse"
+    //   },
+    // });
+
+    // gsap.from(".image-on-right .text p", {
+    //   opacity: 0,
+    //   x: -100,
+    //   duration: 0.6,
+    //   ease: "power2.out",
+    //   stagger: 0.2,
+    //   scrollTrigger: {
+    //     trigger: ".image-on-right",
+    //     start: "top 50%",
+    //     toggleActions: "play none none reverse"
+    //   },
+    // });
+
+    // gsap.from(".explore-about", {
+    //   opacity: 0,
+    //   scale: 0.8,
+    //   duration: 0.5,
+    //   delay: 0.3,
+    //   ease: "back.out(1.7)",
+    //   scrollTrigger: {
+    //     trigger: ".image-on-right",
+    //     start: "top 40%",
+    //     toggleActions: "play none none reverse"
+    //   },
+    // });
+    document.querySelectorAll(".section").forEach((section) => {
+      const text = section.querySelector(".text");
+      const image = section.querySelector(".image");
+      const button = section.querySelector(".explore-about");
+
+      const isImageOnRight = section.classList.contains("image-on-right");
+      console.log(isImageOnRight, section.classList);
+      
+      if (text) {
+        gsap.from(text.querySelectorAll("p"), {
+          scrollTrigger: {
+            trigger: section,
+            start: "top 60%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 0,
+          x: isImageOnRight ? -100 : 100,
+          duration: 0.6,
+          ease: "power2.out",
+          stagger: 0.2,
+        });
+        gsap.from(text.querySelectorAll("li"), {
+          scrollTrigger: {
+            trigger: section,
+            start: "top 60%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 0,
+          x: isImageOnRight ? -100 : 100,
+          duration: 0.6,
+          ease: "power2.out",
+          stagger: 0.2,
+        });
+      }
+
+      gsap.from(image, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 60%",
+          toggleActions: "play none none reverse",
+        },
+        opacity: 0,
+        x: isImageOnRight ? 100 : -100,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      if (button) {
+        gsap.from(button, {
+          scrollTrigger: {
+            trigger: section,
+            start: "top 55%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 0,
+          scale: 0.8,
+          duration: 0.5,
+          delay: 0.3,
+          ease: "back.out(1.7)",
+        });
+      }
+    });
+  }
+
+  getStars(rating: number): number[] {
+    return Array(5).fill(rating).map((_, i) => i);
+  }
+  
 }

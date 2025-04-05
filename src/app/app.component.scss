@@ -1,0 +1,18 @@
+.spacer {
+    height: 100vh;
+    /* Creates scrolling space */
+}
+router-outlet {
+    position: relative;
+    top: 50px;
+}
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}

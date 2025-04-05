@@ -4,16 +4,20 @@
     [srcSet]="'../../../assets/imgs/pexels-pixabay-257092.webp'"
     [altText]="'chalo ghoome poster'"
 ></app-progressive-image> -->
+
 <main>
     <section class="hero-section">
         <div class="background">
-            <video autoplay loop muted>
-                <source src="../../../assets/videos/24746-344986280_tiny.mp4" type="video/mp4">
+
+            <video autoplay muted playsinline loop>
+                <source #myVideo
+                    src="https://raw.githubusercontent.com/gaikwadmanoj1016/Assets/refs/heads/main/6981411-hd_1920_1080_25fps.mp4"
+                    type="video/mp4">
             </video>
         </div>
 
         <div class="hero-container">
-            <h1> ✈️ <span class="headline">Travel Smarter,</span></h1>
+            <h1> 🌍 <span class="headline">Travel Smarter,</span></h1>
             <h2 class="headline small">Explore Better with Chalo Ghoome!</h2>
             <p>Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and travelers. Our
                 platform serves as a hub where tourists can easily access a wealth of information about tour guides,
@@ -21,7 +25,7 @@
                 offerings directly to interested travelers, facilitating a direct and transparent exchange of
                 information...</p>
         </div>
-        <button class="explore-btn" style="--i:#FF9966;--j:#FF5E62">
+        <button class="explore-btn hero-btn" style="--i:#FF9966;--j:#FF5E62" (click)="commonService.scrollToDiv('about')">
             <span class="icon">
                 <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
@@ -29,28 +33,47 @@
             </span>
             <span class="title">Explore</span>
         </button>
-        <!-- <li style="--i:#a955ff;--j:#ea51ff">
-            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+        <!-- <button class="explore-btn hero-btn" style="--i:#a955ff;--j:#ea51ff">
+            <span class="icon">
+                <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
+                </svg>
+            </span>
             <span class="title">Home</span>
-          </li>
-          <li style="--i:#56CCF2;--j:#2F80ED">
-            <span class="icon"><ion-icon name="videocam-outline"></ion-icon></span>
+        </button>
+        <button class="explore-btn hero-btn" style="--i:#56CCF2;--j:#2F80ED">
+            <span class="icon">
+                <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
+                </svg>
+            </span>
             <span class="title">Video</span>
-          </li>
-          <li style="--i:#FF9966;--j:#FF5E62">
-            <span class="icon"><ion-icon name="camera-outline"></ion-icon></span>
+        </button>
+        <button class="explore-btn hero-btn" style="--i:#FF9966;--j:#FF5E62">
+            <span class="icon">
+                <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
+                </svg>
+            </span>
             <span class="title">Photo</span>
-          </li>
-           <li style="--i:#80FF72;--j:#7EE8FA">
-            <span class="icon"><ion-icon name="share-social-outline"></ion-icon></span>
+        </button>
+        <button class="explore-btn hero-btn" style="--i:#80FF72;--j:#7EE8FA">
+            <span class="icon">
+                <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
+                </svg>
+            </span>
             <span class="title">Share</span>
-          </li>
-           <li style="--i:#ffa9c6;--j:#f434e2">
-            <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
+        </button>
+        <button class="explore-btn hero-btn" style="--i:#ffa9c6;--j:#f434e2">
+            <span class="icon">
+                <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
+                </svg>
+            </span>
             <span class="title">Like</span>
-          </li> -->
+        </button> -->
     </section>
-
     <!-- todo
     <section>
         <div class="stats-section">
@@ -70,13 +93,12 @@
                 </div>
             </div>
         </div>
-    </section>
--->
+    </section> -->
 
-    <section class="about">
+    <section id="about" class="about next-section">
         <div class="container">
             <h2>✨ About Us – Uniting Travelers & Travel Experts</h2>
-            <div class="section">
+            <div class="section image-on-right">
                 <div class="text">
                     <p>We are on a mission to revolutionize the travel experience by creating a platform where
                         travelers, explorers, and service providers connect seamlessly.</p>
@@ -86,25 +108,27 @@
                         globetrotter or setting out on your maiden voyage, our platform is designed to inspire and
                         assist you at every turn.
                     </p>
-                    <a href="#/about_us" class="know-more-btn">
+                    <!-- <a href="#/about_us" class="know-more-btn">
                         Know More
                         <div class="arrow-container">
                             <div class="arrow-tail"></div>
                             <div class="arrow-head">&gt;</div>
                         </div>
-                    </a>
+                    </a> -->
+                    <button class="explore-btn explore-about" style="--i:#FF9966;--j:#FF5E62">
+                        <span class="title">Explore</span>
+                    </button>
                 </div>
                 <div class="image">
                     <img src="../../../assets/imgs/pexels-vincent-rivaud-2265876.jpg" alt="About Us">
                 </div>
             </div>
-
         </div>
     </section>
-    <section class="about">
+    <section class="whatwedo">
         <div class="container">
             <h2>📍 What We Do?</h2>
-            <div class="section">
+            <div class="section image-on-left">
                 <div class="image">
                     <img src="../../../assets/imgs/what-we-do-2.jpg" alt="Travel Community">
                 </div>
@@ -150,11 +174,10 @@
             </div>
         </div>
     </section>
-
     <section class="vision">
         <div class="container">
             <h2>🚀 Our Vision</h2>
-            <div class="section">
+            <div class="section image-on-right">
                 <div class="text">
                     <p>We envision an interactive travel ecosystem where travelers can share experiences, get AI-powered
                         recommendations, and connect with local businesses.</p>
@@ -169,7 +192,6 @@
     <div class="places-section">
         <h2>Famous Places in India</h2>
         <p>Discover the most iconic travel destinations in India.</p>
-
         <div class="places-container">
             <div class="left">
                 @for (region of regionList; track $index) {
@@ -198,45 +220,6 @@
     </div>
     }
 
-
-    <!-- <section>
-        <div class="section1">
-            <div class="main-img">
-                <app-progressive-image 
-                    [smallImage]="'../../../assets/imgs/pexels-pixabay-257092-small.jpg'"
-                    [image]="'../../../assets/imgs/pexels-pixabay-257092.jpg'"
-                    [srcSet]="'../../../assets/imgs/pexels-pixabay-257092.webp'"
-                    [altText]="'chalo ghoome poster'"
-                ></app-progressive-image>
-                <img src="../../../assets/imgs/pexels-pixabay-257092-small.jpg" alt="chalo ghoome hero image"
-                    srcSet="../../../assets/imgs/pexels-pixabay-257092.webp">
-            </div>
-            <div class="context">
-                <h1>Travel <span>Smarter,</span></h1>
-                <h1>Explore Better with Chalo Ghoome!</h1>
-                <p>Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and travelers. Our
-                    platform serves as a hub where tourists can easily access a wealth of information about tour guides,
-                    their services, and available packages. Conversely, tour guides can efficiently showcase their
-                    offerings directly to interested travelers, facilitating a direct and transparent exchange of
-                    information.</p>
-                <button type="button" class="btn btn-outline-primary" routerLink="home"
-                    [queryParams]="{section: 'contact_us'}">Explore</button>
-            </div>
-        </div>
-    </section> -->
-    <!-- <section class="hero-section">
-        <div class="content">
-            <h1>Travel <span>Smarter,</span></h1>
-            <h1>Explore Better with Chalo Ghoome!</h1>
-            <p>
-                Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and travelers. Our
-                platform serves as a hub where tourists can easily access a wealth of information about tour guides,
-                their services, and available packages.
-            </p>
-            <button class="btn explore-btn" routerLink="home" [queryParams]="{section: 'contact_us'}">Explore</button>
-        </div>
-    </section> -->
-
     @for (section of sections; track $index) {
     <section [id]="section?.sectionId" [class]="section?.class" [style.background]="section?.background">
         @if (section?.isBackgroundVideo) {
@@ -253,7 +236,7 @@
         }
         <div class="travel-card-container"
             [ngClass]="section?.sectionStyle === 'grid' ? 'grid-container' : 'flex-container'">
-            @for (post of section?.posts; track $index) {
+            @for (post of section?.posts?.content; track $index) {
             <!--  (mouseover)="add3DEffect($event)" (mouseleave)="remove3DEffect($event)" -->
             <div class="travel-card" [attr.aria-labelledby]="post.summary" [title]="post.postName">
                 <!-- <img [src]="post.imageUrl" [alt]="post.title" class="travel-image"> -->

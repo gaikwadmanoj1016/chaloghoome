@@ -10,16 +10,20 @@ import { NgStyle } from '@angular/common';
 
 
 export interface PlaceDetails {
+  originalThumbnailImg: string | undefined;
   name: string;
   area: string;
   yearEstablished: string;
   postName: string;
   summary: string;
+  location: string;
   history: string;
   uniqueFeature: string;
   bestTimeToVisit: string;
   famousFor: string;
   howToGo: string;
+  routes: string;
+  thumbnailImg: string;
   otherFeatures: string[];
   highlights: Highlight[];
   travelGuide: TravelGuide[];
@@ -33,6 +37,7 @@ export interface Speciality {
 }
 
 export interface Highlight {
+  isThumbnail: boolean;
   imagePath: string;
   compressedImagePath: string;
   title: string;
@@ -58,6 +63,7 @@ export class PlaceDetailsComponent implements OnInit, AfterViewInit, OnDestroy{
   postId: any;
   currentIndex = 0;
   autoSlideInterval: any;
+  
   constructor(
     private dialog: MatDialog, 
     private route: ActivatedRoute, 
@@ -66,12 +72,6 @@ export class PlaceDetailsComponent implements OnInit, AfterViewInit, OnDestroy{
   ) { }
 
   ngOnInit(): void {
-    // this.route.queryParams.subscribe((param: any) => {
-    //   if (param && param['placeId']) {
-    //     this.placeId = param['placeId'];
-    //     this.getPlaceDetails();
-    //   }
-    // })
     this.route.params.subscribe((param: any) => {
       if (param && param['postId']) {
         this.postId = param['postId'];

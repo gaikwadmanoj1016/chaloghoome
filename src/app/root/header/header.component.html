@@ -1,7 +1,7 @@
 <header>
     @if (showNav()) {
     <nav #navbar class="navbar navbar-expand-lg navbar-light" [class.shadow]="isScrolled || isMobileView">
-        <div class="custom-container" [class.bgColor]="addClass()">
+        <div class="custom-container bgColor">
             <a class="navbar-brand" href="javascript:void(0)" (click)="navigateTo('home')">
                 <img loading="lazy" src="../assets/icons/chalo-ghoome-title-logo.png" alt="Chalo Ghoome logo"
                     class="image1">
@@ -14,7 +14,7 @@
             <!-- <div class="dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Featured</a>
                 <ul class="dropdown-menu">
-                    @for (section of commonService.sections; track $index) {
+                    @for (section of sections; track $index) {
                     <li>
                         <a class="dropdown-item" routerLink="home" (click)="scrollTo(section.sectionId)">
                             {{section.sectionName}}
@@ -25,12 +25,14 @@
             </div> -->
             <div class="navbar-wrapper inline-sections">
                 <ul class="custom-navbar-nav">
-                    @for (section of commonService.sections; track $index) {
-                    <li>
-                        <a class="dropdown-item" routerLink="home" (click)="scrollTo(section.sectionId)">
-                            {{section.sectionName}}
-                        </a>
-                    </li>
+                    @if (sections && sections.length > 0) {
+                        @for (section of sections; track $index) {
+                            <li>
+                                <a class="dropdown-item" routerLink="home" (click)="scrollTo(section.sectionId)">
+                                    {{section?.sectionName}}
+                                </a>
+                            </li>
+                        }
                     }
                 </ul>
             </div>
@@ -50,10 +52,10 @@
                         <li class="nav-item nav-featured">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Featured</a>
                             <ul class="dropdown-menu">
-                                @for (section of commonService.sections; track $index) {
+                                @for (section of sections; track $index) {
                                 <li>
                                     <a class="dropdown-item" routerLink="home" (click)="scrollTo(section.sectionId)">
-                                        {{section.sectionName}}
+                                        {{section?.sectionName}}
                                     </a>
                                 </li>
                                 }

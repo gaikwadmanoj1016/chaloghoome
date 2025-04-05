@@ -162,7 +162,7 @@ export class CommonService {
               } else {
                 reject('Compression failed.');
               }
-            }, file.type, 0.7); // The third parameter is the quality (0.7 here; adjust if needed)
+            }, file.type, 0.5); // The third parameter is the quality (0.7 here; adjust if needed)
           }
         };
         img.onerror = (error) => reject(error);

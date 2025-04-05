@@ -1,4 +1,5 @@
 $inline-padding: 25px;
+$header-inline-padding: 40px;
 $right-border: 2px;
 
 header {
@@ -26,8 +27,8 @@ header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 5px 40px;
-            background: rgba(53, 53, 53, 0.9);
+            padding: 5px $header-inline-padding;
+            background: rgb(0 0 0 / 40%);
 
             .navbar-brand {
                 background-color: white;
@@ -78,7 +79,7 @@ header {
                 }
             }
 
-            @media (max-width: 786px) {
+            @media (max-width: 990px) {
                 .navbar-brand {
                     width: 40px;
                     padding: 5px 5px 8px 5px;
@@ -261,6 +262,7 @@ header {
 
         .bgColor {
             background: transparent;
+            // background: rgb(0 0 0 / 40%);
         }
 
         &.shadow {
@@ -274,11 +276,8 @@ header {
                 border-radius: 100px;
                 backdrop-filter: blur(20px);
                 box-shadow: 0 0 20px hsla(var(--hue), 100%, 50%, 0.3);
-                background: rgba(0, 0, 0, 0.4);
+                background: rgb(0 0 0 / 40%);
                 border: 1px solid #9c9c9c;
-
-                // border-radius: 100px;
-                // box-shadow: 0 0 20px 0 hsla(0, 0%, 100%, .1);
             }
 
             .right {

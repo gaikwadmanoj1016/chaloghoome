@@ -48,7 +48,6 @@
                     <th>Section Name</th>
                     <th>Order</th>
                     <th>Section Style</th>
-                    <th>Posts</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -61,7 +60,6 @@
                     </td>
                     <td>{{ section.order }}</td>
                     <td>{{ section.sectionStyle }}</td>
-                    <td>{{ section.posts.length }}</td>
                     <td>
                         <button (click)="editSection(section)">Edit</button>
                         <button (click)="deleteSection(section.id)">Delete</button>

@@ -1,0 +1,276 @@
+<!-- Hero Section -->
+<main>
+
+    <header class="hero"
+        [style.background-image]="'url('+commonService.appendAssetUrl(placeDetails?.originalThumbnailImg || '')+')'">
+        <div class="hero-content">
+            <img class="main-hero-image" [src]="commonService.appendAssetUrl(placeDetails?.originalThumbnailImg || '')"
+                alt="Hero Image" />
+            <!-- <h1>{{placeDetails?.postName}}</h1> -->
+            <!-- <p>Your ultimate guide to one of the world's most famous landmarks</p> -->
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2>About {{placeDetails?.postName}}</h2>
+            <!-- <p>The <strong>Sydney Opera House</strong>, a UNESCO World Heritage Site, is a globally recognized
+                architectural wonder and a premier destination for arts and culture lovers. Designed by the visionary
+                <strong>Jørn Utzon</strong>, this masterpiece is an embodiment of modern expressionist architecture.
+            </p> -->
+            <p>{{placeDetails?.summary}}</p>
+            <ul>
+                <li><strong>Location:</strong> {{placeDetails?.location}}</li>
+                <li><strong>Opened:</strong> </li>
+                <li><strong>Annual Visitors:</strong> </li>
+                <li><strong>Famous For:</strong> {{placeDetails?.famousFor}}
+                </li>
+            </ul>
+        </div>
+        <div class="container">
+            <h2>History of {{placeDetails?.postName}}</h2>
+            <p>{{placeDetails?.history}}
+            </p>
+        </div>
+    </section>
+
+
+    <!-- Unique Features -->
+    <section class="speciality">
+        <div class="container">
+            <h2>Why Visit the {{placeDetails?.postName}} ?</h2>
+            <div class="feature-grid">
+                @for (speciality of placeDetails?.specialities; track $index) {
+                <div class="feature-card" [ariaLabel]="speciality.description">
+                    <h4>{{speciality.speciality}}
+                    </h4>
+                    <!-- <p> {{speciality.description}} </p> -->
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Guide -->
+    <section class="travel-guide">
+        <div class="container">
+            <h2>Plan Your Visit: {{placeDetails?.postName}}</h2>
+            <div class="guide-grid">
+                <div class="guide-card">
+                    <h3>Best Time to Visit </h3>
+                    <p [innerHTML]="updateFormattedText(placeDetails?.bestTimeToVisit)"></p>
+                </div>
+                <div class="guide-card">
+                    <h3> is Famous For</h3>
+                    <p [innerHTML]="updateFormattedText(placeDetails?.famousFor)"></p>
+                </div>
+                <div class="guide-card">
+                    <h3>How to Go </h3>
+                    <p [innerHTML]="updateFormattedText(placeDetails?.howToGo)"></p>
+                </div>
+                @for (travelInfo of placeDetails?.travelGuide; track $index) {
+                <div class="guide-card">
+                    <h3>{{travelInfo.title}}</h3>
+                    <p [innerHTML]="updateFormattedText(travelInfo.para)"></p>
+                </div>
+                }
+                <div class="guide-card">
+                    <h3>Top Things to Do</h3>
+                    <ul>
+                        <li>Attend a live opera or theatre show</li>
+                        <li>Take a guided backstage tour</li>
+                        <li>Dine at the world-class Bennelong Restaurant</li>
+                        <li>Enjoy a sunset cruise around Sydney Harbour</li>
+                    </ul>
+                </div>
+                <div class="guide-card">
+                    <h3>Visitor Information</h3>
+                    <p>Opening Hours: Daily from 9 AM to 5 PM</p>
+                    <p>Ticket Prices: General admission is $40, with discounts for students and seniors.</p>
+                    <p>Special Events: Check the official website for upcoming performances and exhibitions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="routes">
+        <div class="container">
+            <h2>Routes for {{placeDetails?.postName}}</h2>
+            <p [innerHTML]="updateFormattedText(placeDetails?.routes)"></p>
+        </div>
+    </section>
+
+
+    <!-- Transportation Options -->
+    <section class="transportation">
+        <div class="container">
+            <h2>Transportation Options</h2>
+            <p>Getting to the Sydney Opera House is easy with various public transport options:</p>
+            <ul>
+                <li><strong>Train:</strong> The nearest station is Circular Quay, just a short walk away.</li>
+                <li><strong>Bus:</strong> Several bus routes stop nearby, including routes 333 and 380.</li>
+                <li><strong>Ferry:</strong> Take a ferry to Circular Quay for stunning views of the harbor.</li>
+                <li><strong>Parking:</strong> Limited parking is available at the Opera House; consider public transport
+                    for convenience.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="gallery">
+        <div class="container">
+            <h2>Photo Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-grid" id="galleryGrid">
+                    @if (checkHighlightExist()) {
+                    @for (highlight of highlights; track $index) {
+                    <div class="image-wrapper" [class.lastIndex]="checkLastIndex($index)">
+                        <app-progressive-image
+                            [smallImage]="commonService.appendAssetUrl(highlight.compressedImagePath)"
+                            [image]="commonService.appendAssetUrl(highlight.imagePath)" [title]="highlight.title"
+                            [altText]="'ChaloGhoome: ' + highlight.title + ': '+ highlight.description"
+                            [aspectRatio]="false"
+                            (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))">
+                        </app-progressive-image>
+                        <!-- <img [src]="commonService.appendAssetUrl(highlight.imagePath)" alt="View of Sydney Harbour"> -->
+                        @if (checkLastIndex($index) && !loadedAllImage) {
+                        <button id="loadMore" class="load-more" (click)="loadAllImagesToGallary()">Load More
+                            Images</button>
+                        }
+                    </div>
+                    }
+                    }
+                    <!-- <img src="./assets/luobulinka-q6zrzngzy2E-unsplash.jpg" alt="Additional Image 1" class="hidden">
+                    <img src="./assets/luobulinka-q6zrzngzy2E-unsplash.jpg" alt="Additional Image 2" class="hidden"> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Fun Facts -->
+    <section class="fun-facts">
+        <div class="container">
+            <h2>Did You Know?</h2>
+            <ul>
+                <li>The Sydney Opera House roof is made of over 1 million white and matte cream tiles.</li>
+                <li>It took <strong>14 years</strong> to build, with an original budget of $7 million but final costs
+                    reaching $102 million.</li>
+                <li>More than <strong>1,500 performances</strong> are held here every year.</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- Ticket Booking Information -->
+    <section class="tickets">
+        <div class="container">
+            <h2>How to Book Tickets</h2>
+            <p>You can book tickets for shows and guided tours through:</p>
+            <ul>
+                <li><a href="https://www.sydneyoperahouse.com/">Official Website</a></li>
+                <li>On-site Box Office</li>
+                <li>Third-party Booking Platforms</li>
+            </ul>
+        </div>
+    </section>
+
+
+
+
+    <!-- Dining Options -->
+    <section class="dining-options">
+        <div class="container">
+            <h2>Dining Options</h2>
+            <ul>
+                <li><strong>Bennelong Restaurant:</strong> Fine dining with stunning views.</li>
+                <li><strong>Opera Bar:</strong> Casual dining with a vibrant atmosphere.</li>
+                <li><strong>Grab & Go:</strong> Quick snacks and beverages available at various kiosks.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Accommodation Recommendations -->
+    <section class="accommodation">
+        <div class="container">
+            <h2>Accommodation Recommendations</h2>
+            <ul>
+                <li><strong>Park Hyatt Sydney:</strong> Luxury hotel with harbor views.</li>
+                <li><strong>Sydney Harbour YHA:</strong> Budget-friendly hostel with a great location.</li>
+                <li><strong>Shangri-La Hotel:</strong> Upscale hotel with stunning city views.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Packing List -->
+    <section class="packing-list">
+        <div class="container">
+            <h2>What to Pack</h2>
+            <ul class="packing-items">
+                <li>Camera</li>
+                <li>Walking Shoes</li>
+                <li>Sunscreen</li>
+                <li>Event Tickets</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Visitors Say</h2>
+            <div class="testimonial-card">
+                <p>"An absolute must-visit! The views and performances are breathtaking!" - <strong>Emma, UK</strong>
+                </p>
+            </div>
+            <div class="testimonial-card">
+                <p>"A true architectural wonder. The guided tour was fascinating!" - <strong>David, USA</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nearby Attractions Section -->
+    <section class="nearby-attractions">
+        <div class="container">
+            <h2>Nearby Attractions</h2>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <img src="../../../../../assets/imgs/pexels-nina-uhlikova-287240.jpg" alt="Harbour Bridge">
+                    <h3>Harbour Bridge Climb</h3>
+                    <p>Experience breathtaking views of Sydney from the top of the Harbour Bridge.</p>
+                </div>
+                <div class="attraction-card">
+                    <img src="../../../../../assets/imgs/pexels-pixabay-257092.webp" alt="The Rocks">
+                    <h3>The Rocks</h3>
+                    <p>Explore historic streets filled with great food, shopping, and local culture.</p>
+                </div>
+                <div class="attraction-card">
+                    <img src="../../../../../assets/imgs/pexels-pixabay-257092.jpg" alt="Royal Botanic Garden">
+                    <h3>Royal Botanic Garden</h3>
+                    <p>A peaceful escape with beautiful greenery and scenic harbor views.</p>
+                </div>
+                <div class="attraction-card">
+                    <img src="../../../../../assets/imgs/pexels-vincent-rivaud-2265876.jpg" alt="Darling Harbour">
+                    <h3>Darling Harbour</h3>
+                    <p>Enjoy entertainment, dining, and nightlife in this vibrant waterfront area.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQs Section -->
+    <section class="faqs">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <ul>
+                <li><strong>Is the Opera House accessible for people with disabilities?</strong> Yes, there are
+                    facilities available.</li>
+                <li><strong>Are there family-friendly activities?</strong> Yes, there are guided tours suitable for
+                    families.</li>
+                <li><strong>What should I wear?</strong> Dress comfortably; smart casual is recommended for
+                    performances.</li>
+            </ul>
+        </div>
+    </section>
+</main>

@@ -14,6 +14,7 @@ export class HeaderComponent {
   // @ViewChild('nav') nav: 
   @ViewChild('navbar', { static: false }) nav!: ElementRef;
   @Input() isScrolled: boolean = false;
+  @Input() sections: any[] = [];
   isMobileView: boolean = false;
 
   constructor(private router: Router, public commonService: CommonService, private renderer: Renderer2) {

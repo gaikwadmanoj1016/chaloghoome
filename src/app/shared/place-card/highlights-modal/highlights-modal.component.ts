@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { CommonService } from '../../../services/common.service';
 import { ApiService } from '../../../services/api.service';
 
@@ -70,7 +70,7 @@ export class HighlightsModalComponent implements OnInit, OnDestroy {
       if (this.file) {
         formData.append('highlights[0].img', this.file);
         // Compress the image and append as compressedImg
-        const compressedFile = await this.commonService.compressImage(this.file, 0.5); // Scale to 50%
+        const compressedFile = await this.commonService.compressImage(this.file, 0.2); // Scale to 50%
         formData.append('highlights[0].compressedImg', compressedFile);
       }
     } else {

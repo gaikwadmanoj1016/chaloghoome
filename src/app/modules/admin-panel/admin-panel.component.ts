@@ -39,7 +39,7 @@ export class AdminPanelComponent {
   }
 
   public getSectionsList() {
-    this.apiService.getSectionsList().subscribe((response) => {
+    this.apiService.getSectionsAndPostList().subscribe((response) => {
       if (response.result) {
         this.sections = response.data;
       } else {

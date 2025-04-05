@@ -24,7 +24,17 @@ export class ApiService {
 
   //#region sections
   public getSectionsList() {
-    let API = environment.apiUrl + 'api/sections/get';
+    let API = environment.apiUrl + 'api/sections/getSectionList';
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  public getSectionsAndPostList() {
+    let API = environment.apiUrl + 'api/sections/getSectionList';
     return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
       map((data) => {
         return data;
@@ -59,7 +69,8 @@ export class ApiService {
   //#region post
   public getSectionWithPosts() {
     // let API = environment.apiUrl + 'api/posts/getSectionPost/' + sectionId;
-    let API = environment.apiUrl + 'api/sections/getSectionWithPosts';
+    // let API = environment.apiUrl + 'api/sections/getSectionWithPosts';
+    let API = environment.apiUrl + 'api/sections/getSectionWithPaginatedPosts?page=0&size=5';
     return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
       map((data) => {
         return data;

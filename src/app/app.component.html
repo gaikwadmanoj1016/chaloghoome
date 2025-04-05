@@ -1,6 +1,17 @@
 <!-- navigation.component.html -->
 <main>
-    <app-header [isScrolled]="isScrolled"></app-header>
+    <app-header [sections]="commonService.sections" [isScrolled]="isScrolled"></app-header>
     <router-outlet></router-outlet>
-    <app-footer></app-footer>
+    <app-footer [sections]="commonService.sections"></app-footer>
 </main>
+
+
+<!-- <div class="spacer"></div>
+<div #box class="box">Scroll to Animate</div>
+<div class="spacer"></div> -->
+<!-- {{y}} -->
+<!-- <div #string (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave($event)">
+    <svg width="500"  height="200">
+        <path #path d="M 10 100 Q 250 100 490 100" stroke="black" fill="transparent"/>
+    </svg>
+</div> -->
