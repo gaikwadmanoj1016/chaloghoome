@@ -1,13 +1,10 @@
 <!-- Hero Section -->
 <main>
 
-    <header class="hero"
-        [style.background-image]="'url('+commonService.appendAssetUrl(placeDetails?.originalThumbnailImg || '')+')'">
+    <header class="hero" [style.background-image]="'url('+commonService.appendAssetUrl(placeDetails?.originalThumbnailImg || '')+')'">
         <div class="hero-content">
             <img class="main-hero-image" [src]="commonService.appendAssetUrl(placeDetails?.originalThumbnailImg || '')"
                 alt="Hero Image" />
-            <!-- <h1>{{placeDetails?.postName}}</h1> -->
-            <!-- <p>Your ultimate guide to one of the world's most famous landmarks</p> -->
         </div>
     </header>
 

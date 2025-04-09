@@ -8,13 +8,14 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { ContactUsComponent } from "../contact-us/contact-us.component";
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { AboutUsComponent } from "../about-us/about-us.component";
 
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [SharedModule, MatIconModule, RouterModule, NgClass, NgFor, NgIf, SharedModule, ContactUsComponent],
+  imports: [SharedModule, MatIconModule, RouterModule, NgClass, SharedModule, ContactUsComponent, AboutUsComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
@@ -270,43 +271,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   }
 
   private aboutAnimation() {
-    // gsap.from(".image-on-right .image", {
-    //   x: 100,
-    //   opacity: 0,
-    //   duration: 1,
-    //   ease: "power3.out",
-    //   scrollTrigger: {
-    //     trigger: ".image-on-right",
-    //     start: "top 50%",
-    //     toggleActions: "play none none reverse"
-    //   },
-    // });
 
-    // gsap.from(".image-on-right .text p", {
-    //   opacity: 0,
-    //   x: -100,
-    //   duration: 0.6,
-    //   ease: "power2.out",
-    //   stagger: 0.2,
-    //   scrollTrigger: {
-    //     trigger: ".image-on-right",
-    //     start: "top 50%",
-    //     toggleActions: "play none none reverse"
-    //   },
-    // });
-
-    // gsap.from(".explore-about", {
-    //   opacity: 0,
-    //   scale: 0.8,
-    //   duration: 0.5,
-    //   delay: 0.3,
-    //   ease: "back.out(1.7)",
-    //   scrollTrigger: {
-    //     trigger: ".image-on-right",
-    //     start: "top 40%",
-    //     toggleActions: "play none none reverse"
-    //   },
-    // });
     document.querySelectorAll(".section").forEach((section) => {
       const text = section.querySelector(".text");
       const image = section.querySelector(".image");
