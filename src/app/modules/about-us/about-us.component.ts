@@ -3,6 +3,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { ActivatedRoute } from '@angular/router';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { CommonService } from '../../services/common.service';
 
 gsap.registerPlugin(ScrollTrigger);
 @Component({
@@ -15,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 export class AboutUsComponent implements OnInit, AfterViewInit {
   currentRoute: string = '';
 
-  constructor(private route: ActivatedRoute, private el: ElementRef) { }
+  constructor(private route: ActivatedRoute, private el: ElementRef, public commonService: CommonService) { }
 
   ngOnInit(): void {
     console.log(this.route.snapshot.routeConfig?.path);
