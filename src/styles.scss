@@ -2,22 +2,6 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Nunito:wght@300;400;600&family=Raleway:wght@300;400;600&display=swap');
 
-:root {
-    --day-color: #3bbdf9; // Morning (soft yellow)
-    --noon-color: #e0f7fa; // Light blue sky
-    --sunset-color: #fbc4ab; // Sunset
-    --dusk-color: #7b2cbf; // Dusk purple
-    --night-color: #0f172a; // Night sky
-
-    --primary-color: #0077b6; // Oceanic blue
-    --highlight-color: #f4a261; // Warm sunset orange
-    --bg-color: #ffffff; // Light creamy background
-    --text-color: #333; // Dark gray for readability
-    --navbar-height: 50px;
-    --negative-navbar-height: 50px;
-    --black: black;
-}
-
 // mixins.scss
 @mixin flex-center {
     display: flex;
@@ -154,7 +138,6 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
 
 p {
     .highlight {

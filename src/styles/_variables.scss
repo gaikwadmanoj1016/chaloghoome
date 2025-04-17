@@ -17,3 +17,20 @@ $navbar-height: 50px;
 
 $header-inline-padding: 40px;
 
+
+
+:root {
+    --day-color: #3bbdf9; // Morning (soft yellow)
+    --noon-color: #e0f7fa; // Light blue sky
+    --sunset-color: #fbc4ab; // Sunset
+    --dusk-color: #7b2cbf; // Dusk purple
+    --night-color: #0f172a; // Night sky
+
+    --primary-color: #0077b6; // Oceanic blue
+    --highlight-color: #f4a261; // Warm sunset orange
+    --bg-color: #ffffff; // Light creamy background
+    --text-color: #333; // Dark gray for readability
+    --navbar-height: 50px;
+    --negative-navbar-height: 50px;
+    --black: black;
+}

@@ -4,8 +4,22 @@
     <router-outlet></router-outlet>
     <app-footer [sections]="commonService.sections"></app-footer>
 </main>
-
-
+<!-- <div class="controls">
+    <button (click)="playCarousel()">Play</button>
+    <button (click)="stopCarousel()">Stop</button>
+  </div>
+  
+  <owl-carousel-o [options]="customOptions">
+    @for (card of cards; track $index) {
+        <ng-template carouselSlide>
+            <div class="card">
+                <h3>{{ card.title }}</h3>
+                <p>{{ card.content }}</p>
+            </div>
+        </ng-template>
+    }
+  </owl-carousel-o> -->
+  
 <!-- <div class="spacer"></div>
 <div #box class="box">Scroll to Animate</div>
 <div class="spacer"></div> -->
