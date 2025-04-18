@@ -1,4 +1,4 @@
-<section>
+<!-- <section>
     <div class="section6" id="contact_us">
         <div class="content">
             <div class="head">
@@ -20,7 +20,6 @@
                                 rows="5" required></textarea>
                         </div>
 
-                        <!-- cta -->
                         <div class="cta">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
@@ -47,6 +46,70 @@
                         <p>We look forward to hearing from you and assisting you with your travel needs!</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+
+<section class="contact-section" id="contact_us">
+    <div class="container">
+        <div class="contact-header">
+            <h2>Get in Touch</h2>
+            <p>We’d love to hear from you! Whether you have a question, feedback, or just want to say hello.</p>
+        </div>
+
+        <div class="contact-body">
+            <div class="contact-left">
+                <div class="info-box">
+                    <h3>Need Help?</h3>
+                    <p>Contact us via any of the methods below. Our team is always ready to guide you!</p>
+
+                    <ul class="contact-list">
+                        <li class="link">
+                            <i class="fas fa-envelope"></i> 
+                            <a href="mailto:support@chaloghoome.com">support&#64;chaloghoome.com</a></li>
+                        <li class="link">
+                            <i class="fas fa-phone"></i> 
+                            <a href="tel:+917264878403">+91 7264878403</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i> 
+                            Pandharpur, Maharashtra, India (413304)
+                        </li>
+                        <li class="link">
+                            <i class="fab fa-twitter"></i> 
+                            <a href="https://twitter.com/chaloghoome" target="_blank">chaloghoome</a>
+                        </li>
+                        <li class="link">
+                            <i class="fab fa-linkedin"></i> 
+                            <a href="https://linkedin.com/company/chaloghoome" target="_blank">/company/chaloghoome</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i> 10:00 AM – 10:00 PM
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="contact-right">
+                <form #contactForm="ngForm" (submit)="onSubmit(contactForm)">
+                    <input type="text" name="name" placeholder="Your Name" required ngModel>
+                    <input type="email" name="email" placeholder="Your Email" required ngModel>
+                    <textarea name="message" rows="5" placeholder="Your Message" required ngModel></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="contact-map">
+            <iframe src="https://www.google.com/maps?q=17.6763,75.3179&z=15&output=embed" width="100%" height="350"
+                style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div class="map-button">
+                <a href="https://www.google.com/maps?q=17.6763,75.3179" target="_blank">
+                    <button>View on Google Maps</button>
+                </a>
             </div>
         </div>
     </div>
