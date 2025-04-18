@@ -9,9 +9,10 @@ $border-color: #ddd;
 
 .crud-container {
   width: 80%;
+  padding-top: 50px;
   margin: auto;
-  min-height: calc(100vh - 236px);
-  padding: 20px 0;
+  min-height: calc(100vh - 136px);
+  // padding: 20px 0;
 }
 
 .header {

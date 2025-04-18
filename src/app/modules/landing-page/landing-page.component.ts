@@ -6,6 +6,7 @@ import { CommonService } from '../../services/common.service';
 import { ApiService } from '../../services/api.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { ContactUsComponent } from "../contact-us/contact-us.component";
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { AboutUsComponent } from "../about-us/about-us.component";
@@ -15,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [SharedModule, MatIconModule, RouterModule, NgClass, SharedModule, ContactUsComponent, AboutUsComponent],
+  imports: [SharedModule, MatIconModule, RouterModule, NgClass, CarouselModule, SharedModule, ContactUsComponent, AboutUsComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
@@ -257,8 +258,9 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
       .from(".hero-btn", { y: 100, opacity: 0 }, "-=0.5");
 
     gsap.to(".hero-section", {
-      scale: 0.5,
+      scale: 0.8,
       top: 0,
+      opacity: 0,
       borderRadius: 100,
       scrollTrigger: {
         trigger: ".hero-section",
@@ -279,7 +281,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
 
       const isImageOnRight = section.classList.contains("image-on-right");
       console.log(isImageOnRight, section.classList);
-      
+
       if (text) {
         gsap.from(text.querySelectorAll("p"), {
           scrollTrigger: {
@@ -339,5 +341,39 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   getStars(rating: number): number[] {
     return Array(5).fill(rating).map((_, i) => i);
   }
-  
+
+  customOptions: OwlOptions = {
+    loop: true,
+    margin: 30,
+    nav: false,
+    dots: true,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 2
+      },
+      1024: {
+        items: 3
+      }
+    }
+  };
+
+  playCarousel() {
+    const el = document.querySelector('.owl-carousel');
+    if (el) {
+      (el as any).dispatchEvent(new CustomEvent('play.owl.autoplay', { detail: [1000] }));
+    }
+  }
+
+  stopCarousel() {
+    const el = document.querySelector('.owl-carousel');
+    if (el) {
+      (el as any).dispatchEvent(new CustomEvent('stop.owl.autoplay'));
+    }
+  }
 }

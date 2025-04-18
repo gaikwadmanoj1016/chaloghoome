@@ -4,6 +4,7 @@ import { CommonService } from './services/common.service';
 import { HeaderComponent } from './root/header/header.component';
 import { FooterComponent } from './root/footer/footer.component';
 import { RouterOutlet } from '@angular/router';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 // import gsap from 'gsap';
 // import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -15,7 +16,7 @@ interface UserInterface {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterOutlet],
+  imports: [HeaderComponent, FooterComponent, RouterOutlet, CarouselModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -78,6 +79,10 @@ export class AppComponent implements OnInit, OnDestroy {
   user = this.users()[1];
   profileModal: boolean = false;
   constructor(public commonService: CommonService, private apiService: ApiService) { }
+  // cards = Array.from({ length: 6 }, (_, i) => ({
+  //   title: `Card ${i + 1}`,
+  //   content: `Content for card ${i + 1}`
+  // }));
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
