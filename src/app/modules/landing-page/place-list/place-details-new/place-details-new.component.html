@@ -120,8 +120,8 @@
                     @for (highlight of highlights; track $index) {
                     <div class="image-wrapper" [class.lastIndex]="checkLastIndex($index)">
                         <app-progressive-image
-                            [smallImage]="commonService.appendAssetUrl(highlight.compressedImagePath)"
-                            [image]="commonService.appendAssetUrl(highlight.imagePath)" [title]="highlight.title"
+                            [smallImage]="'../../../assets/imgs/image-placeholder.jpg'"
+                            [image]="commonService.appendAssetUrl(highlight.compressedImagePath)" [title]="highlight.title"
                             [altText]="'ChaloGhoome: ' + highlight.title + ': '+ highlight.description"
                             [aspectRatio]="false"
                             (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))">

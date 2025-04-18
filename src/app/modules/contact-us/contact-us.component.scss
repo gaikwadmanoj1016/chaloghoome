@@ -1,9 +1,15 @@
 .section6 {
-    padding: 20px;
+    // padding: 20px;
+    background: linear-gradient(45deg, #9b67fd, #ff97a1, #f7b68c);
+    padding: 80px 0px;
+    color: white;
+    
     .content {
+        width: 80%;
+        margin: auto;
         // background: #F7F7F7;
         // border-radius: 10px;
-        padding: 20px;
+        // padding: 20px;
         position: relative;
         z-index: 9;
         // box-shadow: 0 0 12px 0px #dcdcdc;
@@ -43,8 +49,8 @@
 
         .body {
             display: flex;
-            gap: 10px;
-            justify-content: space-evenly;
+            gap: 20px;
+            // justify-content: space-evenly;
             padding: 10px 0;
 
             .left {
@@ -103,12 +109,15 @@
                 }
             }
         }
+
         @media (max-width: 550px) {
             padding: 0;
-            .body{
+
+            .body {
                 flex-direction: column-reverse;
 
-                .left, .right{
+                .left,
+                .right {
                     width: 100%;
                 }
 
