@@ -52,7 +52,7 @@
 </section> -->
 
 
-<section class="contact-section" id="contact_us">
+<!-- <section class="contact-section" id="contact_us">
     <div class="container">
         <div class="contact-header">
             <h2>Get in Touch</h2>
@@ -78,12 +78,12 @@
                             Pandharpur, Maharashtra, India (413304)
                         </li>
                         <li class="link">
-                            <i class="fab fa-twitter"></i> 
-                            <a href="https://twitter.com/chaloghoome" target="_blank">chaloghoome</a>
+                            <i class="fab fa-x-twitter icon"></i> 
+                            <a href="https://www.twitter.com/chalo_ghoome" target="_blank">chaloghoome</a>
                         </li>
                         <li class="link">
-                            <i class="fab fa-linkedin"></i> 
-                            <a href="https://linkedin.com/company/chaloghoome" target="_blank">/company/chaloghoome</a>
+                            <i class="fab fa-linkedin icon"></i> 
+                            <a href="https://www.linkedin.com/company/chalo-ghoome" target="_blank">&#64;company chaloghoome</a>
                         </li>
                         <li>
                             <i class="fas fa-clock"></i> 10:00 AM – 10:00 PM
@@ -110,6 +110,47 @@
                 <a href="https://www.google.com/maps?q=17.6763,75.3179" target="_blank">
                     <button>View on Google Maps</button>
                 </a>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<section class="section6" id="contact_us">
+    <div class="content">
+        <div class="head">
+            <h2>Get in Touch</h2>
+        </div>
+        <div class="body">
+            <div class="left">
+                <div class="contact-info">
+                    <h3>Need Help?</h3>
+                    <p>Contact us via any method below. Our team is always ready to guide you!</p>
+                    <p><strong>Email:</strong> <a href="mailto:support@chaloghoome.com">support&#64;chaloghoome.com</a></p>
+                    <p><strong>Phone:</strong> <a href="tel:+917264878403">+91 7264878403</a></p>
+                    <p><strong>Address:</strong> Pandharpur, Maharashtra, India (413304)</p>
+                    <p><strong>Connect:</strong> <span class="social-icons">🐦 💼 📸 🌐</span></p>
+                    <p><strong>Hours:</strong> 10:00 AM – 10:00 PM</p>
+                    <a class="map-link" href="https://www.google.com/maps/place/17%C2%B040'34.8%22N+75%C2%B019'04.4%22E"
+                        target="_blank">📍 View on Google Map</a>
+                </div>
+            </div>
+
+            <div class="right">
+                <form #contactForm="ngForm" (submit)="onSubmit(contactForm)">
+                    <div class="custom-form-group mb-4">
+                        <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="custom-form-group mb-4">
+                        <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="custom-form-group mb-4">
+                        <textarea name="message" class="form-control" placeholder="Your Message" rows="5"
+                            required></textarea>
+                    </div>
+                    <div class="cta">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
