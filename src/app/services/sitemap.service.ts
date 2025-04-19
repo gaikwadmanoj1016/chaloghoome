@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class SitemapService {
   generateSitemap(routes: string[]): string {
-    const baseUrl = 'https://chaloghoome.com.com/#'; // Replace with your domain
+    const baseUrl = 'https://chaloghoome.com/#'; // Replace with your domain
     const urls = routes.map(
       (route) => `
     <url>

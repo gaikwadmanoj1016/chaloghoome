@@ -13,6 +13,7 @@ import { ViewPostComponent } from './modules/admin-panel/section/view-post/view-
 import { SitemapComponent } from './root/sitemap/sitemap.component';
 import { AboutUsComponent } from './modules/about-us/about-us.component';
 import { ContactUsComponent } from './modules/contact-us/contact-us.component';
+import { NotFoundComponent } from './root/not-found/not-found.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -29,6 +30,7 @@ export const routes: Routes = [
     { path: 'buddies', component: BuddiesComponent },
     { path: 'places', component: PlaceListComponent },
     { path: 'place-details', component: PlaceDetailsComponent },
-    { path: 'sitemap.xml', component: SitemapComponent },
+    // { path: 'sitemap.xml', component: SitemapComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect to login by default
+    { path: '**', component: NotFoundComponent }
 ];

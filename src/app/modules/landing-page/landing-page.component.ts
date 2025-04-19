@@ -1,10 +1,9 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import { ApiService } from '../../services/api.service';
-import { NgClass, NgFor, NgIf } from '@angular/common';
 import { ContactUsComponent } from "../contact-us/contact-us.component";
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import gsap from 'gsap';
@@ -16,7 +15,7 @@ gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [SharedModule, MatIconModule, RouterModule, NgClass, CarouselModule, SharedModule, ContactUsComponent, AboutUsComponent],
+  imports: [SharedModule, MatIconModule, RouterModule, CarouselModule, SharedModule, ContactUsComponent, AboutUsComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
@@ -128,9 +127,14 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   // ];
   videoLoaded = signal(false);
   videoError = signal(false);
+  isScrolled = false;
 
   constructor(private route: ActivatedRoute, public commonService: CommonService, private apiService: ApiService) { }
 
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    this.isScrolled = window.pageYOffset > 300;
+  }
   ngOnInit(): void {
     // this.route.queryParamMap.subscribe(params => {
     //   if (params && params.get("section")) {
@@ -260,8 +264,8 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
     gsap.to(".hero-section", {
       scale: 0.8,
       top: 0,
-      opacity: 0,
       borderRadius: 100,
+      // opacity: 0,
       scrollTrigger: {
         trigger: ".hero-section",
         start: "top top",

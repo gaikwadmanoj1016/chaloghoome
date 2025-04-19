@@ -6,9 +6,15 @@
 ></app-progressive-image> -->
 
 <main>
+    <div class="go-to-top" [class.show]="isScrolled">
+        <button type="button" class="up-btn" style="--i:#FF9966;--j:#FF5E62" (click)="commonService.scrollToTop()">
+            <span class="icon">
+                &uparrow;
+            </span>
+        </button>
+    </div>
     <section class="hero-section">
         <div class="background">
-
             <video autoplay muted playsinline loop>
                 <source #myVideo
                     src="https://raw.githubusercontent.com/gaikwadmanoj1016/Assets/refs/heads/main/6981411-hd_1920_1080_25fps.mp4"
@@ -27,12 +33,12 @@
                 information...</p>
             <button class="explore-btn hero-btn" style="--i:#FF9966;--j:#FF5E62"
                 (click)="commonService.scrollToDiv('about')">
-                <span class="icon">
+                <!-- <span class="icon">
                     <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
                     </svg>
-                </span>
+                </span> -->
                 <span class="title">Explore</span>
             </button>
         </div>
