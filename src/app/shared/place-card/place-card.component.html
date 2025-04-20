@@ -1,4 +1,4 @@
-<div class="place-card" (clickOutside)="closeContextMenu()">
+<!-- <div class="place-card" (clickOutside)="closeContextMenu()">
     <div class="place-image" (click)="navigateToPostDetails(item)">
         <app-progressive-image [smallImage]="'../../../assets/imgs/image-placeholder.jpg'" [image]="item.imageUrl"
             [altText]="item.location + ',' + item.address">
@@ -8,9 +8,19 @@
         <h3 [title]="item.postName">{{item.postName | truncate : 25 }}</h3>
         <h4 [title]="item.location">{{item.location | truncate: 25 }}</h4>
         <p [title]="item.summary">{{item.summary | truncate: 120 }}</p>
+    </div> -->
+<div class="travel-card" (clickOutside)="closeContextMenu()" [attr.aria-labelledby]="item.summary"
+    [title]="item.postName">
+    <app-progressive-image [smallImage]="'../../../assets/imgs/image-placeholder.jpg'" [image]="item.imageUrl"
+        [altText]="item.title + ',' + item.location">
+    </app-progressive-image>
+    <div class="card-overlay">
+        <h3 class="travel-title">{{item.postName}}</h3>
+        <p class="travel-location">{{item.location}}</p>
+        <button class="explore-btn" (click)="navigateToPostDetails(item)">Explore</button>
     </div>
     @if (editable) {
-    <div class="place-cta">
+    <div class="card-cta">
         <!-- Ellipsis button for context menu -->
         <button type="button" class="btn dots-btn" (click)="openContextMenu(item);">
             <img src="../../../assets/svgs/3-dots.svg" alt="options-icon">

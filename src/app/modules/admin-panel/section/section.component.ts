@@ -5,6 +5,7 @@ import { CommonService } from '../../../services/common.service';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgClass, NgFor } from '@angular/common';
 import { ApiService } from '../../../services/api.service';
+import { slugify, convertSlugToNormal } from '../../../utils/slugify';
 
 @Component({
   selector: 'app-section',
@@ -14,7 +15,7 @@ import { ApiService } from '../../../services/api.service';
   styleUrl: './section.component.scss'
 })
 export class SectionComponent implements OnInit {
-  sectionId: number = 0;
+  sectionId?: number = 0;
   list: any;
   showHidePostForm: boolean = false;
   postForm: FormGroup;
@@ -23,6 +24,8 @@ export class SectionComponent implements OnInit {
   file!: File;
   selectedCard: any;
   cardEditable: boolean = false;
+  sectionName: string = '';
+  convertSlugToNormal = convertSlugToNormal;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, public commonService: CommonService, private fb: FormBuilder, private cdref: ChangeDetectorRef) {
     // Initialize the form
@@ -32,12 +35,16 @@ export class SectionComponent implements OnInit {
       location: ['', Validators.required],
       history: [''],
       area: [''],
+      annualVisitors: [''],
       yearEstablished: [''],
       specialities: this.fb.array([]),
+      facts: this.fb.array([]),
       famousFor: [''],
       howToGo: [''],
       bestTimeToVisit: [''],
       routes: [''],
+      categories: [''],
+      tags: [''],
       travelGuide: this.fb.array([]),
       isThumbnail: [true]
     });
@@ -46,31 +53,75 @@ export class SectionComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.route.snapshot.routeConfig?.path?.includes('admin-panel'));
     this.cardEditable = this.route.snapshot.routeConfig?.path?.includes('admin-panel') || false;
-    this.sectionId = Number(this.route.snapshot.paramMap.get('sectionId'));
-    // this.list = this.commonService.wonders;
-    if (this.sectionId) {
-      this.getPostBySectionId(this.sectionId);
-    }
+    this.route.params.subscribe(params => {
+      if (params && params['sectionName']) {
+        this.sectionName = params['sectionName'];
+      } else {
+        this.sectionName = this.route.snapshot.paramMap.get('sectionName') || '';
+      }
+      this.findSectionId();
+    });
   }
+
+  public findSectionId() {
+    let tempSections = localStorage.getItem('sections');
+    console.log(tempSections, this.commonService.sections);
+
+    if (tempSections) {
+      let sections = JSON.parse(tempSections);
+      console.log(sections);
+      this.sectionId = sections.find((item: any) => item.sectionId === this.sectionName)?.id;
+    } else if (this.commonService.sections && this.commonService.sections.length > 0) {
+      let sections = this.commonService.sections;
+      console.log(sections);
+      this.sectionId = sections.find((item: any) => item.sectionId === this.sectionName)?.id;
+    }
+    this.getSectionList();
+    this.commonService.isSidebarOpen.set(false);
+  }
+  public getSectionList() {
+    console.log("inside the get section method ");
+
+    this.apiService.getSectionsAndPostList().subscribe((response: any) => {
+      if (response.result) {
+        this.commonService.sections = response.data.map((item: any) => {
+          item.sectionId = slugify(item.sectionName, '-');
+          return item;
+        });
+        console.log("section list : ", this.commonService.sections);
+
+        localStorage.setItem('sections', JSON.stringify(this.commonService.sections));
+        this.sectionId = this.commonService.sections.find((item: any) => item.sectionId === this.sectionName)?.id;
+        // this.list = this.commonService.wonders;
+        console.log("section id : ", this.sectionId);
+
+        this.getPostBySectionId(this.sectionId);
+      } else {
+        console.error(response.message || "something went wrong");
+      }
+    });
+  }
+
   navigateTo(path: string) {
     this.commonService.navigateTo(path);
   }
 
-  private getPostBySectionId(sectionId: number) {
-    this.apiService.getPostBySectionId(sectionId).subscribe((response) => {
-      if (response.result) {
-        this.section = response.data;
-
-        if (this.section && this.section.posts && this.section.posts.length > 0) {
-          this.section.posts.forEach((item: any) => {
-            item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);
-          })
+  private getPostBySectionId(sectionId?: number) {
+    if (sectionId) {
+      this.apiService.getPostBySectionId(sectionId).subscribe((response) => {
+        if (response.result) {
+          this.section = response.data;
+          if (this.section && this.section.posts && this.section.posts.length > 0) {
+            this.section.posts.forEach((item: any) => {
+              item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);
+            })
+          }
+          this.commonService.setMetaData(this.section.sectionName);
+        } else {
+          this.section = [];
         }
-        this.commonService.setMetaData(this.section.sectionName);
-      } else {
-        this.section = [];
-      }
-    })
+      })
+    }
   }
   public showHideAddPostForm() {
     this.showHidePostForm = !this.showHidePostForm;
@@ -78,7 +129,8 @@ export class SectionComponent implements OnInit {
 
   onEditCard(item: any) {
     // this.selectedCard = item;
-    this.apiService.getPostDetails(item.id).subscribe((response: any) => {
+    let query = `id=${item.id}`;
+    this.apiService.getPostDetails(query).subscribe((response: any) => {
       this.selectedCard = response.data;
       this.showHidePostForm = true;
       this.refillPostForm();
@@ -127,6 +179,19 @@ export class SectionComponent implements OnInit {
         specialitiesArray.push(specialityGroup);
       });
     }
+    const factsArray = this.postForm.get('facts') as FormArray;
+    factsArray.clear();
+
+    if (this.selectedCard.facts && Array.isArray(this.selectedCard.facts)) {
+      this.selectedCard.facts.forEach((fact: any) => {
+        const factGroup = this.fb.group({
+          fact: [fact.fact, Validators.required],
+          id: [fact.id],
+        });
+        factsArray.push(factGroup);
+      });
+    }
+
     const travelGuideArray = this.postForm.get('travelGuide') as FormArray;
     travelGuideArray.clear();
 
@@ -194,12 +259,24 @@ export class SectionComponent implements OnInit {
     this.cdref.detectChanges();
   }
 
-  // onFileSelected(event: Event, field: string): void {
-  //   const input = event.target as HTMLInputElement;
-  //   if (input?.files?.length) {
-  //     this.postForm.get(field)?.setValue(input.files);
-  //   }
-  // }
+  // Getter for facts FormArray
+  get facts(): FormArray {
+    return this.postForm.get('facts') as FormArray;
+  }
+
+  // Add a new facts group
+  addFact(): void {
+    const factGroup = this.fb.group({
+      fact: ['', Validators.required]
+    });
+    this.facts.push(factGroup);
+  }
+
+  // Remove a facts by index
+  removeFact(index: number): void {
+    this.facts.removeAt(index);
+    this.cdref.detectChanges();
+  }
 
   onFileSelected(event: Event, field: string): void {
     const input = event.target as HTMLInputElement;
@@ -228,28 +305,28 @@ export class SectionComponent implements OnInit {
     this.selectedImage = null; // Clear the selected image
   }
   async onSubmit(): Promise<void> {
-    if (this.postForm.valid) {
-      console.log('Form submitted:', this.postForm.value);
+    // if (this.postForm.valid) {
+    console.log('Form submitted:', this.postForm.value);
 
-      try {
-        // Create the formData (await compressing image if available)
-        const formData = await this.createFormData();
+    try {
+      // Create the formData (await compressing image if available)
+      const formData = await this.createFormData();
 
-        // Now, use the formData to send to the backend
-        this.apiService.savePost(formData).subscribe((response: any) => {
-          if (response.result) {
-            this.closePopup();
-            this.getPostBySectionId(this.sectionId);
-          } else {
-            // Handle failure here
-          }
-        });
-      } catch (error) {
-        console.error('Error creating form data', error);
-      }
-    } else {
-      alert("Form is not valid");
+      // Now, use the formData to send to the backend
+      this.apiService.savePost(formData).subscribe((response: any) => {
+        if (response.result) {
+          this.closePopup();
+          this.getPostBySectionId(this.sectionId);
+        } else {
+          // Handle failure here
+        }
+      });
+    } catch (error) {
+      console.error('Error creating form data', error);
     }
+    // } else {
+    //   alert("Form is not valid");
+    // }
   }
 
   createFormData(): Promise<FormData> {
@@ -270,9 +347,9 @@ export class SectionComponent implements OnInit {
                 formData.append(`specialities[${index}].id`, speciality.id);
               }
             });
-          }
-          // Handle travel guide (highlights)
-          else if (key === 'travelGuide') {
+          } else if (key === 'facts') {
+            formData.append(`facts`, values[key].map((item: any) => item.fact).join(',') || '');
+          } else if (key === 'travelGuide') {
             values[key].forEach((travelInfo: any, index: number) => {
               formData.append(`travelGuide[${index}].title`, travelInfo.title || '');
               formData.append(`travelGuide[${index}].para`, travelInfo.para || '');
@@ -280,13 +357,23 @@ export class SectionComponent implements OnInit {
                 formData.append(`travelGuide[${index}].id`, travelInfo.id);
               }
             });
+          } else if (key === 'tags') {
+            this.tags.forEach((tag: any, index: number) => {
+              formData.append(`tag[${index}].tagName`, tag || '');
+            });
+          } else if (key === 'categories') {
+            this.categories.forEach((category: any, index: number) => {
+              formData.append(`category[${index}].catName`, category || '');
+            });
           } else {
-            formData.append(key, values[key] || '');
+            formData.append(key, (typeof values[key] === 'string') ? values[key]?.trim() : values[key] || '');
           }
         });
 
         // Add sectionId to formData
-        formData.append('sectionId', this.sectionId.toString());
+        if (this.sectionId) {
+          formData.append('sectionId', this.sectionId.toString());
+        }
         if (this.selectedCard && Object.keys(this.selectedCard).length > 0) {
           formData.append('id', this.selectedCard.id);
         }
@@ -310,7 +397,73 @@ export class SectionComponent implements OnInit {
   public closeHighlightModal() {
     this.commonService.isAddHighlightModal = false;
   }
+  // Predefined suggestions
+  allCategories = ['Adventure', 'Nature', 'Heritage', 'Historical', 'Spiritual'];
+  allTags = ['Trekking', 'Temple', 'Fort', 'Hill', 'Lake', 'Monument'];
 
+  // Selected
+  categories: string[] = [];
+  tags: string[] = [];
+
+  // Filtered suggestions
+  filteredCategories: string[] = [];
+  filteredTags: string[] = [];
+
+  filterCategories() {
+    const input = this.postForm.get('categories')?.value.toLowerCase() || '';
+    this.filteredCategories = this.allCategories
+      .filter(c => c.toLowerCase().includes(input) && !this.categories.includes(c));
+  }
+
+  selectCategory(value: string) {
+    if (!this.categories.includes(value)) {
+      this.categories.push(value);
+    }
+    this.postForm.get('categories')?.setValue('');
+    this.filteredCategories = [];
+  }
+
+  addCategory(event: any) {
+    event.preventDefault();
+    const value = this.postForm.get('categories')?.value.trim();
+    if (value && !this.categories.includes(value)) {
+      this.categories.push(value);
+    }
+    this.postForm.get('categories')?.setValue('');
+    this.filteredCategories = [];
+  }
+
+  removeCategory(value: string) {
+    this.categories = this.categories.filter(c => c !== value);
+  }
+
+  filterTags() {
+    const input = this.postForm.get('tags')?.value.toLowerCase() || '';
+    this.filteredTags = this.allTags
+      .filter(t => t.toLowerCase().includes(input) && !this.tags.includes(t));
+  }
+
+  selectTag(value: string) {
+    if (!this.tags.includes(value)) {
+      this.tags.push(value);
+    }
+    this.postForm.get('tags')?.setValue('');
+    this.filteredTags = [];
+  }
+
+  addTag(event: any) {
+    event.preventDefault();
+    const value = this.postForm.get('tags')?.value.trim();
+    if (value && !this.tags.includes(value)) {
+      this.tags.push(value);
+    }
+    this.postForm.get('tags')?.setValue('');
+    this.filteredTags = [];
+  }
+
+  removeTag(value: string) {
+    this.tags = this.tags.filter(t => t !== value);
+  }
   // Example usage
   // const postDTO = {
   //   sectionId: 1,

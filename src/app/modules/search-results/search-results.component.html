@@ -1,0 +1,18 @@
+<div class="search-container">
+    <h2>Search Results for: "{{ query }}"</h2>
+
+    <div *ngIf="isLoading">Loading results...</div>
+
+    <div *ngIf="!isLoading && searchResults && searchResults.length === 0">
+        <p>No results found. Try a different keyword or filter.</p>
+    </div>
+
+    <div class="result-grid" *ngIf="!isLoading && searchResults && searchResults.length > 0">
+        <div class="card" *ngFor="let place of searchResults">
+            <img [src]="place.originalThumbnailImg || '../../../../../assets/imgs/image-placeholder.jpg'" alt="{{ place.postName }}">
+            <h3>{{ place.postName }}</h3>
+            <p>{{ place.summary | truncate: 100 }}</p>
+            <a [routerLink]="['/place', slugify(place.postName)]">View Details</a>
+        </div>
+    </div>
+</div>

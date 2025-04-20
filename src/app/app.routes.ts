@@ -14,14 +14,15 @@ import { SitemapComponent } from './root/sitemap/sitemap.component';
 import { AboutUsComponent } from './modules/about-us/about-us.component';
 import { ContactUsComponent } from './modules/contact-us/contact-us.component';
 import { NotFoundComponent } from './root/not-found/not-found.component';
+import { SearchResultsComponent } from './modules/search-results/search-results.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'admin-panel', component: AdminPanelComponent },
-    { path: 'admin-panel/section-detail/:sectionId', component: SectionComponent },
-    { path: 'section-detail/:sectionId', component: SectionComponent },
-    { path: 'section-detail/:sectionId/post/:postId', component: ViewPostComponent },
+    { path: 'admin-panel/places/:sectionName', component: SectionComponent },
+    { path: 'places/:sectionName', component: SectionComponent },
+    { path: 'place/:postName', component: ViewPostComponent },
     // { path: '', component: DashboardComponent },
     { path: 'home', component: LandingPageComponent },
     { path: 'about_us', component: AboutUsComponent },
@@ -30,7 +31,8 @@ export const routes: Routes = [
     { path: 'buddies', component: BuddiesComponent },
     { path: 'places', component: PlaceListComponent },
     { path: 'place-details', component: PlaceDetailsComponent },
-    // { path: 'sitemap.xml', component: SitemapComponent },
+    { path: 'search', component: SearchResultsComponent }, // Search route
+
     { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect to login by default
     { path: '**', component: NotFoundComponent }
 ];

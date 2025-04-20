@@ -1,5 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { CommonService } from '../../services/common.service';
+import { slugify } from '../../utils/slugify';
 
 @Component({
   selector: 'app-place-card',
@@ -9,7 +10,7 @@ import { CommonService } from '../../services/common.service';
 })
 export class PlaceCardComponent implements OnInit {
   @Input() item: any;
-  @Input() sectionId!: number;
+  @Input() sectionId: any;
 
   @Input() editable: boolean = false;
   @Output('onNavigateTo') onNavigateTo: EventEmitter<any> = new EventEmitter();
@@ -34,7 +35,7 @@ export class PlaceCardComponent implements OnInit {
   }
   
   navigateToPostDetails(item: any){
-    let path = `section-detail/${this.sectionId}/post/${item.id}`;
+    let path = `place/${slugify(item.postName, '-')}`;
     this.onNavigateTo.emit(path);
   }
   

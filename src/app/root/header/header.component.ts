@@ -52,4 +52,17 @@ export class HeaderComponent {
   scrollTo(sectionId: string) {
     this.commonService.scrollToDiv(sectionId);
   }
+
+  toggleSidebar(event: Event) {
+    event.preventDefault(); // prevent link navigation
+    this.commonService.isSidebarOpen.set(!this.commonService.isSidebarOpen());
+  }
+
+  closeSidebar() {
+    this.commonService.isSidebarOpen.set(false);
+  }
+
+  trackByIndex(index: number, item: any) {
+    return index;
+  }
 }

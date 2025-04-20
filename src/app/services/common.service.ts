@@ -1,5 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { environment } from '../../../environment';
@@ -8,6 +8,7 @@ import { environment } from '../../../environment';
   providedIn: 'root'
 })
 export class CommonService {
+  isSidebarOpen = signal(false);
   showHideCertificateModal: boolean = false;
   isAddHighlightModal: boolean = false;
   selectedCard: any;
@@ -52,7 +53,7 @@ export class CommonService {
     { "id": 30, imageUrl: 'assets/imgs/most-visited/masai-mara.jpg', location: 'Masai Mara National Reserve', address: 'Kenya', description: 'The Maasai Mara National Reserve is a large game reserve in Narok County, Kenya, contiguous with the Serengeti National Park in Tanzania. It is named in honor of the Maasai people, the ancestral inhabitants of the area, who migrated to the area from the Nile Basin. The reserve is famous for its exceptional population of lions, leopards, and cheetahs, and the annual migration of zebra, Thomson\'s gazelle, and wildebeest to and from the Serengeti every year.' },
     { "id": 31, imageUrl: 'assets/imgs/most-visited/hiroshima-peace-memorial.jpg', location: 'Hiroshima Peace Memorial', address: 'Hiroshima, Japan', description: 'The Hiroshima Peace Memorial, originally the Hiroshima Prefectural Industrial Promotion Hall, is the historic building that remains closest to the hypocenter of the atomic bomb explosion on 6 August 1945. It is now a UNESCO World Heritage Site and serves as a memorial to the victims of the bombing and a symbol of peace.' }
   ];
-  sections: {sectionName: string, sectionId: string}[] = [];
+  sections: { sectionName: string, sectionId: string; id: number }[] = [];
 
   constructor(private router: Router,
     private sanitizer: DomSanitizer,
@@ -61,12 +62,32 @@ export class CommonService {
   ) { }
 
   // 
-  setMetaData(title: string, description?: string) {
-      // Dynamically set page title and meta description
-      this.titleService.setTitle(title + ' - Chalo Ghoome');
-      if (description) {
-        this.metaService.updateTag({ name: 'description', content: description });
-      }
+  setMetaData(title: string, data?: any) {
+    let imageUrl = data?.originalThumbnailImg || '';
+    // Dynamically set page title and meta description
+    this.titleService.setTitle(title + ' - Chalo Ghoome');
+    this.metaService.updateTag({ property: 'og:title', content: `${title} – Chalo ghoome` });
+    if (data?.summary) {
+      this.metaService.updateTag({ name: 'description', content: data.summary });
+      this.metaService.updateTag({
+        property: 'og:description',
+        content: data.summary
+      });
+    }
+
+    if (imageUrl) {
+      this.metaService.updateTag({
+        property: 'og:image',
+        content: imageUrl
+      });
+    }
+
+    if (data?.location) {  
+      this.metaService.updateTag({
+        name: 'keywords',
+        content: `${title}, travel, guide, ${data.location}, places to visit`
+      });
+    }
   }
 
   public getFormOptionArgs() {
@@ -91,7 +112,12 @@ export class CommonService {
     return headers;
   }
 
-
+  // public makeSlugText(text: string, character: string) {
+  //   return text.replace(' ', character);
+  // }
+  // public convertSlugToNormal(text: string) {
+  //   //  logic here
+  // }
   // 
   navigateTo(path: string) {
     this.router.navigate([path]).then(() => {
@@ -127,11 +153,11 @@ export class CommonService {
     let content = `<p>${html
       .replace(/(\r\n|\r|\n){2,}/g, '</p><p>') // Double line break → New Paragraph
       .replace(/(\r\n|\r|\n)/g, '<br>')        // Single line break → Line Break
-    }</p>`;
+      }</p>`;
     return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 
-  appendAssetUrl(url: string){
+  appendAssetUrl(url: string) {
     return url?.startsWith('http') ? url : environment.assetUrl + url;
   }
 
@@ -148,11 +174,11 @@ export class CommonService {
           canvas.width = img.width * scale;
           canvas.height = img.height * scale;
           const ctx = canvas.getContext('2d');
-  
+
           if (ctx) {
-          // Draw image into canvas with new dimensions
+            // Draw image into canvas with new dimensions
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    
+
             // Convert canvas to blob (using same type as the original file)
             canvas.toBlob((blob) => {
               if (blob) {
@@ -170,5 +196,5 @@ export class CommonService {
       reader.onerror = (error) => reject(error);
     });
   }
-    
+
 }

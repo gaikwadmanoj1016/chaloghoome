@@ -101,8 +101,18 @@ export class ApiService {
     )
   }
 
-  public getPostDetails(id: number) {
-    let API = environment.apiUrl + 'api/posts/getPostDetails/' + id;
+  public getPostDetails(query: string) {
+    let API = environment.apiUrl + 'api/posts/getPostDetails?' + query;
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  public searchPlaces(query: string) {
+    let API = environment.apiUrl + `api/posts/search/${query}`;
     return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
       map((data) => {
         return data;

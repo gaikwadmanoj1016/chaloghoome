@@ -69,7 +69,7 @@ main {
     color: white;
     // height: auto;
     // max-height: 100vh;
-    text-align: center;
+    // text-align: center;
     border-radius: 10px;
     position: relative;
 
@@ -91,29 +91,21 @@ main {
     }
 
     .section-title {
-        font-family: 'Georgia', serif;
-        font-size: 3rem;
-        font-weight: bold !important;
-        margin-bottom: 10px;
+        // font-family: 'Georgia', serif;
+        // font-size: 3rem;
+        // font-weight: bold !important;
+        // margin-bottom: 10px;
+        text-transform: uppercase;
+        color: white;
         position: relative;
         z-index: 2;
     }
-
-
 
     .section-description {
-        font-family: 'Georgia', serif;
-        font-size: 18px;
-        font-weight: 300;
-        max-width: 700px;
-        margin: auto;
-        margin-top: 25px;
-        line-height: 1.5;
+        color: white;
         position: relative;
         z-index: 2;
     }
-
-
 
     .post-container {
         display: flex;
@@ -186,9 +178,8 @@ main {
 
 // Default card style
 .carousel-wrapper {
-    width: 78%;
-    max-width: 1200px; // or any size you want
-    margin: 0 auto;
+    width: 100%;
+    margin-block: 55px;
 
     .owl-travel-card {
         position: relative;
@@ -269,199 +260,121 @@ main {
     }
 }
 
-.travel-card {
-    position: relative;
-    height: 350px;
-    width: 290px;
-    border-radius: 15px;
-    overflow: hidden;
-    transform-style: preserve-3d;
-    transition: transform 0.5s ease;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
-    flex: 0 0 auto;
+// .travel-card {
+//     position: relative;
+//     height: 350px;
+//     width: 290px;
+//     border-radius: 15px;
+//     overflow: hidden;
+//     transform-style: preserve-3d;
+//     transition: transform 0.5s ease;
+//     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+//     flex: 0 0 auto;
 
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    }
+//     &:hover {
+//         transform: translateY(-5px);
+//         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+//     }
 
-    @media (max-width: 768px) {
-        width: 250px;
-        height: 320px;
-    }
+//     @media (max-width: 768px) {
+//         width: 250px;
+//         height: 320px;
+//     }
 
-    @media (max-width: 550px) {
-        width: 265px;
-        height: 280px;
-    }
+//     @media (max-width: 550px) {
+//         width: 265px;
+//         height: 280px;
+//     }
 
-    .travel-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+//     .travel-image {
+//         width: 100%;
+//         height: 100%;
+//         object-fit: cover;
+//     }
 
-    .card-overlay {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        padding: 15px;
-        text-align: center;
-        font-family: 'Georgia', serif;
+//     .card-overlay {
+//         position: absolute;
+//         bottom: 0;
+//         width: 100%;
+//         background: rgba(0, 0, 0, 0.6);
+//         padding: 15px;
+//         text-align: center;
+//         font-family: 'Georgia', serif;
 
-        .travel-title {
-            font-size: 1.5rem;
-            margin: 0;
-            text-wrap: auto;
+//         .travel-title {
+//             font-size: 1.5rem;
+//             margin: 0;
+//             text-wrap: auto;
 
-            @media (max-width: 550px) {
-                font-size: 1.3rem;
-            }
-        }
+//             @media (max-width: 550px) {
+//                 font-size: 1.3rem;
+//             }
+//         }
 
-        .travel-location {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin: 0 0 10px;
-            line-height: 1.5;
-            text-wrap: auto;
+//         .travel-location {
+//             font-size: 1rem;
+//             opacity: 0.8;
+//             margin: 0 0 10px;
+//             line-height: 1.5;
+//             text-wrap: auto;
 
-            @media (max-width: 550px) {
-                font-size: 0.9rem;
-            }
-        }
+//             @media (max-width: 550px) {
+//                 font-size: 0.9rem;
+//             }
+//         }
 
-        .explore-btn {
-            background: rgba(255, 215, 0, 0.9);
-            color: black;
-            border: none;
-            padding: 10px 35px;
-            border-radius: 100px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: 0.3s;
-            margin: auto;
-            bottom: auto !important;
+//         .explore-btn {
+//             background: rgba(255, 215, 0, 0.9);
+//             color: black;
+//             border: none;
+//             padding: 10px 35px;
+//             border-radius: 100px;
+//             cursor: pointer;
+//             font-size: 1rem;
+//             transition: 0.3s;
+//             margin: auto;
+//             bottom: auto !important;
 
-            &:hover {
-                background: rgba(255, 215, 0, 1);
-                transform: scale(1.1);
-            }
+//             &:hover {
+//                 background: rgba(255, 215, 0, 1);
+//                 transform: scale(1.1);
+//             }
 
-            @media (max-width: 550px) {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
-        }
-    }
-}
-
-
-.travel-card-container {
-    display: flex;
-    gap: 30px;
-    perspective: 1000px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 10px 0;
-    width: 78%;
-    max-width: 1200px;
-    margin: 0 auto;
-    white-space: nowrap;
-    position: relative;
-    z-index: 2;
-
-    @media (max-width: 990px) {
-        width: 80%;
-    }
-
-    &::-webkit-scrollbar {
-        height: 0px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: rgba(255, 215, 0, 0.8);
-        border-radius: 10px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    // FLEX MODE - Scrollable cards
-    &.flex-container {
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: stretch;
-        gap: 1.5rem;
-        margin-top: 2rem;
-
-        .travel-card {
-            flex: 0 0 auto;
-            width: 300px;
-            height: 350px;
-
-            @media (max-width: 768px) {
-                width: 260px;
-                height: 320px;
-            }
-
-            @media (max-width: 550px) {
-                width: 240px;
-                height: 280px;
-            }
-        }
-    }
-
-    // GRID MODE - Responsive masonry-like grid
-    &.grid-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-        white-space: normal;
-        overflow-x: hidden;
-
-        .travel-card {
-            width: 100%;
-            height: 350px;
-
-            @media (max-width: 768px) {
-                height: 320px;
-            }
-
-            @media (max-width: 550px) {
-                height: 280px;
-            }
-        }
-    }
-}
+//             @media (max-width: 550px) {
+//                 padding: 8px 16px;
+//                 font-size: 0.9rem;
+//             }
+//         }
+//     }
+// }
 
 .adventure-section {
-    background: linear-gradient(to bottom, #3a1c71, #d76d77, #ffaf7b);
+    background: linear-gradient(45deg, #3a1c71, #d76d77, #ffaf7b);
     padding: 80px 0px;
-    text-align: center;
+    min-height: 100vh;
+    // text-align: center;
     color: white;
 
     .section-title {
-        font-family: 'Georgia', serif;
-        font-size: 3rem;
-        font-weight: bold;
+        color: white;
+        // font-family: 'Georgia', serif;
+        // font-size: 3rem;
+        // font-weight: bold;
         margin-bottom: 10px;
-        line-height: 50px;
+        text-transform: uppercase;
     }
 
     .section-description {
-        font-size: 1.2rem;
-        line-height: 1.5;
+        color: white;
+        position: relative;
+        z-index: 2;
     }
 }
 
 .galactic-wonders {
     padding: 80px 0;
     color: white;
-    text-align: center;
+    // text-align: center;
     border-radius: 10px;
     position: relative;
 
@@ -482,76 +395,89 @@ main {
     }
 
     .section-title {
-        font-family: 'Georgia', serif;
-        color: #2c3e50;
-        font-size: 3rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        background: linear-gradient(90deg, #5a0051, #b57000);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: white;
+        margin-bottom: 10px;
         position: relative;
         z-index: 2;
+        text-transform: uppercase;
     }
-
 
     .section-description {
-        font-family: 'Georgia', serif;
-        font-size: 18px;
-        font-weight: 300;
-        max-width: 700px;
-        margin: auto;
-        margin-top: 25px;
-        line-height: 1.5;
+        color: white;
         position: relative;
         z-index: 2;
     }
 
-    /* RESPONSIVE DESIGN */
-    @media (max-width: 1024px) {
-        .section-title {
-            font-size: 2.5rem;
-        }
+    // .section-title {
+    //     font-family: 'Georgia', serif;
+    //     color: #2c3e50;
+    //     font-size: 3rem;
+    //     letter-spacing: 2px;
+    //     background: linear-gradient(90deg, #5a0051, #b57000);
+    //     -webkit-background-clip: text;
+    //     -webkit-text-fill-color: transparent;
+    //     position: relative;
+    //     z-index: 2;
+    // }
 
-        .section-description {
-            font-size: 18px;
-        }
 
-        .travel-card {
-            width: 250px;
-            height: 350px;
-        }
-    }
+    // .section-description {
+    //     font-family: 'Georgia', serif;
+    //     font-size: 18px;
+    //     font-weight: 300;
+    //     max-width: 700px;
+    //     margin: auto;
+    //     margin-top: 25px;
+    //     line-height: 1.5;
+    //     position: relative;
+    //     z-index: 2;
+    // }
 
-    @media (max-width: 768px) {
-        .section-title {
-            font-size: 2rem;
-        }
+    // /* RESPONSIVE DESIGN */
+    // @media (max-width: 1024px) {
+    //     .section-title {
+    //         font-size: 2.5rem;
+    //     }
 
-        .section-description {
-            font-size: 16px;
-        }
+    //     .section-description {
+    //         font-size: 18px;
+    //     }
 
-        .travel-card {
-            width: 220px;
-            height: 320px;
-        }
-    }
+    //     .travel-card {
+    //         width: 250px;
+    //         height: 350px;
+    //     }
+    // }
 
-    @media (max-width: 550px) {
-        .section-title {
-            font-size: 1.8rem;
-        }
+    // @media (max-width: 768px) {
+    //     .section-title {
+    //         font-size: 2rem;
+    //     }
 
-        .section-description {
-            font-size: 14px;
-        }
+    //     .section-description {
+    //         font-size: 16px;
+    //     }
 
-        .travel-card {
-            width: 180px;
-            height: 280px;
-        }
-    }
+    //     .travel-card {
+    //         width: 220px;
+    //         height: 320px;
+    //     }
+    // }
+
+    // @media (max-width: 550px) {
+    //     .section-title {
+    //         font-size: 1.8rem;
+    //     }
+
+    //     .section-description {
+    //         font-size: 14px;
+    //     }
+
+    //     .travel-card {
+    //         width: 180px;
+    //         height: 280px;
+    //     }
+    // }
 }
 
 .hero-section {
@@ -691,6 +617,11 @@ main {
             //     }
             // }
         }
+    }
+
+    .search-form {
+        position: relative;
+        z-index: 12;
     }
 
     @media (max-width: 1024px) {

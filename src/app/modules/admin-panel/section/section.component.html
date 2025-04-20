@@ -1,26 +1,29 @@
 <main>
-    <div class="head">
-        <h2>Section Details:
-            @if (section && section.sectionName) {
+    <div class="container">
+        <h2>{{section?.sectionName || convertSlugToNormal(sectionName, '-')}}
+            <!-- Section Details:
             <strong>{{section.sectionName}}</strong>
-            }
+            @if (section && section.sectionName) {
+            } -->
         </h2>
-        <!-- Add more details here -->
-        <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>
-    </div>
+        <div class="head">
+            <!-- Add more details here -->
+            <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>
+        </div>
 
-    @if (section && section.posts && section.posts.length > 0) {
-    <div class="places">
-        @for (item of section.posts; track $index) {
-        <app-place-card [item]="item" [editable]="cardEditable" [sectionId]="sectionId"
-            (onNavigateTo)="navigateTo($event)" (onEditClicked)="onEditCard($event)"
-            (onDeleteClicked)="deletePost($event)"></app-place-card>
+        @if (section && section.posts && section.posts.length > 0 && sectionId) {
+        <div class="travel-card-container grid-container">
+            @for (item of section.posts; track $index) {
+            <app-place-card [item]="item" [editable]="cardEditable" [sectionId]="sectionName"
+                (onNavigateTo)="navigateTo($event)" (onEditClicked)="onEditCard($event)"
+                (onDeleteClicked)="deletePost($event)"></app-place-card>
+            }
+        </div>
+        }
+        @else {
+        No records found
         }
     </div>
-    }
-    @else {
-    No records found
-    }
 </main>
 
 <!-- Popup Modal -->
@@ -42,13 +45,13 @@
                             hidden />
 
                         <!-- Add Image Button -->
-                        <button class="add-btn" type="button" (click)="fileInput.click()">
+                        <button class="btn add-btn" type="button" (click)="fileInput.click()">
                             <em class="add-icon">+</em>
                         </button>
                         }
                         @else {
                         <div class="image-preview">
-                            <button class="remove-btn" (click)="removeImage()">×</button>
+                            <button class="btn remove-btn" (click)="removeImage()">×</button>
                             <img [src]="selectedImage" alt="Preview" />
                         </div>
                         }
@@ -60,12 +63,11 @@
                         <input id="postName" formControlName="postName" type="text" />
                     </div>
 
-                    <!-- Location -->
-                    <div class="col-lg-12">
-                        <label for="location">Location:</label>
-                        <input id="location" formControlName="location" type="text" />
-                    </div>
 
+                    <div class="col-lg-12">
+                        <label for="annualVisitors">Annual Visitors:</label>
+                        <input id="annualVisitors" formControlName="annualVisitors" type="text" />
+                    </div>
                     <!-- Area -->
                     <div class="row">
                         <div class="col-lg-6">
@@ -79,6 +81,17 @@
                         </div>
                     </div>
                 </div>
+                <!-- Location -->
+                <div class="col-lg-12">
+                    <label for="location">Location:</label>
+                    <input id="location" formControlName="location" type="text" />
+                </div>
+                <!-- <div class="row">
+                    <div class="col-lg-4">
+                        <label for="annualVisitors">Annual Visitors:</label>
+                        <textarea id="annualVisitors" formControlName="annualVisitors"></textarea>
+                    </div>
+                </div> -->
                 <!-- Summary -->
                 <div class="col-lg-12">
                     <label for="summary">Summary:</label>
@@ -91,8 +104,9 @@
                     <textarea id="history" formControlName="history"></textarea>
                 </div>
 
-                <div class="col-lg-12" formArrayName="specialities">
-                    <div *ngFor="let speciality of specialities.controls; let i = index" [formGroupName]="i" class="row specialities-wrapper">
+                <div class="specialities-wrapper" formArrayName="specialities">
+                    <div *ngFor="let speciality of specialities.controls; let i = index" [formGroupName]="i"
+                        class="row">
                         <div class="col-lg-2">
                             <label for="specialtyIsUnique{{i}}">Is Unique:</label>
                             <select id="specialtyIsUnique{{i}}" formControlName="isUnique">
@@ -108,9 +122,19 @@
                             <label for="specialtyDescription{{i}}">Description:</label>
                             <textarea id="specialtyDescription{{i}}" formControlName="description"></textarea>
                         </div>
-                        <button type="button" (click)="removeSpecialty(i)">Remove</button>
+                        <button type="button" class="btn" (click)="removeSpecialty(i)">Remove</button>
                     </div>
-                    <button type="button" (click)="addSpecialty()">Add Speciality</button>
+                    <button type="button" class="btn" (click)="addSpecialty()">Add Speciality</button>
+                </div>
+                <div class="facts-wrapper" formArrayName="facts">
+                    <div *ngFor="let fact of facts.controls; let i = index" [formGroupName]="i" class="row">
+                        <div class="col-lg-12">
+                            <label for="fact{{i}}">Fact:</label>
+                            <input id="fact{{i}}" formControlName="fact" type="text" />
+                        </div>
+                        <button type="button" class="btn" (click)="removeFact(i)">Remove</button>
+                    </div>
+                    <button type="button" class="btn" (click)="addFact()">Add Fact</button>
                 </div>
 
                 <div class="col-lg-12">
@@ -142,14 +166,57 @@
                             <label for="para{{i}}">Description:</label>
                             <textarea id="para{{i}}" formControlName="para"></textarea>
                         </div>
-                        <button type="button" (click)="removeInfo(i)">Remove</button>
+                        <button type="button" class="btn" (click)="removeInfo(i)">Remove</button>
                     </div>
-                    <button type="button" (click)="addHighlight()">Add Travel Info</button>
+                    <button type="button" class="btn" (click)="addHighlight()">Add Travel Info</button>
+                </div>
+                <!-- Categories Input with Suggestions -->
+                <div class="col-lg-12">
+                    <label for="categories">Category:</label>
+                    <input id="categories" formControlName="categories" (input)="filterCategories()"
+                        (keydown.enter)="addCategory($event)">
+
+                    <!-- Suggestions -->
+                    @if (filteredCategories.length) {
+                    <ul class="suggestions">
+                        <li *ngFor="let suggestion of filteredCategories" (click)="selectCategory(suggestion)">
+                            {{ suggestion }}
+                        </li>
+                    </ul>
+                    }
+
+                    <!-- Selected Categories -->
+                    <div class="selected-categories">
+                        <span *ngFor="let category of categories" class="tag">
+                            {{ category }} <button class="cross-icon" (click)="removeCategory(category)">×</button>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Tags Input with Suggestions -->
+                <div class="col-lg-12">
+                    <label for="tags">Tag:</label>
+                    <input id="tags" formControlName="tags" (input)="filterTags()" (keydown.enter)="addTag($event)">
+
+                    <!-- Suggestions -->
+                    @if (filteredTags.length) {
+                    <ul class="suggestions">
+                        <li *ngFor="let suggestion of filteredTags" (click)="selectTag(suggestion)">
+                            {{ suggestion }}
+                        </li>
+                    </ul>
+                    }
+                    <!-- Selected Tags -->
+                    <div class="selected-tags">
+                        <span *ngFor="let tag of tags" class="tag">
+                            {{ tag }} <button class="cross-icon" (click)="removeTag(tag)">×</button>
+                        </span>
+                    </div>
                 </div>
 
             </div>
             <!-- Submit Button " [disabled]="postForm.invalid"-->
-            <button type="submit" class="submit-btn">Submit</button>
+            <button type="submit" class="btn submit-btn">Submit</button>
         </form>
     </div>
 </div>

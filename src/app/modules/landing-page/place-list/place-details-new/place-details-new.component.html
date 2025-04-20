@@ -1,10 +1,17 @@
 <!-- Hero Section -->
 <main>
 
-    <header class="hero" [style.background-image]="'url('+commonService.appendAssetUrl(placeDetails?.originalThumbnailImg || '')+')'">
-        <div class="hero-content">
-            <img class="main-hero-image" [src]="commonService.appendAssetUrl(placeDetails?.originalThumbnailImg || '')"
+    <header class="hero"
+        [style.background-image]="'url('+commonService.appendAssetUrl(placeDetails?.originalThumbnailImg || '')+')'">
+        <div class="hero-content" [attr.aria-labelledby]="placeDetails?.summary" [title]="placeDetails?.postName">
+            <img class="main-hero-image" [src]="imgSrc" (error)="onImageError()" (load)="onImageLoad()"
                 alt="Hero Image" />
+            <!-- <div class="main-hero-image">
+                <app-progressive-image [smallImage]="'../../../../../assets/imgs/image-placeholder.jpg'"
+                    [image]="commonService.appendAssetUrl(placeDetails?.originalThumbnailImg || '')"
+                    [altText]="placeDetails?.postName + ',' + placeDetails?.location">
+                </app-progressive-image>
+            </div> -->
         </div>
     </header>
 
@@ -119,9 +126,9 @@
                     @if (checkHighlightExist()) {
                     @for (highlight of highlights; track $index) {
                     <div class="image-wrapper" [class.lastIndex]="checkLastIndex($index)">
-                        <app-progressive-image
-                            [smallImage]="'../../../assets/imgs/image-placeholder.jpg'"
-                            [image]="commonService.appendAssetUrl(highlight.compressedImagePath)" [title]="highlight.title"
+                        <app-progressive-image [smallImage]="'../../../src/assets/imgs/image-placeholder.jpg'"
+                            [image]="commonService.appendAssetUrl(highlight.compressedImagePath)"
+                            [title]="highlight.title"
                             [altText]="'ChaloGhoome: ' + highlight.title + ': '+ highlight.description"
                             [aspectRatio]="false"
                             (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))">

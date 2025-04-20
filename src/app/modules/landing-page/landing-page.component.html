@@ -42,6 +42,11 @@
                 <span class="title">Explore</span>
             </button>
         </div>
+        <form (ngSubmit)="onSearch()" class="search-form">
+            <input type="text" [(ngModel)]="searchQuery" name="searchQuery" placeholder="Search places..." required />
+            <button type="submit">Search</button>
+          </form>
+          
         <!-- <div class="category-grid">
             <div class="category-card">Taj Mahal</div>
             <div class="category-card">Great Wall of China</div>
@@ -165,89 +170,62 @@
     <div class="featured">
         @for (section of sections; track $index) {
         <section [id]="section?.sectionId" [class]="section?.class" [style.background]="section?.background">
-            @if (section?.isBackgroundVideo) {
-            <div class="background">
-                <video autoplay loop muted>
-                    <source [src]="section?.backgroundVideoSource" loading="lazy" type="video/mp4">
-                </video>
-            </div>
-            }
-
-            <h2 class="section-title">{{section?.sectionName}}</h2>
-            @if (section?.description) {
-            <p class="section-description"> {{section?.description}} </p>
-            }
-            @if(section?.sectionStyle === 'grid') {
-            <div class="travel-card-container grid-container">
-                <!-- [ngClass]=" ? 'grid-container' : 'flex-container'"
-            -->
-                @for (post of section?.posts?.content; track $index) {
-                <!--  (mouseover)="add3DEffect($event)" (mouseleave)="remove3DEffect($event)" -->
-                <div class="travel-card" [attr.aria-labelledby]="post.summary" [title]="post.postName">
-                    <!-- <img [src]="post.imageUrl" [alt]="post.title" class="travel-image"> -->
-                    <app-progressive-image [smallImage]="'../../../assets/imgs/image-placeholder.jpg'"
-                        [image]="post.imageUrl" [altText]="post.title + ',' + post.location">
-                    </app-progressive-image>
-                    <div class="card-overlay">
-                        <h3 class="travel-title">{{post.postName}}</h3>
-                        <p class="travel-location">{{post.location}}</p>
-                        <button class="explore-btn"
-                            (click)="redirectTo('section-detail/'+section.id+'/post/'+post.id)">Explore</button>
-                    </div>
+            <div class="container">
+                @if (section?.isBackgroundVideo) {
+                <div class="background">
+                    <video autoplay loop muted>
+                        <source [src]="section?.backgroundVideoSource" loading="lazy" type="video/mp4">
+                    </video>
                 </div>
                 }
-            </div>
-            } @else {
-            <div class="carousel-wrapper">
-                <!-- <div class="controls">
+                <h2 class="section-title">{{section?.sectionName}}</h2>
+                @if (section?.description) {
+                <p class="section-description"> {{section?.description}} </p>
+                }
+                @if(section?.sectionStyle === 'grid') {
+                <div class="travel-card-container grid-container">
+                    @for (post of section?.posts?.content; track $index) {
+                    <!-- <div class="travel-card" [attr.aria-labelledby]="post.summary" [title]="post.postName">
+                        <app-progressive-image [smallImage]="'../../../assets/imgs/image-placeholder.jpg'"
+                            [image]="post.imageUrl" [altText]="post.title + ',' + post.location">
+                        </app-progressive-image>
+                        <div class="card-overlay">
+                            <h3 class="travel-title">{{post.postName}}</h3>
+                            <p class="travel-location">{{post.location}}</p>
+                            <button class="explore-btn"
+                                (click)="redirectTo('section-detail/'+section.id+'/post/'+post.id)">Explore</button>
+                        </div>
+                    </div> -->
+                    <app-place-card [item]="post" [sectionId]="section.sectionId" (onNavigateTo)="redirectTo($event)"></app-place-card>
+                    }
+                </div>
+                } @else {
+                <div class="carousel-wrapper">
+                    <!-- <div class="controls">
                     <button (click)="playCarousel()">Play</button>
                     <button (click)="stopCarousel()">Stop</button>
                 </div> -->
-                <owl-carousel-o [options]="customOptions">
-                    @for (post of section?.posts?.content; track $index) {
-                    <ng-template carouselSlide>
-                        <div class="owl-travel-card" [attr.aria-labelledby]="post.summary" [title]="post.postName">
-                            <!-- <img [src]="post.imageUrl" [alt]="post.title" class="travel-image"> -->
-                            <app-progressive-image [smallImage]="'../../../assets/imgs/image-placeholder.jpg'"
-                                [image]="post.imageUrl" [altText]="post.title + ',' + post.location">
-                            </app-progressive-image>
-                            <div class="card-overlay">
-                                <h3 class="travel-title">{{post.postName}}</h3>
-                                <p class="travel-location">{{post.location}}</p>
-                                <button class="explore-btn"
-                                    (click)="redirectTo('section-detail/'+section.id+'/post/'+post.id)">Explore</button>
+                    <owl-carousel-o [options]="customOptions">
+                        @for (post of section?.posts?.content; track $index) {
+                        <ng-template carouselSlide>
+                            <div class="owl-travel-card" [attr.aria-labelledby]="post.summary" [title]="post.postName">
+                                <!-- <img [src]="post.imageUrl" [alt]="post.title" class="travel-image"> -->
+                                <app-progressive-image [smallImage]="'../../../assets/imgs/image-placeholder.jpg'"
+                                    [image]="post.imageUrl" [altText]="post.title + ',' + post.location">
+                                </app-progressive-image>
+                                <div class="card-overlay">
+                                    <h3 class="travel-title">{{post.postName}}</h3>
+                                    <p class="travel-location">{{post.location}}</p>
+                                    <button class="explore-btn"
+                                        (click)="redirectTo('places/'+section.id+'/post/'+post.id)">Explore</button>
+                                </div>
                             </div>
-                        </div>
-                    </ng-template>
-                    }
-                </owl-carousel-o>
-            </div>
-            }
-            <!-- <div class="travel-card-container">
-            <h2 class="section-title">Explore the Wonders of the World</h2>
-            <div class="wonders-grid">
-                 (mouseover)="add3DEffect($event)" (mouseleave)="remove3DEffect($event)"
-                <div class="travel-card" *ngFor="let wonder of sections[0]?.posts;">
-                    <img [src]="wonder.imageUrl" [alt]="wonder.title" class="wonder-image">
-                    <div class="card-overlay">
-                        <h3 class="wonder-title">{{wonder.title}}</h3>
-                        <p class="wonder-description">{{wonder.description}}</p>
-                        <button class="explore-btn">Explore</button>
-                    </div>
+                        </ng-template>
+                        }
+                    </owl-carousel-o>
                 </div>
+                }
             </div>
-        </div> -->
-            <!-- <div class="post-container">
-            <div class="post-card">
-                <img src="../../../assets/imgs/Dolomites Italy - Best Places To Visit in the Dolomites + 1-Week Itinerary.jpg"
-                    alt="Santorini">
-                <div class="post-content">
-                    <h3>Santorini, Greece</h3>
-                    <p>Blue domes, stunning sunsets, and Aegean Sea views.</p>
-                    <a href="#" class="btn">Read More</a>
-                </div>
-            </div>
-        </div> -->
         </section>
         }
     </div>

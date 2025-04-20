@@ -5,6 +5,7 @@ import { HeaderComponent } from './root/header/header.component';
 import { FooterComponent } from './root/footer/footer.component';
 import { RouterOutlet } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { slugify } from './utils/slugify';
 // import gsap from 'gsap';
 // import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -97,11 +98,11 @@ export class AppComponent implements OnInit, OnDestroy {
       if (response.result) {
         response.data.sort((a: any, b: any) => a.order - b.order);
         this.commonService.sections = response.data.map((item: any) => {
-          item.sectionId = item.sectionName.toLowerCase().split(' ').join('_');
+          item.sectionId = slugify(item.sectionName, '-');
           return item;
         });
         console.log(response.data);
-        
+        localStorage.setItem('sections', JSON.stringify(this.commonService.sections));
       } else {
         console.error(response.message || "something went wrong");
       }

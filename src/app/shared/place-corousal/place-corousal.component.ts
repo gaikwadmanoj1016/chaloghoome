@@ -30,7 +30,7 @@ export class PlaceCorousalComponent implements OnInit {
   }
 
   public navigateTo() {
-    this.commonService.navigateTo('section-detail/' + this.section.id);
+    this.commonService.navigateTo('section/' + this.section.id);
   }
 
   // public explorePlace(id: number) {

@@ -5,6 +5,7 @@ import { Validators } from 'ngx-editor';
 import { RouterLink } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import { ApiService } from '../../services/api.service';
+import { slugify } from '../../utils/slugify';
 
 @Component({
   selector: 'app-admin-panel',
@@ -42,6 +43,9 @@ export class AdminPanelComponent {
     this.apiService.getSectionsAndPostList().subscribe((response) => {
       if (response.result) {
         this.sections = response.data;
+        for (let section of this.sections) {
+          section.sectionId = slugify(section.sectionName, '-');
+        }
       } else {
         this.sections = [];
       }

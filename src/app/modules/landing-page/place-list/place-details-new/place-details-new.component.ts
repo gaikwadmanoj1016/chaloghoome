@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../../services/api.service';
@@ -7,6 +7,8 @@ import { ImagePreviewComponent } from '../../../../shared/image-preview/image-pr
 import { Highlight, PlaceDetails } from '../place-details/place-details.component';
 import { NgStyle } from '@angular/common';
 import { SharedModule } from '../../../../shared/shared.module';
+import { DOCUMENT } from '@angular/common';
+import { convertSlugToNormal, slugify } from '../../../../utils/slugify';
 
 @Component({
   selector: 'app-place-details-new',
@@ -18,28 +20,41 @@ import { SharedModule } from '../../../../shared/shared.module';
 export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestroy {
   placeDetails: PlaceDetails | undefined;
   placeId: number = 0;
-  postId: any;
+  postName: string = '';
   currentIndex = 0;
   autoSlideInterval: any;
   highlights?: Highlight[] = [];
   loadedAllImage: boolean = false;
+  imgSrc = 'assets/imgs/image-placeholder.jpg';
 
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
     public commonService: CommonService,
     private apiRequest: ApiService,
+    @Inject(DOCUMENT) private document: Document
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((param: any) => {
-      if (param && param['postId']) {
-        this.postId = param['postId'];
+      if (param && param['postName']) {
+        this.postName = convertSlugToNormal(param['postName'], '-');
         this.getPlaceDetailsByPlaceId();
       }
-    })
+    });
+    const link: HTMLLinkElement = this.document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    link.setAttribute('href', this.document.URL);
+    this.document.head.appendChild(link);
   }
 
+  onImageError() {
+    this.imgSrc = 'assets/imgs/image-placeholder.jpg';
+  }
+  
+  onImageLoad() {
+    // Optional: Add logic or class for when image has fully loaded
+  }
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.startAutoSlide();
@@ -47,17 +62,41 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   private getPlaceDetailsByPlaceId() {
-    this.apiRequest.getPostDetails(this.postId).subscribe((response: any) => {
+    let query = `postName=${this.postName}`;
+    this.apiRequest.getPostDetails(query).subscribe((response: any) => {
       this.placeDetails = response.data;
       if (this.placeDetails && this.placeDetails.highlights && this.placeDetails.highlights.length > 0) {
         this.placeDetails.originalThumbnailImg = this.placeDetails.highlights.find(item => item.isThumbnail)?.imagePath
       }
       if (this.placeDetails && Object.keys(this.placeDetails).length > 0) {
-        this.commonService.setMetaData(this.placeDetails?.postName, this.placeDetails?.summary);
+        this.commonService.setMetaData(this.placeDetails?.postName, this.placeDetails);
+        this.addStructuredData(this.placeDetails);
       }
-
+      const originalImg = this.placeDetails?.originalThumbnailImg;
+      if (originalImg) {
+        this.imgSrc = this.commonService.appendAssetUrl(originalImg);
+      }
+  
       this.setGallary();
     })
+  }
+
+  addStructuredData(place: PlaceDetails) {
+    const script = this.document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": place.postName,
+      "description": place.summary,
+      "image": place.originalThumbnailImg,
+      "url": this.document.URL,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": place.location
+      }
+    });
+    this.document.head.appendChild(script);
   }
 
   setGallary() {
@@ -74,11 +113,6 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
     this.highlights = this.placeDetails?.highlights;
     this.loadedAllImage = true;
   }
-  // private getPlaceDetails() {
-  //   this.apiRequest.getPlaceDetails().subscribe((response: any) => {
-  //     this.placeDetails = response.find((item: any) => item.id === Number(this.placeId));
-  //   })
-  // }
   openPreview(url: string): void {
     let imageUrl = url;
     this.dialog.open(ImagePreviewComponent, {

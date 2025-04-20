@@ -9,13 +9,15 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { AboutUsComponent } from "../about-us/about-us.component";
+import { FormsModule } from '@angular/forms';
+import { slugify } from '../../utils/slugify';
 
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [SharedModule, MatIconModule, RouterModule, CarouselModule, SharedModule, ContactUsComponent, AboutUsComponent],
+  imports: [SharedModule, MatIconModule, RouterModule, CarouselModule, SharedModule, ContactUsComponent, AboutUsComponent, FormsModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
@@ -128,6 +130,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   videoLoaded = signal(false);
   videoError = signal(false);
   isScrolled = false;
+  searchQuery: string = '';
 
   constructor(private route: ActivatedRoute, public commonService: CommonService, private apiService: ApiService) { }
 
@@ -160,6 +163,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
         this.sections = response.data.sort((a: any, b: any) => a.order - b.order);
         // this.sections[1].posts.splice(2,6)
         if (this.sections && this.sections.length > 0) {
+          localStorage.setItem('sections', JSON.stringify(this.sections));
           this.addSomeStaticContent();
         }
       } else {
@@ -170,7 +174,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
 
   public addSomeStaticContent() {
     for (let section of this.sections) {
-      section.sectionId = section.sectionName.toLowerCase().split(' ').join('_');
+      section.sectionId = slugify(section.sectionName, '-');
       if (section.posts.content && section.posts.content.length > 0) {
         section.posts.content.map((item: any) => {
           item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);
@@ -222,10 +226,15 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   }
 
   public navigateTo(section: any) {
-    this.commonService.navigateTo('section-detail/' + section.id);
+    this.commonService.navigateTo('section/' + section.id);
   }
 
-
+  onSearch(): void {
+    if (this.searchQuery) {
+      // Navigate to search results page with the query as a parameter
+      this.commonService.navigateToQueryParams('/search', { query: this.searchQuery });
+    }
+  }
 
   animateCounters() {
     this.counters.forEach((counter: ElementRef) => {

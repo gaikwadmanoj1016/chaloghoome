@@ -11,55 +11,34 @@
                     <img src="assets/icons/ChaloGhoome-logo-new.png" alt="Description">
                 </picture> -->
             </a>
-            <!-- <div class="dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Featured</a>
-                <ul class="dropdown-menu">
+            <!-- <div class="navbar-wrapper inline-sections">
+                <ul class="custom-navbar-nav">
+                    @if (sections && sections.length > 0) {
                     @for (section of sections; track $index) {
                     <li>
                         <a class="dropdown-item" routerLink="home" (click)="scrollTo(section.sectionId)">
-                            {{section.sectionName}}
+                            {{section?.sectionName}}
                         </a>
                     </li>
                     }
-                </ul>
-            </div> -->
-            <div class="navbar-wrapper inline-sections">
-                <ul class="custom-navbar-nav">
-                    @if (sections && sections.length > 0) {
-                        @for (section of sections; track $index) {
-                            <li>
-                                <a class="dropdown-item" routerLink="home" (click)="scrollTo(section.sectionId)">
-                                    {{section?.sectionName}}
-                                </a>
-                            </li>
-                        }
                     }
                 </ul>
-            </div>
+            </div> -->
 
             <div class="right" style="text-align: end;">
                 <!-- Hamburger Menu for Mobile -->
+                <button class="hamburger" (click)="toggleSidebar($event)">
+                    &#9776;
+                </button>
                 <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button> -->
-                <div class="navbar-wrapper ">
+                <div class="navbar-wrapper">
                     <ul class="custom-navbar-nav">
-                        <!-- <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)" (click)="navigateTo('/')">Travel Stories</a>
-                    </li> -->
-
-                        <li class="nav-item nav-featured">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Featured</a>
-                            <ul class="dropdown-menu">
-                                @for (section of sections; track $index) {
-                                <li>
-                                    <a class="dropdown-item" routerLink="home" (click)="scrollTo(section.sectionId)">
-                                        {{section?.sectionName}}
-                                    </a>
-                                </li>
-                                }
-                            </ul>
+                        <!-- Header -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" (click)="toggleSidebar($event)">Destinations</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLink="/about_us">About</a>
@@ -67,28 +46,53 @@
                         <li class="nav-item">
                             <a class="nav-link" routerLink="/contact_us">Contact</a>
                         </li>
-                        <!-- @if (false) {
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)" routerLink="/register">Sign In</a>
-                    </li>
-                    }
-                    <div class="d-flex align-items-center profile-section" (click)="toggleProfileMenu()" (clickOutside)="closeProfileMenu()">
-                        <img loading="lazy" src="../assets/avatars/2.jpg" alt="Profile Picture" class="profile-pic">
-                        @if(profileModal){
-                        <div class="card profile-card">
-                            <div class="card-body">
-                                <ul class="list-group">
-                                    <li class="list-group-item" (click)="redirectTo('profile')">View Profile</li>
-                                    <li class="list-group-item" (click)="redirectTo('login')">Logout</li>
-                                </ul>
-                            </div>
-                        </div>
+                        @if (false) {
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" routerLink="/register">Sign In</a>
+                        </li>
                         }
-                    </div> -->
+                        <!-- <div class="d-flex align-items-center profile-section" (click)="toggleProfileMenu()"
+                            (clickOutside)="closeProfileMenu()">
+                            <img loading="lazy" src="../assets/avatars/2.jpg" alt="Profile Picture" class="profile-pic">
+                            @if(profileModal){
+                            <div class="card profile-card">
+                                <div class="card-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item" (click)="redirectTo('profile')">View Profile</li>
+                                        <li class="list-group-item" (click)="redirectTo('login')">Logout</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            }
+                        </div> -->
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
+    <!-- Sidebar -->
+    <div class="sidebar" [class.open]="commonService.isSidebarOpen()">
+        <button class="close-btn left-arrow" (click)="closeSidebar()">&leftarrow;</button>
+        <button class="close-btn right-icon" (click)="closeSidebar()">&Cross;</button>
+        <ul class="sidebar-menu">
+            <li *ngFor="let section of sections; trackBy: trackByIndex">
+                <!-- (click)="scrollTo(section.sectionId); closeSidebar()" -->
+                <a href="#" [routerLink]="['places', section.sectionId]">
+                    {{ section?.sectionName }}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/about_us">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/contact_us">Contact</a>
+            </li>
+            @if (false) {
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)" routerLink="/register">Sign In</a>
+            </li>
+            }
+        </ul>
+    </div>
     }
 </header>

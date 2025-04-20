@@ -87,11 +87,14 @@ export class PlaceDetailsComponent implements OnInit, AfterViewInit, OnDestroy{
   }
 
   private getPlaceDetailsByPlaceId() {
+    // let query = `id=${item.id}`;
+    // let query = `id=${this.postName}`;
+
     this.apiRequest.getPostDetails(this.postId).subscribe((response: any) => {
       this.placeDetails = response.data;
 
       if (this.placeDetails && Object.keys(this.placeDetails).length > 0) {
-        this.commonService.setMetaData(this.placeDetails?.postName, this.placeDetails?.summary);
+        this.commonService.setMetaData(this.placeDetails?.postName, this.placeDetails);
       }
     })
   }
