@@ -10,7 +10,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ProgressiveImageComponent {
   @Input() smallImage: string = '';
   @Input() image: string = '';
-  @Input() srcSet: string = '';
   @Input() aspectRatio: boolean = true;
   @Input() altText: string = '';
   @Input() title: string = '';

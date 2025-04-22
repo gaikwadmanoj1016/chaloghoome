@@ -54,7 +54,7 @@ export class ApiService {
     )
   }
   public deleteSection(id: number) {
-    let API = environment.apiUrl + 'api/sections/delete/'+id;
+    let API = environment.apiUrl + 'api/sections/delete/' + id;
     return this.httpRequest.delete(API, this.commonService.getRequestOptionArgs()).pipe(
       map((data) => {
         return data;
@@ -67,10 +67,10 @@ export class ApiService {
   //#endregion sections
 
   //#region post
-  public getSectionWithPosts() {
+  public getSectionWithPosts(limit: number) {
     // let API = environment.apiUrl + 'api/posts/getSectionPost/' + sectionId;
     // let API = environment.apiUrl + 'api/sections/getSectionWithPosts';
-    let API = environment.apiUrl + 'api/sections/getSectionWithPaginatedPosts?page=0&size=5';
+    let API = environment.apiUrl + 'api/sections/getSectionWithPaginatedPosts?page=0&size=' + limit;
     return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
       map((data) => {
         return data;

@@ -87,7 +87,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.isScrolled = window.scrollY > 50;
+    this.isScrolled = window.scrollY > 200;
   }
   ngOnInit(): void {
     this.getSectionList();

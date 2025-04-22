@@ -31,7 +31,7 @@ export const routes: Routes = [
     { path: 'buddies', component: BuddiesComponent },
     { path: 'places', component: PlaceListComponent },
     { path: 'place-details', component: PlaceDetailsComponent },
-    { path: 'search', component: SearchResultsComponent }, // Search route
+    { path: 'search/:query', component: SearchResultsComponent }, // Search route
 
     { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect to login by default
     { path: '**', component: NotFoundComponent }

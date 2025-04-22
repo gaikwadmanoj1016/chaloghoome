@@ -6,6 +6,7 @@
         z-index: 1;
         overflow: hidden;
         position: relative;
+        background-color: $header-bg-color;
     }
 
     .paralax {
@@ -265,7 +266,7 @@
     .whatwedo,
     .vision {
         padding: 60px 0;
-        background-color: var(--bg-color);
+        background-color: $header-bg-color;
 
         .section {
             display: flex;

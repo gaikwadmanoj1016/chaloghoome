@@ -3,6 +3,7 @@ import { Injectable, signal } from '@angular/core';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { environment } from '../../../environment';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,9 @@ export class CommonService {
   isSidebarOpen = signal(false);
   showHideCertificateModal: boolean = false;
   isAddHighlightModal: boolean = false;
+  public searchedQueryString: BehaviorSubject<string> = new BehaviorSubject('');
+  places: string[] = [];
+
   selectedCard: any;
   wonders: any[] = [
     { id: 1, name: "Taj Mahal", imageUrl: '/assets/imgs/wonders/taj-mahal.jpg', location: 'Taj Mahal', address: 'Agra, Delhi, India', description: 'The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in the Indian city of Agra. It was commissioned in 1632 by the Mughal emperor, Shah Jahan, to house the tomb of his favorite wife, Mumtaz Mahal. It is also known as the "Crown of Palaces".' },

@@ -9,7 +9,9 @@
 $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
 
 main {
-    background: linear-gradient(45deg, $secondary, lighten($primary, 40%));
+    // background: linear-gradient(45deg, $secondary, lighten($primary, 40%));
+    background-color: $header-bg-color;
+
     //   max-width: 80rem;
     width: 100%;
     //   padding: 2rem 0;

@@ -18,7 +18,8 @@ $navbar-height: 50px;
 
 $header-inline-padding: 40px;
 
-
+$header-bg-color: rgb(13, 34, 54);
+$header-bg-color-50: rgba(13, 34, 54, 0.5);
 
 :root {
     --day-color: #3bbdf9; // Morning (soft yellow)
@@ -29,8 +30,8 @@ $header-inline-padding: 40px;
 
     --primary-color: #0077b6; // Oceanic blue
     --highlight-color: #f4a261; // Warm sunset orange
-    --bg-color: #ffffff; // Light creamy background
-    --text-color: #333; // Dark gray for readability
+    --bg-color: $header-bg-color; // Light creamy background
+    --text-color: white; // Dark gray for readability
     --navbar-height: 50px;
     --negative-navbar-height: 50px;
     --black: black;

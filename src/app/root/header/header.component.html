@@ -11,29 +11,54 @@
                     <img src="assets/icons/ChaloGhoome-logo-new.png" alt="Description">
                 </picture> -->
             </a>
-            <!-- <div class="navbar-wrapper inline-sections">
-                <ul class="custom-navbar-nav">
-                    @if (sections && sections.length > 0) {
-                    @for (section of sections; track $index) {
-                    <li>
-                        <a class="dropdown-item" routerLink="home" (click)="scrollTo(section.sectionId)">
-                            {{section?.sectionName}}
-                        </a>
-                    </li>
+            <div class="search-form" [class.expanded]="isExpanded()">
+                <form (ngSubmit)="onSearch()" (clickOutside)="showSuggestions = false"
+                    [class.floating-search]="isScrolled">
+                    <div class="search-bar">
+                        <input type="text" [(ngModel)]="searchQuery" name="searchQuery" (input)="onInputChange()"
+                            (focus)="showSuggestions = true" class="search-input" placeholder="Search places..." required
+                            autocomplete="off" />
+                            @if (!isExpanded()) {
+                                <button type="button" (click)="expandSearchBar()" class="search-btn">
+                                    <i class="fa fa-search icon"></i>
+                                </button>
+                            } @else {
+                                <button type="submit" class="search-btn">
+                                    <i class="fa fa-search icon"></i>
+                                </button>
+                            }
+                    </div>
+                    @if (showSuggestions) {
+                    @if (filteredSuggestions && filteredSuggestions.length) {
+                    <div class="suggestions">
+                        <div class="section-title">Search Results</div>
+                        <ul>
+                            <li class="item" *ngFor="let suggestion of filteredSuggestions"
+                                (click)="selectSuggestion(suggestion)">
+                                <span>{{ suggestion }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    } @else if (!searchQuery) {
+                    <div class="suggestions">
+                        <div class="section-title">Most Searched</div>
+                        <ul>
+                            @for (item of commonService.places; track $index) {
+                            <li class="item">
+                                <span (click)="selectSuggestion(item)">{{item}}</span>
+                            </li>
+                            }
+                        </ul>
+                    </div>
                     }
                     }
-                </ul>
-            </div> -->
-
+                </form>
+            </div>
             <div class="right" style="text-align: end;">
                 <!-- Hamburger Menu for Mobile -->
-                <button class="hamburger" (click)="toggleSidebar($event)">
+                <button class="hamburger" (click)="toggleSidebar($event);collapseSearchBar()">
                     &#9776;
                 </button>
-                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button> -->
                 <div class="navbar-wrapper">
                     <ul class="custom-navbar-nav">
                         <!-- Header -->

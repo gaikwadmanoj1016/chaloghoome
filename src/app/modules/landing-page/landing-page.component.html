@@ -42,11 +42,6 @@
                 <span class="title">Explore</span>
             </button>
         </div>
-        <form (ngSubmit)="onSearch()" class="search-form">
-            <input type="text" [(ngModel)]="searchQuery" name="searchQuery" placeholder="Search places..." required />
-            <button type="submit">Search</button>
-          </form>
-          
         <!-- <div class="category-grid">
             <div class="category-card">Taj Mahal</div>
             <div class="category-card">Great Wall of China</div>
@@ -196,7 +191,8 @@
                                 (click)="redirectTo('section-detail/'+section.id+'/post/'+post.id)">Explore</button>
                         </div>
                     </div> -->
-                    <app-place-card [item]="post" [sectionId]="section.sectionId" (onNavigateTo)="redirectTo($event)"></app-place-card>
+                    <app-place-card [item]="post" [sectionId]="section.sectionId"
+                        (onNavigateTo)="redirectTo($event)"></app-place-card>
                     }
                 </div>
                 } @else {

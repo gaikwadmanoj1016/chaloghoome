@@ -6,10 +6,11 @@
             @if (section && section.sectionName) {
             } -->
         </h2>
-        <div class="head">
-            <!-- Add more details here -->
-            <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>
-        </div>
+        @if (cardEditable) {
+            <div class="head">
+                <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>
+            </div>
+        }
 
         @if (section && section.posts && section.posts.length > 0 && sectionId) {
         <div class="travel-card-container grid-container">
@@ -213,7 +214,6 @@
                         </span>
                     </div>
                 </div>
-
             </div>
             <!-- Submit Button " [disabled]="postForm.invalid"-->
             <button type="submit" class="btn submit-btn">Submit</button>

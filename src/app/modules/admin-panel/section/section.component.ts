@@ -359,11 +359,11 @@ export class SectionComponent implements OnInit {
             });
           } else if (key === 'tags') {
             this.tags.forEach((tag: any, index: number) => {
-              formData.append(`tag[${index}].tagName`, tag || '');
+              formData.append(`tagList[${index}].tagName`, tag || '');
             });
           } else if (key === 'categories') {
             this.categories.forEach((category: any, index: number) => {
-              formData.append(`category[${index}].catName`, category || '');
+              formData.append(`catList[${index}].catName`, category || '');
             });
           } else {
             formData.append(key, (typeof values[key] === 'string') ? values[key]?.trim() : values[key] || '');

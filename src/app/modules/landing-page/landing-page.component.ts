@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import { ApiService } from '../../services/api.service';
 import { ContactUsComponent } from "../contact-us/contact-us.component";
@@ -132,21 +132,13 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   isScrolled = false;
   searchQuery: string = '';
 
-  constructor(private route: ActivatedRoute, public commonService: CommonService, private apiService: ApiService) { }
+  constructor(public commonService: CommonService, private apiService: ApiService) { }
 
   @HostListener('window:scroll', [])
   onScroll(): void {
     this.isScrolled = window.pageYOffset > 300;
   }
   ngOnInit(): void {
-    // this.route.queryParamMap.subscribe(params => {
-    //   if (params && params.get("section")) {
-    //     this.scrollToDivId = params.get("section");
-    //     this.commonService.scrollToDiv(this.scrollToDivId);
-    //   } else {
-    //     this.commonService.scrollToTop();
-    //   }
-    // });
     this.mapIndiaSection();
     this.getSections();
   }
@@ -158,13 +150,21 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
 
   private getSections() {
     // this.commonService.sections = [];
-    this.apiService.getSectionWithPosts().subscribe((response: any) => {
+    this.apiService.getSectionWithPosts(7).subscribe((response: any) => {
       if (response.result && response.data && response.data.length > 0) {
         this.sections = response.data.sort((a: any, b: any) => a.order - b.order);
         // this.sections[1].posts.splice(2,6)
+        this.commonService.places = [];
         if (this.sections && this.sections.length > 0) {
           localStorage.setItem('sections', JSON.stringify(this.sections));
           this.addSomeStaticContent();
+          for (let section of this.sections) {
+            for (let place of section.posts.content) {
+              if (!this.commonService.places.includes(place.postName)) {
+                this.commonService.places.push(place.postName);
+              }
+            }
+          }
         }
       } else {
         this.sections = [];
@@ -227,13 +227,6 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
 
   public navigateTo(section: any) {
     this.commonService.navigateTo('section/' + section.id);
-  }
-
-  onSearch(): void {
-    if (this.searchQuery) {
-      // Navigate to search results page with the query as a parameter
-      this.commonService.navigateToQueryParams('/search', { query: this.searchQuery });
-    }
   }
 
   animateCounters() {
