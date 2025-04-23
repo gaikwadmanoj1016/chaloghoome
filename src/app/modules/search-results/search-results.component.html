@@ -17,10 +17,10 @@
             <div class="card-grid">
                 @for (place of searchResults; track $index) {
                 <div class="card">
-                    <img [src]="commonService.appendAssetUrl(place.originalThumbnailImg || '') || '../../../../../assets/imgs/image-placeholder.jpg'"
+                    <img [src]="commonService.appendAssetUrl(place.thumbnailImg || '') || '../../../../../assets/imgs/image-placeholder.jpg'"
                         alt="{{ place.postName }} {{place.location}}" />
-                    <h4>{{ place.postName }}</h4>
-                    <p class="location">{{ place.location }}</p>
+                    <h4 [title]="place.postName">{{ place.postName | truncate: 20 }}</h4>
+                    <p class="location" [title]="place.location">{{ place.location | truncate: 30 }}</p>
                     <p class="summary">{{ place.summary | truncate: 100 }}</p>
                     <a [routerLink]="['/place', slugify(place.postName)]">View Details</a>
                 </div>

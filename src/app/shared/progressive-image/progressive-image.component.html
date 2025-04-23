@@ -1,17 +1,14 @@
 <!-- <div class="blur-img" (click)="onClick()" [class.placeholder-loaded]="isLoaded" style="background-image: url('{{smallImage}}');">
     <img [src]="image" [alt]="altText" [title]="title" [class.aspect-ratio]="!aspectRatio" [class.image-loaded]="isLoaded" loading="lazy" (load)="onImageLoad()">
 </div> -->
+<div class="progressive-image-wrapper" (click)="onClick()" [class.placeholder-loaded]="!isLoaded"
+  [style.background-image]="'url(' + smallImage + ')'">
+  <img [src]="image" [alt]="altText" [title]="title" loading="lazy" [class.image-loaded]="isLoaded"
+    (load)="onImageLoad()" class="progressive-img" />
+</div>
 
-<div class="progressive-image-wrapper" (click)="onClick()" [class.placeholder-loaded]="!isLoaded">
-    <img
-      [src]="image"
-      [alt]="altText"
-      [title]="title"
-      loading="lazy"
-      [class.image-loaded]="isLoaded"
-      (load)="onImageLoad()"
-      style="background-image: url('{{smallImage}}');"
-      class="progressive-img"
-    />
-  </div>
-  
+
+<!-- <div class="progressive-image-wrapper" (click)="onClick()" [class.placeholder-loaded]="!isLoaded">
+  <img [src]="image" [alt]="altText" [title]="title" loading="lazy" [class.image-loaded]="isLoaded"
+    (load)="onImageLoad()" style="background-image: url('{{smallImage}}');" class="progressive-img" />
+</div> -->

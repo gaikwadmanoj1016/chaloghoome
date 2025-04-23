@@ -180,13 +180,13 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
           item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);
           return item;
         });
-        if ((section.sectionId === 'hidden_gems')) {
+        if ((section.sectionId === 'hidden-gems')) {
           // section.background = "linear-gradient(to right, rgba(0, 119, 182, 0.8), rgba(244, 162, 97, 0.8)), url('../../../assets/imgs/hidden-gems/faroe-islands-2.jpg') center/cover no-repeat";
           section.description = "Explore the world’s most breathtaking destinations, handpicked for adventurous travelers.";
           section.class = "section-new";
           section.isBackgroundVideo = true;
           section.backgroundVideoSource = "../../../assets/videos/253436_tiny.mp4";
-        } else if (section.sectionId === 'wonders_of_the_world') {
+        } else if (section.sectionId === 'wonders-of-the-world') {
           section.class = "galactic-wonders";
           section.description = "Embark on an adventure like never before! Discover hidden gems, breathtaking landscapes, and stories waiting to be told";
           section.isBackgroundVideo = true;

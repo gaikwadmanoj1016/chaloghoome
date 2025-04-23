@@ -35,7 +35,7 @@ export class PlaceCardComponent implements OnInit {
   }
   
   navigateToPostDetails(item: any){
-    let path = `place/${slugify(item.postName, '-')}`;
+    let path = `place/${slugify(item.postName, '-')}+${item.postName}`;
     this.onNavigateTo.emit(path);
   }
   

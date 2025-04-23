@@ -22,6 +22,69 @@ export class ApiService {
     )
   }
 
+  // common
+  public getMasterTagList() {
+    let API = environment.apiUrl + 'api/setup/getMasterTagList';
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  public createTag(req: any) {
+    let API = environment.apiUrl + 'api/setup/createTag';
+    return this.httpRequest.post(API, req, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  public deleteTag(tagId: number) {
+    let API = environment.apiUrl + 'api/setup/deleteTag/' + tagId;
+    return this.httpRequest.delete(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  public getMasterCategoryList() {
+    let API = environment.apiUrl + 'api/setup/getMasterCategoryList';
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  public deleteCategory(id: number) {
+    let API = environment.apiUrl + 'api/setup/deleteCategory/' + id;
+    return this.httpRequest.delete(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  public createCategory(req: any) {
+    let API = environment.apiUrl + 'api/setup/createCategory';
+    return this.httpRequest.post(API, req, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  // common
+
   //#region sections
   public getSectionsList() {
     let API = environment.apiUrl + 'api/sections/getSectionList';

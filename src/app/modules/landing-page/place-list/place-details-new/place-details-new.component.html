@@ -1,4 +1,4 @@
-<!-- Hero Section -->
+<!-- 
 <main>
 
     <header class="hero"
@@ -6,16 +6,10 @@
         <div class="hero-content" [attr.aria-labelledby]="placeDetails?.summary" [title]="placeDetails?.postName">
             <img class="main-hero-image" [src]="imgSrc" (error)="onImageError()" (load)="onImageLoad()"
                 alt="Hero Image" />
-            <!-- <div class="main-hero-image">
-                <app-progressive-image [smallImage]="'../../../../../assets/imgs/image-placeholder.jpg'"
-                    [image]="commonService.appendAssetUrl(placeDetails?.originalThumbnailImg || '')"
-                    [altText]="placeDetails?.postName + ',' + placeDetails?.location">
-                </app-progressive-image>
-            </div> -->
         </div>
     </header>
 
-    <!-- About Section -->
+    
     <section class="about">
         <div class="container">
             <h2>About {{placeDetails?.postName}}</h2>
@@ -36,7 +30,7 @@
     </section>
 
 
-    <!-- Unique Features -->
+    
     <section class="speciality">
         <div class="container">
             <h2>Why Visit the {{placeDetails?.postName}} ?</h2>
@@ -45,14 +39,14 @@
                 <div class="feature-card" [ariaLabel]="speciality.description">
                     <h4>{{speciality.speciality}}
                     </h4>
-                    <!-- <p> {{speciality.description}} </p> -->
+                    
                 </div>
                 }
             </div>
         </div>
     </section>
 
-    <!-- Travel Guide -->
+    
     <section class="travel-guide">
         <div class="container">
             <h2>Plan Your Visit: {{placeDetails?.postName}}</h2>
@@ -102,7 +96,7 @@
     </section>
 
 
-    <!-- Transportation Options -->
+    
     <section class="transportation">
         <div class="container">
             <h2>Transportation Options</h2>
@@ -117,7 +111,7 @@
         </div>
     </section>
 
-    <!-- Photo Gallery -->
+    
     <section class="gallery">
         <div class="container">
             <h2>Photo Gallery</h2>
@@ -133,7 +127,7 @@
                             [aspectRatio]="false"
                             (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))">
                         </app-progressive-image>
-                        <!-- <img [src]="commonService.appendAssetUrl(highlight.imagePath)" alt="View of Sydney Harbour"> -->
+                        
                         @if (checkLastIndex($index) && !loadedAllImage) {
                         <button id="loadMore" class="load-more" (click)="loadAllImagesToGallary()">Load More
                             Images</button>
@@ -141,8 +135,7 @@
                     </div>
                     }
                     }
-                    <!-- <img src="./assets/luobulinka-q6zrzngzy2E-unsplash.jpg" alt="Additional Image 1" class="hidden">
-                    <img src="./assets/luobulinka-q6zrzngzy2E-unsplash.jpg" alt="Additional Image 2" class="hidden"> -->
+                    
                 </div>
             </div>
         </div>
@@ -150,7 +143,7 @@
 
 
 
-    <!-- Fun Facts -->
+    
     <section class="fun-facts">
         <div class="container">
             <h2>Did You Know?</h2>
@@ -164,7 +157,7 @@
     </section>
 
 
-    <!-- Ticket Booking Information -->
+    
     <section class="tickets">
         <div class="container">
             <h2>How to Book Tickets</h2>
@@ -177,8 +170,298 @@
         </div>
     </section>
 
+    
+    <section class="dining-options">
+        <div class="container">
+            <h2>Dining Options</h2>
+            <ul>
+                <li><strong>Bennelong Restaurant:</strong> Fine dining with stunning views.</li>
+                <li><strong>Opera Bar:</strong> Casual dining with a vibrant atmosphere.</li>
+                <li><strong>Grab & Go:</strong> Quick snacks and beverages available at various kiosks.</li>
+            </ul>
+        </div>
+    </section>
+
+    
+    <section class="accommodation">
+        <div class="container">
+            <h2>Accommodation Recommendations</h2>
+            <ul>
+                <li><strong>Park Hyatt Sydney:</strong> Luxury hotel with harbor views.</li>
+                <li><strong>Sydney Harbour YHA:</strong> Budget-friendly hostel with a great location.</li>
+                <li><strong>Shangri-La Hotel:</strong> Upscale hotel with stunning city views.</li>
+            </ul>
+        </div>
+    </section>
+
+    
+    <section class="packing-list">
+        <div class="container">
+            <h2>What to Pack</h2>
+            <ul class="packing-items">
+                <li>Camera</li>
+                <li>Walking Shoes</li>
+                <li>Sunscreen</li>
+                <li>Event Tickets</li>
+            </ul>
+        </div>
+    </section>
+
+    
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Visitors Say</h2>
+            <div class="testimonial-card">
+                <p>"An absolute must-visit! The views and performances are breathtaking!" - <strong>Emma, UK</strong>
+                </p>
+            </div>
+            <div class="testimonial-card">
+                <p>"A true architectural wonder. The guided tour was fascinating!" - <strong>David, USA</strong></p>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="nearby-attractions">
+        <div class="container">
+            <h2>Nearby Attractions</h2>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <img src="../../../../../assets/imgs/pexels-nina-uhlikova-287240.jpg" alt="Harbour Bridge">
+                    <h3>Harbour Bridge Climb</h3>
+                    <p>Experience breathtaking views of Sydney from the top of the Harbour Bridge.</p>
+                </div>
+                <div class="attraction-card">
+                    <img src="../../../../../assets/imgs/pexels-pixabay-257092.webp" alt="The Rocks">
+                    <h3>The Rocks</h3>
+                    <p>Explore historic streets filled with great food, shopping, and local culture.</p>
+                </div>
+                <div class="attraction-card">
+                    <img src="../../../../../assets/imgs/pexels-pixabay-257092.jpg" alt="Royal Botanic Garden">
+                    <h3>Royal Botanic Garden</h3>
+                    <p>A peaceful escape with beautiful greenery and scenic harbor views.</p>
+                </div>
+                <div class="attraction-card">
+                    <img src="../../../../../assets/imgs/pexels-vincent-rivaud-2265876.jpg" alt="Darling Harbour">
+                    <h3>Darling Harbour</h3>
+                    <p>Enjoy entertainment, dining, and nightlife in this vibrant waterfront area.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="faqs">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <ul>
+                <li><strong>Is the Opera House accessible for people with disabilities?</strong> Yes, there are
+                    facilities available.</li>
+                <li><strong>Are there family-friendly activities?</strong> Yes, there are guided tours suitable for
+                    families.</li>
+                <li><strong>What should I wear?</strong> Dress comfortably; smart casual is recommended for
+                    performances.</li>
+            </ul>
+        </div>
+    </section>
+</main> -->
 
 
+<main>
+    <header class="hero" *ngIf="placeDetails?.originalThumbnailImg"
+        [style.background-image]="'url('+commonService.appendAssetUrl(placeDetails?.originalThumbnailImg || '')+')'">
+        <div class="hero-content" [attr.aria-labelledby]="placeDetails?.summary" [title]="placeDetails?.postName">
+            <img class="main-hero-image" [src]="imgSrc" (error)="onImageError()" (load)="onImageLoad()"
+                alt="Hero Image" />
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about"
+        *ngIf="placeDetails?.postName || placeDetails?.summary || placeDetails?.location || placeDetails?.famousFor || placeDetails?.history">
+        @if ((tags?.length || categories?.length) && false) {
+        <div class="tags-categories">
+            <div class="container">
+                <div class="tags-categories-wrapper">
+                    <!-- Categories -->
+                    <div class="category-box" *ngIf="categories?.length">
+                        <h3>Categories</h3>
+                        <ul class="category-list">
+                            <li *ngFor="let category of categories" (click)="searchText(category)">
+                                <span class="category-item">{{ category }}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="tags-box" *ngIf="tags?.length">
+                        <h3>Tags</h3>
+                        <ul class="tags-list">
+                            <li *ngFor="let tag of tags" (click)="searchText(tag)">
+                                <span class="tag-item">#{{ tag }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+        <div class="container"
+            *ngIf="placeDetails?.postName || placeDetails?.summary || placeDetails?.location || placeDetails?.famousFor">
+            <h2 *ngIf="placeDetails?.postName">About {{ placeDetails?.postName }}</h2>
+            <p *ngIf="placeDetails?.summary">{{ placeDetails?.summary }}</p>
+            <ul>
+                <li *ngIf="placeDetails?.location"><strong>Location:</strong> {{ placeDetails?.location }}</li>
+                <!-- <li *ngIf="placeDetails?.opened"><strong>Opened:</strong> {{ placeDetails?.opened }}</li>
+            <li *ngIf="placeDetails?.annualVisitors"><strong>Annual Visitors:</strong> {{ placeDetails?.annualVisitors
+                }}</li>
+            <li *ngIf="placeDetails?.famousFor"><strong>Famous For:</strong> {{ placeDetails?.famousFor }}</li> -->
+            </ul>
+        </div>
+        <div class="container" *ngIf="placeDetails?.postName || placeDetails?.history">
+            <h2 *ngIf="placeDetails?.postName">History of {{ placeDetails?.postName }}</h2>
+            <p *ngIf="placeDetails?.history">{{ placeDetails?.history }}</p>
+        </div>
+    </section>
+
+    <!-- Unique Features -->
+    <section class="speciality" *ngIf="placeDetails?.specialities && placeDetails?.specialities?.length">
+        <div class="container">
+            <h2 *ngIf="placeDetails?.postName">Why Visit the {{ placeDetails?.postName }} ?</h2>
+            <div class="feature-grid">
+                <div class="feature-card" *ngFor="let speciality of placeDetails?.specialities; let i = index"
+                    [attr.aria-label]="speciality.description">
+                    <h4>{{ speciality.speciality }}</h4>
+                    <!-- <p> {{speciality.description}} </p> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Guide -->
+    <section class="travel-guide" *ngIf="
+        placeDetails?.postName ||
+        placeDetails?.bestTimeToVisit ||
+        placeDetails?.famousFor ||
+        placeDetails?.howToGo ||
+        (placeDetails?.travelGuide?.length)
+      ">
+        <div class="container">
+            <h2 *ngIf="placeDetails?.postName">Plan Your Visit: {{ placeDetails?.postName }}</h2>
+            <div class="guide-grid">
+                <div class="guide-card" *ngIf="placeDetails?.bestTimeToVisit">
+                    <h3>Best Time to Visit</h3>
+                    <p [innerHTML]="updateFormattedText(placeDetails?.bestTimeToVisit)"></p>
+                </div>
+                <div class="guide-card" *ngIf="placeDetails?.famousFor">
+                    <h3>is Famous For</h3>
+                    <p [innerHTML]="updateFormattedText(placeDetails?.famousFor)"></p>
+                </div>
+                <div class="guide-card" *ngIf="placeDetails?.howToGo">
+                    <h3>How to Go</h3>
+                    <p [innerHTML]="updateFormattedText(placeDetails?.howToGo)"></p>
+                </div>
+                <div class="guide-card" *ngFor="let travelInfo of placeDetails?.travelGuide; let i = index">
+                    <h3>{{ travelInfo.title }}</h3>
+                    <p [innerHTML]="updateFormattedText(travelInfo.para)"></p>
+                </div>
+                <div class="guide-card">
+                    <h3>Top Things to Do</h3>
+                    <ul>
+                        <li>Attend a live opera or theatre show</li>
+                        <li>Take a guided backstage tour</li>
+                        <li>Dine at the world-class Bennelong Restaurant</li>
+                        <li>Enjoy a sunset cruise around Sydney Harbour</li>
+                    </ul>
+                </div>
+                <div class="guide-card">
+                    <h3>Visitor Information</h3>
+                    <p>Opening Hours: Daily from 9 AM to 5 PM</p>
+                    <p>Ticket Prices: General admission is $40, with discounts for students and seniors.</p>
+                    <p>Special Events: Check the official website for upcoming performances and exhibitions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="routes" *ngIf="placeDetails?.routes">
+        <div class="container">
+            <h2 *ngIf="placeDetails?.postName">Routes for {{ placeDetails?.postName }}</h2>
+            <p [innerHTML]="updateFormattedText(placeDetails?.routes)"></p>
+        </div>
+    </section>
+
+    <!-- Transportation Options -->
+    <section class="transportation" *ngIf="false">
+        <div class="container">
+            <h2>Transportation Options</h2>
+            <p>Getting to the Sydney Opera House is easy with various public transport options:</p>
+            <ul>
+                <li><strong>Train:</strong> The nearest station is Circular Quay, just a short walk away.</li>
+                <li><strong>Bus:</strong> Several bus routes stop nearby, including routes 333 and 380.</li>
+                <li><strong>Ferry:</strong> Take a ferry to Circular Quay for stunning views of the harbor.</li>
+                <li>
+                    <strong>Parking:</strong> Limited parking is available at the Opera House; consider public transport
+                    for convenience.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="gallery" *ngIf="highlights && highlights.length > 0">
+        <div class="container">
+            <h2>Photo Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-grid" id="galleryGrid">
+                    <ng-container *ngIf="checkHighlightExist()">
+                        <div class="image-wrapper" *ngFor="let highlight of highlights; let i = index"
+                            [class.lastIndex]="checkLastIndex(i)">
+                            <app-progressive-image [smallImage]="'../../../../../assets/imgs/image-placeholder.jpg'"
+                                [image]="commonService.appendAssetUrl(highlight.compressedImagePath)"
+                                [title]="highlight.title"
+                                [altText]="'ChaloGhoome: ' + highlight.title + ': ' + highlight.description"
+                                [aspectRatio]="false"
+                                (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))">
+                            </app-progressive-image>
+                            <button *ngIf="checkLastIndex(i) && !loadedAllImage" id="loadMore" class="load-more"
+                                (click)="loadAllImagesToGallary()">
+                                Load More Images
+                            </button>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fun Facts -->
+    <section class="fun-facts" *ngIf="true">
+        <div class="container">
+            <h2>Did You Know?</h2>
+            <ul>
+                <li>The Sydney Opera House roof is made of over 1 million white and matte cream tiles.</li>
+                <li>
+                    It took <strong>14 years</strong> to build, with an original budget of $7 million but final costs
+                    reaching
+                    $102 million.
+                </li>
+                <li>More than <strong>1,500 performances</strong> are held here every year.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Ticket Booking Information -->
+    <section class="tickets">
+        <div class="container">
+            <h2>How to Book Tickets</h2>
+            <p>You can book tickets for shows and guided tours through:</p>
+            <ul>
+                <li><a href="https://www.sydneyoperahouse.com/">Official Website</a></li>
+                <li>On-site Box Office</li>
+                <li>Third-party Booking Platforms</li>
+            </ul>
+        </div>
+    </section>
 
     <!-- Dining Options -->
     <section class="dining-options">
@@ -273,4 +556,5 @@
             </ul>
         </div>
     </section>
+
 </main>

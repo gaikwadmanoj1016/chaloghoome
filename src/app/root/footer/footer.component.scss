@@ -1,15 +1,22 @@
+@use '../../../styles/variables' as *;
+
 $headingFont: 'Montserrat', sans-serif;
 $bodyFont: 'Lora', serif;
 
 body {
     font-family: $bodyFont;
 }
-a, p, h1, h2, h3 {
+
+a,
+p,
+h1,
+h2,
+h3 {
     font-family: $headingFont;
 }
 
 footer {
-    background: #353535;
+    background: $sidebar-bg-color;
     padding: 0 20px;
     color: white;
     font-size: 12px;
@@ -35,6 +42,15 @@ footer {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
+        padding: 40px 0;
+
+        @media (max-width: 768px) {
+            padding: 0 !important;
+
+            .section1 {
+                padding: 40px 0 !important;
+            }
+        }
 
         .section1,
         .section2,
@@ -63,7 +79,12 @@ footer {
         .section2 {
             display: flex;
             gap: 80px;
-            border-top: 2px solid #525252;
+
+            @media (max-width: 768px) {
+                width: 100%;
+                justify-content: center;
+                border-top: 2px solid #525252;
+            }
 
             a {
                 cursor: pointer;
@@ -101,16 +122,18 @@ footer {
         .section2,
         .section3,
         .section4 {
+
             h4 {
                 font-weight: 500;
-                font-size: 14px;
+                font-size: 16px;
                 text-decoration: underline;
                 margin: 0;
             }
 
             ul {
                 li {
-                    padding: 0;
+                    font-size: 14px;
+                    padding: 6px 0;
                     // margin-bottom: 6px;
                 }
             }
@@ -154,6 +177,8 @@ footer {
         border-top: 2px solid #525252;
         text-align: center;
         padding: 10px;
+        padding: 20px 10px;
+        font-size: 14px;
 
         p {
             margin: 0;

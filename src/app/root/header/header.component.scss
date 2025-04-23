@@ -325,14 +325,14 @@ header {
     padding: 10px 20px;
     // background-color: rgba(0, 0, 0, 0.6);
     background-color: $header-bg-color-50;
-    box-shadow: -20px 0px 12px 7px rgba(0, 0, 0, 0.2);
     transition: right 0.3s ease-in-out;
     z-index: 1050;
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
-
+    
     &.open {
         right: 0;
+        box-shadow: -20px 0px 12px 7px rgba(0, 0, 0, 0.2);
     }
 
     .close-btn {

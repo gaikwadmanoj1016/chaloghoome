@@ -1,0 +1,46 @@
+<section>
+    <div class="container">
+        <h2>Categories</h2>
+        <button (click)="toggleAddForm()">Add Category</button>
+
+        @if (showAddForm()) {
+        <div class="form-container">
+            <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()" class="row">
+                <div class="form-group col-lg-4">
+                    <label for="catName">Category Name</label>
+                    <input id="catName" placeholder="Enter Category Name" type="text" formControlName="catName" />
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Save</button>
+                    <button type="button" (click)="toggleAddForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+        }
+
+        <div class="listing">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (category of categories; track $index) {
+                    <tr>
+                        <td>{{ category.id }}</td>
+                        <td>
+                            {{category.catName}}
+                        </td>
+                        <td>
+                            <button (click)="deleteCategory(category.id)">Delete</button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

@@ -5,7 +5,7 @@ import { ApiService } from '../../../../services/api.service';
 import { CommonService } from '../../../../services/common.service';
 import { ImagePreviewComponent } from '../../../../shared/image-preview/image-preview.component';
 import { Highlight, PlaceDetails } from '../place-details/place-details.component';
-import { NgStyle } from '@angular/common';
+import { NgFor, NgIf, NgStyle } from '@angular/common';
 import { SharedModule } from '../../../../shared/shared.module';
 import { DOCUMENT } from '@angular/common';
 import { convertSlugToNormal, slugify } from '../../../../utils/slugify';
@@ -13,7 +13,7 @@ import { convertSlugToNormal, slugify } from '../../../../utils/slugify';
 @Component({
   selector: 'app-place-details-new',
   standalone: true,
-  imports: [NgStyle, SharedModule],
+  imports: [NgStyle, SharedModule, NgIf, NgFor],
   templateUrl: './place-details-new.component.html',
   styleUrl: './place-details-new.component.scss'
 })
@@ -26,7 +26,10 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   highlights?: Highlight[] = [];
   loadedAllImage: boolean = false;
   imgSrc = 'assets/imgs/image-placeholder.jpg';
-
+  originalPostName: string = '';
+  apiCallCount: number = 0;
+  tags = ['Adventure', 'Nature', 'Wildlife', 'Adventure', 'Nature', 'Wildlife', 'Adventure', 'Nature', 'Wildlife'];
+  categories = ['Trekking', 'Photography', 'Camping'];
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
@@ -38,8 +41,10 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   ngOnInit(): void {
     this.route.params.subscribe((param: any) => {
       if (param && param['postName']) {
-        this.postName = convertSlugToNormal(param['postName'], '-');
-        this.getPlaceDetailsByPlaceId();
+        let tempArr = param['postName'].split('+');
+        this.postName = convertSlugToNormal(tempArr[0], '-');
+        this.originalPostName = tempArr[1];
+        this.getPlaceDetailsByPlaceId(this.postName);
       }
     });
     const link: HTMLLinkElement = this.document.createElement('link');
@@ -51,7 +56,7 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   onImageError() {
     this.imgSrc = 'assets/imgs/image-placeholder.jpg';
   }
-  
+
   onImageLoad() {
     // Optional: Add logic or class for when image has fully loaded
   }
@@ -61,24 +66,38 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
     }, 2000);
   }
 
-  private getPlaceDetailsByPlaceId() {
-    let query = `postName=${this.postName}`;
-    this.apiRequest.getPostDetails(query).subscribe((response: any) => {
-      this.placeDetails = response.data;
-      if (this.placeDetails && this.placeDetails.highlights && this.placeDetails.highlights.length > 0) {
-        this.placeDetails.originalThumbnailImg = this.placeDetails.highlights.find(item => item.isThumbnail)?.imagePath
+  private getPlaceDetailsByPlaceId(postName: string) {
+    this.apiCallCount++;
+    let query = `postName=${postName}`;
+    this.apiRequest.getPostDetails(query).subscribe({
+      next: (response: any) => {
+        if (response && response.result) {
+
+          this.placeDetails = response.data;
+          if (this.placeDetails && this.placeDetails.highlights && this.placeDetails.highlights.length > 0) {
+            this.placeDetails.originalThumbnailImg = this.placeDetails.highlights.find(item => item.isThumbnail)?.imagePath
+          }
+          if (this.placeDetails && Object.keys(this.placeDetails).length > 0) {
+            this.commonService.setMetaData(this.placeDetails?.postName, this.placeDetails);
+            this.addStructuredData(this.placeDetails);
+          }
+          const originalImg = this.placeDetails?.originalThumbnailImg;
+          if (originalImg) {
+            this.imgSrc = this.commonService.appendAssetUrl(originalImg);
+          }
+          this.setGallary();
+        }
+      },
+      error: (err) => {
+        console.error('API failed:', err);
+        if (this.apiCallCount === 1 && postName !== this.originalPostName) {
+          this.getPlaceDetailsByPlaceId(this.originalPostName);
+        } else {
+          console.warn('Fallback API also failed.');
+        }
       }
-      if (this.placeDetails && Object.keys(this.placeDetails).length > 0) {
-        this.commonService.setMetaData(this.placeDetails?.postName, this.placeDetails);
-        this.addStructuredData(this.placeDetails);
-      }
-      const originalImg = this.placeDetails?.originalThumbnailImg;
-      if (originalImg) {
-        this.imgSrc = this.commonService.appendAssetUrl(originalImg);
-      }
-  
-      this.setGallary();
-    })
+    });
+
   }
 
   addStructuredData(place: PlaceDetails) {
@@ -110,7 +129,7 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   public loadAllImagesToGallary() {
-    this.highlights = this.placeDetails?.highlights;
+    this.highlights = this.placeDetails?.highlights || [];
     this.loadedAllImage = true;
   }
   openPreview(url: string): void {
@@ -190,6 +209,10 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
     this.pauseAutoSlide();
     this.currentIndex = index;
     this.resumeAutoSlide();
+  }
+
+  public searchText(text: string) {
+    this.commonService.navigateTo('/search/' + text)
   }
 
   ngOnDestroy() {

@@ -180,27 +180,12 @@
                 @if(section?.sectionStyle === 'grid') {
                 <div class="travel-card-container grid-container">
                     @for (post of section?.posts?.content; track $index) {
-                    <!-- <div class="travel-card" [attr.aria-labelledby]="post.summary" [title]="post.postName">
-                        <app-progressive-image [smallImage]="'../../../assets/imgs/image-placeholder.jpg'"
-                            [image]="post.imageUrl" [altText]="post.title + ',' + post.location">
-                        </app-progressive-image>
-                        <div class="card-overlay">
-                            <h3 class="travel-title">{{post.postName}}</h3>
-                            <p class="travel-location">{{post.location}}</p>
-                            <button class="explore-btn"
-                                (click)="redirectTo('section-detail/'+section.id+'/post/'+post.id)">Explore</button>
-                        </div>
-                    </div> -->
                     <app-place-card [item]="post" [sectionId]="section.sectionId"
                         (onNavigateTo)="redirectTo($event)"></app-place-card>
                     }
                 </div>
                 } @else {
                 <div class="carousel-wrapper">
-                    <!-- <div class="controls">
-                    <button (click)="playCarousel()">Play</button>
-                    <button (click)="stopCarousel()">Stop</button>
-                </div> -->
                     <owl-carousel-o [options]="customOptions">
                         @for (post of section?.posts?.content; track $index) {
                         <ng-template carouselSlide>

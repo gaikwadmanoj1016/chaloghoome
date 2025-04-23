@@ -1,41 +1,73 @@
-// #region deprecated
-// .blur-img {
+// // #region deprecated
+// // .blur-img {
+// //     width: 100%;
+// //     background-repeat: no-repeat;
+// //     background-size: cover;
+// //     // filter: blur(10px);
+// //     height: 100%;
+// //     background-position: center center;
+
+// //     @media screen and (max-width: 768px) {
+// //         height: auto !important;
+// //     }
+
+// //     img {
+// //         width: 100%;
+// //         height: auto;
+// //         // aspect-ratio: 1280 / 720;
+// //         opacity: 0;
+// //         transition: opacity 1000ms ease-in-out;
+// //     }
+// // }
+
+// // .aspect-ratio {
+// //     aspect-ratio: 0 !important;
+
+// //     @media screen and (max-width: 768px) {
+// //         height: auto !important;
+// //     }
+// // }
+
+// // .placeholder-loaded {
+// //     filter: none;
+// // }
+
+// // .image-loaded {
+// //     opacity: 1 !important;
+// // }
+// // #endregion deprecated
+
+// .progressive-image-wrapper {
 //     width: 100%;
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     // filter: blur(10px);
 //     height: 100%;
-//     background-position: center center;
+//     display: block;
+//     position: relative;
+//     overflow: hidden;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     transition: filter 0.3s ease;
 
-//     @media screen and (max-width: 768px) {
-//         height: auto !important;
+//     &.placeholder-loaded {
+//         filter: blur(5px);
 //     }
 
-//     img {
+//     .progressive-img {
 //         width: 100%;
-//         height: auto;
-//         // aspect-ratio: 1280 / 720;
+//         height: 100%;
+//         object-fit: cover;
+//         object-position: center;
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         transition: opacity 0.3s ease-in-out;
 //         opacity: 0;
-//         transition: opacity 1000ms ease-in-out;
+
+//         &.image-loaded {
+//             opacity: 1;
+//         }
 //     }
 // }
-
-// .aspect-ratio {
-//     aspect-ratio: 0 !important;
-
-//     @media screen and (max-width: 768px) {
-//         height: auto !important;
-//     }
-// }
-
-// .placeholder-loaded {
-//     filter: none;
-// }
-
-// .image-loaded {
-//     opacity: 1 !important;
-// }
-// #endregion deprecated
 
 .progressive-image-wrapper {
     width: 100%;
@@ -49,7 +81,7 @@
     transition: filter 0.3s ease;
 
     &.placeholder-loaded {
-        filter: blur(5px);
+        filter: blur(5px); // Apply blur on placeholder
     }
 
     .progressive-img {
@@ -64,7 +96,7 @@
         opacity: 0;
 
         &.image-loaded {
-            opacity: 1;
+            opacity: 1; // Fade in image when loaded
         }
     }
 }

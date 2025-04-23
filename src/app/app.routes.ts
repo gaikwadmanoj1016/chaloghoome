@@ -15,14 +15,28 @@ import { AboutUsComponent } from './modules/about-us/about-us.component';
 import { ContactUsComponent } from './modules/contact-us/contact-us.component';
 import { NotFoundComponent } from './root/not-found/not-found.component';
 import { SearchResultsComponent } from './modules/search-results/search-results.component';
+import { SettingSectionComponent } from './modules/admin-panel/setting-section/setting-section.component';
+import { PlaceDetailsNewComponent } from './modules/landing-page/place-list/place-details-new/place-details-new.component';
+import { MasterTagListComponent } from './modules/admin-panel/master-tag-list/master-tag-list.component';
+import { MasterCategoryListComponent } from './modules/admin-panel/master-category-list/master-category-list.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'admin-panel', component: AdminPanelComponent },
+    {
+        path: 'admin-panel', component: AdminPanelComponent, children: [
+            { path: 'sections', component: SettingSectionComponent },
+            { path: 'sections/places/:sectionName', component: ViewPostComponent },
+            { path: 'tags', component: MasterTagListComponent },
+            { path: 'categories', component: MasterCategoryListComponent },
+            // { path: 'guides', component: GuidesComponent },
+            // { path: 'place-features', component: PlaceFeaturesComponent },
+            // { path: 'unique-features', component: UniqueFeaturesComponent },
+        ]
+    },
     { path: 'admin-panel/places/:sectionName', component: SectionComponent },
     { path: 'places/:sectionName', component: SectionComponent },
-    { path: 'place/:postName', component: ViewPostComponent },
+    { path: 'place/:postName', component: PlaceDetailsNewComponent },
     // { path: '', component: DashboardComponent },
     { path: 'home', component: LandingPageComponent },
     { path: 'about_us', component: AboutUsComponent },

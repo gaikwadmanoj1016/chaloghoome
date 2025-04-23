@@ -327,3 +327,57 @@ main {
         }
     }
 }
+
+.tags-categories {
+    // padding: 2rem 0;
+
+    .tags-categories-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: space-between;
+        // flex-direction: column;
+    }
+
+    .category-box,
+    .tags-box {
+        flex: 1;
+        min-width: 280px;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: $color-white;
+    }
+
+    .category-list,
+    .tags-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .category-item,
+    .tag-item {
+        background-color: #d1e7dd;
+        color: #0f5132;
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        cursor: pointer;
+        
+        &:hover {
+            background-color: #93afa2;
+            color: #034124;
+        }
+    }
+
+    .tag-item {
+        background-color: #cfe2ff;
+        color: #084298;
+    }
+}

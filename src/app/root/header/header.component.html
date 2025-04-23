@@ -1,4 +1,4 @@
-<header>
+<header (clickOutside)="closeSidebar()">
     @if (showNav()) {
     <nav #navbar class="navbar navbar-expand-lg navbar-light" [class.shadow]="isScrolled || isMobileView">
         <div class="custom-container bgColor">

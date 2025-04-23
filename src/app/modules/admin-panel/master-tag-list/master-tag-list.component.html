@@ -1,0 +1,48 @@
+<section>
+    <div class="container">
+        <h2>Tags</h2>
+        <button (click)="toggleAddForm()">Add Tag</button>
+
+        @if (showAddForm()) {
+        <div class="form-container">
+            <form [formGroup]="tagForm" (ngSubmit)="saveTag()" class="row">
+                <div class="form-group col-lg-4">
+                    <label for="tagName">Tag Name</label>
+                    <input id="tagName" placeholder="Enter Tag Name" type="text" formControlName="tagName" />
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Save</button>
+                    <button type="button" (click)="toggleAddForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+        }
+
+        <div class="listing">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tag</th>
+                        <th>Post Count</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (tag of tags; track $index) {
+                    <tr>
+                        <td>{{ tag.id }}</td>
+                        <td>
+                            {{tag.tagName}}
+                        </td>
+                        <td>{{ tag.postCount || 0 }}</td>
+                        <td>
+                            <button (click)="deleteTag(tag.id)">Delete</button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,71 @@
+<section>
+    <div class="container">
+        <h2>Sections</h2>
+        <button (click)="toggleAddForm()">Add Section</button>
+
+        @if (showAddForm) {
+        <div class="form-container">
+            <form [formGroup]="sectionForm" (ngSubmit)="saveSection()" class="row">
+                <div class="form-group col-lg-4">
+                    <label for="sectionName">Section Name</label>
+                    <input id="sectionName" placeholder="Enter Section Name" type="text" formControlName="sectionName" />
+                </div>
+                <div class="form-group col-lg-4">
+                    <label for="order">Order</label>
+                    <input id="order" type="number" placeholder="Enter Order" formControlName="order" />
+                </div>
+                <div class="form-group col-lg-4">
+                    <label for="sectionStyle">Section Style</label>
+                    <select name="sectionStyle" id="sectionStyle" formControlName="sectionStyle">
+                        <option value="">Select Style</option>
+                        <option value="flex">Flex</option>
+                        <option value="grid">Grid</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+                @if (sectionForm.get('sectionStyle')?.value === 'custom') {
+                <div class="form-group">
+                    <label for="customStyle">Custom Style</label>
+                    <textarea name="customStyle" id="customStyle" formControlName="customStyle" rows="5"></textarea>
+                </div>
+                }
+                <div class="form-actions">
+                    <button type="submit">Save</button>
+                    <button type="button" (click)="toggleAddForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+        }
+
+        <div class="listing">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Section Name</th>
+                        <th>Order</th>
+                        <th>Section Style</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (section of sections; track $index) {
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>
+                            <a href="#" [routerLink]="['places', section.sectionId]">{{ section.sectionName
+                                }}</a>
+                        </td>
+                        <td>{{ section.order }}</td>
+                        <td>{{ section.sectionStyle }}</td>
+                        <td>
+                            <button (click)="editSection(section)">Edit</button>
+                            <button (click)="deleteSection(section.id)">Delete</button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
