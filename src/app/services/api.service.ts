@@ -185,7 +185,7 @@ export class ApiService {
     )
   }
   public searchPlaces(query: string) {
-    let API = environment.apiUrl + `api/posts/search/${query}`;
+    let API = environment.apiUrl + `api/posts/searchPost/${query}`;
     return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
       map((data) => {
         return data;
