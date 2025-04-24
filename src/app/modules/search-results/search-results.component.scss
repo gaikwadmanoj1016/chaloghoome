@@ -4,7 +4,7 @@ section {
     min-height: calc(100vh - 176px);
     overflow: auto;
     // background-color: rgb(23, 42, 60);
-    background-color: $header-bg-color;
+    background-color: $bg-color;
     color: $color-white;
     padding-top: 50px;
 
@@ -132,6 +132,26 @@ section {
         .summary {
             font-size: 0.95rem;
             color: #dddddd;
+        }
+    }
+
+    &.grid-view {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        // gap: 2rem !important;
+        // white-space: normal;
+        overflow-x: hidden;
+        margin: auto;
+
+        .card {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            width: 90% !important;
+            margin: auto;
         }
     }
 }

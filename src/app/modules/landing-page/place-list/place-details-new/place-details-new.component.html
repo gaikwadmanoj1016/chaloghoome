@@ -265,8 +265,9 @@
     </section>
 </main> -->
 
-
+@if (!placeNotFound) {
 <main>
+
     <header class="hero" *ngIf="placeDetails?.originalThumbnailImg"
         [style.background-image]="'url('+commonService.appendAssetUrl(placeDetails?.originalThumbnailImg || '')+')'">
         <div class="hero-content" [attr.aria-labelledby]="placeDetails?.summary" [title]="placeDetails?.postName">
@@ -312,9 +313,9 @@
             <ul>
                 <li *ngIf="placeDetails?.location"><strong>Location:</strong> {{ placeDetails?.location }}</li>
                 <!-- <li *ngIf="placeDetails?.opened"><strong>Opened:</strong> {{ placeDetails?.opened }}</li>
-            <li *ngIf="placeDetails?.annualVisitors"><strong>Annual Visitors:</strong> {{ placeDetails?.annualVisitors
-                }}</li>
-            <li *ngIf="placeDetails?.famousFor"><strong>Famous For:</strong> {{ placeDetails?.famousFor }}</li> -->
+                <li *ngIf="placeDetails?.annualVisitors"><strong>Annual Visitors:</strong> {{ placeDetails?.annualVisitors
+                    }}</li>
+                <li *ngIf="placeDetails?.famousFor"><strong>Famous For:</strong> {{ placeDetails?.famousFor }}</li> -->
             </ul>
         </div>
         <div class="container" *ngIf="placeDetails?.postName || placeDetails?.history">
@@ -339,12 +340,12 @@
 
     <!-- Travel Guide -->
     <section class="travel-guide" *ngIf="
-        placeDetails?.postName ||
-        placeDetails?.bestTimeToVisit ||
-        placeDetails?.famousFor ||
-        placeDetails?.howToGo ||
-        (placeDetails?.travelGuide?.length)
-      ">
+            placeDetails?.postName ||
+            placeDetails?.bestTimeToVisit ||
+            placeDetails?.famousFor ||
+            placeDetails?.howToGo ||
+            (placeDetails?.travelGuide?.length)
+          ">
         <div class="container">
             <h2 *ngIf="placeDetails?.postName">Plan Your Visit: {{ placeDetails?.postName }}</h2>
             <div class="guide-grid">
@@ -558,3 +559,13 @@
     </section>
 
 </main>
+}
+@else {
+<main class="place-not-found">
+    <section>
+        <div>
+            place not found
+        </div>
+    </section>
+</main>
+}

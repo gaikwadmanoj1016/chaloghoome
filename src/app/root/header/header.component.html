@@ -16,42 +16,72 @@
                     [class.floating-search]="isScrolled">
                     <div class="search-bar">
                         <input type="text" [(ngModel)]="searchQuery" name="searchQuery" (input)="onInputChange()"
-                            (focus)="showSuggestions = true" class="search-input" placeholder="Search places..." required
-                            autocomplete="off" />
-                            @if (!isExpanded()) {
-                                <button type="button" (click)="expandSearchBar()" class="search-btn">
-                                    <i class="fa fa-search icon"></i>
-                                </button>
-                            } @else {
-                                <button type="submit" class="search-btn">
-                                    <i class="fa fa-search icon"></i>
-                                </button>
-                            }
+                            (focus)="showSuggestions = true" class="search-input" placeholder="Search places..."
+                            required autocomplete="off" />
+                        @if (!isExpanded()) {
+                        <button type="button" (click)="expandSearchBar()" class="search-btn">
+                            <i class="fa fa-search icon"></i>
+                        </button>
+                        } @else {
+                        <button type="submit" class="search-btn">
+                            <i class="fa fa-search icon"></i>
+                        </button>
+                        }
                     </div>
                     @if (showSuggestions) {
                     @if (filteredSuggestions && filteredSuggestions.length) {
-                    <div class="suggestions">
-                        <div class="section-title">Search Results</div>
+                    <div class="suggestions" [class.active]="suggestionsFetched()">
+                        @for (suggestion of filteredSuggestions; track $index) {
+                        @if (suggestion.list && suggestion.list.length > 0) {
+                        <div class="section-title">{{ suggestion.label }}</div>
                         <ul>
-                            <li class="item" *ngFor="let suggestion of filteredSuggestions"
-                                (click)="selectSuggestion(suggestion)">
-                                <span>{{ suggestion }}</span>
+                            @for (item of suggestion.list; track $index) {
+                            <li class="item">
+                                <!-- Category -->
+                                @if (item.catName && !item.sectionName) {
+                                <span (click)="selectSuggestion(item.catName)">{{ item.catName }}</span>
+                                }
+                                <!-- Tag -->
+                                @if (item.tagName) {
+                                <span (click)="selectSuggestion(item.tagName)">{{ item.tagName }}</span>
+                                }
+                                @if (item.posts && item.posts.length > 0) {
+                                <!-- Section -->
+                                @if (item.sectionName) {
+                                <span (click)="selectSuggestion(item.sectionName)">{{ item.sectionName }}</span>
+                                <!-- Posts inside Section -->
+                                @for (post of item.posts; track $index) {
+                                <div class="places" (click)="selectSuggestion(post.postName)">
+                                    <img *ngIf="post.thumbnailImg" [src]="commonService.appendAssetUrl(post.thumbnailImg)" class="post-image" />
+                                    <div class="post-info">
+                                        <div class="post-name">{{ post.postName }}</div>
+                                        <div class="post-location">{{ post.location }}</div>
+                                        <div class="post-summary">{{ post.summary | truncate: 100 }}</div>
+                                    </div>
+                                </div>
+                                }
+                                }
+                                }
                             </li>
+                            }
                         </ul>
+                        }
+                        }
                     </div>
                     } @else if (!searchQuery) {
                     <div class="suggestions">
                         <div class="section-title">Most Searched</div>
                         <ul>
                             @for (item of commonService.places; track $index) {
-                            <li class="item">
-                                <span (click)="selectSuggestion(item)">{{item}}</span>
+                            <li class="item" (click)="selectSuggestion(item)">
+                                <span>{{ item }}</span>
                             </li>
                             }
                         </ul>
                     </div>
                     }
                     }
+
                 </form>
             </div>
             <div class="right" style="text-align: end;">

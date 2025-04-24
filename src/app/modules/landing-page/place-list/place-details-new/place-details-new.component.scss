@@ -7,8 +7,8 @@ $primary-dark: #4141f5;
 $header-color: var(--text-color);
 $text-color: var(--text-color);
 $secondary-background-color: rgb(74 126 246);
-$background-color: $header-bg-color;
-$section-bg: $header-bg-color;
+$background-color: $bg-color;
+$section-bg: $bg-color;
 $section-shadow: rgba(0, 0, 0, 0.1);
 $gallery-shadow: rgba(0, 0, 0, 0.1);
 $gallery-hover-shadow: rgba(0, 0, 0, 0.2);
@@ -66,6 +66,7 @@ main {
     padding: 0;
     color: $text-color;
     background-color: $secondary-background-color;
+    min-height: calc(100vh - 80px);
 
     .hero {
         position: relative;
@@ -369,7 +370,7 @@ main {
         font-size: 0.9rem;
         white-space: nowrap;
         cursor: pointer;
-        
+
         &:hover {
             background-color: #93afa2;
             color: #034124;
@@ -379,5 +380,23 @@ main {
     .tag-item {
         background-color: #cfe2ff;
         color: #084298;
+    }
+}
+
+.place-not-found {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    section {
+        height: 30vh;
+        width: 300px;
+        background-color: #1b43a8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
 }

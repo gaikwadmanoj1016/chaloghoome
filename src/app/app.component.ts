@@ -88,6 +88,11 @@ export class AppComponent implements OnInit, OnDestroy {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 200;
+    if (this.isScrolled) {
+      document.documentElement.style.setProperty('--header-height', '70px');
+    } else {
+      document.documentElement.style.setProperty('--header-height', '90px');
+    }
   }
   ngOnInit(): void {
     this.getSectionList();

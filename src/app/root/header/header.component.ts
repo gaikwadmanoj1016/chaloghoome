@@ -4,6 +4,8 @@ import { CommonService } from '../../services/common.service';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from '../../services/api.service';
+import { convertSlugToNormal } from '../../utils/slugify';
 
 @Component({
   selector: 'app-header',
@@ -21,11 +23,28 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   searchQuery: string = '';
   showSuggestions = false;
   isExpanded = signal(false);
+  filteredSuggestions: any = [];
+  // Sample list, you can fetch from backend too
+  allSuggestions: any = [
+    {
+      label: 'Most Seached',
+      data: [
+        'Taj Mahal',
+        'Eiffel Tower',
+        'Sydney Opera House',
+        'Great Wall of China',
+        'Stonehenge',
+        'Machu Picchu'
+      ]
+    }
+  ];
+  apiCallCount: number = 0;
+  suggestionsFetched = signal(false);
 
-  constructor(private router: Router, public commonService: CommonService, private route: ActivatedRoute) {
+  constructor(private router: Router, public commonService: CommonService, private apiService: ApiService) {
   }
 
-  
+
   @HostListener('window:resize', ['$event'])
   onResize(event?: Event) {
     this.checkScreenSize();
@@ -39,10 +58,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         this.searchQuery = '';
       }
     })
-    // this.searchQuery = this.route.snapshot.queryParamMap.get('query') || '';
-    // this.route.params.subscribe(params => {
-    //   this.searchQuery = params['query'] ?? '';
-    // });
   }
 
   ngAfterViewInit() {
@@ -87,30 +102,96 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   trackByIndex(index: number, item: any) {
     return index;
   }
+  filterData(search: string) {
+    const query = search.toLowerCase();
 
-  // Sample list, you can fetch from backend too
-  allSuggestions: string[] = [
-    'Taj Mahal',
-    'Eiffel Tower',
-    'Sydney Opera House',
-    'Great Wall of China',
-    'Stonehenge',
-    'Machu Picchu'
-  ];
+    const filteredSuggestions = this.allSuggestions.map((suggestion: any) => {
+      let filteredList = [];
 
-  filteredSuggestions: string[] = [];
+      if (suggestion.label.toLowerCase() === 'tags') {
+        filteredList = suggestion.list.filter((tag: any) =>
+          tag.tagName.toLowerCase().includes(query)
+        );
+      } else if (suggestion.label.toLowerCase() === 'categories') {
+        filteredList = suggestion.list.filter((cat: any) =>
+          cat.catName.toLowerCase().includes(query)
+        );
+      } else if (suggestion.label.toLowerCase() === 'sections') {
+        filteredList = suggestion.list
+          .map((section: any) => {
+            const matchedPosts = section.posts.filter((post: any) =>
+              post.postName.toLowerCase().includes(query) ||
+              post.location.toLowerCase().includes(query) ||
+              post.summary.toLowerCase().includes(query)
+            );
+            return { ...section, posts: matchedPosts };
+          })
+          .filter((section: any) => section.posts.length > 0);
+      }
+
+      return {
+        label: suggestion.label,
+        list: filteredList
+      };
+    }).filter((s: any) => s.list.length > 0); // Only return non-empty results
+
+    return filteredSuggestions;
+  }
 
   onInputChange() {
     const query = this.searchQuery.toLowerCase().trim();
     if (query.length > 0) {
-      this.filteredSuggestions = this.commonService.places.filter(
-        place => place.toLowerCase().includes(query)
-      );
+      if (this.suggestionsFetched()) {
+        this.filteredSuggestions = this.filterData(query);
+        console.log(this.filteredSuggestions);
+      } else {
+        this.filteredSuggestions = this.commonService.places.filter(
+          place => place.toLowerCase().includes(query)
+        );
+        if (this.apiCallCount === 0) {
+          this.getAllSuggestions(query);
+        }
+      }
       this.showSuggestions = true;
     } else {
       this.filteredSuggestions = [];
       this.showSuggestions = false;
     }
+  }
+
+  private getAllSuggestions(query: string) {
+    this.apiCallCount++;
+    this.apiService.getAllSugestions().subscribe((response: any) => {
+      if (response.result) {
+        this.allSuggestions = [];
+
+        if (response.data && Object.keys(response.data).length > 0) {
+          const existingLabels = new Set();
+
+          for (let key in response.data) {
+            const label = convertSlugToNormal(key); // e.g. "categories" → "Categories"
+
+            if (!existingLabels.has(label)) {
+              this.allSuggestions.push({
+                label: label,
+                list: response.data[key]
+              });
+
+              existingLabels.add(label); // Mark as added
+            } else {
+              console.warn(`Duplicate label skipped: ${label}`);
+            }
+          }
+
+          this.suggestionsFetched.set(true);
+          this.filteredSuggestions = this.filterData(query);
+        }
+
+        console.log(this.allSuggestions);
+      } else {
+
+      }
+    })
   }
 
   onSearch(): void {

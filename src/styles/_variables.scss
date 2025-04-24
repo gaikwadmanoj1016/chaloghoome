@@ -14,11 +14,19 @@ $font-size-base: 16px;
 
 $border-radius: 4px;
 
-$navbar-height: 50px;
+// $navbar-height: 50px;
+// $header-height: 90px;
+// $header-expanded-height: 70px;
 
 $header-inline-padding: 40px;
 
-$header-bg-color: rgb(13, 34, 54);
+$bg-color: #0d2236;
+// $bg-color: #4a5968;
+// $bg-color: #c3c8cd;
+// $bg-color: #0a1a29;
+// $bg-color: #384b62;
+// $bg-color: #0d0d36;
+$header-bg-color: rgb(36, 66, 94);
 $header-bg-color-50: rgba(13, 34, 54, 0.5);
 $sidebar-bg-color: #2f3542;
 
@@ -31,10 +39,10 @@ $sidebar-bg-color: #2f3542;
 
     --primary-color: #0077b6; // Oceanic blue
     --highlight-color: #f4a261; // Warm sunset orange
-    --bg-color: $header-bg-color; // Light creamy background
+    --bg-color: $bg-color; // Light creamy background
     --text-color: white; // Dark gray for readability
-    --navbar-height: 50px;
-    --negative-navbar-height: 50px;
+    --header-height: 90px;
+    // --negative-navbar-height: 50px;
     --black: black;
 }
 

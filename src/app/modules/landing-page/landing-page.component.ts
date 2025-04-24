@@ -11,6 +11,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { AboutUsComponent } from "../about-us/about-us.component";
 import { FormsModule } from '@angular/forms';
 import { slugify } from '../../utils/slugify';
+import { Category } from '../admin-panel/master-category-list/master-category-list.component';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -131,16 +132,28 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   videoError = signal(false);
   isScrolled = false;
   searchQuery: string = '';
+  categories: Category[] = [];
 
   constructor(public commonService: CommonService, private apiService: ApiService) { }
 
   @HostListener('window:scroll', [])
   onScroll(): void {
-    this.isScrolled = window.pageYOffset > 300;
+    this.isScrolled = window.scrollY > 200;
   }
   ngOnInit(): void {
     this.mapIndiaSection();
     this.getSections();
+    this.getCategories();
+  }
+
+  public getCategories() {
+    this.apiService.getMasterCategoryList().subscribe((response: any) => {
+      if (response.result) {
+        this.categories = response.data;
+      } else {
+        this.categories = [];
+      }
+    })
   }
 
   ngAfterViewInit() {
@@ -263,19 +276,19 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
       .from(".hero-container p", { y: 100, opacity: 0 }, "-=0.5")
       .from(".hero-btn", { y: 100, opacity: 0 }, "-=0.5");
 
-    gsap.to(".hero-section", {
-      scale: 0.8,
-      top: 0,
-      borderRadius: 100,
-      // opacity: 0,
-      scrollTrigger: {
-        trigger: ".hero-section",
-        start: "top top",
-        end: "bottom -30%",
-        scrub: 2,
-        pin: true,
-      }
-    });
+    // gsap.to(".hero-section", {
+    //   scale: 0.8,
+    //   top: 0,
+    //   borderRadius: 100,
+    //   // opacity: 0,
+    //   scrollTrigger: {
+    //     trigger: ".hero-section",
+    //     start: "top top",
+    //     end: "bottom -30%",
+    //     scrub: 2,
+    //     pin: true,
+    //   }
+    // });
   }
 
   private aboutAnimation() {

@@ -13,12 +13,12 @@ import { convertSlugToNormal, slugify } from '../../../../utils/slugify';
 @Component({
   selector: 'app-place-details-new',
   standalone: true,
-  imports: [NgStyle, SharedModule, NgIf, NgFor],
+  imports: [SharedModule, NgIf, NgFor],
   templateUrl: './place-details-new.component.html',
   styleUrl: './place-details-new.component.scss'
 })
 export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestroy {
-  placeDetails: PlaceDetails | undefined;
+  placeDetails: PlaceDetails | undefined = undefined;
   placeId: number = 0;
   postName: string = '';
   currentIndex = 0;
@@ -30,6 +30,7 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   apiCallCount: number = 0;
   tags = ['Adventure', 'Nature', 'Wildlife', 'Adventure', 'Nature', 'Wildlife', 'Adventure', 'Nature', 'Wildlife'];
   categories = ['Trekking', 'Photography', 'Camping'];
+  placeNotFound: boolean = false;
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
@@ -78,6 +79,7 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
             this.placeDetails.originalThumbnailImg = this.placeDetails.highlights.find(item => item.isThumbnail)?.imagePath
           }
           if (this.placeDetails && Object.keys(this.placeDetails).length > 0) {
+            this.placeNotFound = true;
             this.commonService.setMetaData(this.placeDetails?.postName, this.placeDetails);
             this.addStructuredData(this.placeDetails);
           }
@@ -89,8 +91,9 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
         }
       },
       error: (err) => {
+        this.placeNotFound = true;
         console.error('API failed:', err);
-        if (this.apiCallCount === 1 && postName !== this.originalPostName) {
+        if (this.apiCallCount === 1 && this.originalPostName && postName !== this.originalPostName) {
           this.getPlaceDetailsByPlaceId(this.originalPostName);
         } else {
           console.warn('Fallback API also failed.');

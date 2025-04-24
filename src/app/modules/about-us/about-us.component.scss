@@ -1,12 +1,14 @@
 @use '../../../styles/variables' as *;
 
 .body {
+    padding-top: 20px;
+    background-color: $bg-color;
+
     section {
         width: 100%;
         z-index: 1;
         overflow: hidden;
         position: relative;
-        background-color: $header-bg-color;
     }
 
     .paralax {
@@ -252,7 +254,7 @@
     .about {
         position: relative;
         z-index: 2;
-        margin: -90vh auto auto; // Pull it up to overlap hero-section
+        // margin: -90vh auto auto; // Pull it up to overlap hero-section
         padding: 80px 0 !important;
     }
 
@@ -266,7 +268,7 @@
     .whatwedo,
     .vision {
         padding: 60px 0;
-        background-color: $header-bg-color;
+        background-color: $bg-color;
 
         .section {
             display: flex;

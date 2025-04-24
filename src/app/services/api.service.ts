@@ -23,6 +23,16 @@ export class ApiService {
   }
 
   // common
+  public getAllSugestions() {
+    let API = environment.apiUrl + 'api/setup/init';
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
   public getMasterTagList() {
     let API = environment.apiUrl + 'api/setup/getMasterTagList';
     return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
