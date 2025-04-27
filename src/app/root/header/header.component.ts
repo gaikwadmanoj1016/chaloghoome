@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, Renderer2, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, QueryList, Renderer2, signal, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import { CommonModule } from '@angular/common';
@@ -6,6 +6,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { convertSlugToNormal } from '../../utils/slugify';
+import gsap from 'gsap';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,8 @@ import { convertSlugToNormal } from '../../utils/slugify';
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
   // @ViewChild('nav') nav: 
+  @ViewChildren('menuItem') menuItems!: QueryList<ElementRef>;
+  @ViewChild('searchInput') searchInput!: ElementRef;
   @ViewChild('navbar', { static: false }) nav!: ElementRef;
   @Input() isScrolled: boolean = false;
   @Input() sections: any[] = [];
@@ -40,10 +43,21 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ];
   apiCallCount: number = 0;
   suggestionsFetched = signal(false);
+  // searchQuery = '';
+  searchResults: any[] = [];
+  private socket!: WebSocket;
+
 
   constructor(private router: Router, public commonService: CommonService, private apiService: ApiService) {
   }
 
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.ctrlKey && event.key === '/') {
+      event.preventDefault(); // prevent browser's default find functionality
+      this.focusSearch();
+    }
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event?: Event) {
@@ -60,8 +74,52 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     })
   }
 
+
   ngAfterViewInit() {
     this.checkScreenSize();
+    // Wait for sidebar to open
+    if (this.commonService.isSidebarOpen()) {
+      this.animateMenuItems();
+    }
+    // this.socket = new WebSocket("wss://api.chaloghoome.com/adminService/ws/search");
+    this.socket = new WebSocket("ws://localhost:8081/adminService/ws/search");
+
+    this.socket.onopen = () => {
+      console.log("✅ WebSocket connected");
+    };
+
+    this.socket.onerror = (error) => {
+      console.error("❌ WebSocket error:", error);
+    };
+
+    this.socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      // Call a function to update your UI with `data`
+      console.log(data);
+      // Example: 'data' is the array of post objects received from WebSocket
+      const grouped = data.reduce((acc: any, item: any) => {
+        const section = item.section || 'Other';
+
+        if (!acc[section]) {
+          acc[section] = [];
+        }
+
+        acc[section].push(item);
+        return acc;
+      }, {} as Record<string, any[]>);
+
+      // Convert to array of groups (if needed)
+      this.filteredSuggestions = Object.keys(grouped).map(key => ({
+        label: key,
+        list: grouped[key]
+      }));
+      console.log(this.filteredSuggestions);
+      
+    };
+  }
+
+  focusSearch() {
+    this.searchInput?.nativeElement?.focus();
   }
 
   private checkScreenSize() {
@@ -93,6 +151,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   toggleSidebar(event: Event) {
     event.preventDefault(); // prevent link navigation
     this.commonService.isSidebarOpen.set(!this.commonService.isSidebarOpen());
+    if (this.commonService.isSidebarOpen()) {
+      setTimeout(() => this.animateMenuItems(), 100); // Wait for DOM render
+    }
   }
 
   closeSidebar() {
@@ -102,97 +163,109 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   trackByIndex(index: number, item: any) {
     return index;
   }
-  filterData(search: string) {
-    const query = search.toLowerCase();
+  // filterData(search: string) {
+  //   const query = search.toLowerCase();
 
-    const filteredSuggestions = this.allSuggestions.map((suggestion: any) => {
-      let filteredList = [];
+  //   const filteredSuggestions = this.allSuggestions.map((suggestion: any) => {
+  //     let filteredList = [];
 
-      if (suggestion.label.toLowerCase() === 'tags') {
-        filteredList = suggestion.list.filter((tag: any) =>
-          tag.tagName.toLowerCase().includes(query)
-        );
-      } else if (suggestion.label.toLowerCase() === 'categories') {
-        filteredList = suggestion.list.filter((cat: any) =>
-          cat.catName.toLowerCase().includes(query)
-        );
-      } else if (suggestion.label.toLowerCase() === 'sections') {
-        filteredList = suggestion.list
-          .map((section: any) => {
-            const matchedPosts = section.posts.filter((post: any) =>
-              post.postName.toLowerCase().includes(query) ||
-              post.location.toLowerCase().includes(query) ||
-              post.summary.toLowerCase().includes(query)
-            );
-            return { ...section, posts: matchedPosts };
-          })
-          .filter((section: any) => section.posts.length > 0);
-      }
+  //     if (suggestion.label.toLowerCase() === 'tags') {
+  //       filteredList = suggestion.list.filter((tag: any) =>
+  //         tag.tagName.toLowerCase().includes(query)
+  //       );
+  //     } else if (suggestion.label.toLowerCase() === 'categories') {
+  //       filteredList = suggestion.list.filter((cat: any) =>
+  //         cat.catName.toLowerCase().includes(query)
+  //       );
+  //     } else if (suggestion.label.toLowerCase() === 'sections') {
+  //       filteredList = suggestion.list
+  //         .map((section: any) => {
+  //           const matchedPosts = section.posts.filter((post: any) =>
+  //             post.postName.toLowerCase().includes(query) ||
+  //             post.location.toLowerCase().includes(query) ||
+  //             post.summary.toLowerCase().includes(query)
+  //           );
+  //           return { ...section, posts: matchedPosts };
+  //         })
+  //         .filter((section: any) => section.posts.length > 0);
+  //     }
 
-      return {
-        label: suggestion.label,
-        list: filteredList
-      };
-    }).filter((s: any) => s.list.length > 0); // Only return non-empty results
+  //     return {
+  //       label: suggestion.label,
+  //       list: filteredList
+  //     };
+  //   }).filter((s: any) => s.list.length > 0); // Only return non-empty results
 
-    return filteredSuggestions;
-  }
+  //   return filteredSuggestions;
+  // }
 
   onInputChange() {
     const query = this.searchQuery.toLowerCase().trim();
-    if (query.length > 0) {
-      if (this.suggestionsFetched()) {
-        this.filteredSuggestions = this.filterData(query);
-        console.log(this.filteredSuggestions);
-      } else {
-        this.filteredSuggestions = this.commonService.places.filter(
-          place => place.toLowerCase().includes(query)
-        );
-        if (this.apiCallCount === 0) {
-          this.getAllSuggestions(query);
-        }
-      }
-      this.showSuggestions = true;
-    } else {
-      this.filteredSuggestions = [];
-      this.showSuggestions = false;
+    const trimmed = query.trim();
+
+    if (trimmed.length > 2 && this.socket.readyState === WebSocket.OPEN) {
+      console.log("📤 Sending to WebSocket:", trimmed);
+      this.socket.send(trimmed);
+    } else if (trimmed.length <= 2) {
+      // clear your search results
+      this.filteredSuggestions = this.commonService.places.filter(
+        place => place.toLowerCase().includes(query)
+      );
     }
+
+    // if (query.length > 0) {
+    //   if (this.suggestionsFetched()) {
+    //     this.filteredSuggestions = this.filterData(query);
+    //     console.log(this.filteredSuggestions);
+    //   } else {
+    //     this.filteredSuggestions = this.commonService.places.filter(
+    //       place => place.toLowerCase().includes(query)
+    //     );
+    //     if (this.apiCallCount === 0) {
+    //       this.getAllSuggestions(query);
+    //     }
+    //   }
+    //   this.showSuggestions = true;
+    // } else {
+    //   this.filteredSuggestions = [];
+    //   this.showSuggestions = false;
+    // }
   }
 
-  private getAllSuggestions(query: string) {
-    this.apiCallCount++;
-    this.apiService.getAllSugestions().subscribe((response: any) => {
-      if (response.result) {
-        this.allSuggestions = [];
+  // private getAllSuggestions(query: string) {
+  //   this.apiCallCount++;
+  //   this.apiService.getAllSugestions().subscribe((response: any) => {
+  //     if (response.result) {
+  //       this.allSuggestions = [];
 
-        if (response.data && Object.keys(response.data).length > 0) {
-          const existingLabels = new Set();
+  //       if (response.data && Object.keys(response.data).length > 0) {
+  //         const existingLabels = new Set();
 
-          for (let key in response.data) {
-            const label = convertSlugToNormal(key); // e.g. "categories" → "Categories"
+  //         for (let key in response.data) {
+  //           const label = convertSlugToNormal(key); // e.g. "categories" → "Categories"
 
-            if (!existingLabels.has(label)) {
-              this.allSuggestions.push({
-                label: label,
-                list: response.data[key]
-              });
+  //           if (!existingLabels.has(label)) {
+  //             this.allSuggestions.push({
+  //               label: label,
+  //               list: response.data[key]
+  //             });
 
-              existingLabels.add(label); // Mark as added
-            } else {
-              console.warn(`Duplicate label skipped: ${label}`);
-            }
-          }
+  //             existingLabels.add(label); // Mark as added
+  //           } else {
+  //             console.warn(`Duplicate label skipped: ${label}`);
+  //           }
+  //         }
 
-          this.suggestionsFetched.set(true);
-          this.filteredSuggestions = this.filterData(query);
-        }
+  //         // this.suggestionsFetched.set(true);
+  //         // this.filteredSuggestions = this.filterData(query);
+  //       }
 
-        console.log(this.allSuggestions);
-      } else {
+  //       console.log(this.allSuggestions);
+  //     } else {
 
-      }
-    })
-  }
+  //     }
+  //   })
+  // }
 
   onSearch(): void {
     if (this.searchQuery) {
@@ -217,5 +290,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
   public collapseSearchBar() {
     this.isExpanded.set(false);
+  }
+
+  animateMenuItems() {
+    this.menuItems.map(item => console.log(item.nativeElement))
+    gsap.from(this.menuItems.map(item => item.nativeElement), {
+      opacity: 0,
+      x: 200,
+      delay: 0.2,
+      stagger: 0.1,
+      duration: 0.4,
+      ease: 'power2.out'
+    });
   }
 }

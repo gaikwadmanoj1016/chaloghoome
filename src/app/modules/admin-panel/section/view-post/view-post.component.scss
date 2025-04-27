@@ -3,7 +3,7 @@
 $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
 
 section {
-    background-color: #fff;
+    background-color: var(--bg-color);
 
     .container {
         padding: 20px;
@@ -12,9 +12,9 @@ section {
         width: 100%;
         // min-height: calc(100vh - 50px);
 
-        h2 {
-            color: $color-black !important;
-        }
+        // h2 {
+        //     color: $color-black !important;
+        // }
 
         .places {
             display: grid;
@@ -62,17 +62,20 @@ section {
 
             h2 {
                 margin: 0;
+                color: var(--black);
                 padding: 0;
             }
 
             h3 {
                 margin: 0;
+                color: var(--black);
                 padding: 0;
             }
 
             .close {
                 cursor: pointer;
                 font-size: 24px;
+                color: var(--black);
             }
         }
 
@@ -314,44 +317,52 @@ section {
     }
 }
 
-.suggestions {
-    background: #fff;
-    border: 1px solid #ccc;
-    margin-top: 5px;
-    list-style: none;
-    padding: 0;
-    max-height: 150px;
-    overflow-y: auto;
-}
+.relative {
+    position: relative;
 
-.suggestions li {
-    padding: 8px;
-    cursor: pointer;
-}
+    .suggestions {
+        position: absolute;
+        width: 100%;
+        top: calc(100% - 20px);
+        background: var(--bg-color);
+        border: 1px solid #ccc;
+        margin-top: 5px;
+        list-style: none;
+        padding: 0;
+        max-height: 150px;
+        overflow-y: auto;
 
-.suggestions li:hover {
-    background-color: #f0f0f0;
-}
-
-.selected-categories,
-.selected-tags {
-    .tag {
-        display: inline-block;
-        background-color: #007bff;
-        color: white;
-        padding: 4px 10px;
-        margin: 5px 5px 0 0;
-        border-radius: 15px;
-        font-size: 14px;
-
-        .cross-icon {
-            padding: 0 !important;
-            margin: 0 !important;
-            background: transparent;
-            border: none;
-            color: white;
-            margin-left: 5px;
+        li {
+            padding: 8px;
             cursor: pointer;
+            color: var(--white);
+
+            &:hover {
+                background-color: var(--secondary-bg-color);
+            }
+        }
+    }
+
+    .selected-categories,
+    .selected-tags {
+        .tag {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 4px 10px;
+            margin: 5px 5px 0 0;
+            border-radius: 15px;
+            font-size: 14px;
+
+            .cross-icon {
+                padding: 0 !important;
+                margin: 0 !important;
+                background: transparent;
+                border: none;
+                color: white;
+                margin-left: 5px;
+                cursor: pointer;
+            }
         }
     }
 }

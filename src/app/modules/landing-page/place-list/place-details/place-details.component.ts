@@ -10,6 +10,7 @@ import { NgStyle } from '@angular/common';
 
 
 export interface PlaceDetails {
+  facts: string;
   originalThumbnailImg: string | undefined;
   name: string;
   area: string;

@@ -15,8 +15,8 @@
         [altText]="item.title + ',' + item.location">
     </app-progressive-image>
     <div class="card-overlay">
-        <h3 class="travel-title">{{item.postName}}</h3>
-        <p class="travel-location">{{item.location}}</p>
+        <p class="travel-title para-xl">{{item.postName}}</p>
+        <p class="travel-location para-sm">{{item.location}}</p>
         <button class="explore-btn" (click)="navigateToPostDetails(item)">Explore</button>
     </div>
     @if (editable) {

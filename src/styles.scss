@@ -1,6 +1,8 @@
 @use './styles/variables' as *;
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Nunito:wght@300;400;600&family=Raleway:wght@300;400;600&display=swap');
+// @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+// @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Nunito:wght@300;400;600&family=Raleway:wght@300;400;600&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap');
 
 // mixins.scss
 @mixin flex-center {
@@ -18,125 +20,348 @@
 
 // Global styles
 body {
-    font-family: 'Nunito', sans-serif;
+    // font-family: 'Nunito', sans-serif;
+    font-family: var(--font-family);
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
-}
 
-// Button styles
-.btn {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-    cursor: pointer;
+    h1 {
+        font-size: 38px !important;
+        margin: 0;
+        padding: 0;
+        letter-spacing: 2px !important;
+        font-family: var(--heading-font-family) !important;
+        font-weight: 500 !important;
+        padding-bottom: 0.5rem;
 
-    &.primary {
-        background-color: $primary-color;
-        @include hover-color(darken($primary-color, 10%));
+        @media (max-width: 990px) {
+            font-size: 34px !important;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 30px !important;
+        }
+
+        @media (max-width: 550px) {
+            font-size: 26px !important;
+        }
     }
 
-    &.secondary {
-        background-color: $secondary-color;
-        @include hover-color(darken($secondary-color, 10%));
+    h2 {
+        font-size: 32px !important;
+        margin: 0;
+        padding: 0;
+        letter-spacing: 2px !important;
+        font-family: var(--heading-font-family) !important;
+        font-weight: 500 !important;
+        padding-bottom: 0.5rem;
+
+        @media (max-width: 990px) {
+            font-size: 34px !important;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 30px !important;
+        }
+
+        @media (max-width: 550px) {
+            font-size: 26px !important;
+        }
     }
 
-    &.success {
-        background-color: $success-color;
-        @include hover-color(darken($success-color, 10%));
+    h3 {
+        font-size: 26px !important;
+        margin: 0;
+        padding: 0;
+        letter-spacing: 2px !important;
+        font-family: var(--heading-font-family) !important;
+        font-weight: 500 !important;
+        padding-bottom: 0.5rem;
     }
 
-    &.danger {
-        background-color: $danger-color;
-        @include hover-color(darken($danger-color, 10%));
+    h4 {
+        font-size: 20px !important;
+        margin: 0;
+        padding: 0;
+        letter-spacing: 2px !important;
+        font-family: var(--heading-font-family) !important;
+        font-weight: 500 !important;
+        padding-bottom: 0.5rem;
     }
 
-    &.warning {
-        background-color: $warning-color;
-        @include hover-color(darken($warning-color, 10%));
+    h5 {
+        font-size: 16px !important;
+        margin: 0;
+        padding: 0;
+        letter-spacing: 2px !important;
+        font-family: var(--heading-font-family) !important;
+        font-weight: 400 !important;
+        padding-bottom: 0.5rem;
     }
-}
 
-body,
-h1,
-h2,
-h3,
-p {
-    margin: 0;
-    padding: 0;
-}
+    h6 {
+        font-size: 14px !important;
+        margin: 0;
+        padding: 0;
+        letter-spacing: 2px !important;
+        font-family: var(--heading-font-family) !important;
+        font-weight: 400 !important;
+        padding-bottom: 0.5rem;
+    }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 600 !important;
-    padding-bottom: 0.5rem;
-}
+    p {
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+        font-family: var(--font-family) !important;
+        padding-bottom: 0.5rem;
 
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+        @media (max-width: 990px) {
+            font-size: 16px;
+        }
 
-button {
-    cursor: pointer;
-}
+        @media (max-width: 768px) {
+            font-size: 14px;
+        }
 
-/* Add some spacing between elements */
-.margin-bottom {
-    margin-bottom: 1em;
-}
+        @media (max-width: 550px) {
+            font-size: 12px;
+        }
+    }
 
-/* main.css */
-@media (max-width: 768px) {
+    .para-xl {
+        font-size: 18px;
+        font-weight: 600;
+        padding-bottom: 0.5rem;
 
-    body {
+        @media (max-width: 990px) {
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 16px;
+        }
+
+        @media (max-width: 550px) {
+            font-size: 12px;
+        }
+    }
+
+    .para-lg {
+        font-size: 18px;
+        padding-bottom: 0.5rem;
+
+        @media (max-width: 990px) {
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 16px;
+        }
+
+        @media (max-width: 550px) {
+            font-size: 12px;
+        }
+    }
+
+    .para-md {
+        font-size: 16px;
+        padding-bottom: 0.5rem;
+
+        @media (max-width: 990px) {
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 14px;
+        }
+
+        @media (max-width: 550px) {
+            font-size: 12px;
+        }
+    }
+
+    .para-sm {
         font-size: 14px;
+        padding-bottom: 0.5rem;
+
+        @media (max-width: 990px) {
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 14px;
+        }
+
+        @media (max-width: 550px) {
+            font-size: 12px;
+        }
     }
-}
 
-textarea {
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    appearance: none !important;
-}
+    .para-xs {
+        font-size: 12px;
+        padding-bottom: 0.5rem;
+    }
 
-input [type="number"] {
-    appearance: none !important;
-}
+    .highlighted-text {
+        color: var(--highlight-color);
+    }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
 
+    .explore-btn {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s;
+        position: relative;
+
+        span {
+            position: absolute;
+            transition: 0.5s;
+            transition-delay: 0.25s;
+
+            svg {
+                path {
+                    fill: var(--i);
+                }
+            }
+        }
+
+        .title {
+            color: #fff;
+            font-size: 1.1em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transform: scale(0);
+            transition: 0.5s;
+            transition-delay: 0s;
+            // font-family: 'Georgia', serif;
+            font-weight: normal;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 60px;
+            background: linear-gradient(45deg, var(--i), var(--j));
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            height: 100%;
+            border-radius: 60px;
+            background: linear-gradient(45deg, var(--i), var(--j));
+            transition: 0.5s;
+            filter: blur(15px);
+            z-index: -1;
+            opacity: 0;
+        }
+
+        @media (max-width: 990px) {
+            width: 180px;
+            height: 55px;
+            bottom: 50px;
+
+            span {
+                transform: scale(0);
+            }
+
+            .title {
+                transform: scale(1);
+                font-size: 16px;
+            }
+        }
+    }
+
+    .headline {
+        font-family: var(--heading-font-family);
+        font-weight: 500 !important;
+
+        @media (max-width: 1024px) {
+            font-size: 38px;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 28px;
+        }
+
+        @media (max-width: 550px) {
+            font-size: 26px;
+        }
+    }
+
+    // Button styles
+    .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+
+        &.primary {
+            background-color: $primary-color;
+            @include hover-color(darken($primary-color, 10%));
+        }
+
+        &.secondary {
+            background-color: $secondary-color;
+            @include hover-color(darken($secondary-color, 10%));
+        }
+
+        &.success {
+            background-color: $success-color;
+            @include hover-color(darken($success-color, 10%));
+        }
+
+        &.danger {
+            background-color: $danger-color;
+            @include hover-color(darken($danger-color, 10%));
+        }
+
+        &.warning {
+            background-color: $warning-color;
+            @include hover-color(darken($warning-color, 10%));
+        }
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    textarea {
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+    }
+
+    input [type="number"] {
+        appearance: none !important;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+}
 
 // 
 .custom-dialog-container {
     max-width: 90vw;
     max-height: 90vh;
-}
-
-// img {
-//     height: auto;
-//     aspect-ratio: 1280 / 720;
-// }
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 p {
@@ -146,91 +371,14 @@ p {
     }
 }
 
-
-.explore-btn {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.3s;
-    position: relative;
-
-    span {
-        position: absolute;
-        transition: 0.5s;
-        transition-delay: 0.25s;
-
-        svg {
-            path {
-                fill: var(--i);
-            }
-        }
-    }
-
-    .title {
-        color: #fff;
-        font-size: 1.1em;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        transform: scale(0);
-        transition: 0.5s;
-        transition-delay: 0s;
-        font-family: 'Georgia', serif;
-        font-weight: normal;
-    }
-
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: 60px;
-        background: linear-gradient(45deg, var(--i), var(--j));
-        opacity: 0;
-        transition: 0.5s;
-    }
-
-    &::after {
-        content: "";
-        position: absolute;
-        top: 10px;
-        width: 100%;
-        height: 100%;
-        border-radius: 60px;
-        background: linear-gradient(45deg, var(--i), var(--j));
-        transition: 0.5s;
-        filter: blur(15px);
-        z-index: -1;
-        opacity: 0;
-    }
-
-    @media (max-width: 990px) {
-        width: 180px;
-        height: 55px;
-        bottom: 50px;
-
-        span {
-            transform: scale(0);
-        }
-
-        .title {
-            transform: scale(1);
-            font-size: 16px;
-        }
-    }
-}
-
-
 .container {
     width: 80%;
     margin: 0 auto;
 
     h2 {
-        font-family: "Montserrat", sans-serif;
-        font-size: 2.2rem;
-        font-weight: 600;
+        font-family: var(--font-family);
         padding-bottom: 20px;
-        color: #0077b6;
+        color: var(--text-color);
         border-bottom: 2px solid #007BFF;
         text-align: center;
     }
@@ -299,7 +447,7 @@ p {
         .section {
             gap: 20px !important;
             flex-direction: column;
-            text-align: center;
+            // text-align: center;
         }
 
         .text {

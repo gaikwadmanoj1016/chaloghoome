@@ -1,3 +1,6 @@
+// font family 
+
+
 $box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 
 
@@ -20,17 +23,21 @@ $border-radius: 4px;
 
 $header-inline-padding: 40px;
 
-$bg-color: #0d2236;
-// $bg-color: #4a5968;
-// $bg-color: #c3c8cd;
-// $bg-color: #0a1a29;
-// $bg-color: #384b62;
-// $bg-color: #0d0d36;
+// var(--bg-color): #0d2236;
+// var(--bg-color): #4a5968;
+// var(--bg-color): #c3c8cd;
+// var(--bg-color): #0a1a29;
+// var(--bg-color): #384b62;
+// var(--bg-color): #0d0d36;
 $header-bg-color: rgb(36, 66, 94);
 $header-bg-color-50: rgba(13, 34, 54, 0.5);
 $sidebar-bg-color: #2f3542;
 
 :root {
+    --font-family: "Montserrat", sans-serif;
+    --heading-font-family: "Special Gothic Expanded One", sans-serif;
+
+
     --day-color: #3bbdf9; // Morning (soft yellow)
     --noon-color: #e0f7fa; // Light blue sky
     --sunset-color: #fbc4ab; // Sunset
@@ -39,17 +46,21 @@ $sidebar-bg-color: #2f3542;
 
     --primary-color: #0077b6; // Oceanic blue
     --highlight-color: #f4a261; // Warm sunset orange
-    --bg-color: $bg-color; // Light creamy background
+    --strong-highlight-color: #7fffd4; // Warm sunset orange
+    --secondary-bg-color: rgb(36, 66, 94);
+    --bg-color: #0d2236; // Light creamy background
     --text-color: white; // Dark gray for readability
-    --header-height: 90px;
+    --secondary-text-color: rgb(204, 204, 204); // Dark gray for readability
     // --negative-navbar-height: 50px;
+    --header-height: 90px;
+    --white: white; // Dark gray for readability
     --black: black;
 }
 
 
-// 
-$primary: #0d1b2a;
-$secondary: #f5f3ea;
-$textColor: #0d1b2a;
-$highlight: #ff8000;
-$boxBg: #ffffff;
+// // 
+// $primary: #0d1b2a;
+// $secondary: #f5f3ea;
+// $textColor: #0d1b2a;
+// $highlight: #ff8000;
+// $boxBg: #ffffff;

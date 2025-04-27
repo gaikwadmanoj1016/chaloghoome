@@ -271,7 +271,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   private heroAnimation() {
     const tl = gsap.timeline({ defaults: { duration: 1, ease: "power2.out" }, delay: 1.5 });
 
-    tl.from(".hero-container h1", { y: 100, opacity: 0 })
+    tl.from(".hero-container .title-line", { y: 100, opacity: 0 })
       .from(".hero-container h2", { y: 100, opacity: 0 }, "-=0.5")
       .from(".hero-container p", { y: 100, opacity: 0 }, "-=0.5")
       .from(".hero-btn", { y: 100, opacity: 0 }, "-=0.5");

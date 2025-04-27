@@ -15,9 +15,9 @@
                 <form (ngSubmit)="onSearch()" (clickOutside)="showSuggestions = false"
                     [class.floating-search]="isScrolled">
                     <div class="search-bar">
-                        <input type="text" [(ngModel)]="searchQuery" name="searchQuery" (input)="onInputChange()"
-                            (focus)="showSuggestions = true" class="search-input" placeholder="Search places..."
-                            required autocomplete="off" />
+                        <input type="text" #searchInput [(ngModel)]="searchQuery" title="Shortcut: Ctrl + /"
+                            name="searchQuery" (input)="onInputChange()" (focus)="showSuggestions = true"
+                            class="search-input" placeholder="Search places..." required autocomplete="off" />
                         @if (!isExpanded()) {
                         <button type="button" (click)="expandSearchBar()" class="search-btn">
                             <i class="fa fa-search icon"></i>
@@ -29,59 +29,65 @@
                         }
                     </div>
                     @if (showSuggestions) {
-                    @if (filteredSuggestions && filteredSuggestions.length) {
                     <div class="suggestions" [class.active]="suggestionsFetched()">
-                        @for (suggestion of filteredSuggestions; track $index) {
-                        @if (suggestion.list && suggestion.list.length > 0) {
-                        <div class="section-title">{{ suggestion.label }}</div>
-                        <ul>
-                            @for (item of suggestion.list; track $index) {
-                            <li class="item">
-                                <!-- Category -->
-                                @if (item.catName && !item.sectionName) {
-                                <span (click)="selectSuggestion(item.catName)">{{ item.catName }}</span>
-                                }
-                                <!-- Tag -->
-                                @if (item.tagName) {
-                                <span (click)="selectSuggestion(item.tagName)">{{ item.tagName }}</span>
-                                }
-                                @if (item.posts && item.posts.length > 0) {
-                                <!-- Section -->
-                                @if (item.sectionName) {
-                                <span (click)="selectSuggestion(item.sectionName)">{{ item.sectionName }}</span>
-                                <!-- Posts inside Section -->
-                                @for (post of item.posts; track $index) {
-                                <div class="places" (click)="selectSuggestion(post.postName)">
-                                    <img *ngIf="post.thumbnailImg" [src]="commonService.appendAssetUrl(post.thumbnailImg)" class="post-image" />
-                                    <div class="post-info">
-                                        <div class="post-name">{{ post.postName }}</div>
-                                        <div class="post-location">{{ post.location }}</div>
-                                        <div class="post-summary">{{ post.summary | truncate: 100 }}</div>
-                                    </div>
-                                </div>
-                                }
-                                }
-                                }
-                            </li>
-                            }
-                        </ul>
-                        }
-                        }
-                    </div>
-                    } @else if (!searchQuery) {
-                    <div class="suggestions">
-                        <div class="section-title">Most Searched</div>
-                        <ul>
-                            @for (item of commonService.places; track $index) {
-                            <li class="item" (click)="selectSuggestion(item)">
-                                <span>{{ item }}</span>
-                            </li>
-                            }
-                        </ul>
-                    </div>
-                    }
-                    }
+                        @if (searchQuery) {
+                        @if (filteredSuggestions && filteredSuggestions.length > 0) {
+                        <div class="box">
+                            @for (suggestion of filteredSuggestions; track $index) {
+                            @if (suggestion.list?.length > 0) {
+                            <div class="section-title">{{ suggestion.label }}</div>
+                            <ul>
+                                @for (post of suggestion.list; track $index) {
+                                <li class="item">
+                                    <!-- @if (item.catName && !item.sectionName) {
+                                    <span (click)="selectSuggestion(item.catName)">{{ item.catName }}</span>
+                                    }
 
+                                    @if (item.tagName) {
+                                    <span (click)="selectSuggestion(item.tagName)">{{ item.tagName }}</span>
+                                    } -->
+
+                                    <!-- @if (item.sectionName) {
+                                    <span (click)="selectSuggestion(item.sectionName)">{{ item.sectionName }}</span>
+                                    } -->
+
+                                    <!-- @if (item.posts?.length > 0) {
+                                    @for (post of item.posts; track $index) { -->
+                                    <div class="places" (click)="selectSuggestion(post.postName)">
+                                        <img *ngIf="post.thumbnailImg"
+                                            [src]="commonService.appendAssetUrl(post.thumbnailImg)"
+                                            class="post-image" />
+                                        <div class="post-info">
+                                            <div class="post-name">{{ post.postName }}</div>
+                                            <div class="post-location">{{ post.location }}</div>
+                                            <div class="post-summary">{{ post.summary | truncate: 100 }}</div>
+                                        </div>
+                                    </div>
+                                    <!-- }
+                                    } -->
+                                </li>
+                                }
+                            </ul>
+                            }
+                            }
+                        </div>
+                        } @else {
+                        <div class="section-title">Loading...</div>
+                        }
+                        } @else {
+                        <div class="box">
+                            <div class="section-title">Most Searched</div>
+                            <ul>
+                                @for (item of commonService.places; track $index) {
+                                <li class="item" (click)="selectSuggestion(item)">
+                                    <span>{{ item }}</span>
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                        }
+                    </div>
+                    }
                 </form>
             </div>
             <div class="right" style="text-align: end;">
@@ -130,20 +136,20 @@
         <button class="close-btn left-arrow" (click)="closeSidebar()">&leftarrow;</button>
         <button class="close-btn right-icon" (click)="closeSidebar()">&Cross;</button>
         <ul class="sidebar-menu">
-            <li *ngFor="let section of sections; trackBy: trackByIndex">
+            <li #menuItem *ngFor="let section of sections; trackBy: trackByIndex">
                 <!-- (click)="scrollTo(section.sectionId); closeSidebar()" -->
                 <a href="#" [routerLink]="['places', section.sectionId]">
                     {{ section?.sectionName }}
                 </a>
             </li>
-            <li class="nav-item">
+            <li #menuItem class="nav-item">
                 <a class="nav-link" routerLink="/about_us">About</a>
             </li>
-            <li class="nav-item">
+            <li #menuItem class="nav-item">
                 <a class="nav-link" routerLink="/contact_us">Contact</a>
             </li>
             @if (false) {
-            <li class="nav-item">
+            <li #menuItem class="nav-item">
                 <a class="nav-link" href="javascript:void(0)" routerLink="/register">Sign In</a>
             </li>
             }

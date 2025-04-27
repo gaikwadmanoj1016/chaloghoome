@@ -31,6 +31,8 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   tags = ['Adventure', 'Nature', 'Wildlife', 'Adventure', 'Nature', 'Wildlife', 'Adventure', 'Nature', 'Wildlife'];
   categories = ['Trekking', 'Photography', 'Camping'];
   placeNotFound: boolean = false;
+  loadingPlaceDetails: boolean = false;
+  facts: string[] = [];
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
@@ -68,20 +70,24 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   private getPlaceDetailsByPlaceId(postName: string) {
+    this.loadingPlaceDetails = true;
     this.apiCallCount++;
     let query = `postName=${postName}`;
     this.apiRequest.getPostDetails(query).subscribe({
       next: (response: any) => {
+        this.loadingPlaceDetails = false;
         if (response && response.result) {
-
           this.placeDetails = response.data;
           if (this.placeDetails && this.placeDetails.highlights && this.placeDetails.highlights.length > 0) {
             this.placeDetails.originalThumbnailImg = this.placeDetails.highlights.find(item => item.isThumbnail)?.imagePath
+            this.facts = this.placeDetails.facts.split('.,');
           }
           if (this.placeDetails && Object.keys(this.placeDetails).length > 0) {
-            this.placeNotFound = true;
+            this.placeNotFound = false;
             this.commonService.setMetaData(this.placeDetails?.postName, this.placeDetails);
             this.addStructuredData(this.placeDetails);
+          } else {
+            this.placeNotFound = true;
           }
           const originalImg = this.placeDetails?.originalThumbnailImg;
           if (originalImg) {
@@ -91,6 +97,7 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
         }
       },
       error: (err) => {
+        this.loadingPlaceDetails = false;
         this.placeNotFound = true;
         console.error('API failed:', err);
         if (this.apiCallCount === 1 && this.originalPostName && postName !== this.originalPostName) {

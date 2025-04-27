@@ -264,8 +264,7 @@
         </div>
     </section>
 </main> -->
-
-@if (!placeNotFound) {
+@if (!placeNotFound && !loadingPlaceDetails) {
 <main>
 
     <header class="hero" *ngIf="placeDetails?.originalThumbnailImg"
@@ -279,7 +278,7 @@
     <!-- About Section -->
     <section class="about"
         *ngIf="placeDetails?.postName || placeDetails?.summary || placeDetails?.location || placeDetails?.famousFor || placeDetails?.history">
-        @if ((tags?.length || categories?.length) && false) {
+        @if ((tags && tags.length || categories && categories.length) && false) {
         <div class="tags-categories">
             <div class="container">
                 <div class="tags-categories-wrapper">
@@ -294,7 +293,8 @@
                     </div>
 
                     <!-- Tags -->
-                    <div class="tags-box" *ngIf="tags?.length">
+                    @if (tags && tags.length) {
+                    <div class="tags-box">
                         <h3>Tags</h3>
                         <ul class="tags-list">
                             <li *ngFor="let tag of tags" (click)="searchText(tag)">
@@ -302,6 +302,7 @@
                             </li>
                         </ul>
                     </div>
+                    }
                 </div>
             </div>
         </div>
@@ -319,24 +320,48 @@
             </ul>
         </div>
         <div class="container" *ngIf="placeDetails?.postName || placeDetails?.history">
-            <h2 *ngIf="placeDetails?.postName">History of {{ placeDetails?.postName }}</h2>
+            <h3 *ngIf="placeDetails?.postName">History of {{ placeDetails?.postName }}</h3>
             <p *ngIf="placeDetails?.history">{{ placeDetails?.history }}</p>
         </div>
     </section>
 
     <!-- Unique Features -->
-    <section class="speciality" *ngIf="placeDetails?.specialities && placeDetails?.specialities?.length">
+    <!-- <section class="speciality" *ngIf="placeDetails?.specialities && placeDetails?.specialities?.length">
         <div class="container">
             <h2 *ngIf="placeDetails?.postName">Why Visit the {{ placeDetails?.postName }} ?</h2>
             <div class="feature-grid">
                 <div class="feature-card" *ngFor="let speciality of placeDetails?.specialities; let i = index"
                     [attr.aria-label]="speciality.description">
-                    <h4>{{ speciality.speciality }}</h4>
-                    <!-- <p> {{speciality.description}} </p> -->
+                    <p>{{ speciality.speciality }}</p>
+                    <p> {{speciality.description}} </p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <section class="speciality" *ngIf="placeDetails?.specialities?.length">
+        <div class="container">
+            <h3 *ngIf="placeDetails?.postName">Why Visit the {{ placeDetails?.postName }}?</h3>
+
+            <div class="accordion" id="specialityAccordion">
+                <div class="accordion-item" *ngFor="let speciality of placeDetails?.specialities; let i = index">
+                    <h3 class="accordion-header" [id]="'heading' + i">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+                            [attr.aria-controls]="'collapse' + i">
+                            {{ speciality.speciality }}
+                        </button>
+                    </h3>
+                    <div [id]="'collapse' + i" class="accordion-collapse collapse"
+                        [attr.aria-labelledby]="'heading' + i" data-bs-parent="#specialityAccordion">
+                        <div class="accordion-body">
+                            {{ speciality.description }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Travel Guide -->
     <section class="travel-guide" *ngIf="
@@ -347,7 +372,7 @@
             (placeDetails?.travelGuide?.length)
           ">
         <div class="container">
-            <h2 *ngIf="placeDetails?.postName">Plan Your Visit: {{ placeDetails?.postName }}</h2>
+            <h3 *ngIf="placeDetails?.postName">Plan Your Visit: {{ placeDetails?.postName }}</h3>
             <div class="guide-grid">
                 <div class="guide-card" *ngIf="placeDetails?.bestTimeToVisit">
                     <h3>Best Time to Visit</h3>
@@ -386,7 +411,7 @@
 
     <section class="routes" *ngIf="placeDetails?.routes">
         <div class="container">
-            <h2 *ngIf="placeDetails?.postName">Routes for {{ placeDetails?.postName }}</h2>
+            <h3 *ngIf="placeDetails?.postName">Routes for {{ placeDetails?.postName }}</h3>
             <p [innerHTML]="updateFormattedText(placeDetails?.routes)"></p>
         </div>
     </section>
@@ -394,7 +419,7 @@
     <!-- Transportation Options -->
     <section class="transportation" *ngIf="false">
         <div class="container">
-            <h2>Transportation Options</h2>
+            <h3>Transportation Options</h3>
             <p>Getting to the Sydney Opera House is easy with various public transport options:</p>
             <ul>
                 <li><strong>Train:</strong> The nearest station is Circular Quay, just a short walk away.</li>
@@ -411,7 +436,7 @@
     <!-- Photo Gallery -->
     <section class="gallery" *ngIf="highlights && highlights.length > 0">
         <div class="container">
-            <h2>Photo Gallery</h2>
+            <h3>Photo Gallery</h3>
             <div class="gallery-container">
                 <div class="gallery-grid" id="galleryGrid">
                     <ng-container *ngIf="checkHighlightExist()">
@@ -436,25 +461,21 @@
     </section>
 
     <!-- Fun Facts -->
-    <section class="fun-facts" *ngIf="true">
+    <section class="fun-facts" *ngIf="facts && facts.length > 0">
         <div class="container">
-            <h2>Did You Know?</h2>
+            <h3>Did You Know?</h3>
             <ul>
-                <li>The Sydney Opera House roof is made of over 1 million white and matte cream tiles.</li>
-                <li>
-                    It took <strong>14 years</strong> to build, with an original budget of $7 million but final costs
-                    reaching
-                    $102 million.
-                </li>
-                <li>More than <strong>1,500 performances</strong> are held here every year.</li>
+                @for (fact of facts; track $index) {
+                    <li>{{fact}}</li>
+                }
             </ul>
         </div>
     </section>
 
     <!-- Ticket Booking Information -->
-    <section class="tickets">
+    <!-- <section class="tickets">
         <div class="container">
-            <h2>How to Book Tickets</h2>
+            <h3>How to Book Tickets</h3>
             <p>You can book tickets for shows and guided tours through:</p>
             <ul>
                 <li><a href="https://www.sydneyoperahouse.com/">Official Website</a></li>
@@ -462,22 +483,22 @@
                 <li>Third-party Booking Platforms</li>
             </ul>
         </div>
-    </section>
+    </section> -->
 
     <!-- Dining Options -->
-    <section class="dining-options">
+    <!-- <section class="dining-options">
         <div class="container">
-            <h2>Dining Options</h2>
+            <h3>Dining Options</h3>
             <ul>
                 <li><strong>Bennelong Restaurant:</strong> Fine dining with stunning views.</li>
                 <li><strong>Opera Bar:</strong> Casual dining with a vibrant atmosphere.</li>
                 <li><strong>Grab & Go:</strong> Quick snacks and beverages available at various kiosks.</li>
             </ul>
         </div>
-    </section>
+    </section> -->
 
     <!-- Accommodation Recommendations -->
-    <section class="accommodation">
+    <!-- <section class="accommodation">
         <div class="container">
             <h2>Accommodation Recommendations</h2>
             <ul>
@@ -486,10 +507,10 @@
                 <li><strong>Shangri-La Hotel:</strong> Upscale hotel with stunning city views.</li>
             </ul>
         </div>
-    </section>
+    </section> -->
 
     <!-- Packing List -->
-    <section class="packing-list">
+    <!-- <section class="packing-list">
         <div class="container">
             <h2>What to Pack</h2>
             <ul class="packing-items">
@@ -499,10 +520,10 @@
                 <li>Event Tickets</li>
             </ul>
         </div>
-    </section>
+    </section> -->
 
     <!-- Testimonials -->
-    <section class="testimonials">
+    <!-- <section class="testimonials">
         <div class="container">
             <h2>What Visitors Say</h2>
             <div class="testimonial-card">
@@ -513,10 +534,10 @@
                 <p>"A true architectural wonder. The guided tour was fascinating!" - <strong>David, USA</strong></p>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Nearby Attractions Section -->
-    <section class="nearby-attractions">
+    <!-- <section class="nearby-attractions">
         <div class="container">
             <h2>Nearby Attractions</h2>
             <div class="attractions-grid">
@@ -542,9 +563,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- FAQs Section -->
-    <section class="faqs">
+    <!-- <section class="faqs">
         <div class="container">
             <h2>Frequently Asked Questions</h2>
             <ul>
@@ -556,16 +577,27 @@
                     performances.</li>
             </ul>
         </div>
-    </section>
+    </section> -->
 
 </main>
 }
-@else {
+@else if (loadingPlaceDetails) {
+<main class="loading-place-details">
+    <section class="loading-container">
+        <div class="skeleton-image"></div>
+        <div class="skeleton-title"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-text short"></div>
+    </section>
+</main>
+} @else {
 <main class="place-not-found">
-    <section>
-        <div>
-            place not found
-        </div>
+    <section class="not-found-container">
+        <img src="../../../../../assets/imgs/9214833.jpg" alt="Place Not Found" class="not-found-image" />
+        <h2>Oops! Place Not Found</h2>
+        <p>We couldn't find the place you're looking for. <br> Try exploring other amazing destinations!</p>
+        <a href="#" routerLink="/home" class="back-home-btn">Back to Home</a>
     </section>
 </main>
 }

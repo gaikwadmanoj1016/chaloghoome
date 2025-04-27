@@ -7,11 +7,11 @@
         </div>
         <div class="section2">
             <div class="left">
-                <h4>Important Links </h4>
+                <h5>Important Links </h5>
                 <ul>
                     <!-- <li><a (click)="navigateTo('/')">Travel Stories</a></li> -->
                     @for (section of sections; track $index) {
-                    <li>
+                    <li class="para-sm">
                         <a routerLink="home" (click)="scrollTo(section.sectionId)">
                             {{section?.sectionName}}
                         </a>
@@ -20,16 +20,16 @@
                 </ul>
             </div>
             <div class="right">
-                <h4>Referances</h4>
+                <h5>Referances</h5>
                 <ul>
-                    <li><a href="https://www.wikipedia.com" target="_blank">Wikipedia</a></li>
-                    <li><a href="https://www.travelindia.gov.in" target="_blank">travelindia.gov.in</a></li>
+                    <li class="para-sm"><a href="https://www.wikipedia.com" target="_blank">Wikipedia</a></li>
+                    <li class="para-sm"><a href="https://www.travelindia.gov.in" target="_blank">travelindia.gov.in</a></li>
                 </ul>
             </div>
         </div>
         <!-- <div class="section3"></div> -->
         <div class="section4">
-            <h4>Our Social Media Links</h4>
+            <h5>Our Social Media Links</h5>
             <!-- <div class="social-media-links">
                 <div class="link">
                     <a href="https://www.twitter.com/chalo_ghoome" target="_blank">
@@ -57,6 +57,6 @@
         </div>
     </div>
     <div class="copyright-msg">
-        <p>&copy; 2024 chaloghoome.com | All Rights Reserved</p>
+        <p>&copy; 2025 chaloghoome.com | All Rights Reserved</p>
     </div>
 </footer>

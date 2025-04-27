@@ -73,12 +73,15 @@
 .admin-wrapper {
   display: flex;
   // height: 100vh;
-  padding-top: 50px;
+  // padding-top: 50px;
+  background-color: var(--bg-color);
+  width: 100%;
+  padding-top: var(--header-height);
 
   aside {
-    height: calc(100vh - 50px);
+    height: calc(100vh - var(--header-height));
     position: sticky;
-    top: 50px;
+    top: var(--header-height);
     width: 250px;
     background-color: $sidebar-bg-color;
     color: white;

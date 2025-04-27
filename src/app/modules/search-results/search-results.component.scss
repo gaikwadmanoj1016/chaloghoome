@@ -1,17 +1,33 @@
 @use '../../../styles/variables' as *;
 
+.place-name {
+    font-family: var(--font-family) !important;
+    font-weight: 700;
+}
+
 section {
     min-height: calc(100vh - 176px);
     overflow: auto;
     // background-color: rgb(23, 42, 60);
-    background-color: $bg-color;
+    background-color: var(--bg-color);
     color: $color-white;
-    padding-top: 50px;
+    padding-top: var(--header-height);
 
     h3 {
-        font-size: 1.3rem;
-        margin-bottom: 16px;
-        color: #ffffff;
+        padding-bottom: 20px;
+        color: var(--text-color);
+        border-bottom: 2px solid #007BFF;
+        text-align: center;
+    }
+
+    h4 {
+        // font-size: 1.3rem;
+        // margin-bottom: 16px;
+        // color: #ffffff;
+        font-family: var(--font-family) !important;
+        padding-block: 10px;
+        color: var(--text-color);
+        // border-bottom: 2px solid #007BFF;
 
         a {
             color: inherit;
@@ -27,7 +43,11 @@ section {
         text-align: left !important;
 
         .search-container {
-            padding-top: 50px;
+            padding-block: 50px 20px;
+
+            .para-xl {
+                border-bottom: 2px solid var(--primary-color);
+            }
 
             .result-grid {
                 display: grid;

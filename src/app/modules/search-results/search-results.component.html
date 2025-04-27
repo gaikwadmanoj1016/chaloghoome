@@ -1,7 +1,7 @@
 <section>
     <div class="container">
         <div class="search-container">
-            <h2>Search Results for: "{{ query }}"</h2>
+            <p class="para-xl">Search Results for: "{{ query }}"</p>
 
             @if (isLoading) {
             <div>Loading results...</div>
@@ -9,7 +9,7 @@
 
             @if (!isLoading) {
             <div>
-                <p>{{searchResults.length || 0}} Results Found</p>
+                <p class="para-sm">{{searchResults.length || 0}} Results Found</p>
             </div>
             }
 
@@ -22,9 +22,9 @@
                     <!-- <app-progressive-image [smallImage]="'../../../../../assets/imgs/image-placeholder.jpg'"
                         [image]="commonService.appendAssetUrl(place.thumbnailImg || '')"
                         [altText]="place.postName + place.location"></app-progressive-image> -->
-                    <h4 [title]="place.postName">{{ place.postName | truncate: 20 }}</h4>
-                    <p class="location" [title]="place.location">{{ place.location | truncate: 30 }}</p>
-                    <p class="summary">{{ place.summary | truncate: 100 }}</p>
+                    <h4 class="place-name" [title]="place.postName">{{ place.postName | truncate: 20 }}</h4>
+                    <p class="para-sm location" [title]="place.location">{{ place.location | truncate: 30 }}</p>
+                    <p class="para-sm summary">{{ place.summary | truncate: 100 }}</p>
                     <a [routerLink]="['/place', slugify(place.postName)]">View Details</a>
                 </div>
                 }
@@ -33,19 +33,19 @@
         </div>
         @if (sections && sections.length > 0) {
         <div style="margin-top: 30px;">
-            <h2>Recommended Places</h2>
+            <h3>Recommended Places</h3>
             @for (section of sections; track $index) {
-            <h3>
+            <h4>
                 <a href="#" [routerLink]="['/places', section.sectionId]">
                     {{ section?.sectionName }}
                 </a>
-            </h3>
+            </h4>
             <div class="card-grid">
                 @for (post of section.posts?.content; track $index) {
                 <div class="card">
                     <img [src]="commonService.appendAssetUrl(post.thumbnailImg) || '../../../assets/imgs/image-placeholder.jpg'"
                         alt="{{ post.postName }} {{post.location}}" />
-                    <h4 [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
+                    <h4 class="place-name" [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
                     <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
                     <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
                     <a [routerLink]="['/place', slugify(post.postName)]">View Details</a>

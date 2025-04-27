@@ -1,18 +1,14 @@
 @use '../../../styles/variables' as *;
 
-$headingFont: 'Montserrat', sans-serif;
-$bodyFont: 'Lora', serif;
-
-body {
-    font-family: $bodyFont;
-}
+// $headingFont: 'Montserrat', sans-serif;
+// $bodyFont: 'Lora', serif;
 
 a,
 p,
 h1,
 h2,
 h3 {
-    font-family: $headingFont;
+    font-family: var(--font-family);
 }
 
 footer {
@@ -123,16 +119,17 @@ footer {
         .section3,
         .section4 {
 
-            h4 {
-                font-weight: 500;
-                font-size: 16px;
+            h5 {
+                // font-weight: 500;
+                // font-size: 16px;
+                font-family: var(--font-family) !important;
                 text-decoration: underline;
                 margin: 0;
             }
 
             ul {
                 li {
-                    font-size: 14px;
+                    // font-size: 14px;
                     padding: 6px 0;
                     // margin-bottom: 6px;
                 }
@@ -176,12 +173,13 @@ footer {
     .copyright-msg {
         border-top: 2px solid #525252;
         text-align: center;
-        padding: 10px;
-        padding: 20px 10px;
-        font-size: 14px;
+        // padding: 10px;
+        padding: 20px;
+        // font-size: 14px;
 
         p {
             margin: 0;
+            padding: 0;
         }
     }
 }
@@ -200,16 +198,22 @@ footer {
 
     ul li {
         // margin-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     ul li a {
-        width: 50px;
-        height: 50px;
-        background-color: #fff;
+        width: 60px;
+        height: 60px;
+        background-color: var(--white);
         text-align: center;
         line-height: 50px;
         font-size: 30px;
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
         border-radius: 50%;
         position: relative;
         overflow: hidden;
@@ -223,6 +227,7 @@ footer {
         color: #262626;
         transition: 0.5s;
         z-index: 3;
+        font-size: 32px;
     }
 
     ul li a:hover .icon {

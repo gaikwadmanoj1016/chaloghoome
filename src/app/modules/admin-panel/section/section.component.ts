@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SharedModule } from '../../../shared/shared.module';
 import { CommonService } from '../../../services/common.service';
@@ -14,7 +14,7 @@ import { slugify, convertSlugToNormal } from '../../../utils/slugify';
   templateUrl: './section.component.html',
   styleUrl: './section.component.scss'
 })
-export class SectionComponent implements OnInit {
+export class SectionComponent implements OnInit, OnDestroy {
   sectionId?: number = 0;
   list: any;
   showHidePostForm: boolean = false;
@@ -159,7 +159,8 @@ export class SectionComponent implements OnInit {
       famousFor: this.selectedCard.famousFor,
       howToGo: this.selectedCard.howToGo,
       bestTimeToVisit: this.selectedCard.bestTimeToVisit,
-      routes: this.selectedCard.routes
+      routes: this.selectedCard.routes,
+      facts: this.selectedCard.facts.split('.,')
     });
     if (this.selectedCard.highlights[0]?.imagePath) {
       this.selectedImage = this.commonService.appendAssetUrl(this.selectedCard.highlights[0]?.imagePath);
@@ -277,6 +278,12 @@ export class SectionComponent implements OnInit {
     this.facts.removeAt(index);
     this.cdref.detectChanges();
   }
+
+  updateFactContent(event: Event, index: number): void {
+    const content = (event.target as HTMLDivElement).innerHTML;
+    this.facts.at(index).get('fact')?.setValue(content);
+  }
+  
 
   onFileSelected(event: Event, field: string): void {
     const input = event.target as HTMLInputElement;
@@ -489,4 +496,7 @@ export class SectionComponent implements OnInit {
   //   ]
   // };
 
+  ngOnDestroy(): void {
+    this.postForm.reset();
+  }
 }

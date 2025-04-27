@@ -1,15 +1,10 @@
 <main>
     <div class="container">
-        <h2>{{section?.sectionName || convertSlugToNormal(sectionName, '-')}}
-            <!-- Section Details:
-            <strong>{{section.sectionName}}</strong>
-            @if (section && section.sectionName) {
-            } -->
-        </h2>
+        <h2>{{section?.sectionName || convertSlugToNormal(sectionName, '-')}}</h2>
         @if (cardEditable) {
-            <div class="head">
-                <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>
-            </div>
+        <div class="head">
+            <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>
+        </div>
         }
 
         @if (section && section.posts && section.posts.length > 0 && sectionId) {
@@ -131,7 +126,10 @@
                     <div *ngFor="let fact of facts.controls; let i = index" [formGroupName]="i" class="row">
                         <div class="col-lg-12">
                             <label for="fact{{i}}">Fact:</label>
-                            <input id="fact{{i}}" formControlName="fact" type="text" />
+                            <!-- <input id="fact{{i}}" formControlName="fact" type="text" /> -->
+                            <div id="fact{{i}}" class="fact-editor" contenteditable="true"
+                                [innerHTML]="fact.get('fact')?.value" (input)="updateFactContent($event, i)">
+                            </div>
                         </div>
                         <button type="button" class="btn" (click)="removeFact(i)">Remove</button>
                     </div>
