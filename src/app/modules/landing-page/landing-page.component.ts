@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import { ApiService } from '../../services/api.service';
 import { ContactUsComponent } from "../contact-us/contact-us.component";
@@ -12,6 +12,7 @@ import { AboutUsComponent } from "../about-us/about-us.component";
 import { FormsModule } from '@angular/forms';
 import { slugify } from '../../utils/slugify';
 import { Category } from '../admin-panel/master-category-list/master-category-list.component';
+import { Subscription } from 'rxjs';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +23,7 @@ gsap.registerPlugin(ScrollTrigger);
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
-export class LandingPageComponent implements OnInit, AfterViewInit {
+export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('counter') counters!: QueryList<ElementRef>;
   @ViewChild('myVideo', { static: true }) myVideoRef!: ElementRef<HTMLVideoElement>;
 
@@ -133,8 +134,9 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   isScrolled = false;
   searchQuery: string = '';
   categories: Category[] = [];
+  private routerSubscription!: Subscription;
 
-  constructor(public commonService: CommonService, private apiService: ApiService) { }
+  constructor(public commonService: CommonService, private apiService: ApiService, private router: Router) { }
 
   @HostListener('window:scroll', [])
   onScroll(): void {
@@ -146,6 +148,17 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
     this.getCategories();
   }
 
+  ngAfterViewInit() {
+    this.animateCounters();
+    this.animateUsingGSap();
+    // this.routerSubscription = this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationEnd) {
+    //     setTimeout(() => {
+    //       this.animateUsingGSap(); // re-run when coming back
+    //     }, 100); // delay to allow DOM rendering
+    //   }
+    // });
+  }
   public getCategories() {
     this.apiService.getMasterCategoryList().subscribe((response: any) => {
       if (response.result) {
@@ -154,11 +167,6 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
         this.categories = [];
       }
     })
-  }
-
-  ngAfterViewInit() {
-    this.animateCounters();
-    this.animateUsingGSap();
   }
 
   private getSections() {
@@ -265,7 +273,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   animateUsingGSap() {
     // for hero section
     this.heroAnimation();
-    this.aboutAnimation();
+    // this.aboutAnimation();
   }
 
   private heroAnimation() {
@@ -292,8 +300,11 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
   }
 
   private aboutAnimation() {
+    console.log("inside about section animation method");
 
     document.querySelectorAll(".section").forEach((section) => {
+      console.log("current section which will animate ", section);
+
       const text = section.querySelector(".text");
       const image = section.querySelector(".image");
       const button = section.querySelector(".explore-about");
@@ -302,11 +313,14 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
       console.log(isImageOnRight, section.classList);
 
       if (text) {
+        console.log("text");
+
         gsap.from(text.querySelectorAll("p"), {
           scrollTrigger: {
             trigger: section,
             start: "top 60%",
             toggleActions: "play none none reverse",
+            markers: true
           },
           opacity: 0,
           x: isImageOnRight ? -100 : 100,
@@ -319,6 +333,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
             trigger: section,
             start: "top 60%",
             toggleActions: "play none none reverse",
+            markers: true
           },
           opacity: 0,
           x: isImageOnRight ? -100 : 100,
@@ -333,6 +348,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
           trigger: section,
           start: "top 60%",
           toggleActions: "play none none reverse",
+          markers: true
         },
         opacity: 0,
         x: isImageOnRight ? 100 : -100,
@@ -341,11 +357,13 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
       });
 
       if (button) {
+        console.log("button");
         gsap.from(button, {
           scrollTrigger: {
             trigger: section,
             start: "top 55%",
             toggleActions: "play none none reverse",
+            markers: true
           },
           opacity: 0,
           scale: 0.8,
@@ -354,7 +372,10 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
           ease: "back.out(1.7)",
         });
       }
+      console.log("end of about animation");
+
     });
+    console.log("outside of about animation");
   }
 
   getStars(rating: number): number[] {
@@ -374,7 +395,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
         items: 1
       },
       600: {
-        items: 2
+        items: 3
       },
       1024: {
         items: 3
@@ -393,6 +414,12 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
     const el = document.querySelector('.owl-carousel');
     if (el) {
       (el as any).dispatchEvent(new CustomEvent('stop.owl.autoplay'));
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
     }
   }
 }

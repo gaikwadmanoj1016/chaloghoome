@@ -22,6 +22,7 @@ export interface PlaceDetails {
   uniqueFeature: string;
   bestTimeToVisit: string;
   famousFor: string;
+  annualVisitors: string;
   howToGo: string;
   routes: string;
   thumbnailImg: string;
@@ -29,6 +30,9 @@ export interface PlaceDetails {
   highlights: Highlight[];
   travelGuide: TravelGuide[];
   specialities: Speciality[];
+  postCatList: any[];
+  postTagList: any[];
+  createdAt: string;
 }
 
 export interface Speciality {

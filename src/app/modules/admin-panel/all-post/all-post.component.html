@@ -2,21 +2,22 @@
 <!-- <app-place-details-new></app-place-details-new> -->
 <section>
     <div class="container">
-        <h2>{{section?.sectionName || convertSlugToNormal(sectionName, '-')}}</h2>
+        <div class="section-header">
+            <h2>Places</h2>
+            sdas
+        </div>
         @if (cardEditable) {
         <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>
         }
-
-        @if (section && section.posts && section.posts.length > 0 && sectionId) {
+        @if (places && places.length > 0) {
         <!-- <div class="travel-card-container grid-container">
-            @for (item of section.posts; track $index) {
-            <app-place-card [item]="item" [editable]="cardEditable" [sectionId]="sectionName"
-                (onNavigateTo)="navigateTo($event)" (onEditClicked)="onEditCard($event)"
-                (onDeleteClicked)="deletePost($event)"></app-place-card>
+            @for (item of places; track $index) {
+            <app-place-card [item]="item" [editable]="cardEditable" (onNavigateTo)="navigateTo($event)"
+                (onEditClicked)="onEditCard($event)" (onDeleteClicked)="deletePost($event)"></app-place-card>
             }
         </div> -->
         <div class="card-grid grid-view">
-            @for (post of section.posts; track $index) {
+            @for (post of places; track $index) {
             <div class="card">
                 <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
                 alt="{{ post.postName }} {{post.location}}" />
@@ -36,13 +37,6 @@
     </div>
 </section>
 
-@if (showHidePostForm && sectionId) {
-<app-add-post [placeDetails]="selectedCard" (onCloseModal)="closePostPopup()"
-    (onPostUpdate)="onPostUpdate()" [sectionId]="sectionId"></app-add-post>
-}
-
-
-@if (commonService.isAddHighlightModal) {
-<app-highlights-modal [isModalOpen]="commonService.isAddHighlightModal" [cardDetails]="commonService.selectedCard"
-    (onCloseModal)="closeHighlightModal()"></app-highlights-modal>
+@if (showHidePostForm) {
+<app-add-post [placeDetails]="selectedCard" (onCloseModal)="closePostPopup()" (onPostUpdate)="onPostUpdate()"></app-add-post>
 }

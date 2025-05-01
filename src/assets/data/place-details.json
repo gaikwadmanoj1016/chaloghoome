@@ -176,42 +176,114 @@
     {
         "id": 2,
         "name": "Great Wall of China",
-        "description": "The Great Wall of China is a series of fortifications made of stone, brick, tamped earth, wood, and other materials, generally built along an east-to-west line across the historical northern borders of China to protect the Chinese states and empires against the raids and invasions of the various nomadic groups of the Eurasian Steppe.",
-        "area": 0,
-        "yearEstablished": "0",
-        "uniqueFeature": "",
-        "otherFeatures": [],
+        "description": "The Great Wall of China is a vast series of fortifications made from various materials such as stone, brick, tamped earth, and wood, built across northern China to protect against invasions and raids by nomadic tribes. It is a UNESCO World Heritage Site and one of the most iconic landmarks in the world.",
+        "area": "21,196 km",
+        "yearEstablished": "7th century BC",
+        "annualVisitors": 10000000,
+        "country": "China",
+        "state": "Beijing Municipality (for popular sections)",
+        "city": "Beijing (nearest major city)",
+        "address": "Great Wall, Huairou District, Beijing, China",
+        "uniqueFeature": "The only man-made structure visible from space (myth) and the world's longest man-made structure",
+        "otherFeatures": [
+            "Watchtowers and beacon towers used for communication",
+            "Wall sections such as Badaling, Mutianyu, Jinshanling, Simatai, Jiankou",
+            "Steep mountain trails and scenic views",
+            "Military barracks and garrison stations"
+        ],
+        "history": "Construction of the Great Wall began in the 7th century BC, with many regional walls built by various states. It was unified and expanded by the first Emperor of China, Qin Shi Huang, around 221 BC. The most well-preserved sections we see today were mainly built during the Ming Dynasty (1368–1644). The wall was used for defense, border control, and signaling purposes. Over the centuries, it became a symbol of Chinese strength, endurance, and unity.",
+        "facts": [
+            "The Great Wall stretches over 21,196 km (13,171 miles) in total length.",
+            "More than 1 million laborers, including soldiers, peasants, and prisoners, worked on the Wall.",
+            "The wall is not a single continuous wall but a collection of walls built by different dynasties.",
+            "Contrary to popular myth, the Wall is not visible from the Moon with the naked eye.",
+            "It was designated a UNESCO World Heritage Site in 1987."
+        ],
+        "tags": [
+            "Ancient Fortification",
+            "World Wonder",
+            "UNESCO Heritage",
+            "China Tourism",
+            "Hiking",
+            "Historical Monument"
+        ],
+        "categories": [
+            "Historical",
+            "Cultural",
+            "Architectural",
+            "Military",
+            "Tourist Attraction"
+        ],
         "highlights": [
             {
                 "image": "assets/imgs/wonders/great-wall-of-china.jpg",
                 "title": "Great Wall of China",
-                "description": "The Great Wall of China is a series of fortifications made of stone, brick, tamped earth, wood, and other materials, generally built along an east-to-west line across the historical northern borders of China to protect the Chinese states and empires against the raids and invasions of the various nomadic groups of the Eurasian Steppe."
+                "description": "A remarkable feat of engineering stretching across northern China. The most popular and restored sections are Badaling and Mutianyu, offering breathtaking views and rich history."
+            },
+            {
+                "image": "assets/imgs/wonders/mutianyu.jpg",
+                "title": "Mutianyu Section",
+                "description": "Known for its scenic beauty and restored architecture, this section is great for families and less crowded than Badaling."
+            },
+            {
+                "image": "assets/imgs/wonders/jinshanling.jpg",
+                "title": "Jinshanling Section",
+                "description": "A favorite among hikers for its dramatic ruins and fewer tourists, offering a more authentic experience."
+            }
+        ],
+        "routes": [
+            {
+                "section": "Badaling",
+                "location": "Yanqing District, Beijing",
+                "howToReach": "Take a direct train (Line S2) from Beijing North Railway Station to Badaling Railway Station. Alternatively, use tourist buses from Deshengmen."
+            },
+            {
+                "section": "Mutianyu",
+                "location": "Huairou District, Beijing",
+                "howToReach": "Take Bus 916 Express from Dongzhimen Hub to Huairou, then transfer to a local minibus or taxi to reach Mutianyu. Private tours and taxis are also common."
+            },
+            {
+                "section": "Jinshanling",
+                "location": "Luanping County, Hebei Province",
+                "howToReach": "Take a long-distance bus or a guided tour from Beijing. Travel time is around 2.5 to 3 hours by car."
+            },
+            {
+                "section": "Simatai",
+                "location": "Miyun District, Beijing",
+                "howToReach": "Accessible via bus to Gubei Water Town followed by a shuttle service. Best visited with an overnight stay."
+            },
+            {
+                "section": "Jiankou",
+                "location": "Huairou District, Beijing",
+                "howToReach": "Reach by private vehicle or local hiking guides from Xizhazi village. This section is wild and not officially restored, so caution is advised."
             }
         ],
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Getting to the Great Wall of China depends on which section you wish to visit. The most popular sections near Beijing are Badaling and Mutianyu, both reachable by bus or taxi from the city center."
+                "para": "Popular sections like Badaling and Mutianyu are accessible via train, bus, or guided tours from Beijing. Taxis and private cars are also available."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The best time to visit the Great Wall of China is during the spring (April to May) and autumn (September to October) when the weather is mild and the crowds are thinner."
+                "para": "Spring (April–May) and autumn (September–October) offer the most pleasant weather and fewer crowds. Avoid national holidays for a more peaceful visit."
             },
             {
                 "title": "Accommodation",
-                "para": "There are no accommodations directly on the Great Wall itself, but there are plenty of hotels and guesthouses in nearby towns and cities, such as Beijing."
+                "para": "Stay in Beijing or nearby towns such as Huairou for quick access. Options range from budget hostels to luxury hotels."
             },
             {
                 "title": "Activities",
-                "para": "Popular activities on the Great Wall of China include hiking, photography, and learning about its history."
+                "para": "Hiking, photography, toboggan rides (Mutianyu), cable car rides, and exploring historical towers and passes."
             },
             {
                 "title": "Things to Pack",
                 "bulletPoints": [
-                    "Comfortable walking shoes",
-                    "Sunscreen and hat",
-                    "Water and snacks",
-                    "Camera"
+                    "Comfortable hiking shoes",
+                    "Sunscreen and sunglasses",
+                    "Hat and layered clothing",
+                    "Snacks and refillable water bottle",
+                    "Camera or smartphone",
+                    "Cash for local vendors"
                 ]
             }
         ]
@@ -272,47 +344,88 @@
     {
         "id": 5,
         "name": "Chichen Itza",
-        "description": "Chichen Itza was a large pre-Columbian city built by the Maya people of the Terminal Classic period. The archaeological site is located in Tinúm Municipality, Yucatán State, Mexico.",
+        "description": "Chichen Itza was a large pre-Columbian city built by the Maya people of the Terminal Classic period. The site blends Maya and Toltec influences and is renowned for its astronomical alignments and unique acoustics.",
         "area": 4.2,
         "yearEstablished": "600 AD",
-        "uniqueFeature": "El Castillo (Temple of Kukulcan)",
+        "country": "Mexico",
+        "state": "Yucatán",
+        "city": "Tinúm",
+        "address": "Carretera Mérida - Valladolid Km. 120, Tinúm, Yucatán, Mexico",
+        "uniqueFeature": "Equinox Serpent Shadow at El Castillo",
         "otherFeatures": [
-            "Great Ball Court",
-            "Temple of the Warriors",
-            "Sacred Cenote"
+            "Great Ball Court with whispering acoustics",
+            "Temple of the Warriors with Toltec influence",
+            "Sacred Cenote used for rituals and sacrifices",
+            "El Caracol - Mayan observatory aligned with Venus"
+        ],
+        "facts": [
+            "Chichen Itza means 'At the mouth of the well of the Itza'.",
+            "It was one of the largest Maya cities and had a diverse population.",
+            "El Castillo is aligned with the sun to cast serpent-like shadows during equinoxes.",
+            "It was a major economic and religious hub between 600 AD and 1200 AD.",
+            "Chichen Itza was declared a UNESCO World Heritage Site in 1988."
+        ],
+        "tags": [
+            "Ancient City",
+            "Mayan Civilization",
+            "UNESCO World Heritage Site",
+            "Mexico Tourism",
+            "Archaeological Site",
+            "Equinox Phenomenon",
+            "World Wonder"
+        ],
+        "categories": [
+            "Historical",
+            "Cultural",
+            "Architectural",
+            "Religious",
+            "Tourist Attraction",
+            "Astronomical Site"
         ],
         "highlights": [
             {
                 "image": "assets/imgs/wonders/chichen-itza.jpg",
                 "title": "El Castillo",
-                "description": "El Castillo, also known as the Temple of Kukulcan, is a Mesoamerican step-pyramid that dominates the center of the Chichen Itza archaeological site in the Mexican state of Yucatán."
+                "description": "El Castillo, or the Temple of Kukulcan, is a step pyramid with 365 total steps—symbolizing the solar year. During equinoxes, shadows create the illusion of a serpent descending the stairs, representing Kukulcan."
+            },
+            {
+                "image": "assets/imgs/wonders/great-ball-court.jpg",
+                "title": "Great Ball Court",
+                "description": "This is the largest and most acoustically perfect ball court in ancient Mesoamerica. Sounds can travel clearly across its 545-foot length."
+            },
+            {
+                "image": "assets/imgs/wonders/el-caracol.jpg",
+                "title": "El Caracol",
+                "description": "A circular tower observatory, El Caracol demonstrates the Maya’s deep understanding of astronomy. Its windows align with the planet Venus and solar events."
             }
         ],
         "travelGuide": [
             {
                 "title": "Getting There",
-                "para": "Chichen Itza is located in the Yucatán Peninsula of Mexico. The nearest airport is in Merida, which is about a 1.5-hour drive from the archaeological site."
+                "para": "Chichen Itza is located in the Yucatán Peninsula of Mexico. The nearest airports are in Mérida (1.5 hours away) and Cancún (2.5 hours away), with buses and guided tours available."
             },
             {
                 "title": "Best Time to Visit",
-                "para": "The best time to visit Chichen Itza is during the cooler, drier months of November to February."
+                "para": "The best time to visit is between November and February for cooler temperatures. If possible, plan for the spring (March 21) or autumn (September 21) equinox to witness the serpent shadow event."
             },
             {
                 "title": "Accommodation",
-                "para": "There are several accommodation options near Chichen Itza, ranging from budget-friendly hotels to luxury resorts."
+                "para": "Lodging options include hotels in nearby Piste, resorts near the site, and eco-lodges that offer cultural immersion."
             },
             {
                 "title": "Activities",
-                "para": "In Chichen Itza, you can explore the ancient ruins, learn about Mayan history and culture, and enjoy the natural beauty of the Yucatán Peninsula."
+                "para": "Explore ancient pyramids, witness the equinox phenomenon, tour the ball court, and visit nearby cenotes for swimming or diving."
             },
             {
                 "title": "Things to Pack",
                 "bulletPoints": [
-                    "Sunscreen and hat",
-                    "Comfortable clothing and shoes",
-                    "Water bottle",
-                    "Camera",
-                    "Insect repellent"
+                    "Sunscreen and a wide-brim hat",
+                    "Lightweight, breathable clothing",
+                    "Refillable water bottle",
+                    "Camera with good zoom",
+                    "Insect repellent",
+                    "Flashlight for cenote visits",
+                    "Notebook or guidebook"
                 ]
             }
         ]
@@ -1358,345 +1471,342 @@
         "description": "Angkor Wat, a Hindu-Buddhist temple complex in Cambodia, is considered the world's largest religious structure by Guinness World Records. Located on a site measuring 162.6 hectares within the ancient Khmer capital city of Angkor, it is a captivating blend of temple mountain (standard design for the empire's state temples) and concentric galleries, influenced by religious beliefs. The construction suggests celestial significance with features like its east-west orientation and alignments for solstices. Explore the towering towers, intricate carvings, and serene atmosphere of this architectural masterpiece.",
         "history": "Angkor Wat, situated near Siem Reap in Cambodia, is renowned as the world’s largest religious monument, covering an area of over 162 hectares. Built in the early 12th century during the rule of King Suryavarman II, it originally served as the state temple and political center of the Khmer Empire. Dedicated to the Hindu deity Vishnu, the temple marked a shift from the Shaiva traditions embraced by earlier monarchs.
         This architectural marvel is a prime example of classical Khmer design, symbolizing Mount Meru, the sacred home of gods in Hindu beliefs. Angkor Wat’s unique structure features a striking arrangement of five towers and intricate bas-reliefs illustrating stories from Hindu mythology. Unlike most temples of its time, it faces west — a direction often associated with Vishnu.
-        By the end of the 12th century, the temple gradually transformed into a Buddhist site, mirroring the evolving spiritual landscape of the region. Despite experiencing phases of abandonment, Angkor Wat retained its significance and remained a revered place of worship. Today, it stands as an enduring symbol of Cambodia’s cultural heritage, prominently featured on the national flag, and draws visitors from around the world for its extraordinary beauty and historical importance.","area": "162.6 hectares","yearEstablished": "1150 (reign of Suryavarman II)",
-        "uniqueFeature": "Largest Religious Structure (Guinness World Records)",
-        "otherFeatures": [
-            "Temple Mountain Architecture with Concentric Galleries",
-            "Hindu and Buddhist Influences",
-            "Intricate Reliefs Depicting Mythology and History",
-            "Part of the Angkor Archaeological Park (UNESCO World Heritage Site)"
-        ],
-        "highlights": [
-            {
-                "image": "assets/imgs/most-visited/angkor-wat.jpg",
-                "title": "Explore the Majestic Angkor Wat Temple",
-                "description": "Angkor Wat's grandeur unfolds as you enter the complex. Explore the five concentric enclosures, each representing different stages to reach enlightenment. Ascend the central towers for breathtaking panoramic views of the surroundings."
-            },
-            {
-                "image": "assets/imgs/most-visited/angkor-wat-3.jpg",
-                "title": "Discover Intricate Reliefs",
-                "description": "Angkor Wat's walls are adorned with intricate bas-reliefs depicting scenes from Hindu mythology, historical events, and everyday life during the Khmer Empire. Take your time to appreciate the artistry and storytelling within the carvings."
-            }
-        ],
-        "travelGuide": [
-            {
-                "title": "Getting There",
-                "para": "Angkor Wat is located near Siem Reap, Cambodia.  Travelers can reach Siem Reap by plane from major Asian cities. Taxis, tuk-tuks, and ride-sharing services are available for transport to the temple complex from Siem Reap."
-            },
-            {
-                "title": "Best Time to Visit",
-                "para": "The dry season (November to April) offers pleasant weather for exploring Angkor Wat. However, this coincides with peak tourist season. The shoulder seasons (May, June, September, and October) can be hot but have fewer crowds. Consider the trade-off between weather and crowds when planning your visit."
-            },
-            {
-                "title": "Accommodation",
-                "para": "Siem Reap offers a wide range of accommodation options, from luxurious hotels to budget-friendly guesthouses. Choose your stay based on your desired location, comfort level, and budget. Many hotels are conveniently located near the temple complex."
-            },
-            {
-                "title": "Activities",
-                "para": "Angkor Wat is part of the Angkor Archaeological Park, encompassing multiple temples. Explore Ta Prohm, an atmospheric temple enveloped by trees, Bayon with its enigmatic smiling faces, and Banteay Srei, the ‘Citadel of Women’ known for its intricate carvings. Consider purchasing an Angkor Pass for access to multiple temples within the park."
-            },
-            {
-                "title": "Things to Pack",
-                "bulletPoints": [
-                    "Comfortable walking shoes",
-                    "Lightweight, breathable clothing (appropriate for hot and humid weather)",
-                    "Hat and sunglasses",
-                    "Sunscreen (essential year-round)",
-                    "Sarong or light scarf (required to cover knees and shoulders when entering temples)"
-                ]
-            }
-        ]
-    },
-    {
-        "id": 27,
-        "name": "Sydney Harbour Bridge",
-        "description": "The Sydney Harbour Bridge, a steel through arch bridge in Sydney, New South Wales, Australia, is a global icon and landmark. Nicknamed 'The Coathanger' because of its arch-based design, it carries rail, vehicular, bicycle, and pedestrian traffic. The bridge spans Sydney Harbour from the central business district (CBD) to the North Shore.",
-        "totalLength": "1,149 meters",
-        "yearEstablished": "1932",
-        "uniqueFeature": "Largest Steel Arch Bridge (at the time of construction)",
-        "otherFeatures": [
-            "Carries Rail, Vehicle, Bicycle & Pedestrian Traffic",
-            "Walkways for pedestrian viewing",
-            "Arch Design (nicknamed 'The Coathanger')",
-            "Iconic View with Sydney Opera House"
-        ],
-        "highlights": [
-            {
-                "image": "assets/imgs/most-visited/sydney-harbour.jpg",
-                "title": "Climb the Bridge with BridgeClimb Sydney",
-                "description": "For a truly exhilarating experience, embark on a climb to the summit of the bridge with BridgeClimb Sydney. Secured with safety equipment, ascend the arch and enjoy breathtaking panoramic views of Sydney Harbour, the Opera House, and the city skyline."
-            },
-            {
-                "image": "assets/imgs/most-visited/sydney-harbour-4.jpg",
-                "title": "Walk or Cycle Across the Bridge",
-                "description": "Enjoy a leisurely stroll or cycle across the pedestrian walkway for free. Take in the panoramic views of the harbor, the cityscape, and observe the bustling traffic below."
-            },
-            {
-                "image": "assets/imgs/most-visited/sydney-harbour-2.jpg",
-                "title": "Witness the Bridge Illuminated at Night",
-                "description": "The Sydney Harbour Bridge transforms into a dazzling spectacle at night with its sparkling lights. Witness the bridge illuminated against the Sydney skyline, creating a magical ambiance."
-            }
-        ],
-        "travelGuide": [
-            {
-                "title": "Getting There",
-                "para": "The Sydney Harbour Bridge is easily accessible by train, bus, or ferry. The closest train stations are Milsons Point and Wynyard. Several bus routes also stop near the bridge, and ferries offer a scenic route across the harbor."
-            },
-            {
-                "title": "Best Time to Visit",
-                "para": "Sydney enjoys a pleasant climate year-round. However, spring (September-November) and autumn (March-May) offer the most comfortable weather. Winter (June-August) can be mild with occasional rain, while summer (December-February) can be hot and humid. Consider visiting during BridgeClimb Sydney's Vivid Climb for a special light show experience (held annually)."
-            },
-            {
-                "title": "Accommodation",
-                "para": "Sydney offers a vast variety of accommodation options, catering to all budgets and preferences. Choose your stay based on your desired location, comfort level, and budget. Consider areas near The Rocks, Circular Quay, or Darling Harbour for convenient access to the bridge."
-            },
-            {
-                "title": "Activities",
-                "para": "The Sydney Harbour Bridge is a central landmark, but Sydney offers a plethora of experiences. Visit the Sydney Opera House, explore the Rocks historical district, take a ferry to Manly Beach, or visit Luna Park amusement park. Sydney offers something for everyone."
-            },
-            {
-                "title": "Things to Pack",
-                "bulletPoints": [
-                    "Comfortable walking shoes",
-                    "Sunscreen and hat (especially during summer months)",
-                    "Water bottle (especially during summer months)",
-                    "Light rain jacket (weather can be unpredictable)"
-                ]
-            }
-        ]
-    },
-    {
-        "id": 28,
-        "name": "Niagara Falls",
-        "description": "Niagara Falls, a group of three waterfalls at the southern end of Niagara Gorge, spans the border between the province of Ontario, Canada, and the state of New York, USA. It's a renowned natural wonder, captivating visitors with its immense power and beauty. The largest of the three waterfalls is Horseshoe Falls, also known as Canadian Falls, situated on the Canadian side.",
-        "location": {
-            "canada": "Ontario",
-            "usa": "New York"
+        By the end of the 12th century, the temple gradually transformed into a Buddhist site, mirroring the evolving spiritual landscape of the region. Despite experiencing phases of abandonment, Angkor Wat retained its significance and remained a revered place of worship. Today, it stands as an enduring symbol of Cambodia’s cultural heritage, prominently featured on the national flag, and draws visitors from around the world for its extraordinary beauty and historical importance.","area": "162.6 hectares","yearEstablished": "1150 (reign of Suryavarman II)","uniqueFeature": "Largest Religious Structure (Guinness World Records)","otherFeatures": ["Temple Mountain Architecture with Concentric Galleries",
+        "Hindu and Buddhist Influences",
+        "Intricate Reliefs Depicting Mythology and History",
+        "Part of the Angkor Archaeological Park (UNESCO World Heritage Site)"
+    ],
+    "highlights": [
+        {
+            "image": "assets/imgs/most-visited/angkor-wat.jpg",
+            "title": "Explore the Majestic Angkor Wat Temple",
+            "description": "Angkor Wat's grandeur unfolds as you enter the complex. Explore the five concentric enclosures, each representing different stages to reach enlightenment. Ascend the central towers for breathtaking panoramic views of the surroundings."
         },
-        "height": "167 feet (51 meters)",
-        "yearEstablished": "Naturally occurring geological formation",
-        "uniqueFeature": "Group of Three Waterfalls on the Canada-US Border",
-        "otherFeatures": [
-            "Horseshoe Falls (Canadian Falls - Largest of the Three)",
-            "American Falls (Located on the US Side)",
-            "Bridal Veil Falls (Smallest of the Three)",
-            "Maid of the Mist Boat Tour (Sailing Close to the Falls)",
-            "Cave of the Winds Walkway (Behind the Falls on the US Side)"
-        ],
-        "highlights": [
-            {
-                "image": "assets/imgs/most-visited/niagara-falls.jpg",
-                "title": "Witness the Majesty of Horseshoe Falls",
-                "description": "Horseshoe Falls, the largest of the three, is a breathtaking spectacle. Feel the spray and witness the immense power of the cascading water. Observe the Horseshoe-shaped curve and the thundering torrent from various viewpoints on the Canadian side."
-            },
-            {
-                "image": "assets/imgs/most-visited/niagara-falls-2.jpg",
-                "title": "Take a Maid of the Mist Boat Tour",
-                "description": "Embark on a thrilling boat tour on the Maid of the Mist. Get up close to the cascading waters of the falls, feel the spray on your face, and experience the power of Niagara Falls from a unique perspective."
-            },
-            {
-                "image": "assets/imgs/most-visited/niagara-falls-3.jpg",
-                "title": "Walk Behind the Falls on the Cave of the Winds Tour (US Side)",
-                "description": "(Accessible on the US side) Don a raincoat and embark on an unforgettable adventure on the Cave of the Winds tour. Walk on wooden walkways behind the American Falls and experience the power and majesty of the cascading water from a thrilling perspective."
-            }
-        ],
-        "travelGuide": [
-            {
-                "title": "Getting There",
-                "para": "Niagara Falls is easily accessible from both the Canadian and American sides. By air, airports are located in Toronto (Canada) and Buffalo (USA). Trains, buses, and cars are other options. Consider purchasing a Falls Pass for access to various attractions on both sides of the border."
-            },
-            {
-                "title": "Best Time to Visit",
-                "para": "Niagara Falls can be enjoyed year-round. However, the summer months (June-August) offer pleasant weather and extended hours for attractions. Spring (April-May) and fall (September-November) provide comfortable temperatures with fewer crowds. Winter (December-March) transforms the falls into a wonderland with ice formations, but some attractions may have limited hours."
-            },
-            {
-                "title": "Accommodation",
-                "para": "A wide range of accommodation options are available on both sides of the border, catering to various budgets and preferences. Choose your stay based on your desired location, comfort level, and budget. Areas near the Falls on either side offer convenient access to attractions."
-            },
-            {
-                "title": "Activities",
-                "para": "Niagara Falls is the main attraction, but both sides offer additional experiences. Explore Niagara-on-the-Lake (Canada) or Niagara Falls State Park (USA) for scenic beauty. Take a helicopter tour for breathtaking aerial views, or visit casinos and entertainment options. Consider planning activities on both sides of the border for a well-rounded Niagara Falls experience."
-            },
-            {
-                "title": "Things to Pack",
-                "bulletPoints": [
-                    "Comfortable walking shoes (waterproof recommended)",
-                    "Rain gear (especially during spring and fall)",
-                    "Extra layer of clothing (temperatures can vary depending on the season)",
-                    "Camera with waterproof casing (optional, to capture close-up shots near the falls)"
-                ]
-            }
-        ]
+        {
+            "image": "assets/imgs/most-visited/angkor-wat-3.jpg",
+            "title": "Discover Intricate Reliefs",
+            "description": "Angkor Wat's walls are adorned with intricate bas-reliefs depicting scenes from Hindu mythology, historical events, and everyday life during the Khmer Empire. Take your time to appreciate the artistry and storytelling within the carvings."
+        }
+    ],
+    "travelGuide": [
+        {
+            "title": "Getting There",
+            "para": "Angkor Wat is located near Siem Reap, Cambodia.  Travelers can reach Siem Reap by plane from major Asian cities. Taxis, tuk-tuks, and ride-sharing services are available for transport to the temple complex from Siem Reap."
+        },
+        {
+            "title": "Best Time to Visit",
+            "para": "The dry season (November to April) offers pleasant weather for exploring Angkor Wat. However, this coincides with peak tourist season. The shoulder seasons (May, June, September, and October) can be hot but have fewer crowds. Consider the trade-off between weather and crowds when planning your visit."
+        },
+        {
+            "title": "Accommodation",
+            "para": "Siem Reap offers a wide range of accommodation options, from luxurious hotels to budget-friendly guesthouses. Choose your stay based on your desired location, comfort level, and budget. Many hotels are conveniently located near the temple complex."
+        },
+        {
+            "title": "Activities",
+            "para": "Angkor Wat is part of the Angkor Archaeological Park, encompassing multiple temples. Explore Ta Prohm, an atmospheric temple enveloped by trees, Bayon with its enigmatic smiling faces, and Banteay Srei, the ‘Citadel of Women’ known for its intricate carvings. Consider purchasing an Angkor Pass for access to multiple temples within the park."
+        },
+        {
+            "title": "Things to Pack",
+            "bulletPoints": [
+                "Comfortable walking shoes",
+                "Lightweight, breathable clothing (appropriate for hot and humid weather)",
+                "Hat and sunglasses",
+                "Sunscreen (essential year-round)",
+                "Sarong or light scarf (required to cover knees and shoulders when entering temples)"
+            ]
+        }
+    ]
+},
+{
+    "id": 27,
+    "name": "Sydney Harbour Bridge",
+    "description": "The Sydney Harbour Bridge, a steel through arch bridge in Sydney, New South Wales, Australia, is a global icon and landmark. Nicknamed 'The Coathanger' because of its arch-based design, it carries rail, vehicular, bicycle, and pedestrian traffic. The bridge spans Sydney Harbour from the central business district (CBD) to the North Shore.",
+    "totalLength": "1,149 meters",
+    "yearEstablished": "1932",
+    "uniqueFeature": "Largest Steel Arch Bridge (at the time of construction)",
+    "otherFeatures": [
+        "Carries Rail, Vehicle, Bicycle & Pedestrian Traffic",
+        "Walkways for pedestrian viewing",
+        "Arch Design (nicknamed 'The Coathanger')",
+        "Iconic View with Sydney Opera House"
+    ],
+    "highlights": [
+        {
+            "image": "assets/imgs/most-visited/sydney-harbour.jpg",
+            "title": "Climb the Bridge with BridgeClimb Sydney",
+            "description": "For a truly exhilarating experience, embark on a climb to the summit of the bridge with BridgeClimb Sydney. Secured with safety equipment, ascend the arch and enjoy breathtaking panoramic views of Sydney Harbour, the Opera House, and the city skyline."
+        },
+        {
+            "image": "assets/imgs/most-visited/sydney-harbour-4.jpg",
+            "title": "Walk or Cycle Across the Bridge",
+            "description": "Enjoy a leisurely stroll or cycle across the pedestrian walkway for free. Take in the panoramic views of the harbor, the cityscape, and observe the bustling traffic below."
+        },
+        {
+            "image": "assets/imgs/most-visited/sydney-harbour-2.jpg",
+            "title": "Witness the Bridge Illuminated at Night",
+            "description": "The Sydney Harbour Bridge transforms into a dazzling spectacle at night with its sparkling lights. Witness the bridge illuminated against the Sydney skyline, creating a magical ambiance."
+        }
+    ],
+    "travelGuide": [
+        {
+            "title": "Getting There",
+            "para": "The Sydney Harbour Bridge is easily accessible by train, bus, or ferry. The closest train stations are Milsons Point and Wynyard. Several bus routes also stop near the bridge, and ferries offer a scenic route across the harbor."
+        },
+        {
+            "title": "Best Time to Visit",
+            "para": "Sydney enjoys a pleasant climate year-round. However, spring (September-November) and autumn (March-May) offer the most comfortable weather. Winter (June-August) can be mild with occasional rain, while summer (December-February) can be hot and humid. Consider visiting during BridgeClimb Sydney's Vivid Climb for a special light show experience (held annually)."
+        },
+        {
+            "title": "Accommodation",
+            "para": "Sydney offers a vast variety of accommodation options, catering to all budgets and preferences. Choose your stay based on your desired location, comfort level, and budget. Consider areas near The Rocks, Circular Quay, or Darling Harbour for convenient access to the bridge."
+        },
+        {
+            "title": "Activities",
+            "para": "The Sydney Harbour Bridge is a central landmark, but Sydney offers a plethora of experiences. Visit the Sydney Opera House, explore the Rocks historical district, take a ferry to Manly Beach, or visit Luna Park amusement park. Sydney offers something for everyone."
+        },
+        {
+            "title": "Things to Pack",
+            "bulletPoints": [
+                "Comfortable walking shoes",
+                "Sunscreen and hat (especially during summer months)",
+                "Water bottle (especially during summer months)",
+                "Light rain jacket (weather can be unpredictable)"
+            ]
+        }
+    ]
+},
+{
+    "id": 28,
+    "name": "Niagara Falls",
+    "description": "Niagara Falls, a group of three waterfalls at the southern end of Niagara Gorge, spans the border between the province of Ontario, Canada, and the state of New York, USA. It's a renowned natural wonder, captivating visitors with its immense power and beauty. The largest of the three waterfalls is Horseshoe Falls, also known as Canadian Falls, situated on the Canadian side.",
+    "location": {
+        "canada": "Ontario",
+        "usa": "New York"
     },
-    {
-        "id": 29,
-        "name": "Mount Fuji (富士山, Fujisan)",
-        "description": "Mount Fuji is an active stratovolcano located on the Japanese island of Honshu, with a summit elevation of 3,776.24 m (12,389 ft 3 in). It is the tallest mountain in Japan, the second-highest volcano located on an island in Asia (after Mount Kerinci on the Indonesian island of Sumatra), and seventh-highest peak of an island on Earth. Mount Fuji last erupted from 1707 to 1708. The mountain is located about 100 km (62 mi) southwest of Tokyo and is visible from the Japanese capital on clear days.",
-        "elevation": "3,776.24 m (12,389 ft)",
-        "lastEruption": "1707–08",
-        "ageOfRock": "100,000 years",
-        "coordinates": "35°21′39″N 138°43′39″E",
-        "uniqueFeature": "Tallest Mountain in Japan",
-        "otherFeatures": [
-            "Active Stratovolcano",
-            "Sacred Site for Centuries",
-            "Part of Fuji-Hakone-Izu National Park",
-            "UNESCO World Heritage Site"
-        ],
-        "highlights": [
-            {
-                "image": "assets/imgs/most-visited/mount-fuji-4.jpg",
-                "title": "Witness Mount Fuji's Majesty",
-                "description": "Mount Fuji's iconic snow-capped peak is a breathtaking sight. Observe the mountain from various locations, including the Five Fuji Lakes region or try to capture a glimpse from Tokyo on a clear day."
-            },
-            {
-                "image": "assets/imgs/most-visited/mount-fuji.jpg",
-                "title": "Hike Mount Fuji (During Permitted Seasons)",
-                "description": "For the adventurous, climbing Mount Fuji is an unforgettable experience.  The climbing season is typically from July to September due to weather conditions. Plan accordingly, obtain permits, and be prepared for a challenging but rewarding hike."
-            }
-        ],
-        "travelGuide": [
-            {
-                "title": "Getting There",
-                "para": "Mount Fuji is accessible from Tokyo and surrounding areas by train, bus, or car. The journey takes approximately 2-3 hours. Consider purchasing a Fuji Excursion Pass for convenient transportation access."
-            },
-            {
-                "title": "Best Time to Visit",
-                "para": "The best time to visit Mount Fuji depends on your preferences. For scenic views, spring (late March to May) and fall (late September to November) offer pleasant weather and vibrant foliage. The climbing season is typically from July to September. Winter offers a unique snowy landscape but most climbing routes are closed."
-            },
-            {
-                "title": "Accommodation",
-                "para": "Accommodation options range from traditional Japanese ryokans and hotels near the base towns to campsites on the mountain during the climbing season. Choose your stay based on your desired location, comfort level, and budget. Popular areas include Fujiyoshida, Fujinomiya, and Kawaguchiko (Lake Kawaguchi)."
-            },
-            {
-                "title": "Activities",
-                "para": "While viewing and climbing Mount Fuji are primary activities, the region offers more. Explore the Five Fuji Lakes, visit historical sites like the Fujisan Sengen Shrine, or indulge in local hot springs (onsen) experiences. Consider attending traditional festivals throughout the year."
-            },
-            {
-                "title": "Things to Pack",
-                "bulletPoints": [
-                    "Layered clothing (weather can vary depending on the season and altitude)",
-                    "Hiking boots (especially if planning to climb)",
-                    "Rain gear (weather can be unpredictable)",
-                    "Warm hat and gloves (especially for higher altitudes)",
-                    "Sunscreen and sunglasses (especially during summer months)"
-                ]
-            }
-        ]
-    },
-    {
-        "id": 30,
-        "name": "Masai Mara National Reserve",
-        "description": "The Masai Mara National Reserve is a vast wildlife conservation haven in southwestern Kenya, bordering the Serengeti National Park in Tanzania. It's renowned for its spectacular natural diversity of wildlife and is the premier Kenya Safari location in East Africa.",
-        "area": "1,510 square kilometers (580 sq mi)",
-        "yearEstablished": "1961",
-        "uniqueFeature": "Annual Wildebeest Migration (Great Migration)",
-        "otherFeatures": [
-            "Diverse Wildlife Populations (lion, cheetah, elephant, zebra, hippo, wildebeest, giraffe, Thomson's gazelle, Grant's gazelle, over 450 bird species)",
-            "Maasai Culture and Conservancies",
-            "Scenic Savannah Plains"
-        ],
-        "highlights": [
-            {
-                "image": "assets/imgs/most-visited/masai-mara.jpg",
-                "title": "Witness the Great Migration",
-                "description": "Over 1 million wildebeest and zebra migrate north into the Mara from Serengeti National Park in search of water and fresh grazing pastures. This spectacular event is a highlight of any Masai Mara safari."
-            },
-            {
-                "image": "assets/imgs/most-visited/masai-mara-4.jpg",
-                "title": "Go on a Safari",
-                "description": "Explore the reserve in a jeep, on a horseback riding adventure, or even in a hot air balloon for a bird's-eye view of the vast plains and wildlife."
-            },
-            {
-                "image": "assets/imgs/most-visited/masai-mara-3.jpg",
-                "title": "Learn about Maasai Culture",
-                "description": "Visit a traditional Maasai village and gain insights into their way of life and cultural traditions."
-            }
-        ],
-        "travelGuide": [
-            {
-                "title": "Getting There",
-                "para": "The Masai Mara National Reserve can be accessed by plane or car. Several domestic flights operate from Nairobi to Mara airstrips. Alternatively, road trips are possible from Nairobi, although these can be lengthy. Consider booking a safari package that includes transportation."
-            },
-            {
-                "title": "Best Time to Visit",
-                "para": "The best time to visit the Masai Mara depends on your priorities. The dry season (June-October) offers pleasant weather and prime viewing of the Great Migration (July-August). However, this coincides with peak tourist season and higher prices. The shoulder seasons (April-May and November) offer good weather with fewer crowds. Keep in mind that wildlife viewing is possible year-round."
-            },
-            {
-                "title": "Accommodation",
-                "para": "Masai Mara offers a variety of accommodation options, ranging from luxurious safari lodges and tented camps to budget-friendly campsites. Choose your stay based on your desired location, comfort level, and budget. Popular areas include Mara Triangle, Sekenani, and the Mara River area."
-            },
-            {
-                "title": "Activities",
-                "para": "Beyond wildlife viewing on traditional jeep safaris, the Masai Mara offers a variety of activities. Take a hot air balloon ride for a unique perspective, go on a guided bush walk with a Maasai guide, visit a local Maasai marketplace, or participate in cultural experiences. Consider combining a Masai Mara safari with a visit to other Kenyan parks like Amboseli or Tsavo National Park for a well-rounded wildlife experience."
-            },
-            {
-                "title": "Things to Pack",
-                "bulletPoints": [
-                    "Neutral-colored clothing (khaki, green, beige) for better camouflage during game drives",
-                    "Long-sleeved shirts and pants (for sun protection and insect bites)",
-                    "Comfortable walking shoes or hiking boots",
-                    "Hat with a wide brim",
-                    "Sunscreen and sunglasses",
-                    "Binoculars",
-                    "Camera with zoom lens",
-                    "Warm layers for early mornings and evenings (temperatures can vary)"
-                ]
-            }
-        ]
-    },
-    {
-        "id": 31,
-        "name": "Hiroshima Peace Memorial Park (広島平和記念公園, Hiroshima Heiwa Kinen Kōen)",
-        "description": "The Hiroshima Peace Memorial Park is a sprawling commemorative space dedicated to the victims of the atomic bomb dropped on Hiroshima, Japan, at the end of World War II.  It serves as a powerful symbol of peace and a reminder of the devastating consequences of nuclear war.",
-        "location": "Hiroshima, Japan",
-        "established": "1950s",
-        "designedBy": "Tange Kenzō",
-        "significantLandmark": "Hiroshima Peace Memorial (Genbaku Dome)",
-        "otherMemorials": [
-            "Hiroshima National Peace Memorial Hall for the Atomic Bomb Victims",
-            "Children's Peace Monument",
-            "Flame of Peace",
-            "Atomic Bomb Monument",
-            "Rest House",
-            "慰霊の鐘 (慰霊の鐘, Ie no Kane - Peace Bell)"
-        ],
-        "highlights": [
-            {
-                "image": "assets/imgs/most-visited/hiroshima-peace-memorial.jpg",
-                "title": "Hiroshima Peace Memorial (Genbaku Dome)",
-                "description": "The Hiroshima Peace Memorial, originally the Hiroshima Prefectural Industrial Promotion Hall, is the skeletal remains of a building left standing near the hypocenter of the atomic bomb. Preserved as a stark symbol of the devastation, it serves as a powerful reminder of the bombing's impact."
-            },
-            {
-                "image": "assets/imgs/most-visited/hiroshima-peace-memorial-2.jpg",
-                "title": "Hiroshima National Peace Memorial Hall for the Atomic Bomb Victims",
-                "description": "The Hiroshima National Peace Memorial Hall for the Atomic Bomb Victims houses exhibits and artifacts that convey the horrors of the bombing and the human cost of nuclear war. It serves as a place for education and reflection."
-            }
-        ],
-        "activities": [
-            "Explore the Hiroshima Peace Memorial Park and its various memorials.",
-            "Visit the Hiroshima National Peace Memorial Hall for the Atomic Bomb Victims to learn more about the bombing and its aftermath.",
-            "Attend a peace ceremony held at the park throughout the year.",
-            "Fold origami paper cranes, a symbol of peace, and add them to the monument dedicated to children's peace.",
-            "Reflect on the importance of peace and the devastating consequences of war."
-        ],
-        "travelGuide": [
-            {
-                "title": "Getting There",
-                "para": "Hiroshima Peace Memorial Park is conveniently located in central Hiroshima and easily accessible by public transportation. Take trams or buses to the closest stops (Heiwa-kinen-koen-mae or Kenbaku Dome-mae). Alternatively, taxis are readily available."
-            },
-            {
-                "title": "Best Time to Visit",
-                "para": "Hiroshima enjoys a pleasant climate year-round. However, spring (March-May) and autumn (September-November) offer the most comfortable weather. Consider visiting during the Hiroshima Peace Memorial Ceremony held annually on August 6th to witness a solemn commemoration of the bombing."
-            },
-            {
-                "title": "Things to Pack",
-                "bulletPoints": [
-                    "Comfortable walking shoes",
-                    "Light rain jacket (weather can be unpredictable)",
-                    "Respectful clothing (especially when visiting memorials)"
-                ]
-            }
-        ]
-    }
+    "height": "167 feet (51 meters)",
+    "yearEstablished": "Naturally occurring geological formation",
+    "uniqueFeature": "Group of Three Waterfalls on the Canada-US Border",
+    "otherFeatures": [
+        "Horseshoe Falls (Canadian Falls - Largest of the Three)",
+        "American Falls (Located on the US Side)",
+        "Bridal Veil Falls (Smallest of the Three)",
+        "Maid of the Mist Boat Tour (Sailing Close to the Falls)",
+        "Cave of the Winds Walkway (Behind the Falls on the US Side)"
+    ],
+    "highlights": [
+        {
+            "image": "assets/imgs/most-visited/niagara-falls.jpg",
+            "title": "Witness the Majesty of Horseshoe Falls",
+            "description": "Horseshoe Falls, the largest of the three, is a breathtaking spectacle. Feel the spray and witness the immense power of the cascading water. Observe the Horseshoe-shaped curve and the thundering torrent from various viewpoints on the Canadian side."
+        },
+        {
+            "image": "assets/imgs/most-visited/niagara-falls-2.jpg",
+            "title": "Take a Maid of the Mist Boat Tour",
+            "description": "Embark on a thrilling boat tour on the Maid of the Mist. Get up close to the cascading waters of the falls, feel the spray on your face, and experience the power of Niagara Falls from a unique perspective."
+        },
+        {
+            "image": "assets/imgs/most-visited/niagara-falls-3.jpg",
+            "title": "Walk Behind the Falls on the Cave of the Winds Tour (US Side)",
+            "description": "(Accessible on the US side) Don a raincoat and embark on an unforgettable adventure on the Cave of the Winds tour. Walk on wooden walkways behind the American Falls and experience the power and majesty of the cascading water from a thrilling perspective."
+        }
+    ],
+    "travelGuide": [
+        {
+            "title": "Getting There",
+            "para": "Niagara Falls is easily accessible from both the Canadian and American sides. By air, airports are located in Toronto (Canada) and Buffalo (USA). Trains, buses, and cars are other options. Consider purchasing a Falls Pass for access to various attractions on both sides of the border."
+        },
+        {
+            "title": "Best Time to Visit",
+            "para": "Niagara Falls can be enjoyed year-round. However, the summer months (June-August) offer pleasant weather and extended hours for attractions. Spring (April-May) and fall (September-November) provide comfortable temperatures with fewer crowds. Winter (December-March) transforms the falls into a wonderland with ice formations, but some attractions may have limited hours."
+        },
+        {
+            "title": "Accommodation",
+            "para": "A wide range of accommodation options are available on both sides of the border, catering to various budgets and preferences. Choose your stay based on your desired location, comfort level, and budget. Areas near the Falls on either side offer convenient access to attractions."
+        },
+        {
+            "title": "Activities",
+            "para": "Niagara Falls is the main attraction, but both sides offer additional experiences. Explore Niagara-on-the-Lake (Canada) or Niagara Falls State Park (USA) for scenic beauty. Take a helicopter tour for breathtaking aerial views, or visit casinos and entertainment options. Consider planning activities on both sides of the border for a well-rounded Niagara Falls experience."
+        },
+        {
+            "title": "Things to Pack",
+            "bulletPoints": [
+                "Comfortable walking shoes (waterproof recommended)",
+                "Rain gear (especially during spring and fall)",
+                "Extra layer of clothing (temperatures can vary depending on the season)",
+                "Camera with waterproof casing (optional, to capture close-up shots near the falls)"
+            ]
+        }
+    ]
+},
+{
+    "id": 29,
+    "name": "Mount Fuji (富士山, Fujisan)",
+    "description": "Mount Fuji is an active stratovolcano located on the Japanese island of Honshu, with a summit elevation of 3,776.24 m (12,389 ft 3 in). It is the tallest mountain in Japan, the second-highest volcano located on an island in Asia (after Mount Kerinci on the Indonesian island of Sumatra), and seventh-highest peak of an island on Earth. Mount Fuji last erupted from 1707 to 1708. The mountain is located about 100 km (62 mi) southwest of Tokyo and is visible from the Japanese capital on clear days.",
+    "elevation": "3,776.24 m (12,389 ft)",
+    "lastEruption": "1707–08",
+    "ageOfRock": "100,000 years",
+    "coordinates": "35°21′39″N 138°43′39″E",
+    "uniqueFeature": "Tallest Mountain in Japan",
+    "otherFeatures": [
+        "Active Stratovolcano",
+        "Sacred Site for Centuries",
+        "Part of Fuji-Hakone-Izu National Park",
+        "UNESCO World Heritage Site"
+    ],
+    "highlights": [
+        {
+            "image": "assets/imgs/most-visited/mount-fuji-4.jpg",
+            "title": "Witness Mount Fuji's Majesty",
+            "description": "Mount Fuji's iconic snow-capped peak is a breathtaking sight. Observe the mountain from various locations, including the Five Fuji Lakes region or try to capture a glimpse from Tokyo on a clear day."
+        },
+        {
+            "image": "assets/imgs/most-visited/mount-fuji.jpg",
+            "title": "Hike Mount Fuji (During Permitted Seasons)",
+            "description": "For the adventurous, climbing Mount Fuji is an unforgettable experience.  The climbing season is typically from July to September due to weather conditions. Plan accordingly, obtain permits, and be prepared for a challenging but rewarding hike."
+        }
+    ],
+    "travelGuide": [
+        {
+            "title": "Getting There",
+            "para": "Mount Fuji is accessible from Tokyo and surrounding areas by train, bus, or car. The journey takes approximately 2-3 hours. Consider purchasing a Fuji Excursion Pass for convenient transportation access."
+        },
+        {
+            "title": "Best Time to Visit",
+            "para": "The best time to visit Mount Fuji depends on your preferences. For scenic views, spring (late March to May) and fall (late September to November) offer pleasant weather and vibrant foliage. The climbing season is typically from July to September. Winter offers a unique snowy landscape but most climbing routes are closed."
+        },
+        {
+            "title": "Accommodation",
+            "para": "Accommodation options range from traditional Japanese ryokans and hotels near the base towns to campsites on the mountain during the climbing season. Choose your stay based on your desired location, comfort level, and budget. Popular areas include Fujiyoshida, Fujinomiya, and Kawaguchiko (Lake Kawaguchi)."
+        },
+        {
+            "title": "Activities",
+            "para": "While viewing and climbing Mount Fuji are primary activities, the region offers more. Explore the Five Fuji Lakes, visit historical sites like the Fujisan Sengen Shrine, or indulge in local hot springs (onsen) experiences. Consider attending traditional festivals throughout the year."
+        },
+        {
+            "title": "Things to Pack",
+            "bulletPoints": [
+                "Layered clothing (weather can vary depending on the season and altitude)",
+                "Hiking boots (especially if planning to climb)",
+                "Rain gear (weather can be unpredictable)",
+                "Warm hat and gloves (especially for higher altitudes)",
+                "Sunscreen and sunglasses (especially during summer months)"
+            ]
+        }
+    ]
+},
+{
+    "id": 30,
+    "name": "Masai Mara National Reserve",
+    "description": "The Masai Mara National Reserve is a vast wildlife conservation haven in southwestern Kenya, bordering the Serengeti National Park in Tanzania. It's renowned for its spectacular natural diversity of wildlife and is the premier Kenya Safari location in East Africa.",
+    "area": "1,510 square kilometers (580 sq mi)",
+    "yearEstablished": "1961",
+    "uniqueFeature": "Annual Wildebeest Migration (Great Migration)",
+    "otherFeatures": [
+        "Diverse Wildlife Populations (lion, cheetah, elephant, zebra, hippo, wildebeest, giraffe, Thomson's gazelle, Grant's gazelle, over 450 bird species)",
+        "Maasai Culture and Conservancies",
+        "Scenic Savannah Plains"
+    ],
+    "highlights": [
+        {
+            "image": "assets/imgs/most-visited/masai-mara.jpg",
+            "title": "Witness the Great Migration",
+            "description": "Over 1 million wildebeest and zebra migrate north into the Mara from Serengeti National Park in search of water and fresh grazing pastures. This spectacular event is a highlight of any Masai Mara safari."
+        },
+        {
+            "image": "assets/imgs/most-visited/masai-mara-4.jpg",
+            "title": "Go on a Safari",
+            "description": "Explore the reserve in a jeep, on a horseback riding adventure, or even in a hot air balloon for a bird's-eye view of the vast plains and wildlife."
+        },
+        {
+            "image": "assets/imgs/most-visited/masai-mara-3.jpg",
+            "title": "Learn about Maasai Culture",
+            "description": "Visit a traditional Maasai village and gain insights into their way of life and cultural traditions."
+        }
+    ],
+    "travelGuide": [
+        {
+            "title": "Getting There",
+            "para": "The Masai Mara National Reserve can be accessed by plane or car. Several domestic flights operate from Nairobi to Mara airstrips. Alternatively, road trips are possible from Nairobi, although these can be lengthy. Consider booking a safari package that includes transportation."
+        },
+        {
+            "title": "Best Time to Visit",
+            "para": "The best time to visit the Masai Mara depends on your priorities. The dry season (June-October) offers pleasant weather and prime viewing of the Great Migration (July-August). However, this coincides with peak tourist season and higher prices. The shoulder seasons (April-May and November) offer good weather with fewer crowds. Keep in mind that wildlife viewing is possible year-round."
+        },
+        {
+            "title": "Accommodation",
+            "para": "Masai Mara offers a variety of accommodation options, ranging from luxurious safari lodges and tented camps to budget-friendly campsites. Choose your stay based on your desired location, comfort level, and budget. Popular areas include Mara Triangle, Sekenani, and the Mara River area."
+        },
+        {
+            "title": "Activities",
+            "para": "Beyond wildlife viewing on traditional jeep safaris, the Masai Mara offers a variety of activities. Take a hot air balloon ride for a unique perspective, go on a guided bush walk with a Maasai guide, visit a local Maasai marketplace, or participate in cultural experiences. Consider combining a Masai Mara safari with a visit to other Kenyan parks like Amboseli or Tsavo National Park for a well-rounded wildlife experience."
+        },
+        {
+            "title": "Things to Pack",
+            "bulletPoints": [
+                "Neutral-colored clothing (khaki, green, beige) for better camouflage during game drives",
+                "Long-sleeved shirts and pants (for sun protection and insect bites)",
+                "Comfortable walking shoes or hiking boots",
+                "Hat with a wide brim",
+                "Sunscreen and sunglasses",
+                "Binoculars",
+                "Camera with zoom lens",
+                "Warm layers for early mornings and evenings (temperatures can vary)"
+            ]
+        }
+    ]
+},
+{
+    "id": 31,
+    "name": "Hiroshima Peace Memorial Park (広島平和記念公園, Hiroshima Heiwa Kinen Kōen)",
+    "description": "The Hiroshima Peace Memorial Park is a sprawling commemorative space dedicated to the victims of the atomic bomb dropped on Hiroshima, Japan, at the end of World War II.  It serves as a powerful symbol of peace and a reminder of the devastating consequences of nuclear war.",
+    "location": "Hiroshima, Japan",
+    "established": "1950s",
+    "designedBy": "Tange Kenzō",
+    "significantLandmark": "Hiroshima Peace Memorial (Genbaku Dome)",
+    "otherMemorials": [
+        "Hiroshima National Peace Memorial Hall for the Atomic Bomb Victims",
+        "Children's Peace Monument",
+        "Flame of Peace",
+        "Atomic Bomb Monument",
+        "Rest House",
+        "慰霊の鐘 (慰霊の鐘, Ie no Kane - Peace Bell)"
+    ],
+    "highlights": [
+        {
+            "image": "assets/imgs/most-visited/hiroshima-peace-memorial.jpg",
+            "title": "Hiroshima Peace Memorial (Genbaku Dome)",
+            "description": "The Hiroshima Peace Memorial, originally the Hiroshima Prefectural Industrial Promotion Hall, is the skeletal remains of a building left standing near the hypocenter of the atomic bomb. Preserved as a stark symbol of the devastation, it serves as a powerful reminder of the bombing's impact."
+        },
+        {
+            "image": "assets/imgs/most-visited/hiroshima-peace-memorial-2.jpg",
+            "title": "Hiroshima National Peace Memorial Hall for the Atomic Bomb Victims",
+            "description": "The Hiroshima National Peace Memorial Hall for the Atomic Bomb Victims houses exhibits and artifacts that convey the horrors of the bombing and the human cost of nuclear war. It serves as a place for education and reflection."
+        }
+    ],
+    "activities": [
+        "Explore the Hiroshima Peace Memorial Park and its various memorials.",
+        "Visit the Hiroshima National Peace Memorial Hall for the Atomic Bomb Victims to learn more about the bombing and its aftermath.",
+        "Attend a peace ceremony held at the park throughout the year.",
+        "Fold origami paper cranes, a symbol of peace, and add them to the monument dedicated to children's peace.",
+        "Reflect on the importance of peace and the devastating consequences of war."
+    ],
+    "travelGuide": [
+        {
+            "title": "Getting There",
+            "para": "Hiroshima Peace Memorial Park is conveniently located in central Hiroshima and easily accessible by public transportation. Take trams or buses to the closest stops (Heiwa-kinen-koen-mae or Kenbaku Dome-mae). Alternatively, taxis are readily available."
+        },
+        {
+            "title": "Best Time to Visit",
+            "para": "Hiroshima enjoys a pleasant climate year-round. However, spring (March-May) and autumn (September-November) offer the most comfortable weather. Consider visiting during the Hiroshima Peace Memorial Ceremony held annually on August 6th to witness a solemn commemoration of the bombing."
+        },
+        {
+            "title": "Things to Pack",
+            "bulletPoints": [
+                "Comfortable walking shoes",
+                "Light rain jacket (weather can be unpredictable)",
+                "Respectful clothing (especially when visiting memorials)"
+            ]
+        }
+    ]
+}
 ]

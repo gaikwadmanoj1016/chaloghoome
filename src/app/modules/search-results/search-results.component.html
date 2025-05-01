@@ -17,7 +17,7 @@
             <div class="card-grid grid-view">
                 @for (place of searchResults; track $index) {
                 <div class="card">
-                    <img [src]="commonService.appendAssetUrl(place.thumbnailImg || '') || '../../../../../assets/imgs/image-placeholder.jpg'"
+                    <img [src]="place.thumbnailImg ? commonService.appendAssetUrl(place.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
                         alt="{{ place.postName }} {{place.location}}" />
                     <!-- <app-progressive-image [smallImage]="'../../../../../assets/imgs/image-placeholder.jpg'"
                         [image]="commonService.appendAssetUrl(place.thumbnailImg || '')"
@@ -43,7 +43,7 @@
             <div class="card-grid">
                 @for (post of section.posts?.content; track $index) {
                 <div class="card">
-                    <img [src]="commonService.appendAssetUrl(post.thumbnailImg) || '../../../assets/imgs/image-placeholder.jpg'"
+                    <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
                         alt="{{ post.postName }} {{post.location}}" />
                     <h4 class="place-name" [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
                     <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>

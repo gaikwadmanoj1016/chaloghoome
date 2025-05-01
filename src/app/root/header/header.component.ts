@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { convertSlugToNormal } from '../../utils/slugify';
 import gsap from 'gsap';
+import { environment } from '../../../../environment';
 
 @Component({
   selector: 'app-header',
@@ -46,6 +47,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   // searchQuery = '';
   searchResults: any[] = [];
   private socket!: WebSocket;
+  isSocketConnected: boolean = false;
 
 
   constructor(private router: Router, public commonService: CommonService, private apiService: ApiService) {
@@ -81,41 +83,56 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     if (this.commonService.isSidebarOpen()) {
       this.animateMenuItems();
     }
-    // this.socket = new WebSocket("wss://api.chaloghoome.com/adminService/ws/search");
-    this.socket = new WebSocket("ws://localhost:8081/adminService/ws/search");
+  }
 
-    this.socket.onopen = () => {
-      console.log("✅ WebSocket connected");
-    };
+  connectWebsocket() {
+    if (!this.isSocketConnected) {
 
-    this.socket.onerror = (error) => {
-      console.error("❌ WebSocket error:", error);
-    };
+      // this.socket = new WebSocket("wss://api.chaloghoome.com/adminService/ws/search");
+      this.socket = new WebSocket(environment.webSocketUrl + "/adminService/ws/search");
 
-    this.socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      // Call a function to update your UI with `data`
-      console.log(data);
-      // Example: 'data' is the array of post objects received from WebSocket
-      const grouped = data.reduce((acc: any, item: any) => {
-        const section = item.section || 'Other';
+      this.socket.onopen = () => {
+        console.log("✅ WebSocket connected");
+        this.isSocketConnected = true;
+      };
 
-        if (!acc[section]) {
-          acc[section] = [];
-        }
+      this.socket.onerror = (error) => {
+        console.error("❌ WebSocket error:", error);
+        this.isSocketConnected = false;
+      };
 
-        acc[section].push(item);
-        return acc;
-      }, {} as Record<string, any[]>);
+      this.socket.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        // Call a function to update your UI with `data`
+        console.log(data);
+        // Example: 'data' is the array of post objects received from WebSocket
+        const grouped = data.reduce((acc: any, item: any) => {
+          const section = item.section || 'Other';
 
-      // Convert to array of groups (if needed)
-      this.filteredSuggestions = Object.keys(grouped).map(key => ({
-        label: key,
-        list: grouped[key]
-      }));
-      console.log(this.filteredSuggestions);
-      
-    };
+          if (!acc[section]) {
+            acc[section] = [];
+          }
+
+          acc[section].push(item);
+          return acc;
+        }, {} as Record<string, any[]>);
+
+        // Convert to array of groups (if needed)
+        this.filteredSuggestions = Object.keys(grouped).map(key => ({
+          label: key,
+          list: grouped[key]
+        }));
+        console.log(this.filteredSuggestions);
+      };
+    }
+  }
+
+  disconnectWebsocket() {
+    if (this.isSocketConnected) {
+      this.socket.close();
+      console.log("✅ WebSocket connection closed");
+      this.isSocketConnected = false;
+    }
   }
 
   focusSearch() {

@@ -1,18 +1,29 @@
 <main>
     <div class="container">
         <h2>{{section?.sectionName || convertSlugToNormal(sectionName, '-')}}</h2>
-        @if (cardEditable) {
+        <!-- @if (cardEditable) {
         <div class="head">
             <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>
         </div>
-        }
+        } -->
 
         @if (section && section.posts && section.posts.length > 0 && sectionId) {
-        <div class="travel-card-container grid-container">
+        <!-- <div class="travel-card-container grid-container">
             @for (item of section.posts; track $index) {
             <app-place-card [item]="item" [editable]="cardEditable" [sectionId]="sectionName"
-                (onNavigateTo)="navigateTo($event)" (onEditClicked)="onEditCard($event)"
-                (onDeleteClicked)="deletePost($event)"></app-place-card>
+                (onNavigateTo)="navigateTo($event)"></app-place-card>
+            }
+        </div> -->
+        <div class="card-grid grid-view">
+            @for (post of section.posts; track $index) {
+            <div class="card">
+                <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
+                alt="{{ post.postName }} {{post.location}}" />
+                <h4 class="place-name" [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
+                <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
+                <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
+                <a [routerLink]="['/place', slugify(post.postName)]">View Details</a>
+            </div>
             }
         </div>
         }
@@ -21,203 +32,6 @@
         }
     </div>
 </main>
-
-<!-- Popup Modal -->
-<div class="modal" [ngClass]="{ 'show': showHidePostForm }">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3>Add New Post</h3>
-            <span class="close" (click)="closePopup()">&times;</span>
-        </div>
-        <form [formGroup]="postForm" (submit)="onSubmit()">
-            <div class="row form-body">
-                <!-- Post Name -->
-                <div class="col-lg-6">
-                    <div class="col-lg-12">
-                        <label for="img">Image:</label>
-                        @if (!selectedImage) {
-                        <!-- Hidden file input -->
-                        <input id="img" type="file" accept="image/*" (change)="onFileSelected($event, 'img')" #fileInput
-                            hidden />
-
-                        <!-- Add Image Button -->
-                        <button class="btn add-btn" type="button" (click)="fileInput.click()">
-                            <em class="add-icon">+</em>
-                        </button>
-                        }
-                        @else {
-                        <div class="image-preview">
-                            <button class="btn remove-btn" (click)="removeImage()">×</button>
-                            <img [src]="selectedImage" alt="Preview" />
-                        </div>
-                        }
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="col-lg-12">
-                        <label for="postName">Post Name:</label>
-                        <input id="postName" formControlName="postName" type="text" />
-                    </div>
-
-
-                    <div class="col-lg-12">
-                        <label for="annualVisitors">Annual Visitors:</label>
-                        <input id="annualVisitors" formControlName="annualVisitors" type="text" />
-                    </div>
-                    <!-- Area -->
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label for="area">Area:</label>
-                            <input id="area" formControlName="area" type="text" />
-                        </div>
-                        <!-- yearEstablished -->
-                        <div class="col-lg-6">
-                            <label for="yearEstablished">Year Of Established:</label>
-                            <input id="yearEstablished" formControlName="yearEstablished" type="text" />
-                        </div>
-                    </div>
-                </div>
-                <!-- Location -->
-                <div class="col-lg-12">
-                    <label for="location">Location:</label>
-                    <input id="location" formControlName="location" type="text" />
-                </div>
-                <!-- <div class="row">
-                    <div class="col-lg-4">
-                        <label for="annualVisitors">Annual Visitors:</label>
-                        <textarea id="annualVisitors" formControlName="annualVisitors"></textarea>
-                    </div>
-                </div> -->
-                <!-- Summary -->
-                <div class="col-lg-12">
-                    <label for="summary">Summary:</label>
-                    <textarea id="summary" formControlName="summary"></textarea>
-                </div>
-
-                <!-- History -->
-                <div class="col-lg-12">
-                    <label for="history">History:</label>
-                    <textarea id="history" formControlName="history"></textarea>
-                </div>
-
-                <div class="specialities-wrapper" formArrayName="specialities">
-                    <div *ngFor="let speciality of specialities.controls; let i = index" [formGroupName]="i"
-                        class="row">
-                        <div class="col-lg-2">
-                            <label for="specialtyIsUnique{{i}}">Is Unique:</label>
-                            <select id="specialtyIsUnique{{i}}" formControlName="isUnique">
-                                <option [value]="true">Yes</option>
-                                <option [value]="false">No</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-10">
-                            <label for="specialtyName{{i}}">Speciality:</label>
-                            <input id="specialtyName{{i}}" formControlName="speciality" type="text" />
-                        </div>
-                        <div class="col-lg-12">
-                            <label for="specialtyDescription{{i}}">Description:</label>
-                            <textarea id="specialtyDescription{{i}}" formControlName="description"></textarea>
-                        </div>
-                        <button type="button" class="btn" (click)="removeSpecialty(i)">Remove</button>
-                    </div>
-                    <button type="button" class="btn" (click)="addSpecialty()">Add Speciality</button>
-                </div>
-                <div class="facts-wrapper" formArrayName="facts">
-                    <div *ngFor="let fact of facts.controls; let i = index" [formGroupName]="i" class="row">
-                        <div class="col-lg-12">
-                            <label for="fact{{i}}">Fact:</label>
-                            <!-- <input id="fact{{i}}" formControlName="fact" type="text" /> -->
-                            <div id="fact{{i}}" class="fact-editor" contenteditable="true"
-                                [innerHTML]="fact.get('fact')?.value" (input)="updateFactContent($event, i)">
-                            </div>
-                        </div>
-                        <button type="button" class="btn" (click)="removeFact(i)">Remove</button>
-                    </div>
-                    <button type="button" class="btn" (click)="addFact()">Add Fact</button>
-                </div>
-
-                <div class="col-lg-12">
-                    <label for="famousFor">Famous For:</label>
-                    <textarea id="famousFor" formControlName="famousFor"></textarea>
-                </div>
-
-                <div class="col-lg-12">
-                    <label for="howToGo">How to Go:</label>
-                    <textarea id="howToGo" formControlName="howToGo"></textarea>
-                </div>
-
-                <div class="col-lg-12">
-                    <label for="bestTimeToVisit">Best Time to Visit:</label>
-                    <textarea id="bestTimeToVisit" formControlName="bestTimeToVisit"></textarea>
-                </div>
-
-                <div class="col-lg-12">
-                    <label for="routes">Routes:</label>
-                    <textarea id="routes" formControlName="routes"></textarea>
-                </div>
-                <div class="travelinfo-wrapper" formArrayName="travelGuide">
-                    <div *ngFor="let info of travelGuide.controls; let i = index" [formGroupName]="i" class="row">
-                        <div class="col-lg-12">
-                            <label for="title{{i}}">Title:</label>
-                            <input id="title{{i}}" formControlName="title" type="text" />
-                        </div>
-                        <div class="col-lg-12">
-                            <label for="para{{i}}">Description:</label>
-                            <textarea id="para{{i}}" formControlName="para"></textarea>
-                        </div>
-                        <button type="button" class="btn" (click)="removeInfo(i)">Remove</button>
-                    </div>
-                    <button type="button" class="btn" (click)="addHighlight()">Add Travel Info</button>
-                </div>
-                <!-- Categories Input with Suggestions -->
-                <div class="col-lg-12">
-                    <label for="categories">Category:</label>
-                    <input id="categories" formControlName="categories" (input)="filterCategories()"
-                        (keydown.enter)="addCategory($event)">
-
-                    <!-- Suggestions -->
-                    @if (filteredCategories.length) {
-                    <ul class="suggestions">
-                        <li *ngFor="let suggestion of filteredCategories" (click)="selectCategory(suggestion)">
-                            {{ suggestion }}
-                        </li>
-                    </ul>
-                    }
-
-                    <!-- Selected Categories -->
-                    <div class="selected-categories">
-                        <span *ngFor="let category of categories" class="tag">
-                            {{ category }} <button class="cross-icon" (click)="removeCategory(category)">×</button>
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Tags Input with Suggestions -->
-                <div class="col-lg-12">
-                    <label for="tags">Tag:</label>
-                    <input id="tags" formControlName="tags" (input)="filterTags()" (keydown.enter)="addTag($event)">
-
-                    <!-- Suggestions -->
-                    @if (filteredTags.length) {
-                    <ul class="suggestions">
-                        <li *ngFor="let suggestion of filteredTags" (click)="selectTag(suggestion)">
-                            {{ suggestion }}
-                        </li>
-                    </ul>
-                    }
-                    <!-- Selected Tags -->
-                    <div class="selected-tags">
-                        <span *ngFor="let tag of tags" class="tag">
-                            {{ tag }} <button class="cross-icon" (click)="removeTag(tag)">×</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <!-- Submit Button " [disabled]="postForm.invalid"-->
-            <button type="submit" class="btn submit-btn">Submit</button>
-        </form>
-    </div>
-</div>
 
 <!-- add highlights -->
 @if (commonService.isAddHighlightModal) {

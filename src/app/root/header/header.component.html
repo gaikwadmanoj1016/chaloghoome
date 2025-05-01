@@ -11,12 +11,12 @@
                     <img src="assets/icons/ChaloGhoome-logo-new.png" alt="Description">
                 </picture> -->
             </a>
-            <div class="search-form" [class.expanded]="isExpanded()">
+            <div class="search-form" [class.expanded]="isExpanded()" (clickOutside)="disconnectWebsocket()">
                 <form (ngSubmit)="onSearch()" (clickOutside)="showSuggestions = false"
                     [class.floating-search]="isScrolled">
                     <div class="search-bar">
                         <input type="text" #searchInput [(ngModel)]="searchQuery" title="Shortcut: Ctrl + /"
-                            name="searchQuery" (input)="onInputChange()" (focus)="showSuggestions = true"
+                            name="searchQuery" (input)="onInputChange()" (focus)="connectWebsocket();showSuggestions = true"
                             class="search-input" placeholder="Search places..." required autocomplete="off" />
                         @if (!isExpanded()) {
                         <button type="button" (click)="expandSearchBar()" class="search-btn">
@@ -39,20 +39,6 @@
                             <ul>
                                 @for (post of suggestion.list; track $index) {
                                 <li class="item">
-                                    <!-- @if (item.catName && !item.sectionName) {
-                                    <span (click)="selectSuggestion(item.catName)">{{ item.catName }}</span>
-                                    }
-
-                                    @if (item.tagName) {
-                                    <span (click)="selectSuggestion(item.tagName)">{{ item.tagName }}</span>
-                                    } -->
-
-                                    <!-- @if (item.sectionName) {
-                                    <span (click)="selectSuggestion(item.sectionName)">{{ item.sectionName }}</span>
-                                    } -->
-
-                                    <!-- @if (item.posts?.length > 0) {
-                                    @for (post of item.posts; track $index) { -->
                                     <div class="places" (click)="selectSuggestion(post.postName)">
                                         <img *ngIf="post.thumbnailImg"
                                             [src]="commonService.appendAssetUrl(post.thumbnailImg)"
@@ -63,8 +49,6 @@
                                             <div class="post-summary">{{ post.summary | truncate: 100 }}</div>
                                         </div>
                                     </div>
-                                    <!-- }
-                                    } -->
                                 </li>
                                 }
                             </ul>
@@ -141,6 +125,9 @@
                 <a href="#" [routerLink]="['places', section.sectionId]">
                     {{ section?.sectionName }}
                 </a>
+            </li>
+            <li #menuItem>
+                <a class="nav-link" routerLink="/places">Places</a>
             </li>
             <li #menuItem class="nav-item">
                 <a class="nav-link" routerLink="/about_us">About</a>

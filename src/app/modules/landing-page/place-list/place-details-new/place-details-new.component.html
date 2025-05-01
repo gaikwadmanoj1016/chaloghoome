@@ -265,68 +265,108 @@
     </section>
 </main> -->
 @if (!placeNotFound && !loadingPlaceDetails) {
+<header class="hero" *ngIf="imgSrc" [style.background-image]="'url('+imgSrc+')'">
+    <div class="hero-content" [attr.aria-labelledby]="placeDetails?.summary" [title]="placeDetails?.postName">
+        <img class="main-hero-image" [src]="imgSrc" (error)="onImageError()" (load)="onImageLoad()" alt="Hero Image" />
+    </div>
+</header>
 <main>
-
-    <header class="hero" *ngIf="placeDetails?.originalThumbnailImg"
-        [style.background-image]="'url('+commonService.appendAssetUrl(placeDetails?.originalThumbnailImg || '')+')'">
-        <div class="hero-content" [attr.aria-labelledby]="placeDetails?.summary" [title]="placeDetails?.postName">
-            <img class="main-hero-image" [src]="imgSrc" (error)="onImageError()" (load)="onImageLoad()"
-                alt="Hero Image" />
-        </div>
-    </header>
-
-    <!-- About Section -->
-    <section class="about"
-        *ngIf="placeDetails?.postName || placeDetails?.summary || placeDetails?.location || placeDetails?.famousFor || placeDetails?.history">
-        @if ((tags && tags.length || categories && categories.length) && false) {
-        <div class="tags-categories">
+    <div class="left">
+        @if ((placeDetails?.postTagList && placeDetails?.postTagList?.length) || (placeDetails?.postCatList &&
+        placeDetails?.postCatList?.length)) {
+        <section>
             <div class="container">
-                <div class="tags-categories-wrapper">
-                    <!-- Categories -->
-                    <div class="category-box" *ngIf="categories?.length">
-                        <h3>Categories</h3>
-                        <ul class="category-list">
-                            <li *ngFor="let category of categories" (click)="searchText(category)">
-                                <span class="category-item">{{ category }}</span>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="tags-categories">
+                    <div class="tags-categories-wrapper">
+                        <!-- Categories -->
+                        @if (placeDetails?.postCatList && placeDetails?.postCatList?.length) {
+                        <div class="category-box">
+                            <h4>Categories</h4>
+                            <ul class="category-list">
+                                <li *ngFor="let category of placeDetails?.postCatList"
+                                    (click)="searchText(category.category.catName)">
+                                    <span class="category-item">{{ category.category.catName }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        }
 
-                    <!-- Tags -->
-                    @if (tags && tags.length) {
-                    <div class="tags-box">
-                        <h3>Tags</h3>
-                        <ul class="tags-list">
-                            <li *ngFor="let tag of tags" (click)="searchText(tag)">
-                                <span class="tag-item">#{{ tag }}</span>
-                            </li>
-                        </ul>
+                        <!-- Tags -->
+                        @if (placeDetails?.postTagList && placeDetails?.postTagList?.length) {
+                        <div class="tags-box">
+                            <h4>Tags</h4>
+                            <ul class="tags-list">
+                                <li *ngFor="let tag of placeDetails?.postTagList" (click)="searchText(tag.tagName)">
+                                    <span class="tag-item">#{{ tag.tagName }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        }
                     </div>
-                    }
                 </div>
             </div>
-        </div>
+        </section>
         }
-        <div class="container"
-            *ngIf="placeDetails?.postName || placeDetails?.summary || placeDetails?.location || placeDetails?.famousFor">
-            <h2 *ngIf="placeDetails?.postName">About {{ placeDetails?.postName }}</h2>
-            <p *ngIf="placeDetails?.summary">{{ placeDetails?.summary }}</p>
-            <ul>
-                <li *ngIf="placeDetails?.location"><strong>Location:</strong> {{ placeDetails?.location }}</li>
-                <!-- <li *ngIf="placeDetails?.opened"><strong>Opened:</strong> {{ placeDetails?.opened }}</li>
-                <li *ngIf="placeDetails?.annualVisitors"><strong>Annual Visitors:</strong> {{ placeDetails?.annualVisitors
-                    }}</li>
-                <li *ngIf="placeDetails?.famousFor"><strong>Famous For:</strong> {{ placeDetails?.famousFor }}</li> -->
-            </ul>
-        </div>
-        <div class="container" *ngIf="placeDetails?.postName || placeDetails?.history">
-            <h3 *ngIf="placeDetails?.postName">History of {{ placeDetails?.postName }}</h3>
-            <p *ngIf="placeDetails?.history">{{ placeDetails?.history }}</p>
-        </div>
-    </section>
-
-    <!-- Unique Features -->
-    <!-- <section class="speciality" *ngIf="placeDetails?.specialities && placeDetails?.specialities?.length">
+        <section>
+            <div class="container">
+                <h4 class="border-bottom section-title" style="text-align: start;">Most Visited Places</h4>
+                <div class="section-details">
+                    <ul>
+                        @for (post of section?.posts; track $index) {
+                        <li class="item">
+                            <div class="places">
+                                <img *ngIf="post.thumbnailImg" [src]="commonService.appendAssetUrl(post.thumbnailImg)"
+                                    class="post-image" />
+                                <div class="post-info">
+                                    <p class="para-md post-name">{{ post.postName }} <span class="dot"></span>{{
+                                        post.location }} </p>
+                                    <!-- <p class="para-sm post-location">{{ post.location }}</p> -->
+                                    <p class="para-sm post-summary">{{ post.summary | truncate: 100 }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="middle">
+        <button class="share-button" (click)="sharePage()" title="Share Place"> <i class="fa-solid fa-share"></i>
+        </button>
+        <!-- About Section -->
+        <section class="about"
+            *ngIf="placeDetails?.postName || placeDetails?.summary || placeDetails?.location || placeDetails?.famousFor || placeDetails?.history">
+            <div class="container" *ngIf="placeDetails?.summary || placeDetails?.location || placeDetails?.famousFor">
+                <h2 *ngIf="placeDetails?.postName" class="highlighted-text">About {{ placeDetails?.postName }}</h2>
+                <p *ngIf="placeDetails?.summary">{{ placeDetails?.summary }}</p>
+                <div class="metadata">
+                    <p *ngIf="placeDetails?.location">
+                        <label class="para-xl highlighted-text">Location:</label>
+                        {{ placeDetails?.location }}
+                    </p>
+                    <!-- <p *ngIf="placeDetails?.opened"><strong>Opened:</strong> {{ placeDetails?.opened }}</p> -->
+                    <p *ngIf="placeDetails?.annualVisitors"><label class="para-xl highlighted-text">Annual
+                            Visitors:</label> {{
+                        placeDetails?.annualVisitors }}</p>
+                    <p *ngIf="placeDetails?.area"><label class="para-xl highlighted-text">Total Area:</label> {{
+                        placeDetails?.area }}</p>
+                    <p *ngIf="placeDetails?.yearEstablished"><label class="para-xl highlighted-text">Year of
+                            establishment:</label> {{
+                        placeDetails?.yearEstablished }}</p>
+                </div>
+                <p *ngIf="placeDetails?.famousFor"><label class="para-xl highlighted-text">Famous For:</label> {{
+                    placeDetails?.famousFor }}</p>
+            </div>
+        </section>
+        <section>
+            <div class="container" *ngIf="placeDetails?.history">
+                <h3 *ngIf="placeDetails?.postName" class="highlighted-text">History of {{ placeDetails?.postName }}</h3>
+                <p *ngIf="placeDetails?.history">{{ placeDetails?.history }}</p>
+            </div>
+        </section>
+        <!-- Unique Features -->
+        <!-- <section class="speciality" *ngIf="placeDetails?.specialities && placeDetails?.specialities?.length">
         <div class="container">
             <h2 *ngIf="placeDetails?.postName">Why Visit the {{ placeDetails?.postName }} ?</h2>
             <div class="feature-grid">
@@ -338,59 +378,61 @@
             </div>
         </div>
     </section> -->
-    <section class="speciality" *ngIf="placeDetails?.specialities?.length">
-        <div class="container">
-            <h3 *ngIf="placeDetails?.postName">Why Visit the {{ placeDetails?.postName }}?</h3>
+        <section class="speciality" *ngIf="placeDetails?.specialities?.length">
+            <div class="container">
+                <h3 *ngIf="placeDetails?.postName" class="highlighted-text">Why Visit the {{ placeDetails?.postName }}?
+                </h3>
 
-            <div class="accordion" id="specialityAccordion">
-                <div class="accordion-item" *ngFor="let speciality of placeDetails?.specialities; let i = index">
-                    <h3 class="accordion-header" [id]="'heading' + i">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
-                            [attr.aria-controls]="'collapse' + i">
-                            {{ speciality.speciality }}
-                        </button>
-                    </h3>
-                    <div [id]="'collapse' + i" class="accordion-collapse collapse"
-                        [attr.aria-labelledby]="'heading' + i" data-bs-parent="#specialityAccordion">
-                        <div class="accordion-body">
-                            {{ speciality.description }}
+                <div class="accordion" id="specialityAccordion">
+                    <div class="accordion-item" *ngFor="let speciality of placeDetails?.specialities; let i = index">
+                        <h3 class="accordion-header" [id]="'heading' + i">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+                                [attr.aria-controls]="'collapse' + i">
+                                {{ speciality.speciality }}
+                            </button>
+                        </h3>
+                        <div [id]="'collapse' + i" class="accordion-collapse collapse"
+                            [attr.aria-labelledby]="'heading' + i" data-bs-parent="#specialityAccordion">
+                            <div class="accordion-body">
+                                {{ speciality.description }}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 
-    <!-- Travel Guide -->
-    <section class="travel-guide" *ngIf="
+        <!-- Travel Guide -->
+        <section class="travel-guide" *ngIf="
             placeDetails?.postName ||
             placeDetails?.bestTimeToVisit ||
             placeDetails?.famousFor ||
             placeDetails?.howToGo ||
             (placeDetails?.travelGuide?.length)
           ">
-        <div class="container">
-            <h3 *ngIf="placeDetails?.postName">Plan Your Visit: {{ placeDetails?.postName }}</h3>
-            <div class="guide-grid">
-                <div class="guide-card" *ngIf="placeDetails?.bestTimeToVisit">
-                    <h3>Best Time to Visit</h3>
-                    <p [innerHTML]="updateFormattedText(placeDetails?.bestTimeToVisit)"></p>
-                </div>
-                <div class="guide-card" *ngIf="placeDetails?.famousFor">
-                    <h3>is Famous For</h3>
-                    <p [innerHTML]="updateFormattedText(placeDetails?.famousFor)"></p>
-                </div>
-                <div class="guide-card" *ngIf="placeDetails?.howToGo">
-                    <h3>How to Go</h3>
-                    <p [innerHTML]="updateFormattedText(placeDetails?.howToGo)"></p>
-                </div>
-                <div class="guide-card" *ngFor="let travelInfo of placeDetails?.travelGuide; let i = index">
-                    <h3>{{ travelInfo.title }}</h3>
-                    <p [innerHTML]="updateFormattedText(travelInfo.para)"></p>
-                </div>
-                <div class="guide-card">
+            <div class="container">
+                <h3 *ngIf="placeDetails?.postName" class="highlighted-text">Plan Your Visit: {{ placeDetails?.postName
+                    }}</h3>
+                <div class="guide-grid">
+                    <div class="guide-card" *ngIf="placeDetails?.bestTimeToVisit">
+                        <h4 class="border-bottom pb-3">Best Time to Visit</h4>
+                        <p class="para-sm" [innerHTML]="updateFormattedText(placeDetails?.bestTimeToVisit)"></p>
+                    </div>
+                    <!-- <div class="guide-card" *ngIf="placeDetails?.famousFor">
+                        <h4 class="border-bottom pb-3">is Famous For</h4>
+                        <p class="para-sm" [innerHTML]="updateFormattedText(placeDetails?.famousFor)"></p>
+                    </div> -->
+                    <div class="guide-card" *ngIf="placeDetails?.howToGo">
+                        <h4 class="border-bottom pb-3">How to Go</h4>
+                        <p class="para-sm" [innerHTML]="updateFormattedText(placeDetails?.howToGo)"></p>
+                    </div>
+                    <div class="guide-card" *ngFor="let travelInfo of placeDetails?.travelGuide; let i = index">
+                        <h4 class="border-bottom pb-3">{{ travelInfo.title }}</h4>
+                        <p class="para-sm" [innerHTML]="updateFormattedText(travelInfo.para)"></p>
+                    </div>
+                    <!-- <div class="guide-card">
                     <h3>Top Things to Do</h3>
                     <ul>
                         <li>Attend a live opera or theatre show</li>
@@ -404,76 +446,79 @@
                     <p>Opening Hours: Daily from 9 AM to 5 PM</p>
                     <p>Ticket Prices: General admission is $40, with discounts for students and seniors.</p>
                     <p>Special Events: Check the official website for upcoming performances and exhibitions.</p>
+                </div> -->
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="routes" *ngIf="placeDetails?.routes">
-        <div class="container">
-            <h3 *ngIf="placeDetails?.postName">Routes for {{ placeDetails?.postName }}</h3>
-            <p [innerHTML]="updateFormattedText(placeDetails?.routes)"></p>
-        </div>
-    </section>
+        <section class="routes" *ngIf="placeDetails?.routes">
+            <div class="container">
+                <h3 *ngIf="placeDetails?.postName" class="highlighted-text">Routes for {{ placeDetails?.postName }}</h3>
+                <p [innerHTML]="updateFormattedText(placeDetails?.routes)"></p>
+            </div>
+        </section>
 
-    <!-- Transportation Options -->
-    <section class="transportation" *ngIf="false">
-        <div class="container">
-            <h3>Transportation Options</h3>
-            <p>Getting to the Sydney Opera House is easy with various public transport options:</p>
-            <ul>
-                <li><strong>Train:</strong> The nearest station is Circular Quay, just a short walk away.</li>
-                <li><strong>Bus:</strong> Several bus routes stop nearby, including routes 333 and 380.</li>
-                <li><strong>Ferry:</strong> Take a ferry to Circular Quay for stunning views of the harbor.</li>
-                <li>
-                    <strong>Parking:</strong> Limited parking is available at the Opera House; consider public transport
-                    for convenience.
-                </li>
-            </ul>
-        </div>
-    </section>
+        <!-- Transportation Options -->
+        <section class="transportation" *ngIf="false">
+            <div class="container">
+                <h3>Transportation Options</h3>
+                <p>Getting to the Sydney Opera House is easy with various public transport options:</p>
+                <ul>
+                    <li><strong>Train:</strong> The nearest station is Circular Quay, just a short walk away.</li>
+                    <li><strong>Bus:</strong> Several bus routes stop nearby, including routes 333 and 380.</li>
+                    <li><strong>Ferry:</strong> Take a ferry to Circular Quay for stunning views of the harbor.</li>
+                    <li>
+                        <strong>Parking:</strong> Limited parking is available at the Opera House; consider public
+                        transport
+                        for convenience.
+                    </li>
+                </ul>
+            </div>
+        </section>
 
-    <!-- Photo Gallery -->
-    <section class="gallery" *ngIf="highlights && highlights.length > 0">
-        <div class="container">
-            <h3>Photo Gallery</h3>
-            <div class="gallery-container">
-                <div class="gallery-grid" id="galleryGrid">
-                    <ng-container *ngIf="checkHighlightExist()">
-                        <div class="image-wrapper" *ngFor="let highlight of highlights; let i = index"
-                            [class.lastIndex]="checkLastIndex(i)">
-                            <app-progressive-image [smallImage]="'../../../../../assets/imgs/image-placeholder.jpg'"
-                                [image]="commonService.appendAssetUrl(highlight.compressedImagePath)"
-                                [title]="highlight.title"
-                                [altText]="'ChaloGhoome: ' + highlight.title + ': ' + highlight.description"
-                                [aspectRatio]="false"
-                                (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))">
-                            </app-progressive-image>
-                            <button *ngIf="checkLastIndex(i) && !loadedAllImage" id="loadMore" class="load-more"
-                                (click)="loadAllImagesToGallary()">
-                                Load More Images
-                            </button>
-                        </div>
-                    </ng-container>
+        <!-- Photo Gallery -->
+        <section class="gallery" *ngIf="highlights && highlights.length > 0">
+            <div class="container">
+                <h3 class="highlighted-text"
+                    [attr.aria-labelledby]="'photo-gallery-of-' + (placeDetails?.postName || '')">Mesmerizing views of
+                    {{placeDetails?.postName}}</h3>
+                <div class="gallery-container">
+                    <div class="gallery-grid" id="galleryGrid">
+                        <ng-container *ngIf="checkHighlightExist()">
+                            <div class="image-wrapper" *ngFor="let highlight of highlights; let i = index"
+                                [class.lastIndex]="checkLastIndex(i)">
+                                <app-progressive-image [smallImage]="'../../../../../assets/imgs/image-placeholder.jpg'"
+                                    [image]="commonService.appendAssetUrl(highlight.compressedImagePath)"
+                                    [title]="highlight.title"
+                                    [altText]="'ChaloGhoome: ' + highlight.title + ': ' + highlight.description"
+                                    [aspectRatio]="false"
+                                    (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))">
+                                </app-progressive-image>
+                                <button *ngIf="checkLastIndex(i) && !loadedAllImage" id="loadMore" class="load-more"
+                                    (click)="loadAllImagesToGallary()">
+                                    Load More Images
+                                </button>
+                            </div>
+                        </ng-container>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Fun Facts -->
-    <section class="fun-facts" *ngIf="facts && facts.length > 0">
-        <div class="container">
-            <h3>Did You Know?</h3>
-            <ul>
-                @for (fact of facts; track $index) {
+        <!-- Fun Facts -->
+        <section class="fun-facts" *ngIf="facts && facts.length > 0">
+            <div class="container">
+                <h3>Did You Know?</h3>
+                <ul>
+                    @for (fact of facts; track $index) {
                     <li>{{fact}}</li>
-                }
-            </ul>
-        </div>
-    </section>
+                    }
+                </ul>
+            </div>
+        </section>
 
-    <!-- Ticket Booking Information -->
-    <!-- <section class="tickets">
+        <!-- Ticket Booking Information -->
+        <!-- <section class="tickets">
         <div class="container">
             <h3>How to Book Tickets</h3>
             <p>You can book tickets for shows and guided tours through:</p>
@@ -485,8 +530,8 @@
         </div>
     </section> -->
 
-    <!-- Dining Options -->
-    <!-- <section class="dining-options">
+        <!-- Dining Options -->
+        <!-- <section class="dining-options">
         <div class="container">
             <h3>Dining Options</h3>
             <ul>
@@ -497,8 +542,8 @@
         </div>
     </section> -->
 
-    <!-- Accommodation Recommendations -->
-    <!-- <section class="accommodation">
+        <!-- Accommodation Recommendations -->
+        <!-- <section class="accommodation">
         <div class="container">
             <h2>Accommodation Recommendations</h2>
             <ul>
@@ -509,8 +554,8 @@
         </div>
     </section> -->
 
-    <!-- Packing List -->
-    <!-- <section class="packing-list">
+        <!-- Packing List -->
+        <!-- <section class="packing-list">
         <div class="container">
             <h2>What to Pack</h2>
             <ul class="packing-items">
@@ -522,8 +567,8 @@
         </div>
     </section> -->
 
-    <!-- Testimonials -->
-    <!-- <section class="testimonials">
+        <!-- Testimonials -->
+        <!-- <section class="testimonials">
         <div class="container">
             <h2>What Visitors Say</h2>
             <div class="testimonial-card">
@@ -536,8 +581,8 @@
         </div>
     </section> -->
 
-    <!-- Nearby Attractions Section -->
-    <!-- <section class="nearby-attractions">
+        <!-- Nearby Attractions Section -->
+        <!-- <section class="nearby-attractions">
         <div class="container">
             <h2>Nearby Attractions</h2>
             <div class="attractions-grid">
@@ -564,8 +609,8 @@
             </div>
         </div>
     </section> -->
-    <!-- FAQs Section -->
-    <!-- <section class="faqs">
+        <!-- FAQs Section -->
+        <!-- <section class="faqs">
         <div class="container">
             <h2>Frequently Asked Questions</h2>
             <ul>
@@ -578,11 +623,11 @@
             </ul>
         </div>
     </section> -->
-
+    </div>
 </main>
 }
 @else if (loadingPlaceDetails) {
-<main class="loading-place-details">
+<div class="loading-place-details">
     <section class="loading-container">
         <div class="skeleton-image"></div>
         <div class="skeleton-title"></div>
@@ -590,14 +635,14 @@
         <div class="skeleton-text"></div>
         <div class="skeleton-text short"></div>
     </section>
-</main>
+</div>
 } @else {
-<main class="place-not-found">
+<div class="place-not-found">
     <section class="not-found-container">
         <img src="../../../../../assets/imgs/9214833.jpg" alt="Place Not Found" class="not-found-image" />
         <h2>Oops! Place Not Found</h2>
         <p>We couldn't find the place you're looking for. <br> Try exploring other amazing destinations!</p>
         <a href="#" routerLink="/home" class="back-home-btn">Back to Home</a>
     </section>
-</main>
+</div>
 }

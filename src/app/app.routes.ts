@@ -19,6 +19,7 @@ import { SettingSectionComponent } from './modules/admin-panel/setting-section/s
 import { PlaceDetailsNewComponent } from './modules/landing-page/place-list/place-details-new/place-details-new.component';
 import { MasterTagListComponent } from './modules/admin-panel/master-tag-list/master-tag-list.component';
 import { MasterCategoryListComponent } from './modules/admin-panel/master-category-list/master-category-list.component';
+import { AllPostComponent } from './modules/admin-panel/all-post/all-post.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -27,6 +28,7 @@ export const routes: Routes = [
         path: 'admin-panel', component: AdminPanelComponent, children: [
             { path: 'sections', component: SettingSectionComponent },
             { path: 'sections/places/:sectionName', component: ViewPostComponent },
+            { path: 'sections/places', component: AllPostComponent },
             { path: 'tags', component: MasterTagListComponent },
             { path: 'categories', component: MasterCategoryListComponent },
             // { path: 'guides', component: GuidesComponent },
@@ -34,7 +36,8 @@ export const routes: Routes = [
             // { path: 'unique-features', component: UniqueFeaturesComponent },
         ]
     },
-    { path: 'admin-panel/places/:sectionName', component: SectionComponent },
+    // { path: 'admin-panel/places/:sectionName', component: SectionComponent },
+    { path: 'places', component: AllPostComponent },
     { path: 'places/:sectionName', component: SectionComponent },
     { path: 'place/:postName', component: PlaceDetailsNewComponent },
     // { path: '', component: DashboardComponent },

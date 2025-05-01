@@ -21,7 +21,37 @@ export class ApiService {
       })
     )
   }
-
+  // master lists
+  public getCountryList() {
+    let API = environment.apiUrl + 'api/setup/countries';
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  public getStateListByCountry(countryId: number) {
+    let API = environment.apiUrl + 'api/setup/getStatesByCountryId/' + countryId;
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  public getCityListByState(stateId: number) {
+    let API = environment.apiUrl + 'api/setup/cityByState/' + stateId;
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
   // common
   public getAllSugestions() {
     let API = environment.apiUrl + 'api/setup/init';
@@ -106,6 +136,16 @@ export class ApiService {
       })
     )
   }
+  public getAllPlaces() {
+    let API = environment.apiUrl + 'api/posts/getAll';
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
   public getSectionsAndPostList() {
     let API = environment.apiUrl + 'api/sections/getSectionList';
     return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
@@ -166,6 +206,26 @@ export class ApiService {
   public savePost(formData: FormData) {
     let API = environment.apiUrl + 'api/posts/savePostDetails';
     return this.httpRequest.post(API, formData, this.commonService.getRequestForAttachment()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  public deletePostTag(tagId: number) {
+    let API = environment.apiUrl + 'api/posts/deletePostTag/' + tagId;
+    return this.httpRequest.delete(API, this.commonService.getRequestForAttachment()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  public deletePostCat(catId: number) {
+    let API = environment.apiUrl + 'api/posts/deletePostCategory/' + catId;
+    return this.httpRequest.delete(API, this.commonService.getRequestForAttachment()).pipe(
       map((data) => {
         return data;
       }), catchError((error) => {

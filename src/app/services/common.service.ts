@@ -67,7 +67,7 @@ export class CommonService {
 
   // 
   setMetaData(title: string, data?: any) {
-    let imageUrl = data?.originalThumbnailImg || '';
+    let imageUrl = this.appendAssetUrl(data?.originalThumbnailImg || '');
     // Dynamically set page title and meta description
     this.titleService.setTitle(title + ' - Chalo Ghoome');
     this.metaService.updateTag({ property: 'og:title', content: `${title} – Chalo ghoome` });

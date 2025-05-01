@@ -28,11 +28,13 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   imgSrc = 'assets/imgs/image-placeholder.jpg';
   originalPostName: string = '';
   apiCallCount: number = 0;
-  tags = ['Adventure', 'Nature', 'Wildlife', 'Adventure', 'Nature', 'Wildlife', 'Adventure', 'Nature', 'Wildlife'];
-  categories = ['Trekking', 'Photography', 'Camping'];
+  // tags = ['Adventure', 'Nature', 'Wildlife', 'Adventure', 'Nature', 'Wildlife', 'Adventure', 'Nature', 'Wildlife'];
+  // categories = ['Trekking', 'Photography', 'Camping'];
   placeNotFound: boolean = false;
   loadingPlaceDetails: boolean = false;
   facts: string[] = [];
+  section: any;
+  sectionName: any = "Most Visited Places";
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
@@ -78,22 +80,24 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
         this.loadingPlaceDetails = false;
         if (response && response.result) {
           this.placeDetails = response.data;
-          if (this.placeDetails && this.placeDetails.highlights && this.placeDetails.highlights.length > 0) {
-            this.placeDetails.originalThumbnailImg = this.placeDetails.highlights.find(item => item.isThumbnail)?.imagePath
-            this.facts = this.placeDetails.facts.split('.,');
-          }
           if (this.placeDetails && Object.keys(this.placeDetails).length > 0) {
+            if (this.placeDetails.highlights && this.placeDetails.highlights.length > 0) {
+              this.placeDetails.originalThumbnailImg = this.placeDetails.highlights.find(item => item.isThumbnail)?.imagePath
+              // const originalImg = this.placeDetails?.originalThumbnailImg;
+              if (this.placeDetails.originalThumbnailImg) {
+                this.imgSrc = this.commonService.appendAssetUrl(this.placeDetails.originalThumbnailImg);
+                console.log(this.imgSrc);
+              }
+            }
+            this.facts = this.placeDetails.facts?.split('.,');
             this.placeNotFound = false;
             this.commonService.setMetaData(this.placeDetails?.postName, this.placeDetails);
             this.addStructuredData(this.placeDetails);
+            this.setGallary();
+            this.getPostBySectionId();
           } else {
             this.placeNotFound = true;
           }
-          const originalImg = this.placeDetails?.originalThumbnailImg;
-          if (originalImg) {
-            this.imgSrc = this.commonService.appendAssetUrl(originalImg);
-          }
-          this.setGallary();
         }
       },
       error: (err) => {
@@ -107,7 +111,29 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
         }
       }
     });
+  }
 
+  private getPostBySectionId() {
+    localStorage.setItem('sections', JSON.stringify(this.commonService.sections));
+    let sectionId = this.commonService.sections.find((item: any) => item.sectionName.trim().toLowerCase() === this.sectionName.trim().toLowerCase())?.id;
+    // this.list = this.commonService.wonders;
+    console.log("section id : ", sectionId);
+
+    if (sectionId) {
+      this.apiRequest.getPostBySectionId(sectionId).subscribe((response) => {
+        if (response.result) {
+          this.section = response.data;
+          if (this.section && this.section.posts && this.section.posts.length > 0) {
+            this.section.posts.forEach((item: any) => {
+              item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);
+            })
+          }
+          // this.commonService.setMetaData(this.section.sectionName);
+        } else {
+          this.section = [];
+        }
+      })
+    }
   }
 
   addStructuredData(place: PlaceDetails) {
@@ -223,6 +249,41 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
 
   public searchText(text: string) {
     this.commonService.navigateTo('/search/' + text)
+  }
+
+  // sharePage() {
+  //   if (navigator.share) {
+  //     navigator.share({
+  //       title: this.placeDetails?.postName + (this.placeDetails?.location || ''),
+  //       text: this.placeDetails?.summary,
+  //       url: window.location.href
+  //     })
+  //     .then(() => console.log('Successfully shared'))
+  //     .catch((error) => console.error('Error sharing', error));
+  //   } else {
+  //     alert('Sharing not supported on this browser. Please copy the URL manually.');
+  //   }
+  // }
+  sharePage() {
+    const fileUrl = this.imgSrc;
+    fetch(fileUrl)
+      .then(res => res.blob())
+      .then(blob => {
+        const file = new File([blob], 'travel.jpg', { type: blob.type });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          navigator.share({
+            title: this.placeDetails?.postName + (this.placeDetails?.location || ''),
+            text: this.placeDetails?.summary,
+            url: window.location.href,
+            files: [file],
+          })
+            .then(() => console.log('Shared with image!'))
+            .catch((error) => console.error('Error sharing', error));
+        } else {
+          alert('Image sharing not supported on this browser.');
+        }
+      });
   }
 
   ngOnDestroy() {

@@ -27,7 +27,8 @@
                 <h1 class="headline">Travel Smarter</h1>
             </span>
             <h2 class="headline small">Explore Better with Chalo Ghoome!</h2>
-            <p class="para-md">Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and travelers. Our
+            <p class="para-md">Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and
+                travelers. Our
                 platform serves as a hub where tourists can easily access a wealth of information about tour guides,
                 their services, and available packages. Conversely, tour guides can efficiently showcase their
                 offerings directly to interested travelers, facilitating a direct and transparent exchange of
@@ -104,27 +105,9 @@
             </div>
         </div>
     </section> -->
-    <app-about-us></app-about-us>
-    @if (false) {
-    <section class="category">
-        <div class="container">
-            @for (post of sections[0]?.posts?.content; track $index) {
-            <div class="category-card">
-                <app-progressive-image [smallImage]="'../../../assets/imgs/image-placeholder.jpg'"
-                    [image]="post.imageUrl" [altText]="post.title + ',' + post.location">
-                </app-progressive-image>
-                <div class="card-overlay">
-                    <h3 class="travel-title">{{post.postName}}</h3>
-                    <button class="explore-btn">Explore</button>
-                </div>
-            </div>
-            }
-        </div>
-    </section>
-    }
     @if (false) {
     <div class="places-section">
-        <h2>Famous Places in India</h2>
+        <h2>Place to visit in India</h2>
         <p>Discover the most iconic travel destinations in India.</p>
         <div class="places-container">
             <div class="left">
@@ -154,6 +137,24 @@
     </div>
     }
 
+    <app-about-us></app-about-us>
+    @if (false) {
+    <section class="category">
+        <div class="container">
+            @for (post of sections[0]?.posts?.content; track $index) {
+            <div class="category-card">
+                <app-progressive-image [smallImage]="'../../../assets/imgs/image-placeholder.jpg'"
+                    [image]="post.imageUrl" [altText]="post.title + ',' + post.location">
+                </app-progressive-image>
+                <div class="card-overlay">
+                    <h3 class="travel-title">{{post.postName}}</h3>
+                    <button class="explore-btn">Explore</button>
+                </div>
+            </div>
+            }
+        </div>
+    </section>
+    }
     <div class="featured">
         @for (section of sections; track $index) {
         <section [id]="section?.sectionId" [class]="section?.class" [style.background]="section?.background">

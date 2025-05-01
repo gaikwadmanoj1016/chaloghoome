@@ -4,10 +4,11 @@
             ☰
         </div>
         <ul class="menu">
-            <li routerLinkActive="active" [routerLink]="['sections']">Sections</li>
-            <li routerLinkActive="active" [routerLink]="['/guides']">Guides</li>
-            <li routerLinkActive="active" [routerLink]="['tags']">Tags</li>
-            <li routerLinkActive="active" [routerLink]="['categories']">Categories</li>
+            <li [routerLink]="['sections']">Sections</li>
+            <li [routerLink]="['sections/places']">Places</li>
+            <li [routerLink]="['/guides']">Guides</li>
+            <li [routerLink]="['tags']">Tags</li>
+            <li [routerLink]="['categories']">Categories</li>
             <!-- <li>
                 Features
                 <ul class="submenu">
