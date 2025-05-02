@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../../../../services/api.service';
 import { CommonService } from '../../../../services/common.service';
 import { ImagePreviewComponent } from '../../../../shared/image-preview/image-preview.component';
@@ -13,7 +13,7 @@ import { convertSlugToNormal, slugify } from '../../../../utils/slugify';
 @Component({
   selector: 'app-place-details-new',
   standalone: true,
-  imports: [SharedModule, NgIf, NgFor],
+  imports: [SharedModule, NgIf, NgFor, RouterLink],
   templateUrl: './place-details-new.component.html',
   styleUrl: './place-details-new.component.scss'
 })
@@ -25,7 +25,8 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   autoSlideInterval: any;
   highlights?: Highlight[] = [];
   loadedAllImage: boolean = false;
-  imgSrc = 'assets/imgs/image-placeholder.jpg';
+  // imgSrc = 'assets/imgs/image-placeholder.jpg';
+  imgSrc = '';
   originalPostName: string = '';
   apiCallCount: number = 0;
   // tags = ['Adventure', 'Nature', 'Wildlife', 'Adventure', 'Nature', 'Wildlife', 'Adventure', 'Nature', 'Wildlife'];
@@ -35,6 +36,7 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   facts: string[] = [];
   section: any;
   sectionName: any = "Most Visited Places";
+  slugify = slugify;
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
@@ -59,7 +61,8 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   onImageError() {
-    this.imgSrc = 'assets/imgs/image-placeholder.jpg';
+    // this.imgSrc = 'assets/imgs/image-placeholder.jpg';
+    this.imgSrc = '';
   }
 
   onImageLoad() {
@@ -254,7 +257,7 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   sharePage() {
     if (navigator.share) {
       navigator.share({
-        title: this.placeDetails?.postName + (this.placeDetails?.location || ''),
+        title: this.placeDetails?.postName +' | '+ (this.placeDetails?.location || ''),
         text: this.placeDetails?.summary,
         url: window.location.href
       })

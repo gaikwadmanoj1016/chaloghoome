@@ -84,19 +84,19 @@ export class AddPostComponent implements OnInit {
   refillPostForm() {
     this.postForm.patchValue({
       postName: this.placeDetails.postName,
-      summary: this.placeDetails.summary,
-      location: this.placeDetails.location,
-      history: this.placeDetails.history,
-      area: this.placeDetails.area,
-      yearEstablished: this.placeDetails.yearEstablished,
-      famousFor: this.placeDetails.famousFor,
-      howToGo: this.placeDetails.howToGo,
-      bestTimeToVisit: this.placeDetails.bestTimeToVisit,
-      routes: this.placeDetails.routes,
-      cityId: this.placeDetails.city.cityId,
-      stateId: this.placeDetails.city.stateId,
-      countryId: this.placeDetails.city.countryId,
-      annualVisitors: this.placeDetails.annualVisitors,
+      summary: this.placeDetails.summary || '',
+      location: this.placeDetails.location || '',
+      history: this.placeDetails.history || '',
+      area: this.placeDetails.area || '',
+      yearEstablished: this.placeDetails.yearEstablished || '',
+      famousFor: this.placeDetails.famousFor || '',
+      howToGo: this.placeDetails.howToGo || '',
+      bestTimeToVisit: this.placeDetails.bestTimeToVisit || '',
+      routes: this.placeDetails.routes || '',
+      cityId: this.placeDetails?.city?.cityId || '',
+      stateId: this.placeDetails?.city?.stateId || '',
+      countryId: this.placeDetails?.city?.countryId || '',
+      annualVisitors: this.placeDetails?.annualVisitors || '',
     });
     if (this.placeDetails.highlights[0]?.imagePath) {
       this.selectedImage = this.commonService.appendAssetUrl(this.placeDetails.highlights[0]?.imagePath);
@@ -141,8 +141,12 @@ export class AddPostComponent implements OnInit {
         travelGuideArray.push(travelInfoGroup);
       });
     }
-    this.tags = this.placeDetails.postTagList.map((item: any) => item.tagName);
-    this.categories = this.placeDetails.postCatList.map((item: any) => item.category.catName);
+    if (this.placeDetails?.postTagList && this.placeDetails.postTagList.length > 0) {
+      this.tags = this.placeDetails.postTagList.map((item: any) => item.tagName);
+    }
+    if (this.placeDetails?.postCatList && this.placeDetails.postCatList.length > 0) {
+      this.categories = this.placeDetails.postCatList.map((item: any) => item.category.catName);
+    }
     if (this.placeDetails.city && this.placeDetails.city.countryId) {
       this.getStateListByCountry({ target: { value: this.placeDetails.city.countryId } });
     }

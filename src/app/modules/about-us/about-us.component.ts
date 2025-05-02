@@ -24,7 +24,7 @@ export class AboutUsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.paralaxText();
+    // this.paralaxText();
     this.aboutAnimation();
   }
 

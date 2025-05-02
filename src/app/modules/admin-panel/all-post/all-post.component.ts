@@ -36,7 +36,8 @@ export class AllPostComponent {
         if (this.places && this.places.length > 0) {
           this.places.forEach((item: any) => {
             item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);
-          })
+          });
+          this.commonService.setMetaData(`${this.places.length} Places information`, {summary: "Explore breathtaking destinations, immerse yourself in cultures, and create memories that last a lifetime.", originalThumbnailImg: this.places[0].thumbnailImg});
         }
       } else {
 

@@ -4,30 +4,35 @@
     <div class="container">
         <div class="section-header">
             <h2>Places</h2>
-            sdas
+            <p>Total {{places.length || 0}} Places Found</p>
         </div>
         @if (cardEditable) {
         <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>
         }
         @if (places && places.length > 0) {
-        <!-- <div class="travel-card-container grid-container">
+        @if (cardEditable) {
+        <div class="travel-card-container grid-container">
             @for (item of places; track $index) {
             <app-place-card [item]="item" [editable]="cardEditable" (onNavigateTo)="navigateTo($event)"
                 (onEditClicked)="onEditCard($event)" (onDeleteClicked)="deletePost($event)"></app-place-card>
             }
-        </div> -->
+        </div>
+        } @else {
         <div class="card-grid grid-view">
             @for (post of places; track $index) {
             <div class="card">
                 <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
-                alt="{{ post.postName }} {{post.location}}" />
-                <h4 class="place-name" [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
+                    alt="{{ post.postName }} {{post.location}}" />
+                <h4 class="place-name" [title]="post.postName">
+                    <a [routerLink]="['/place', slugify(post.postName)]">{{ post.postName | truncate: 20 }}</a>
+                </h4>
                 <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
                 <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
                 <a [routerLink]="['/place', slugify(post.postName)]">View Details</a>
             </div>
             }
         </div>
+        }
         }
         @else {
         <h5 style="width: 100%;text-align: center;height: calc(100vh - 100px);">
@@ -38,5 +43,6 @@
 </section>
 
 @if (showHidePostForm) {
-<app-add-post [placeDetails]="selectedCard" (onCloseModal)="closePostPopup()" (onPostUpdate)="onPostUpdate()"></app-add-post>
+<app-add-post [placeDetails]="selectedCard" (onCloseModal)="closePostPopup()"
+    (onPostUpdate)="onPostUpdate()"></app-add-post>
 }

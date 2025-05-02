@@ -265,13 +265,44 @@
     </section>
 </main> -->
 @if (!placeNotFound && !loadingPlaceDetails) {
-<header class="hero" *ngIf="imgSrc" [style.background-image]="'url('+imgSrc+')'">
+@if (imgSrc) {
+<header class="hero" [style.background-image]="'url('+imgSrc+')'">
     <div class="hero-content" [attr.aria-labelledby]="placeDetails?.summary" [title]="placeDetails?.postName">
         <img class="main-hero-image" [src]="imgSrc" (error)="onImageError()" (load)="onImageLoad()" alt="Hero Image" />
     </div>
 </header>
-<main>
+}
+<main [class.hero-image-not-found]="!imgSrc">
     <div class="left">
+        <section>
+            <div class="container">
+                <h4 class="border-bottom section-title" style="text-align: start;">Most Visited Places</h4>
+                <div class="section-details">
+                    <ul>
+                        @for (post of section?.posts; track $index) {
+                        <li class="item">
+                            <div class="places">
+                                <a [routerLink]="['/place', slugify(post.postName)]">
+                                    <img *ngIf="post.thumbnailImg"
+                                        [src]="commonService.appendAssetUrl(post.thumbnailImg)" class="post-image" />
+                                </a>
+                                <div class="post-info">
+                                    <a [routerLink]="['/place', slugify(post.postName)]">
+                                        <p class="para-md post-name">{{ post.postName }} |
+                                            <!-- <span class="dot"></span> -->
+                                            {{ post.location }}
+                                        </p>
+                                    </a>
+                                    <!-- <p class="para-sm post-location">{{ post.location }}</p> -->
+                                    <p class="para-sm post-summary">{{ post.summary | truncate: 100 }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </section>
         @if ((placeDetails?.postTagList && placeDetails?.postTagList?.length) || (placeDetails?.postCatList &&
         placeDetails?.postCatList?.length)) {
         <section>
@@ -307,29 +338,6 @@
             </div>
         </section>
         }
-        <section>
-            <div class="container">
-                <h4 class="border-bottom section-title" style="text-align: start;">Most Visited Places</h4>
-                <div class="section-details">
-                    <ul>
-                        @for (post of section?.posts; track $index) {
-                        <li class="item">
-                            <div class="places">
-                                <img *ngIf="post.thumbnailImg" [src]="commonService.appendAssetUrl(post.thumbnailImg)"
-                                    class="post-image" />
-                                <div class="post-info">
-                                    <p class="para-md post-name">{{ post.postName }} <span class="dot"></span>{{
-                                        post.location }} </p>
-                                    <!-- <p class="para-sm post-location">{{ post.location }}</p> -->
-                                    <p class="para-sm post-summary">{{ post.summary | truncate: 100 }}</p>
-                                </div>
-                            </div>
-                        </li>
-                        }
-                    </ul>
-                </div>
-            </div>
-        </section>
     </div>
     <div class="middle">
         <button class="share-button" (click)="sharePage()" title="Share Place"> <i class="fa-solid fa-share"></i>

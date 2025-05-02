@@ -16,8 +16,9 @@
                     [class.floating-search]="isScrolled">
                     <div class="search-bar">
                         <input type="text" #searchInput [(ngModel)]="searchQuery" title="Shortcut: Ctrl + /"
-                            name="searchQuery" (input)="onInputChange()" (focus)="connectWebsocket();showSuggestions = true"
-                            class="search-input" placeholder="Search places..." required autocomplete="off" />
+                            name="searchQuery" (input)="onInputChange()"
+                            (focus)="connectWebsocket();showSuggestions = true" class="search-input"
+                            placeholder="Search places..." required autocomplete="off" />
                         @if (!isExpanded()) {
                         <button type="button" (click)="expandSearchBar()" class="search-btn">
                             <i class="fa fa-search icon"></i>
@@ -56,9 +57,11 @@
                             }
                         </div>
                         } @else {
-                        <div class="section-title">Loading...</div>
+                        <div class="box">
+                            <div class="section-title">Loading places...</div>
+                        </div>
                         }
-                        } @else {
+                        } @else if (commonService.places && commonService.places.length > 0) {
                         <div class="box">
                             <div class="section-title">Most Searched</div>
                             <ul>
