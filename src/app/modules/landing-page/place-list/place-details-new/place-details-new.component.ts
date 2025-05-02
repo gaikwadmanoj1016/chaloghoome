@@ -251,43 +251,42 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
     this.commonService.navigateTo('/search/' + text)
   }
 
-  // sharePage() {
-  //   if (navigator.share) {
-  //     navigator.share({
-  //       title: this.placeDetails?.postName + (this.placeDetails?.location || ''),
-  //       text: this.placeDetails?.summary,
-  //       url: window.location.href
-  //     })
-  //     .then(() => console.log('Successfully shared'))
-  //     .catch((error) => console.error('Error sharing', error));
-  //   } else {
-  //     alert('Sharing not supported on this browser. Please copy the URL manually.');
-  //   }
-  // }
   sharePage() {
-    const fileUrl = this.imgSrc;
-    fetch(fileUrl)
-      .then(res => res.blob())
-      .then(blob => {
-        const file = new File([blob], 'travel.jpg', { type: blob.type });
-
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          navigator.share({
-            title: this.placeDetails?.postName + (this.placeDetails?.location || ''),
-            text: this.placeDetails?.summary,
-            url: window.location.href,
-            files: [file],
-          })
-            .then(() => console.log('Shared with image!'))
-            .catch((error) => console.error('Error sharing', error));
-        } else {
-          alert('Image sharing not supported on this browser.');
-        }
-      });
+    if (navigator.share) {
+      navigator.share({
+        title: this.placeDetails?.postName + (this.placeDetails?.location || ''),
+        text: this.placeDetails?.summary,
+        url: window.location.href
+      })
+      .then(() => console.log('Successfully shared'))
+      .catch((error) => console.error('Error sharing', error));
+    } else {
+      alert('Sharing not supported on this browser. Please copy the URL manually.');
+    }
   }
+  // sharePage() {
+  //   const fileUrl = this.imgSrc;
+  //   fetch(fileUrl)
+  //     .then(res => res.blob())
+  //     .then(blob => {
+  //       const file = new File([blob], 'travel.jpg', { type: blob.type });
+
+  //       if (navigator.canShare && navigator.canShare({ files: [file] })) {
+  //         navigator.share({
+  //           title: this.placeDetails?.postName + (this.placeDetails?.location || ''),
+  //           text: this.placeDetails?.summary,
+  //           url: window.location.href,
+  //           files: [file],
+  //         })
+  //           .then(() => console.log('Shared with image!'))
+  //           .catch((error) => console.error('Error sharing', error));
+  //       } else {
+  //         alert('Image sharing not supported on this browser.');
+  //       }
+  //     });
+  // }
 
   ngOnDestroy() {
     this.stopAutoSlide();
   }
-
 }

@@ -122,18 +122,18 @@
         <ul class="sidebar-menu">
             <li #menuItem *ngFor="let section of sections; trackBy: trackByIndex">
                 <!-- (click)="scrollTo(section.sectionId); closeSidebar()" -->
-                <a href="#" [routerLink]="['places', section.sectionId]">
+                <a href="#" [routerLink]="['places', section.sectionId]" (click)="closeSidebar()">
                     {{ section?.sectionName }}
                 </a>
             </li>
             <li #menuItem>
-                <a class="nav-link" routerLink="/places">Places</a>
+                <a class="nav-link" routerLink="/places" (click)="closeSidebar()">Places</a>
             </li>
             <li #menuItem class="nav-item">
-                <a class="nav-link" routerLink="/about_us">About</a>
+                <a class="nav-link" routerLink="/about_us" (click)="closeSidebar()">About</a>
             </li>
             <li #menuItem class="nav-item">
-                <a class="nav-link" routerLink="/contact_us">Contact</a>
+                <a class="nav-link" routerLink="/contact_us" (click)="closeSidebar()">Contact</a>
             </li>
             @if (false) {
             <li #menuItem class="nav-item">

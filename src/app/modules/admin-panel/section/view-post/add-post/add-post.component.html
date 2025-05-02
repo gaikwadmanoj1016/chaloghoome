@@ -9,7 +9,7 @@
                 @if (!isEditing) {
 
                 <div class="col-lg-12">
-                    <label for="sectionId">Section:,{{postForm.get('sectionId')?.value}}</label>
+                    <label for="sectionId">Section:</label>
                     <select name="sectionId" id="sectionId" formControlName="sectionId">
                         <option value="">Select Section</option>
                         @for (section of commonService.sections; track $index) {
@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <label for="country">Country:, {{postForm.get('countryId')?.value}}</label>
+                    <label for="country">Country:</label>
                     <select name="country" id="country" formControlName="countryId"
                         (change)="getStateListByCountry($event)">
                         <option value="">Select Country</option>

@@ -52,6 +52,16 @@ export class ApiService {
       })
     )
   }
+  public triggerContactUsEmail(req: any) {
+    let API = environment.apiUrl + 'api/contact';
+    return this.httpRequest.post(API, req, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
   // common
   public getAllSugestions() {
     let API = environment.apiUrl + 'api/setup/init';

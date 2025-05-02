@@ -224,7 +224,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       console.log("📤 Sending to WebSocket:", trimmed);
       this.socket.send(trimmed);
     } else if (trimmed.length <= 2) {
-      // clear your search results
       this.filteredSuggestions = this.commonService.places.filter(
         place => place.toLowerCase().includes(query)
       );

@@ -27,7 +27,7 @@
                 <h1 class="headline">Travel Smarter</h1>
             </span>
             <h2 class="headline small">Explore Better with Chalo Ghoome!</h2>
-            <p class="para-md">Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and
+            <p class="para-md">Chalo Ghoome / chaloghoome.com is a comprehensive platform that seamlessly connects both tour guides and
                 travelers. Our
                 platform serves as a hub where tourists can easily access a wealth of information about tour guides,
                 their services, and available packages. Conversely, tour guides can efficiently showcase their
@@ -119,9 +119,9 @@
                 }
             </div>
             <div class="right">
-                <div class="cards">
-                    @for (place of selectedRegionPlaces.places; track $index) {
-                    <div class="place-card">
+                <div class="card-grid">
+                    @for (post of selectedRegionPlaces.places; track $index) {
+                    <!-- <div class="place-card">
                         <div class="image-container">
                             <img [src]="place.image" [alt]="place.name" />
                         </div>
@@ -129,6 +129,13 @@
                             <h4>{{ place.name }}</h4>
                             <p>{{ place.description }}</p>
                         </div>
+                    </div> -->
+                    <div class="card">
+                        <img [src]="post.image" [alt]="post.name" />
+                        <h4 class="place-name" [title]="post.name">{{ post.name | truncate: 20 }}</h4>
+                        <!-- <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p> -->
+                        <p class="summary" [title]="post.summary">{{ post.description | truncate: 100 }}</p>
+                        <a [routerLink]="['/place', slugify(post.name)]">View Details</a>
                     </div>
                     }
                 </div>

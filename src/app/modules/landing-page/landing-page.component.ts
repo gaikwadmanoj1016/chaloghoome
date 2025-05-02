@@ -135,7 +135,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
   searchQuery: string = '';
   categories: Category[] = [];
   private routerSubscription!: Subscription;
-
+  slugify = slugify;
   constructor(public commonService: CommonService, private apiService: ApiService, private router: Router) { }
 
   @HostListener('window:scroll', [])
@@ -146,6 +146,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.mapIndiaSection();
     this.getSections();
     this.getCategories();
+    this.selectedRegionPlaces = this.placesData[0];
   }
 
   ngAfterViewInit() {
@@ -393,9 +394,9 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
     responsive: {
       0: {
         items: 1
-      },
+      },  
       600: {
-        items: 3
+        items: 2
       },
       1024: {
         items: 3

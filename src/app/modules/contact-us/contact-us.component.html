@@ -93,9 +93,9 @@
             </div>
 
             <div class="contact-right">
-                <form #contactForm="ngForm" (submit)="onSubmit(contactForm)">
+                <form #contactForm="ngForm" (submit)="onSubmit(contactForm.form)">
                     <input type="text" name="name" placeholder="Your Name" required ngModel>
-                    <input type="email" name="email" placeholder="Your Email" required ngModel>
+                    <input type="email" name="email" placeholder="Your Email" [pattern]="requiredPattern" required ngModel>
                     <textarea name="message" rows="5" placeholder="Your Message" required ngModel></textarea>
                     <button type="submit">Send Message</button>
                 </form>

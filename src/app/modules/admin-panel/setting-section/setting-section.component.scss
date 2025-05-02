@@ -112,7 +112,11 @@ section {
                         td {
                             padding: 12px 15px;
                             border-bottom: 1px solid $border-color;
-                            color: $color-black;
+                            color: var(--black);
+
+                            a {
+                                color: var(--black);
+                            }
 
                             button {
                                 padding: 8px 12px;

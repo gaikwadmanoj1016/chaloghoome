@@ -459,6 +459,7 @@ main {
                 // font-size: 44px;
                 // text-transform: uppercase;
                 margin: 0;
+                line-height: 1.2;
                 // letter-spacing: 2px;
                 background: linear-gradient(90deg, #FF9966, #ffe667); // #FF5E62
                 -webkit-background-clip: text;
@@ -579,11 +580,12 @@ main {
         }
 
         @media (max-width: 990px) {
-            padding: 50px 20px;
+            padding: 0;
             // text-align: center;
 
             .hero-container {
                 margin: auto;
+                width: 80%;
 
                 // h1 {
                 //     font-size: 28px;
@@ -699,16 +701,21 @@ main {
                     padding: 0;
                     border: none;
                     cursor: pointer;
-                    border: 1px solid #dcdcdc;
+                    // border: 1px solid #dcdcdc;
                     padding: 7px 20px;
                     background-color: #f2f2f2;
                     border-radius: 100px;
+                    transition: all 0.3s;
 
                     span {
                         font-size: 12px;
                     }
 
                     &.active {
+                        background-color: #0077b6;
+                        color: white;
+                    }
+                    &:hover {
                         background-color: #0077b6;
                         color: white;
                     }
