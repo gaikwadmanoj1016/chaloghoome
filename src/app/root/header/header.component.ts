@@ -89,7 +89,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     if (!this.isSocketConnected) {
 
       // this.socket = new WebSocket("wss://api.chaloghoome.com/adminService/ws/search");
-      this.socket = new WebSocket(environment.webSocketUrl + "/adminService/ws/search");
+      this.socket = new WebSocket(environment.webSocketUrl + "ws/search");
 
       this.socket.onopen = () => {
         console.log("✅ WebSocket connected");
