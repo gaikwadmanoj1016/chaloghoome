@@ -67,7 +67,7 @@
                 <div class="col-lg-4">
                     <label for="country">Country:</label>
                     <select name="country" id="country" formControlName="countryId"
-                        (change)="getStateListByCountry($event)">
+                        (change)="getStateListByCountry($event);getCityListByCountry($event)">
                         <option value="">Select Country</option>
                         @for (country of countryList; track $index) {
                         <option [value]="country.id"> {{country.name}} </option>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-lg-4">
                     <label for="state">State:</label>
-                    <select name="state" id="state" formControlName="stateId" (change)="getCityListByState($event)">
+                    <select name="state" id="state" formControlName="stateId" (change)="getCityListByState($event);">
                         <option value="">Select State</option>
                         @for (state of stateList; track $index) {
                         <option [value]="state.id"> {{state.name}} </option>

@@ -9,6 +9,7 @@ import { NgFor, NgIf, NgStyle } from '@angular/common';
 import { SharedModule } from '../../../../shared/shared.module';
 import { DOCUMENT } from '@angular/common';
 import { convertSlugToNormal, slugify } from '../../../../utils/slugify';
+import { BreadcrumbSchemaService } from '../../../../services/breadcrumb-schema.service';
 
 @Component({
   selector: 'app-place-details-new',
@@ -42,6 +43,7 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
     private route: ActivatedRoute,
     public commonService: CommonService,
     private apiRequest: ApiService,
+    private breadcrumbSchema: BreadcrumbSchemaService,
     @Inject(DOCUMENT) private document: Document
   ) { }
 
@@ -58,6 +60,13 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
     link.setAttribute('rel', 'canonical');
     link.setAttribute('href', this.document.URL);
     this.document.head.appendChild(link);
+
+    // todo 
+    // this.breadcrumbSchema.injectBreadcrumbJsonLd([
+    //   { name: 'Places', url: 'https://yourtravelblog.com/places' },
+    //   { name: 'Most Visited Places', url: 'https://yourtravelblog.com/places/most-visited-places' },
+    //   { name: 'Taj Mahal', url: 'https://yourtravelblog.com/places/taj-mahal' }
+    // ]);
   }
 
   onImageError() {
@@ -236,10 +245,9 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   updateFormattedText(value?: string) {
     // Preserve formatting with line breaks and bold text
     if (value) {
-
       return value
         .replace(/\n/g, '<br>') // Preserve line breaks
-        .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>'); // Preserve bold text
+        .replace(/\*\*(.*?)\*\*/g, '<b class="highlighted-text">$1</b>'); // Preserve bold text
     }
     return '';
   }

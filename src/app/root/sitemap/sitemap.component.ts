@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SitemapService } from '../../services/sitemap.service';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-sitemap',

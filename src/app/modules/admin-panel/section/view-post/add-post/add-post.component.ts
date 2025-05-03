@@ -149,6 +149,7 @@ export class AddPostComponent implements OnInit {
     }
     if (this.placeDetails.city && this.placeDetails.city.countryId) {
       this.getStateListByCountry({ target: { value: this.placeDetails.city.countryId } });
+      this.getCityListByCountry({ target: { value: this.placeDetails.city.countryId } });
     }
     if (this.placeDetails.city && this.placeDetails.city.stateId) {
       this.getCityListByState({ target: { value: this.placeDetails.city.stateId } });
@@ -191,8 +192,8 @@ export class AddPostComponent implements OnInit {
           // Handle specialities (which are arrays of objects)
           if (key === 'specialities') {
             values[key].forEach((speciality: any, index: number) => {
-              formData.append(`specialities[${index}].speciality`, speciality.speciality || '');
-              formData.append(`specialities[${index}].description`, speciality.description || '');
+              formData.append(`specialities[${index}].speciality`, (speciality.speciality) ? speciality.speciality.trim() : '');
+              formData.append(`specialities[${index}].description`, speciality.description ? speciality.description.trim() : '');
               formData.append(`specialities[${index}].isUnique`, speciality.isUnique);
               if (speciality.id) {
                 formData.append(`specialities[${index}].id`, speciality.id);
@@ -202,8 +203,8 @@ export class AddPostComponent implements OnInit {
             formData.append(`facts`, values[key].map((item: any) => item.fact).join('.,') || '');
           } else if (key === 'travelGuide') {
             values[key].forEach((travelInfo: any, index: number) => {
-              formData.append(`travelGuide[${index}].title`, travelInfo.title || '');
-              formData.append(`travelGuide[${index}].para`, travelInfo.para || '');
+              formData.append(`travelGuide[${index}].title`, travelInfo.title ? travelInfo.title.trim() : '');
+              formData.append(`travelGuide[${index}].para`, travelInfo.para ? travelInfo.para.trim() : '');
               if (travelInfo.id) {
                 formData.append(`travelGuide[${index}].id`, travelInfo.id);
               }
@@ -214,7 +215,7 @@ export class AddPostComponent implements OnInit {
               if (tagId > 0) {
                 formData.append(`tagList[${index}].id`, tagId);
               } else {
-                formData.append(`tagList[${index}].tagName`, tagName || '');
+                formData.append(`tagList[${index}].tagName`, tagName ? tagName.trim() : '');
               }
               // formData.append(`tagList[${index}].tagName`, tag || '');
             });
@@ -224,7 +225,7 @@ export class AddPostComponent implements OnInit {
               if (catId > 0) {
                 formData.append(`catList[${index}].id`, catId);
               } else {
-                formData.append(`catList[${index}].catName`, category || '');
+                formData.append(`catList[${index}].catName`, category ? category.trim() : '');
               }
             });
           } else {
@@ -455,6 +456,15 @@ export class AddPostComponent implements OnInit {
   }
   getCityListByState(e: any) {
     this.apiService.getCityListByState(e.target.value).subscribe((response: any) => {
+      if (response.result) {
+        this.cityList = response.data;
+      } else {
+
+      }
+    })
+  }
+  getCityListByCountry(e: any) {
+    this.apiService.getCityListByCountry(e.target.value).subscribe((response: any) => {
       if (response.result) {
         this.cityList = response.data;
       } else {

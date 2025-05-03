@@ -343,11 +343,11 @@
         <button class="share-button" (click)="sharePage()" title="Share Place"> <i class="fa-solid fa-share"></i>
         </button>
         <!-- About Section -->
-        <section class="about"
-            *ngIf="placeDetails?.postName || placeDetails?.summary || placeDetails?.location || placeDetails?.famousFor || placeDetails?.history">
+        <section class="about" *ngIf="placeDetails?.postName || placeDetails?.summary || placeDetails?.location || placeDetails?.famousFor || placeDetails?.history">
             <div class="container" *ngIf="placeDetails?.summary || placeDetails?.location || placeDetails?.famousFor">
                 <h2 *ngIf="placeDetails?.postName" class="highlighted-text">About {{ placeDetails?.postName }}</h2>
-                <p *ngIf="placeDetails?.summary">{{ placeDetails?.summary }}</p>
+                <!-- <p *ngIf="placeDetails?.summary">{{ placeDetails?.summary }}</p> -->
+                <p [innerHTML]="updateFormattedText(placeDetails?.summary)"></p>
                 <div class="metadata">
                     <p *ngIf="placeDetails?.location">
                         <label class="para-xl highlighted-text">Location:</label>
@@ -363,14 +363,17 @@
                             establishment:</label> {{
                         placeDetails?.yearEstablished }}</p>
                 </div>
-                <p *ngIf="placeDetails?.famousFor"><label class="para-xl highlighted-text">Famous For:</label> {{
-                    placeDetails?.famousFor }}</p>
+                <p *ngIf="placeDetails?.famousFor">
+                    <label class="para-xl highlighted-text">Famous For:</label>
+                    {{ placeDetails?.famousFor }}
+                </p>
             </div>
         </section>
         <section>
             <div class="container" *ngIf="placeDetails?.history">
                 <h3 *ngIf="placeDetails?.postName" class="highlighted-text">History of {{ placeDetails?.postName }}</h3>
-                <p *ngIf="placeDetails?.history">{{ placeDetails?.history }}</p>
+                <!-- <p *ngIf="placeDetails?.history">{{ placeDetails?.history }}</p> -->
+                <p [innerHTML]="updateFormattedText(placeDetails?.history)"></p>
             </div>
         </section>
         <!-- Unique Features -->

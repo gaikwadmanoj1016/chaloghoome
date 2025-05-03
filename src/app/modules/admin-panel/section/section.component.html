@@ -18,7 +18,7 @@
             @for (post of section.posts; track $index) {
             <div class="card">
                 <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
-                alt="{{ post.postName }} {{post.location}}" />
+                    alt="{{ post.postName }} {{post.location}}" />
                 <h4 class="place-name" [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
                 <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
                 <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
@@ -31,7 +31,37 @@
         No records found
         }
     </div>
+
+
 </main>
+<!-- <section class="europe-hero">
+    <h1>Explore Europe</h1>
+    <p>Discover the rich history, art, and culture of Europe’s finest destinations.</p>
+</section>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/places">Places</a></li>
+      <li><a routerLink="/places/most-visited-places">Most Visited</a></li>
+      <li aria-current="page">Taj Mahal</li>
+    </ol>
+  </nav>
+  
+
+<section class="destination-card">
+    <div class="card" routerLink="/europe/france/paris">
+        <img src="../../../../assets/imgs/image-placeholder.jpg" alt="Paris, France" loading="lazy" />
+        <h2>Paris, France</h2>
+        <p>The city of lights, love, and timeless landmarks.</p>
+    </div>
+
+    <div class="card" routerLink="/europe/france/paris/eiffel-tower-guide">
+        <img src="../../../../assets/imgs/image-placeholder.jpg" alt="Eiffel Tower Guide" loading="lazy" />
+        <h2>Eiffel Tower Guide</h2>
+        <p>Your complete guide to the Eiffel Tower – from tickets to tips.</p>
+    </div>
+</section> -->
 
 <!-- add highlights -->
 @if (commonService.isAddHighlightModal) {

@@ -24,6 +24,7 @@ import { ProgressiveImageComponent } from './progressive-image/progressive-image
 import { RouterModule } from '@angular/router';
 import { HighlightsModalComponent } from './place-card/highlights-modal/highlights-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { routes } from '../app.routes';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     HttpClientModule,
     RouterModule,
+    // RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'}),
     ReactiveFormsModule,
     FormsModule,
   ],

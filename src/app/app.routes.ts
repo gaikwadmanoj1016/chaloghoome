@@ -49,7 +49,8 @@ export const routes: Routes = [
     { path: 'places', component: PlaceListComponent },
     { path: 'place-details', component: PlaceDetailsComponent },
     { path: 'search/:query', component: SearchResultsComponent }, // Search route
-
+    
+    // { path: 'sitemap.xml', component: SitemapComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect to login by default
     { path: '**', component: NotFoundComponent }
 ];
