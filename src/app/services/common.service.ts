@@ -86,7 +86,7 @@ export class CommonService {
       });
     }
 
-    if (data?.location) {  
+    if (data?.location) {
       this.metaService.updateTag({
         name: 'keywords',
         content: `${title}, travel, guide, ${data.location}, places to visit`
@@ -201,4 +201,20 @@ export class CommonService {
     });
   }
 
+  sanitizeInnerHtml(value?: string, length?: number) {
+    // Preserve formatting with line breaks and bold text
+    let text: string = value || '';
+    if (text) {
+      if (length) {
+        text = text.slice(0, length)
+          .replace(/\n/g, '<br>') // Preserve line breaks
+          .replace(/\*\*(.*?)\*\*/g, '<b class="highlighted-text">$1</b>') + '...'; // Preserve bold text
+      } else {
+        text = text
+          .replace(/\n/g, '<br>') // Preserve line breaks
+          .replace(/\*\*(.*?)\*\*/g, '<b class="highlighted-text">$1</b>'); // Preserve bold text
+      }
+    }
+    return text;
+  }
 }

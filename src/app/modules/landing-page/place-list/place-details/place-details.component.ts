@@ -16,6 +16,7 @@ export interface PlaceDetails {
   area: string;
   yearEstablished: string;
   postName: string;
+  slugifiedPostName: string;
   summary: string;
   location: string;
   history: string;

@@ -20,11 +20,11 @@
                             (focus)="connectWebsocket();showSuggestions = true" class="search-input"
                             placeholder="Search places..." required autocomplete="off" />
                         @if (!isExpanded()) {
-                        <button type="button" (click)="expandSearchBar()" class="search-btn">
+                        <button type="button" aria-labelledby="Search Button" title="Search" (click)="expandSearchBar()" class="search-btn">
                             <i class="fa fa-search icon"></i>
                         </button>
                         } @else {
-                        <button type="submit" class="search-btn">
+                        <button type="submit" aria-labelledby="Search Button" title="Search" class="search-btn">
                             <i class="fa fa-search icon"></i>
                         </button>
                         }
@@ -125,7 +125,7 @@
         <ul class="sidebar-menu">
             <li #menuItem *ngFor="let section of sections; trackBy: trackByIndex">
                 <!-- (click)="scrollTo(section.sectionId); closeSidebar()" -->
-                <a href="#" [routerLink]="['places', section.sectionId]" (click)="closeSidebar()">
+                <a href="#" [routerLink]="['places', section.slugifiedSectionName]" (click)="closeSidebar()">
                     {{ section?.sectionName }}
                 </a>
             </li>

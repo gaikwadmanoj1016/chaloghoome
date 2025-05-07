@@ -20,28 +20,39 @@ main {
             color: $color-white !important;
         }
 
-        .head {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-
-            // padding: 1rem;
-            .btn {
-                font-size: 1.2rem;
-                font-weight: bold;
-                border: none;
-                padding: 0.5rem 1rem;
-                background: $primary-color;
-                color: $color-white;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background 0.3s ease-in-out;
-
-                &:hover {
-                    background: darken($primary-color, 10%);
-                }
+        .header-desc {
+            // width: 70%;
+            margin: auto;
+            margin-bottom: 30px;
+            
+            @media (max-width: 990px) {
+                width: 100%;
+                text-align: center;
             }
         }
+
+        // .head {
+        //     display: flex;
+        //     justify-content: flex-end;
+        //     align-items: center;
+
+        //     // padding: 1rem;
+        //     .btn {
+        //         font-size: 1.2rem;
+        //         font-weight: bold;
+        //         border: none;
+        //         padding: 0.5rem 1rem;
+        //         background: $primary-color;
+        //         color: $color-white;
+        //         border-radius: 5px;
+        //         cursor: pointer;
+        //         transition: background 0.3s ease-in-out;
+
+        //         &:hover {
+        //             background: darken($primary-color, 10%);
+        //         }
+        //     }
+        // }
 
         // .places {
         //     display: grid;

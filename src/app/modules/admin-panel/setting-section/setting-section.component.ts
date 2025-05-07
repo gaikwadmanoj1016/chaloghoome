@@ -25,6 +25,8 @@ export class SettingSectionComponent {
   constructor(public commonService: CommonService, private apiService: ApiService) {
     this.sectionForm = new FormGroup({
       sectionName: new FormControl(''),
+      slugifiedSectionName: new FormControl(''),
+      sectionDesc: new FormControl(''),
       order: new FormControl(0),
       sectionStyle: new FormControl(''),
       customStyle: new FormControl(''),
@@ -44,9 +46,9 @@ export class SettingSectionComponent {
     this.apiService.getSectionsAndPostList().subscribe((response) => {
       if (response.result) {
         this.sections = response.data;
-        for (let section of this.sections) {
-          section.sectionId = slugify(section.sectionName, '-');
-        }
+        // for (let section of this.sections) {
+        //   section.sectionId = slugify(section.sectionName, '-');
+        // }
       } else {
         this.sections = [];
       }
@@ -56,12 +58,16 @@ export class SettingSectionComponent {
   saveSection() {
     if (this.sectionForm.valid) {
       const section = this.sectionForm.get('sectionName')?.value;
+      const slugifiedSectionName = this.sectionForm.get('slugifiedSectionName')?.value;
+      const sectionDesc = this.sectionForm.get('sectionDesc')?.value;
       const order = this.sectionForm.get('order')?.value;
       const customStyle = this.sectionForm.get('customStyle')?.value;
       const sectionStyle = this.sectionForm.get('sectionStyle')?.value;
       // this.sections.push(section);
       let req: any = {
-        "sectionName": section || '',
+        "sectionName": section,
+        "slugifiedSectionName": (slugifiedSectionName.startsWith('/') ? slugifiedSectionName.substring(1) : slugifiedSectionName),
+        "sectionDesc": sectionDesc,
         "order": order || 0,
         "customStyle": customStyle,
         "sectionStyle": sectionStyle
@@ -96,5 +102,10 @@ export class SettingSectionComponent {
         console.error(response.message || 'Something went wrong');
       }
     })
+  }
+
+  public onInputSectionName(event: any) {
+    let text = event.target.value || '';
+    this.sectionForm.patchValue({ slugifiedSectionName: '/' + slugify(text) });
   }
 }

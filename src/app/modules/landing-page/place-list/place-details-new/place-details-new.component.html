@@ -53,20 +53,20 @@
             <div class="guide-grid">
                 <div class="guide-card">
                     <h3>Best Time to Visit </h3>
-                    <p [innerHTML]="updateFormattedText(placeDetails?.bestTimeToVisit)"></p>
+                    <p [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.bestTimeToVisit)"></p>
                 </div>
                 <div class="guide-card">
                     <h3> is Famous For</h3>
-                    <p [innerHTML]="updateFormattedText(placeDetails?.famousFor)"></p>
+                    <p [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.famousFor)"></p>
                 </div>
                 <div class="guide-card">
                     <h3>How to Go </h3>
-                    <p [innerHTML]="updateFormattedText(placeDetails?.howToGo)"></p>
+                    <p [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.howToGo)"></p>
                 </div>
                 @for (travelInfo of placeDetails?.travelGuide; track $index) {
                 <div class="guide-card">
                     <h3>{{travelInfo.title}}</h3>
-                    <p [innerHTML]="updateFormattedText(travelInfo.para)"></p>
+                    <p [innerHTML]="commonService.sanitizeInnerHtml(travelInfo.para)"></p>
                 </div>
                 }
                 <div class="guide-card">
@@ -91,7 +91,7 @@
     <section class="routes">
         <div class="container">
             <h2>Routes for {{placeDetails?.postName}}</h2>
-            <p [innerHTML]="updateFormattedText(placeDetails?.routes)"></p>
+            <p [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.routes)"></p>
         </div>
     </section>
 
@@ -282,12 +282,12 @@
                         @for (post of section?.posts; track $index) {
                         <li class="item">
                             <div class="places">
-                                <a [routerLink]="['/place', slugify(post.postName)]">
+                                <a [routerLink]="['/place', post.slugifiedPostName]">
                                     <img *ngIf="post.thumbnailImg"
                                         [src]="commonService.appendAssetUrl(post.thumbnailImg)" class="post-image" />
                                 </a>
                                 <div class="post-info">
-                                    <a [routerLink]="['/place', slugify(post.postName)]">
+                                    <a [routerLink]="['/place', post.slugifiedPostName]">
                                         <p class="para-md post-name">{{ post.postName }} |
                                             <!-- <span class="dot"></span> -->
                                             {{ post.location }}
@@ -314,9 +314,10 @@
                         <div class="category-box">
                             <h4>Categories</h4>
                             <ul class="category-list">
-                                <li *ngFor="let category of placeDetails?.postCatList"
-                                    (click)="searchText(category.category.catName)">
-                                    <span class="category-item">{{ category.category.catName }}</span>
+                                <li *ngFor="let category of placeDetails?.postCatList">
+                                    <a class="link" [routerLink]="['/search', category.category.catName]">
+                                        <span class="category-item">{{ category.category.catName }}</span>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -327,8 +328,10 @@
                         <div class="tags-box">
                             <h4>Tags</h4>
                             <ul class="tags-list">
-                                <li *ngFor="let tag of placeDetails?.postTagList" (click)="searchText(tag.tagName)">
-                                    <span class="tag-item">#{{ tag.tagName }}</span>
+                                <li *ngFor="let tag of placeDetails?.postTagList">
+                                    <a class="link" [routerLink]="['/search', tag.tagName]">
+                                        <span class="tag-item">#{{ tag.tagName }}</span>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -343,11 +346,12 @@
         <button class="share-button" (click)="sharePage()" title="Share Place"> <i class="fa-solid fa-share"></i>
         </button>
         <!-- About Section -->
-        <section class="about" *ngIf="placeDetails?.postName || placeDetails?.summary || placeDetails?.location || placeDetails?.famousFor || placeDetails?.history">
+        <section class="about"
+            *ngIf="placeDetails?.postName || placeDetails?.summary || placeDetails?.location || placeDetails?.famousFor || placeDetails?.history">
             <div class="container" *ngIf="placeDetails?.summary || placeDetails?.location || placeDetails?.famousFor">
                 <h2 *ngIf="placeDetails?.postName" class="highlighted-text">About {{ placeDetails?.postName }}</h2>
                 <!-- <p *ngIf="placeDetails?.summary">{{ placeDetails?.summary }}</p> -->
-                <p [innerHTML]="updateFormattedText(placeDetails?.summary)"></p>
+                <p [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.summary)"></p>
                 <div class="metadata">
                     <p *ngIf="placeDetails?.location">
                         <label class="para-xl highlighted-text">Location:</label>
@@ -369,11 +373,11 @@
                 </p>
             </div>
         </section>
-        <section>
-            <div class="container" *ngIf="placeDetails?.history">
+        <section *ngIf="placeDetails?.history">
+            <div class="container">
                 <h3 *ngIf="placeDetails?.postName" class="highlighted-text">History of {{ placeDetails?.postName }}</h3>
                 <!-- <p *ngIf="placeDetails?.history">{{ placeDetails?.history }}</p> -->
-                <p [innerHTML]="updateFormattedText(placeDetails?.history)"></p>
+                <p [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.history)"></p>
             </div>
         </section>
         <!-- Unique Features -->
@@ -414,7 +418,6 @@
             </div>
         </section>
 
-
         <!-- Travel Guide -->
         <section class="travel-guide" *ngIf="
             placeDetails?.postName ||
@@ -429,19 +432,19 @@
                 <div class="guide-grid">
                     <div class="guide-card" *ngIf="placeDetails?.bestTimeToVisit">
                         <h4 class="border-bottom pb-3">Best Time to Visit</h4>
-                        <p class="para-sm" [innerHTML]="updateFormattedText(placeDetails?.bestTimeToVisit)"></p>
+                        <p class="para-sm" [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.bestTimeToVisit)"></p>
                     </div>
                     <!-- <div class="guide-card" *ngIf="placeDetails?.famousFor">
                         <h4 class="border-bottom pb-3">is Famous For</h4>
-                        <p class="para-sm" [innerHTML]="updateFormattedText(placeDetails?.famousFor)"></p>
+                        <p class="para-sm" [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.famousFor)"></p>
                     </div> -->
                     <div class="guide-card" *ngIf="placeDetails?.howToGo">
                         <h4 class="border-bottom pb-3">How to Go</h4>
-                        <p class="para-sm" [innerHTML]="updateFormattedText(placeDetails?.howToGo)"></p>
+                        <p class="para-sm" [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.howToGo)"></p>
                     </div>
                     <div class="guide-card" *ngFor="let travelInfo of placeDetails?.travelGuide; let i = index">
                         <h4 class="border-bottom pb-3">{{ travelInfo.title }}</h4>
-                        <p class="para-sm" [innerHTML]="updateFormattedText(travelInfo.para)"></p>
+                        <p class="para-sm" [innerHTML]="commonService.sanitizeInnerHtml(travelInfo.para)"></p>
                     </div>
                     <!-- <div class="guide-card">
                     <h3>Top Things to Do</h3>
@@ -465,7 +468,7 @@
         <section class="routes" *ngIf="placeDetails?.routes">
             <div class="container">
                 <h3 *ngIf="placeDetails?.postName" class="highlighted-text">Routes for {{ placeDetails?.postName }}</h3>
-                <p [innerHTML]="updateFormattedText(placeDetails?.routes)"></p>
+                <p [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.routes)"></p>
             </div>
         </section>
 
@@ -517,7 +520,8 @@
         </section>
 
         <!-- Fun Facts -->
-        <section class="fun-facts" *ngIf="facts && facts.length > 0">
+        @if (facts && facts.length > 0) {
+        <section class="fun-facts">
             <div class="container">
                 <h3>Did You Know?</h3>
                 <ul>
@@ -527,6 +531,7 @@
                 </ul>
             </div>
         </section>
+        }
 
         <!-- Ticket Booking Information -->
         <!-- <section class="tickets">

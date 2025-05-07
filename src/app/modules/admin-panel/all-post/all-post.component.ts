@@ -20,6 +20,7 @@ export class AllPostComponent {
   selectedCard: any;
   showHidePostForm: boolean = false;
   slugify = slugify;
+  filteredPlaces: any[] = [];
   constructor(private route: ActivatedRoute, private apiService: ApiService, public commonService: CommonService) {
 
   }
@@ -37,8 +38,10 @@ export class AllPostComponent {
           this.places.forEach((item: any) => {
             item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);
           });
-          this.commonService.setMetaData(`${this.places.length} Places information`, {summary: "Explore breathtaking destinations, immerse yourself in cultures, and create memories that last a lifetime.", originalThumbnailImg: this.places[0].thumbnailImg});
+          // this.commonService.setMetaData(`${this.places.length} Places information`, {summary: "Explore breathtaking destinations, immerse yourself in cultures, and create memories that last a lifetime.", originalThumbnailImg: this.places[0].thumbnailImg});
+          this.commonService.setMetaData(`Top Places List – Explore Destinations, Attractions & Hidden Gems`, { summary: "Discover your next adventure with our friendly places list — explore top travel spots, hidden gems, and must-visit destinations in one click!", originalThumbnailImg: this.places[0].thumbnailImg });
         }
+        this.filteredPlaces = [...this.places];
       } else {
 
       }
@@ -80,5 +83,20 @@ export class AllPostComponent {
   }
   public onPostUpdate() {
     this.getAllplaces();
+  }
+
+  public onLocalSearch(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+
+    if (!searchTerm) {
+      this.filteredPlaces = [...this.places]; // Reset if empty
+      return;
+    }
+
+    this.filteredPlaces = this.places.filter(place =>
+      place.postName.toLowerCase().includes(searchTerm) ||
+      place.summary.toLowerCase().includes(searchTerm) ||
+      place.location.toLowerCase().includes(searchTerm)
+    );
   }
 }

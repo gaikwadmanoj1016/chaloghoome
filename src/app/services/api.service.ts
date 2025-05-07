@@ -223,6 +223,17 @@ export class ApiService {
       })
     )
   }
+  public getPostBySectionName(sectionName: string) {
+    // let API = environment.apiUrl + 'api/posts/getSectionPost/' + sectionId;
+    let API = environment.apiUrl + 'api/posts/getPostCardsBySectionName/' + sectionName;
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
   public savePost(formData: FormData) {
     let API = environment.apiUrl + 'api/posts/savePostDetails';
     return this.httpRequest.post(API, formData, this.commonService.getRequestForAttachment()).pipe(

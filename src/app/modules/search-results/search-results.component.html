@@ -16,16 +16,23 @@
             @if (!isLoading && searchResults && searchResults.length > 0) {
             <div class="card-grid grid-view">
                 @for (place of searchResults; track $index) {
-                <div class="card">
+                <!-- <div class="card">
                     <img [src]="place.thumbnailImg ? commonService.appendAssetUrl(place.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
                         alt="{{ place.postName }} {{place.location}}" />
-                    <!-- <app-progressive-image [smallImage]="'../../../../../assets/imgs/image-placeholder.jpg'"
-                        [image]="commonService.appendAssetUrl(place.thumbnailImg || '')"
-                        [altText]="place.postName + place.location"></app-progressive-image> -->
                     <h4 class="place-name" [title]="place.postName">{{ place.postName | truncate: 20 }}</h4>
                     <p class="para-sm location" [title]="place.location">{{ place.location | truncate: 30 }}</p>
                     <p class="para-sm summary">{{ place.summary | truncate: 100 }}</p>
                     <a [routerLink]="['/place', slugify(place.postName)]">View Details</a>
+                </div> -->
+                <div class="card">
+                    <a class="link" [routerLink]="['/place', place.slugifiedPostName]">
+                        <img [src]="place.thumbnailImg ? commonService.appendAssetUrl(place.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
+                            alt="{{ place.postName }} {{place.location}}" />
+                        <h4 class="place-name" [title]="place.postName">{{ place.postName | truncate: 20 }}</h4>
+                        <p class="location" [title]="place.location">{{ place.location | truncate: 30 }}</p>
+                        <p class="summary" [innerHtml]="commonService.sanitizeInnerHtml(place.summary, 100)"></p>
+                        <button type="button" class="btn btn-center">View Details</button>
+                    </a>
                 </div>
                 }
             </div>
@@ -43,12 +50,14 @@
             <div class="card-grid">
                 @for (post of section.posts?.content; track $index) {
                 <div class="card">
-                    <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
-                        alt="{{ post.postName }} {{post.location}}" />
-                    <h4 class="place-name" [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
-                    <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
-                    <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
-                    <a [routerLink]="['/place', slugify(post.postName)]">View Details</a>
+                    <a class="link" [routerLink]="['/place', post.slugifiedPostName]">
+                        <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
+                            alt="{{ post.postName }} {{post.location}}" />
+                        <h4 class="place-name" [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
+                        <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
+                        <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
+                        <button type="button" class="btn btn-center">View Details</button>
+                    </a>
                 </div>
                 }
             </div>

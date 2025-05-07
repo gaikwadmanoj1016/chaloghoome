@@ -15,7 +15,7 @@ import { slugify, convertSlugToNormal } from '../../../utils/slugify';
   styleUrl: './section.component.scss'
 })
 export class SectionComponent implements OnInit, OnDestroy {
-  sectionId?: number = 0;
+  // sectionId?: number = 0;
   list: any;
   showHidePostForm: boolean = false;
   postForm: FormGroup;
@@ -60,56 +60,57 @@ export class SectionComponent implements OnInit, OnDestroy {
       } else {
         this.sectionName = this.route.snapshot.paramMap.get('sectionName') || '';
       }
-      this.findSectionId();
+      // this.findSectionId();
+      this.getPostBySectionName(this.sectionName);
     });
   }
 
-  public findSectionId() {
-    let tempSections = localStorage.getItem('sections');
-    console.log(tempSections, this.commonService.sections);
+  // public findSectionId() {
+  //   let tempSections = localStorage.getItem('sections');
+  //   console.log(tempSections, this.commonService.sections);
 
-    if (tempSections) {
-      let sections = JSON.parse(tempSections);
-      console.log(sections);
-      this.sectionId = sections.find((item: any) => item.sectionId === this.sectionName)?.id;
-    } else if (this.commonService.sections && this.commonService.sections.length > 0) {
-      let sections = this.commonService.sections;
-      console.log(sections);
-      this.sectionId = sections.find((item: any) => item.sectionId === this.sectionName)?.id;
-    }
-    this.getSectionList();
-    this.commonService.isSidebarOpen.set(false);
-  }
-  public getSectionList() {
-    console.log("inside the get section method ");
+  //   if (tempSections) {
+  //     let sections = JSON.parse(tempSections);
+  //     console.log(sections);
+  //     this.sectionId = sections.find((item: any) => item.sectionId === this.sectionName)?.id;
+  //   } else if (this.commonService.sections && this.commonService.sections.length > 0) {
+  //     let sections = this.commonService.sections;
+  //     console.log(sections);
+  //     this.sectionId = sections.find((item: any) => item.sectionId === this.sectionName)?.id;
+  //   }
+  //   this.getSectionList();
+  //   this.commonService.isSidebarOpen.set(false);
+  // }
+  // public getSectionList() {
+  //   console.log("inside the get section method ");
 
-    this.apiService.getSectionsAndPostList().subscribe((response: any) => {
-      if (response.result) {
-        this.commonService.sections = response.data.map((item: any) => {
-          item.sectionId = slugify(item.sectionName, '-');
-          return item;
-        });
-        console.log("section list : ", this.commonService.sections);
+  //   this.apiService.getSectionsAndPostList().subscribe((response: any) => {
+  //     if (response.result) {
+  //       this.commonService.sections = response.data.map((item: any) => {
+  //         item.sectionId = slugify(item.sectionName, '-');
+  //         return item;
+  //       });
+  //       console.log("section list : ", this.commonService.sections);
 
-        localStorage.setItem('sections', JSON.stringify(this.commonService.sections));
-        this.sectionId = this.commonService.sections.find((item: any) => item.sectionId === this.sectionName)?.id;
-        // this.list = this.commonService.wonders;
-        console.log("section id : ", this.sectionId);
+  //       localStorage.setItem('sections', JSON.stringify(this.commonService.sections));
+  //       this.sectionId = this.commonService.sections.find((item: any) => item.sectionId === this.sectionName)?.id;
+  //       // this.list = this.commonService.wonders;
+  //       console.log("section id : ", this.sectionId);
 
-        this.getPostBySectionId(this.sectionId);
-      } else {
-        console.error(response.message || "something went wrong");
-      }
-    });
-  }
+  //       this.getPostBySectionId(this.sectionId);
+  //     } else {
+  //       console.error(response.message || "something went wrong");
+  //     }
+  //   });
+  // }
 
   navigateTo(path: string) {
     this.commonService.navigateTo(path);
   }
 
-  private getPostBySectionId(sectionId?: number) {
-    if (sectionId) {
-      this.apiService.getPostBySectionId(sectionId).subscribe((response) => {
+  private getPostBySectionName(sectionName?: string) {
+    if (sectionName) {
+      this.apiService.getPostBySectionName(sectionName).subscribe((response) => {
         if (response.result) {
           this.section = response.data;
           if (this.section && this.section.posts && this.section.posts.length > 0) {
@@ -142,7 +143,7 @@ export class SectionComponent implements OnInit, OnDestroy {
     this.apiService.deletePost(item.id).subscribe((response: any) => {
       if (response.result) {
         console.log("delete successfully");
-        this.getPostBySectionId(this.sectionId);
+        this.getPostBySectionName(this.sectionName);
       } else {
         console.error("error deleting post")
       }

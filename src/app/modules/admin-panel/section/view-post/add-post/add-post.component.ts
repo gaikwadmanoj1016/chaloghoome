@@ -5,6 +5,7 @@ import { SharedModule } from '../../../../../shared/shared.module';
 import { CommonService } from '../../../../../services/common.service';
 import { ApiService } from '../../../../../services/api.service';
 import { NgFor } from '@angular/common';
+import { slugify } from '../../../../../utils/slugify';
 
 @Component({
   selector: 'app-add-post',
@@ -42,6 +43,7 @@ export class AddPostComponent implements OnInit {
     // Initialize the form
     this.postForm = this.fb.group({
       postName: ['', Validators.required],
+      slugifiedPostName: ['', Validators.required],
       summary: ['', Validators.required],
       location: ['', Validators.required],
       countryId: [''],
@@ -84,6 +86,7 @@ export class AddPostComponent implements OnInit {
   refillPostForm() {
     this.postForm.patchValue({
       postName: this.placeDetails.postName,
+      slugifiedPostName: '/'+this.placeDetails.slugifiedPostName,
       summary: this.placeDetails.summary || '',
       location: this.placeDetails.location || '',
       history: this.placeDetails.history || '',
@@ -228,6 +231,8 @@ export class AddPostComponent implements OnInit {
                 formData.append(`catList[${index}].catName`, category ? category.trim() : '');
               }
             });
+          } else if (key === 'slugifiedPostName') {
+            formData.append('slugifiedPostName', (values[key].startsWith('/') ? values[key].substring(1) : values[key]));
           } else {
             formData.append(key, (typeof values[key] === 'string') ? values[key]?.trim() : values[key] || '');
           }
@@ -361,6 +366,8 @@ export class AddPostComponent implements OnInit {
     const input = this.postForm.get('categories')?.value.toLowerCase() || '';
     this.filteredCategories = this.allCategories
       .filter((c: any) => c.catName.toLowerCase().includes(input) && !this.categories.includes(c));
+    this.sortFilteredCategory();
+
   }
 
   selectCategory(value: any) {
@@ -401,6 +408,7 @@ export class AddPostComponent implements OnInit {
     const input = this.postForm.get('tags')?.value.toLowerCase() || '';
     this.filteredTags = this.allTags
       .filter((t: any) => t.tagName.toLowerCase().includes(input) && !this.tags.includes(t));
+    this.sortFilteredTags();
   }
 
   selectTag(value: any) {
@@ -473,6 +481,25 @@ export class AddPostComponent implements OnInit {
     })
   }
 
+  sortFilteredCategory() {
+    const sorted = [...this.filteredCategories].sort((a, b) =>
+      a.catName.localeCompare(b.catName)
+    );
+    this.filteredCategories = sorted;
+  }
+
+  sortFilteredTags() {
+    const sorted = [...this.filteredTags].sort((a, b) =>
+      a.tagName.localeCompare(b.tagName)
+    );
+    this.filteredCategories = sorted;
+  }
+
+  // sortFilteredTags() {
+  //   this.filteredTags.sort((a: any,b: any) => {
+  //     return a.tagName.localeCompare(b.tagName);
+  //   });
+  // }
   getAllCategory() {
     this.apiService.getMasterCategoryList().subscribe((response: any) => {
       if (response.result) {
@@ -490,5 +517,10 @@ export class AddPostComponent implements OnInit {
 
       }
     })
+  }
+
+  public onPostNameInput(event: any) {
+    let text = event.target.value || '';
+    this.postForm.patchValue({ slugifiedPostName: '/' + slugify(text) });
   }
 }

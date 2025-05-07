@@ -27,9 +27,8 @@
                 <h1 class="headline">Travel Smarter</h1>
             </span>
             <h2 class="headline small">Explore Better with Chalo Ghoome!</h2>
-            <p class="para-md">Chalo Ghoome / chaloghoome.com is a comprehensive platform that seamlessly connects both tour guides and
-                travelers. Our
-                platform serves as a hub where tourists can easily access a wealth of information about tour guides,
+            <p class="para-md">Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and
+                travelers. Our platform serves as a hub where tourists can easily access a wealth of information about tour guides,
                 their services, and available packages. Conversely, tour guides can efficiently showcase their
                 offerings directly to interested travelers, facilitating a direct and transparent exchange of
                 information...</p>
@@ -135,7 +134,7 @@
                         <h4 class="place-name" [title]="post.name">{{ post.name | truncate: 20 }}</h4>
                         <!-- <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p> -->
                         <p class="summary" [title]="post.summary">{{ post.description | truncate: 100 }}</p>
-                        <a [routerLink]="['/place', slugify(post.name)]">View Details</a>
+                        <a [routerLink]="">View Details</a>
                     </div>
                     }
                 </div>

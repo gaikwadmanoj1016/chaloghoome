@@ -7,7 +7,7 @@
         <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>
         }
 
-        @if (section && section.posts && section.posts.length > 0 && sectionId) {
+        @if (section && section.posts && section.posts.length > 0) {
         @if (cardEditable) {
         <div class="travel-card-container grid-container">
             @for (item of section.posts; track $index) {
@@ -20,12 +20,14 @@
         <div class="card-grid grid-view">
             @for (post of section.posts; track $index) {
             <div class="card">
-                <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
-                    alt="{{ post.postName }} {{post.location}}" />
-                <h4 class="place-name" [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
-                <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
-                <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
-                <a [routerLink]="['/place', slugify(post.postName)]">View Details</a>
+                <a class="link" [routerLink]="['/place', post.slugifiedPostName]">
+                    <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
+                        alt="{{ post.postName }} {{post.location}}" />
+                    <h4 class="place-name" [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
+                    <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
+                    <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
+                    <button type="button" class="btn btn-center">View Details</button>
+                </a>
             </div>
             }
         </div>

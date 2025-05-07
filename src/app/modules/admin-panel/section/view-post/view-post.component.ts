@@ -41,27 +41,28 @@ export class ViewPostComponent {
       } else {
         this.sectionName = this.route.snapshot.paramMap.get('sectionName') || '';
       }
-      this.findSectionId();
+      // this.findSectionId();
+      this.getPostBySectionName(this.sectionName);
     });
   }
 
-  public findSectionId() {
-    let tempSections = localStorage.getItem('sections');
-    console.log(tempSections, this.commonService.sections);
+  // public findSectionId() {
+  //   let tempSections = localStorage.getItem('sections');
+  //   console.log(tempSections, this.commonService.sections);
 
-    if (tempSections) {
-      let sections = JSON.parse(tempSections);
-      console.log(sections);
-      this.sectionId = sections.find((item: any) => item.sectionId === this.sectionName)?.id;
-    } else if (this.commonService.sections && this.commonService.sections.length > 0) {
-      let sections = this.commonService.sections;
-      console.log(sections);
-      this.sectionId = sections.find((item: any) => item.sectionId === this.sectionName)?.id;
-    }
-    // this.getSectionList();
-    this.getPostBySectionId(this.sectionId);
-    this.commonService.isSidebarOpen.set(false);
-  }
+  //   if (tempSections) {
+  //     let sections = JSON.parse(tempSections);
+  //     console.log(sections);
+  //     this.sectionId = sections.find((item: any) => item.sectionId === this.sectionName)?.id;
+  //   } else if (this.commonService.sections && this.commonService.sections.length > 0) {
+  //     let sections = this.commonService.sections;
+  //     console.log(sections);
+  //     this.sectionId = sections.find((item: any) => item.sectionId === this.sectionName)?.id;
+  //   }
+  //   // this.getSectionList();
+  //   this.getPostBySectionId(this.sectionId);
+  //   this.commonService.isSidebarOpen.set(false);
+  // }
   // public getSectionList() {
   //   console.log("inside the get section method ");
 
@@ -89,9 +90,9 @@ export class ViewPostComponent {
     this.commonService.navigateTo(path);
   }
 
-  private getPostBySectionId(sectionId?: number) {
-    if (sectionId) {
-      this.apiService.getPostBySectionId(sectionId).subscribe((response) => {
+  private getPostBySectionName(sectionName: string) {
+    if (sectionName) {
+      this.apiService.getPostBySectionName(sectionName).subscribe((response) => {
         if (response.result) {
           this.section = response.data;
           if (this.section && this.section.posts && this.section.posts.length > 0) {
@@ -113,7 +114,7 @@ export class ViewPostComponent {
     this.showHidePostForm = false;
   }
   public onPostUpdate() {
-    this.getPostBySectionId(this.sectionId);
+    this.getPostBySectionName(this.sectionName);
   }
 
   onEditCard(item: any) {
@@ -133,7 +134,7 @@ export class ViewPostComponent {
     this.apiService.deletePost(item.id).subscribe((response: any) => {
       if (response.result) {
         console.log("delete successfully");
-        this.getPostBySectionId(this.sectionId);
+        this.getPostBySectionName(this.sectionName);
       } else {
         console.error("error deleting post")
       }

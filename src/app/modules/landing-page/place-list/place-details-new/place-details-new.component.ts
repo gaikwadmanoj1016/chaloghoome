@@ -50,9 +50,9 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   ngOnInit(): void {
     this.route.params.subscribe((param: any) => {
       if (param && param['postName']) {
-        let tempArr = param['postName'].split('+');
-        this.postName = convertSlugToNormal(tempArr[0], '-');
-        this.originalPostName = tempArr[1];
+        this.postName = param['postName'];
+        // this.postName = convertSlugToNormal(tempArr[0], '-');
+        // this.originalPostName = tempArr[1];
         this.getPlaceDetailsByPlaceId(this.postName);
       }
     });
@@ -101,12 +101,15 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
                 console.log(this.imgSrc);
               }
             }
-            this.facts = this.placeDetails.facts?.split('.,');
+            if (this.placeDetails.facts) {
+              this.facts = this.placeDetails.facts?.split('.,');
+            }
             this.placeNotFound = false;
             this.commonService.setMetaData(this.placeDetails?.postName, this.placeDetails);
             this.addStructuredData(this.placeDetails);
             this.setGallary();
             this.getPostBySectionId();
+            this.commonService.scrollToTop();
           } else {
             this.placeNotFound = true;
           }
@@ -242,25 +245,15 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
     return this.placeDetails?.highlights && this.placeDetails?.highlights.length > 0;
   }
 
-  updateFormattedText(value?: string) {
-    // Preserve formatting with line breaks and bold text
-    if (value) {
-      return value
-        .replace(/\n/g, '<br>') // Preserve line breaks
-        .replace(/\*\*(.*?)\*\*/g, '<b class="highlighted-text">$1</b>'); // Preserve bold text
-    }
-    return '';
-  }
-
   goToSlide(index: number) {
     this.pauseAutoSlide();
     this.currentIndex = index;
     this.resumeAutoSlide();
   }
 
-  public searchText(text: string) {
-    this.commonService.navigateTo('/search/' + text)
-  }
+  // public searchText(text: string) {
+  //   this.commonService.navigateTo('/search/' + text)
+  // }
 
   sharePage() {
     if (navigator.share) {

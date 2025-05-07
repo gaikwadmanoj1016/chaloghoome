@@ -1,2 +1,54 @@
 @import url(../section/view-post/view-post.component.scss);
 @import url(../section/view-post/add-post/add-post.component.scss);
+
+
+.section-header {
+
+    .section-desc {
+        width: 60%;
+        text-align: center;
+        margin: auto;
+        margin-bottom: 20px;
+
+        @media (max-width: 990px) {
+            width: 100%;
+        }
+    }
+
+    .place-information {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .local-search {
+
+            input {
+                border: none;
+                border-bottom: 2px solid var(--white);
+                border-radius: 0;
+                background: transparent;
+                color: var(--white);
+
+                &::placeholder {
+                    color: var(--secondary-color);
+                }
+
+                &:focus {
+                    // border: none;
+                    // outline: none;
+                    box-shadow: none !important;
+                }
+            }
+
+            @media (max-width: 768px) {
+                width: 40%;
+            }
+        }
+    }
+}

@@ -1,13 +1,14 @@
 <main>
     <div class="container">
         <h2>{{section?.sectionName || convertSlugToNormal(sectionName, '-')}}</h2>
+        <p class="header-desc"> {{section.sectionDesc}} </p>
         <!-- @if (cardEditable) {
         <div class="head">
             <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>
         </div>
         } -->
 
-        @if (section && section.posts && section.posts.length > 0 && sectionId) {
+        @if (section && section.posts && section.posts.length > 0) {
         <!-- <div class="travel-card-container grid-container">
             @for (item of section.posts; track $index) {
             <app-place-card [item]="item" [editable]="cardEditable" [sectionId]="sectionName"
@@ -17,12 +18,15 @@
         <div class="card-grid grid-view">
             @for (post of section.posts; track $index) {
             <div class="card">
-                <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
-                    alt="{{ post.postName }} {{post.location}}" />
-                <h4 class="place-name" [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
-                <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
-                <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
-                <a [routerLink]="['/place', slugify(post.postName)]">View Details</a>
+                <a class="link" [routerLink]="['/place', post.slugifiedPostName]">
+                    <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
+                        alt="{{ post.postName }} {{post.location}}" />
+                    <h4 class="place-name" [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
+                    <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
+                    <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
+                    <!-- <a [routerLink]="['/place', slugify(post.postName)]">View Details</a> -->
+                    <button type="button" class="btn btn-center">View Details</button>
+                </a>
             </div>
             }
         </div>

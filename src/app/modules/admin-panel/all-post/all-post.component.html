@@ -4,31 +4,39 @@
     <div class="container">
         <div class="section-header">
             <h2>Places</h2>
-            <p>Total {{places.length || 0}} Places Found</p>
+            <p class="section-desc">Discover your next adventure with our friendly places list — explore top travel spots, hidden gems, and must-visit destinations in one click!</p>
+            <div class="place-information">
+                <p><small> Total {{places.length || 0}} Places Found</small></p>
+                <div class="local-search">
+                    <input type="text" class="form-control" name="localSearch" id="localSearch" placeholder="Search Places" (input)="onLocalSearch($event)">
+                </div>
+            </div>
         </div>
         @if (cardEditable) {
         <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>
         }
-        @if (places && places.length > 0) {
+        @if (filteredPlaces && filteredPlaces.length > 0) {
         @if (cardEditable) {
         <div class="travel-card-container grid-container">
-            @for (item of places; track $index) {
+            @for (item of filteredPlaces; track $index) {
             <app-place-card [item]="item" [editable]="cardEditable" (onNavigateTo)="navigateTo($event)"
                 (onEditClicked)="onEditCard($event)" (onDeleteClicked)="deletePost($event)"></app-place-card>
             }
         </div>
         } @else {
         <div class="card-grid grid-view">
-            @for (post of places; track $index) {
+            @for (post of filteredPlaces; track $index) {
             <div class="card">
-                <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
-                    alt="{{ post.postName }} {{post.location}}" />
-                <h4 class="place-name" [title]="post.postName">
-                    <a [routerLink]="['/place', slugify(post.postName)]">{{ post.postName | truncate: 20 }}</a>
-                </h4>
-                <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
-                <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
-                <a [routerLink]="['/place', slugify(post.postName)]">View Details</a>
+                <a class="link" [routerLink]="['/place', post.slugifiedPostName]">
+                    <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
+                        alt="{{ post.postName }} {{post.location}}" />
+                    <h4 class="place-name" [title]="post.postName">
+                        <a>{{ post.postName | truncate: 20 }}</a>
+                    </h4>
+                    <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
+                    <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
+                    <button type="button" class="btn btn-center">View Details</button>
+                </a>
             </div>
             }
         </div>

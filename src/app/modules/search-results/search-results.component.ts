@@ -50,7 +50,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
             this.seoService.setSEO({
               postName: `Search Results for "${this.query}" - Chalo Ghoome`,
               summary: `Search for ${this.query} and discover top places and attractions with Chalo Ghoome.`,
-              originalThumbnailImg: 'default-image-url.jpg'
+              originalThumbnailImg: this.commonService.appendAssetUrl(this.searchResults[0].thumbnailImg)
             });
           } else {
             this.searchResults = [];

@@ -220,10 +220,14 @@ main {
                                         color: #034124;
                                     }
                                 }
-
+                                
                                 .tag-item {
                                     background-color: #cfe2ff;
                                     color: #084298;
+                                    &:hover {
+                                        background-color: #6e93cb;
+                                        color: #022962;
+                                    }
                                 }
                             }
                         }
@@ -243,7 +247,7 @@ main {
                 }
 
                 .section-details {
-                    height: 500px;
+                    max-height: 500px;
                     overflow: auto;
 
                     .item {
@@ -562,7 +566,7 @@ main {
 
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 990px) {
         margin: 0;
         flex-direction: column-reverse;
 

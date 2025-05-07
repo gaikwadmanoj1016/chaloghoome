@@ -74,11 +74,17 @@ footer {
 
         .section2 {
             display: flex;
-            gap: 80px;
+            flex: 1;
+            justify-content: space-evenly;
+            // gap: 80px;
 
+            @media (max-width: 990px) {
+                width: 100%;
+                border-top: 2px solid #525252;
+            }
             @media (max-width: 768px) {
                 width: 100%;
-                justify-content: center;
+                // justify-content: center;
                 border-top: 2px solid #525252;
             }
 

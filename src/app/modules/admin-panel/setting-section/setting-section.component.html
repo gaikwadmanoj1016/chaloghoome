@@ -6,15 +6,21 @@
         @if (showAddForm) {
         <div class="form-container">
             <form [formGroup]="sectionForm" (ngSubmit)="saveSection()" class="row">
-                <div class="form-group col-lg-4">
+                <div class="form-group col-lg-6">
                     <label for="sectionName">Section Name</label>
-                    <input id="sectionName" placeholder="Enter Section Name" type="text" formControlName="sectionName" />
+                    <input id="sectionName" placeholder="Enter Section Name" type="text"
+                        formControlName="sectionName" (input)="onInputSectionName($event)" />
                 </div>
-                <div class="form-group col-lg-4">
+                <div class="form-group col-lg-6">
+                    <label for="slugifiedSectionName">Link</label>
+                    <input id="slugifiedSectionName" placeholder="Enter Section Name" type="text"
+                        formControlName="slugifiedSectionName" />
+                </div>
+                <div class="form-group col-lg-6">
                     <label for="order">Order</label>
                     <input id="order" type="number" placeholder="Enter Order" formControlName="order" />
                 </div>
-                <div class="form-group col-lg-4">
+                <div class="form-group col-lg-6">
                     <label for="sectionStyle">Section Style</label>
                     <select name="sectionStyle" id="sectionStyle" formControlName="sectionStyle">
                         <option value="">Select Style</option>
@@ -22,6 +28,11 @@
                         <option value="grid">Grid</option>
                         <option value="custom">Custom</option>
                     </select>
+                </div>
+                <div class="form-group col-lg-12">
+                    <label for="sectionDesc">Section Description</label>
+                    <textarea id="sectionDesc" placeholder="Enter Section Name" rows="4"
+                        formControlName="sectionDesc"></textarea>
                 </div>
                 @if (sectionForm.get('sectionStyle')?.value === 'custom') {
                 <div class="form-group">
@@ -43,6 +54,7 @@
                     <tr>
                         <th>#</th>
                         <th>Section Name</th>
+                        <th>Link</th>
                         <th>Order</th>
                         <th>Section Style</th>
                         <th>Actions</th>
@@ -53,9 +65,10 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>
-                            <a href="#" [routerLink]="['places', section.sectionId]">{{ section.sectionName
+                            <a href="#" [routerLink]="['places', section.slugifiedSectionName]">{{ section.sectionName
                                 }}</a>
                         </td>
+                        <td>/{{ section.slugifiedSectionName }}</td>
                         <td>{{ section.order }}</td>
                         <td>{{ section.sectionStyle }}</td>
                         <td>
