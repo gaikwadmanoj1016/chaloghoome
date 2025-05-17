@@ -214,7 +214,7 @@ export class AddPostComponent implements OnInit {
             });
           } else if (key === 'tags') {
             this.tags.forEach((tagName: any, index: number) => {
-              let tagId = this.allTags?.find((item: any) => item.tagName === tagName)?.tag.id || -1;
+              let tagId = this.allTags?.find((item: any) => item.tagName === tagName)?.id || -1;
               if (tagId > 0) {
                 formData.append(`tagList[${index}].id`, tagId);
               } else {
@@ -224,7 +224,7 @@ export class AddPostComponent implements OnInit {
             });
           } else if (key === 'categories') {
             this.categories.forEach((category: any, index: number) => {
-              let catId = this.allCategories?.find((item: any) => item.category.catName === category)?.category.id || -1;
+              let catId = this.allCategories?.find((item: any) => item.catName === category)?.id || -1;
               if (catId > 0) {
                 formData.append(`catList[${index}].id`, catId);
               } else {
