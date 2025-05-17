@@ -109,8 +109,10 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
             this.commonService.setMetaData(this.placeDetails?.postName, this.placeDetails);
             this.addStructuredData(this.placeDetails);
             this.setGallary();
-            this.getPostBySectionId();
             this.commonService.scrollToTop();
+            setTimeout(() => {
+              this.getPostBySectionId();
+            }, 2000);
           } else {
             this.placeNotFound = true;
           }
@@ -259,12 +261,12 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   sharePage() {
     if (navigator.share) {
       navigator.share({
-        title: this.placeDetails?.postName +' | '+ (this.placeDetails?.location || ''),
+        title: this.placeDetails?.postName + ' | ' + (this.placeDetails?.location || ''),
         text: this.placeDetails?.summary,
         url: window.location.href
       })
-      .then(() => console.log('Successfully shared'))
-      .catch((error) => console.error('Error sharing', error));
+        .then(() => console.log('Successfully shared'))
+        .catch((error) => console.error('Error sharing', error));
     } else {
       alert('Sharing not supported on this browser. Please copy the URL manually.');
     }

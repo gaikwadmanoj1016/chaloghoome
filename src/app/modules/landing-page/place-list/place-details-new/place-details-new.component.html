@@ -274,6 +274,7 @@
 }
 <main [class.hero-image-not-found]="!imgSrc">
     <div class="left">
+        @if (section?.posts && section.posts.length > 0) {
         <section>
             <div class="container">
                 <h4 class="border-bottom section-title" style="text-align: start;">Most Visited Places</h4>
@@ -303,6 +304,7 @@
                 </div>
             </div>
         </section>
+        }
         @if ((placeDetails?.postTagList && placeDetails?.postTagList?.length) || (placeDetails?.postCatList &&
         placeDetails?.postCatList?.length)) {
         <section>

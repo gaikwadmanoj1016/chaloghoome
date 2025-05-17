@@ -295,6 +295,7 @@ main {
                             }
 
                             .post-info {
+
                                 .post-name,
                                 .post-location,
                                 .post-summary {
@@ -322,6 +323,13 @@ main {
                                 }
                             }
                         }
+                    }
+
+                    &::-webkit-scrollbar,
+                    &::-webkit-scrollbar-thumb,
+                    &::-webkit-scrollbar-track {
+                        height: 0px;
+                        width: 0;
                     }
                 }
             }
