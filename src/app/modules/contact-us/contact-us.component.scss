@@ -57,208 +57,216 @@ p,
 
 
 .contact-section {
-    background: linear-gradient(45deg, var(--header-bg-color), var(--bg-color));
+    // background: linear-gradient(45deg, var(--header-bg-color), var(--bg-color));
+    background: var(--bg-color);
     color: var(--text-color);
-    padding: 80px 20px;
+    padding-top: var(--header-height);
     font-family: var(--font-family);
 
-    .contact-header {
-        text-align: center;
-        margin-bottom: 40px;
+    .container {
+        padding: 50px 20px;
 
-        h2 {
-            // font-size: 3rem;
-            // font-weight: 700;
-            // margin-bottom: 20px;
-            color: var(--text-color);
+        .contact-header {
+            text-align: center;
+            margin-bottom: 40px;
+
+            h2 {
+                // font-size: 3rem;
+                // font-weight: 700;
+                // margin-bottom: 20px;
+                color: var(--text-color);
+            }
+
+            p {
+                // font-size: 1rem;
+                color: $secondary;
+            }
         }
 
-        p {
-            font-size: 1rem;
-            color: $secondary;
-        }
-    }
+        .contact-body {
+            display: flex;
+            padding: 20px;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+            background: linear-gradient(5deg, #f0f0f5, lighten(#5c2ded, 40%));
+            // background: linear-gradient(5deg, #bebeff, lighten(#4021a0, 40%));
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
 
-    .contact-body {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 40px;
-        justify-content: space-between;
-        background: linear-gradient(5deg, #f0f0f5, lighten(#5c2ded, 40%));
-        // background: linear-gradient(5deg, #bebeff, lighten(#4021a0, 40%));
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-        border-radius: 15px;
-        padding: 15px;
+            .contact-left {
+                flex: 1;
+                min-width: 280px;
 
-        .contact-left {
-            flex: 1;
-            min-width: 280px;
+                .info-box {
+                    // background-color: $boxBg;
+                    // background: linear-gradient(45deg, #f0f0f5, lighten(#5c2ded, 40%));
+                    border-radius: 15px;
+                    padding: 25px;
+                    // box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 
-            .info-box {
-                // background-color: $boxBg;
-                // background: linear-gradient(45deg, #f0f0f5, lighten(#5c2ded, 40%));
-                border-radius: 15px;
-                padding: 25px;
-                // box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+                    h3 {
+                        font-size: 1.4rem;
+                        margin-bottom: 10px;
+                        color: #222;
+                    }
 
-                h3 {
-                    font-size: 1.4rem;
-                    margin-bottom: 10px;
-                    color: #222;
-                }
+                    p {
+                        font-size: 0.95rem;
+                        margin-bottom: 20px;
+                        color: #444;
+                    }
 
-                p {
-                    font-size: 0.95rem;
-                    margin-bottom: 20px;
-                    color: #444;
-                }
+                    .contact-list {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
 
-                .contact-list {
-                    list-style: none;
-                    padding: 0;
-                    margin: 0;
+                        li {
+                            font-family: var(--font-family);
+                            font-size: 1rem;
+                            margin-bottom: 12px;
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            color: var(--black);
 
-                    li {
-                        font-family: var(--font-family);
-                        font-size: 1rem;
-                        margin-bottom: 12px;
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                        color: var(--black);
+                            i {
+                                color: $primary;
+                                width: 20px;
+                            }
 
-                        i {
-                            color: $primary;
-                            width: 20px;
-                        }
+                            a {
+                                color: #333;
+                                text-decoration: none;
 
-                        a {
-                            color: #333;
-                            text-decoration: none;
+                                &:hover {
+                                    color: #5c2ded;
+                                }
+                            }
 
-                            &:hover {
-                                color: #5c2ded;
+                            &.link {
+                                text-decoration: underline;
                             }
                         }
+                    }
+                }
+            }
 
-                        &.link {
-                            text-decoration: underline;
+            .contact-right {
+                flex: 1;
+                min-width: 300px;
+                // background-color: $boxBg;
+                background: linear-gradient(5deg, $secondary, lighten($primary, 40%));
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    input,
+                    textarea {
+                        font-family: var(--font-family);
+                        padding: 12px 16px;
+                        border: 1px solid #ccc;
+                        border-radius: 10px;
+                        font-size: 1rem;
+                        color: #333;
+                        resize: none;
+                    }
+
+                    button {
+                        font-family: var(--font-family);
+                        background-color: $primary;
+                        color: $secondary;
+                        border: 2px solid $primary;
+                        // border: none;
+                        padding: 12px;
+                        border-radius: 50px;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                        transition: 0.3s;
+
+                        &:hover {
+                            background-color: $secondary;
+                            color: $primary;
+                            // border: 2px solid $primary;
                         }
                     }
                 }
             }
         }
 
-        .contact-right {
-            flex: 1;
-            min-width: 300px;
-            // background-color: $boxBg;
-            background: linear-gradient(5deg, $secondary, lighten($primary, 40%));
-            padding: 30px;
+        .contact-map {
+            margin-top: 60px;
             border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            // padding: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            font-family: var(--font-family);
 
-            form {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
+            iframe {
+                width: 100%;
+                height: 350px;
+                border: none;
+            }
 
-                input,
-                textarea {
-                    font-family: var(--font-family);
-                    padding: 12px 16px;
-                    border: 1px solid #ccc;
-                    border-radius: 10px;
-                    font-size: 1rem;
-                    color: #333;
-                    resize: none;
-                }
+            .map-button {
+                text-align: center;
+                margin-block: 15px;
 
                 button {
-                    font-family: var(--font-family);
-                    background-color: $primary;
-                    color: $secondary;
+                    border-color: $primary;
+                    color: $primary;
                     border: 2px solid $primary;
-                    // border: none;
-                    padding: 12px;
+                    padding: 10px 25px;
+                    font-weight: 600;
                     border-radius: 50px;
-                    font-weight: bold;
-                    text-transform: uppercase;
                     cursor: pointer;
-                    transition: 0.3s;
+                    transition: all 0.3s ease;
 
                     &:hover {
-                        background-color: $secondary;
-                        color: $primary;
-                        // border: 2px solid $primary;
+                        background-color: $primary;
+                        color: #fff;
                     }
                 }
             }
         }
-    }
 
-    .contact-map {
-        margin-top: 60px;
-        border-radius: 15px;
-        overflow: hidden;
-        // padding: 5px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        font-family: var(--font-family);
+        @media (max-width: 990px) {
+            .contact-body {
+                flex-direction: column;
+            }
 
-        iframe {
-            width: 100%;
-            height: 350px;
-            border: none;
-        }
-
-        .map-button {
-            text-align: center;
-            margin-block: 15px;
-
-            button {
-                border-color: $primary;
-                color: $primary;
-                border: 2px solid $primary;
-                padding: 10px 25px;
-                font-weight: 600;
-                border-radius: 50px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-
-                &:hover {
-                    background-color: $primary;
-                    color: #fff;
-                }
+            .contact-map {
+                margin-top: 40px;
             }
         }
-    }
 
-    @media (max-width: 990px) {
-        .contact-body {
-            flex-direction: column;
-        }
+        @media (max-width: 768px) {
+            .contact-body {
+                flex-direction: column;
+            }
 
-        .contact-map {
-            margin-top: 40px;
-        }
-    }
-    @media (max-width: 768px) {
-        .contact-body {
-            flex-direction: column;
+            .contact-map {
+                margin-top: 40px;
+            }
         }
 
-        .contact-map {
-            margin-top: 40px;
-        }
-    }
-    @media (max-width: 750px) {
-        padding: 50px 0px;
-        .contact-body {
-            flex-direction: column;
-        }
+        @media (max-width: 750px) {
+            padding: 50px 0px;
 
-        .contact-map {
-            margin-top: 40px;
+            .contact-body {
+                flex-direction: column;
+            }
+
+            .contact-map {
+                margin-top: 40px;
+            }
         }
     }
 }

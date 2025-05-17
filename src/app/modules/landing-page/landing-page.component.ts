@@ -144,7 +144,11 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   ngOnInit(): void {
     this.mapIndiaSection();
-    this.getSections();
+    if (this.commonService.sections && this.commonService.sections.length > 0) {
+      this.sections = this.commonService.sections;
+    } else {
+      this.getSections();
+    }
     this.getCategories();
     this.selectedRegionPlaces = this.placesData[0];
   }
@@ -175,6 +179,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.apiService.getSectionWithPosts(7).subscribe((response: any) => {
       if (response.result && response.data && response.data.length > 0) {
         this.sections = response.data.sort((a: any, b: any) => a.order - b.order);
+        this.commonService.sections = this.sections;
         // this.sections[1].posts.splice(2,6)
         this.commonService.places = [];
         if (this.sections && this.sections.length > 0) {

@@ -119,6 +119,7 @@ export class SectionComponent implements OnInit, OnDestroy {
             })
           }
           this.commonService.setMetaData(this.section.sectionName);
+          this.commonService.scrollToTop();
         } else {
           this.section = [];
         }

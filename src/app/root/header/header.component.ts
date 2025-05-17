@@ -48,6 +48,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   searchResults: any[] = [];
   private socket!: WebSocket;
   isSocketConnected: boolean = false;
+  staticPlaces: string[] = [];
 
 
   constructor(private router: Router, public commonService: CommonService, private apiService: ApiService) {
@@ -86,6 +87,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   connectWebsocket() {
+    this.showSuggestions = true;
+    this.staticPlaces = this.commonService.places;
     if (!this.isSocketConnected) {
 
       // this.socket = new WebSocket("wss://api.chaloghoome.com/adminService/ws/search");
@@ -224,7 +227,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       console.log("📤 Sending to WebSocket:", trimmed);
       this.socket.send(trimmed);
     } else if (trimmed.length <= 2) {
-      this.filteredSuggestions = this.commonService.places.filter(
+      this.staticPlaces = this.commonService.places.filter(
         place => place.toLowerCase().includes(query)
       );
     }
@@ -286,6 +289,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   onSearch(): void {
     if (this.searchQuery) {
       this.commonService.navigateTo('/search/' + this.searchQuery);
+      this.showSuggestions = false;
     }
   }
 

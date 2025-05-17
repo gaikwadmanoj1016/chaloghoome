@@ -95,24 +95,50 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit(): void {
-    this.getSectionList();
+    // this.getSectionList();
+    this.getSections();
   }
 
-  private getSectionList() {
-    this.apiService.getSectionsAndPostList().subscribe((response: any) => {
-      if (response.result) {
-        response.data.sort((a: any, b: any) => a.order - b.order);
-        this.commonService.sections = response.data.map((item: any) => {
-          item.sectionId = slugify(item.sectionName, '-');
-          return item;
-        });
-        console.log(response.data);
-        localStorage.setItem('sections', JSON.stringify(this.commonService.sections));
+  private getSections() {
+    // this.commonService.sections = [];
+    this.apiService.getSectionWithPosts(7).subscribe((response: any) => {
+      if (response.result && response.data && response.data.length > 0) {
+        this.commonService.sections = response.data.sort((a: any, b: any) => a.order - b.order);
+        // this.sections[1].posts.splice(2,6)
+        this.commonService.places = [];
+        if (this.commonService.sections && this.commonService.sections.length > 0) {
+          localStorage.setItem('sections', JSON.stringify(this.commonService.sections));
+          // this.addSomeStaticContent();
+          for (let section of this.commonService.sections) {
+            for (let place of section.posts.content) {
+              if (!this.commonService.places.includes(place.postName)) {
+                this.commonService.places.push(place.postName);
+              }
+            }
+          }
+        }
+        this.commonService.subscribeSectionsData.next(true);
       } else {
-        console.error(response.message || "something went wrong");
+        this.commonService.subscribeSectionsData.next(false);
+        this.commonService.sections = [];
       }
     })
   }
+  // private getSectionList() {
+  //   this.apiService.getSectionsAndPostList().subscribe((response: any) => {
+  //     if (response.result) {
+  //       response.data.sort((a: any, b: any) => a.order - b.order);
+  //       this.commonService.sections = response.data.map((item: any) => {
+  //         item.sectionId = slugify(item.sectionName, '-');
+  //         return item;
+  //       });
+  //       console.log(response.data);
+  //       localStorage.setItem('sections', JSON.stringify(this.commonService.sections));
+  //     } else {
+  //       console.error(response.message || "something went wrong");
+  //     }
+  //   })
+  // }
   public scrollTo(path: string) {
     this.commonService.navigateToQueryParams('home', { section: path })
   }

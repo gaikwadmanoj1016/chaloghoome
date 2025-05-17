@@ -17,7 +17,7 @@
                     <div class="search-bar">
                         <input type="text" #searchInput [(ngModel)]="searchQuery" title="Shortcut: Ctrl + /"
                             name="searchQuery" (input)="onInputChange()"
-                            (focus)="connectWebsocket();showSuggestions = true" class="search-input"
+                            (focus)="connectWebsocket();" class="search-input"
                             placeholder="Search places..." required autocomplete="off" />
                         @if (!isExpanded()) {
                         <button type="button" aria-labelledby="Search Button" title="Search" (click)="expandSearchBar()" class="search-btn">
@@ -31,7 +31,7 @@
                     </div>
                     @if (showSuggestions) {
                     <div class="suggestions" [class.active]="suggestionsFetched()">
-                        @if (searchQuery) {
+                        @if (searchQuery && searchQuery.length > 2) {
                         @if (filteredSuggestions && filteredSuggestions.length > 0) {
                         <div class="box">
                             @for (suggestion of filteredSuggestions; track $index) {
@@ -61,11 +61,11 @@
                             <div class="section-title">Loading places...</div>
                         </div>
                         }
-                        } @else if (commonService.places && commonService.places.length > 0) {
+                        } @else if (staticPlaces && staticPlaces.length > 0) {
                         <div class="box">
                             <div class="section-title">Most Searched</div>
                             <ul>
-                                @for (item of commonService.places; track $index) {
+                                @for (item of staticPlaces; track $index) {
                                 <li class="item" (click)="selectSuggestion(item)">
                                     <span>{{ item }}</span>
                                 </li>
@@ -86,7 +86,10 @@
                     <ul class="custom-navbar-nav">
                         <!-- Header -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#" (click)="toggleSidebar($event)">Destinations</a>
+                            <a class="nav-link" routerLink="/places">Places</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" (click)="toggleSidebar($event)">Featured</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLink="/about_us">About</a>
@@ -125,12 +128,9 @@
         <ul class="sidebar-menu">
             <li #menuItem *ngFor="let section of sections; trackBy: trackByIndex">
                 <!-- (click)="scrollTo(section.sectionId); closeSidebar()" -->
-                <a href="#" [routerLink]="['places', section.slugifiedSectionName]" (click)="closeSidebar()">
+                <a [routerLink]="['places', section.slugifiedSectionName]" (click)="closeSidebar()">
                     {{ section?.sectionName }}
                 </a>
-            </li>
-            <li #menuItem>
-                <a class="nav-link" routerLink="/places" (click)="closeSidebar()">Places</a>
             </li>
             <li #menuItem class="nav-item">
                 <a class="nav-link" routerLink="/about_us" (click)="closeSidebar()">About</a>

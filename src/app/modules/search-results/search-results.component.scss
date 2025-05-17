@@ -66,3 +66,105 @@ section {
         }
     }
 }
+
+// .recommended {
+//     margin-top: 30px;
+
+//     .card-grid {
+//         display: flex;
+//         gap: 10px;
+//         width: 100%;
+//         overflow-x: auto;
+//         scroll-snap-type: x mandatory;
+//         scroll-padding: 10px;
+
+//         .card {
+//             scroll-snap-align: start;
+//         }
+//     }
+// }
+
+.recommended {
+    margin-top: 30px;
+
+    .scroll-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin-bottom: 40px;
+        padding: 0 20px;
+
+        @media (max-width: 550px) {
+            padding: 0 10px;
+        }
+    }
+
+    .card-grid {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 10px;
+        -ms-overflow-style: none;
+        /* For Internet Explorer */
+        scrollbar-width: none;
+        /* For Firefox */
+        scroll-behavior: smooth;
+        flex: 1;
+        padding: 0 20px;
+        margin: 0 !important;
+    }
+
+    .scroll-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        font-weight: 800;
+        color: #000;
+        background-color: aliceblue;
+        border-radius: 100px;
+        // width: 60px;
+        aspect-ratio: 1;
+        display: flex;
+        // align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        padding: 10px;
+        transition: opacity 0.3s ease;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &.left {
+            left: -25px;
+            z-index: 1;
+
+            @media (max-width: 990px) {
+                left: 0;
+            }
+        }
+
+        &.right {
+            right: -25px;
+            z-index: 1;
+
+            @media (max-width: 990px) {
+                right: 0;
+            }
+        }
+    }
+
+    .card {
+        scroll-snap-align: start;
+        flex: 0 0 auto;
+
+        @media (max-width: 550px) {
+            width: 300px !important;
+        }
+    }
+}

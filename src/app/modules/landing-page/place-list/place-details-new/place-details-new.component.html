@@ -282,19 +282,19 @@
                         @for (post of section?.posts; track $index) {
                         <li class="item">
                             <div class="places">
-                                <a [routerLink]="['/place', post.slugifiedPostName]">
+                                <a class="link image-wrapper" [routerLink]="['/place', post.slugifiedPostName]">
                                     <img *ngIf="post.thumbnailImg"
                                         [src]="commonService.appendAssetUrl(post.thumbnailImg)" class="post-image" />
                                 </a>
                                 <div class="post-info">
-                                    <a [routerLink]="['/place', post.slugifiedPostName]">
-                                        <p class="para-md post-name">{{ post.postName }} |
-                                            <!-- <span class="dot"></span> -->
-                                            {{ post.location }}
+                                    <a class="link" [routerLink]="['/place', post.slugifiedPostName]">
+                                        <p class="para-md post-name">
+                                            {{ post.postName }}
                                         </p>
+                                        <p class="para-sm post-location">{{ post.location }}</p>
                                     </a>
                                     <!-- <p class="para-sm post-location">{{ post.location }}</p> -->
-                                    <p class="para-sm post-summary">{{ post.summary | truncate: 100 }}</p>
+                                    <!-- <p class="para-sm post-summary">{{ post.summary | truncate: 100 }}</p> -->
                                 </div>
                             </div>
                         </li>
@@ -380,6 +380,37 @@
                 <p [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.history)"></p>
             </div>
         </section>
+
+
+        <!-- Photo Gallery -->
+        <section class="gallery" *ngIf="highlights && highlights.length > 0">
+            <div class="container">
+                <h3 class="highlighted-text"
+                    [attr.aria-labelledby]="'photo-gallery-of-' + (placeDetails?.postName || '')">Mesmerizing views of
+                    {{placeDetails?.postName}}</h3>
+                <div class="gallery-container">
+                    <div class="gallery-grid" id="galleryGrid">
+                        <ng-container *ngIf="checkHighlightExist()">
+                            <div class="image-wrapper" *ngFor="let highlight of highlights; let i = index"
+                                [class.lastIndex]="checkLastIndex(i)">
+                                <app-progressive-image [smallImage]="'../../../../../assets/imgs/image-placeholder.jpg'"
+                                    [image]="commonService.appendAssetUrl(highlight.compressedImagePath)"
+                                    [title]="highlight.title"
+                                    [altText]="'ChaloGhoome: ' + highlight.title + ': ' + highlight.description"
+                                    [aspectRatio]="false"
+                                    (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))">
+                                </app-progressive-image>
+                                <button *ngIf="checkLastIndex(i) && !loadedAllImage" id="loadMore" class="load-more"
+                                    (click)="loadAllImagesToGallary()">
+                                    Load More Images
+                                </button>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Unique Features -->
         <!-- <section class="speciality" *ngIf="placeDetails?.specialities && placeDetails?.specialities?.length">
         <div class="container">
@@ -429,10 +460,12 @@
             <div class="container">
                 <h3 *ngIf="placeDetails?.postName" class="highlighted-text">Plan Your Visit: {{ placeDetails?.postName
                     }}</h3>
+                <p class="text-center">Everything You Need to Know Before Visiting the {{ placeDetails?.postName }}: Stay Options, Activities, and Packing Tips</p>
                 <div class="guide-grid">
                     <div class="guide-card" *ngIf="placeDetails?.bestTimeToVisit">
                         <h4 class="border-bottom pb-3">Best Time to Visit</h4>
-                        <p class="para-sm" [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.bestTimeToVisit)"></p>
+                        <p class="para-sm" [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.bestTimeToVisit)">
+                        </p>
                     </div>
                     <!-- <div class="guide-card" *ngIf="placeDetails?.famousFor">
                         <h4 class="border-bottom pb-3">is Famous For</h4>
@@ -490,40 +523,13 @@
             </div>
         </section>
 
-        <!-- Photo Gallery -->
-        <section class="gallery" *ngIf="highlights && highlights.length > 0">
-            <div class="container">
-                <h3 class="highlighted-text"
-                    [attr.aria-labelledby]="'photo-gallery-of-' + (placeDetails?.postName || '')">Mesmerizing views of
-                    {{placeDetails?.postName}}</h3>
-                <div class="gallery-container">
-                    <div class="gallery-grid" id="galleryGrid">
-                        <ng-container *ngIf="checkHighlightExist()">
-                            <div class="image-wrapper" *ngFor="let highlight of highlights; let i = index"
-                                [class.lastIndex]="checkLastIndex(i)">
-                                <app-progressive-image [smallImage]="'../../../../../assets/imgs/image-placeholder.jpg'"
-                                    [image]="commonService.appendAssetUrl(highlight.compressedImagePath)"
-                                    [title]="highlight.title"
-                                    [altText]="'ChaloGhoome: ' + highlight.title + ': ' + highlight.description"
-                                    [aspectRatio]="false"
-                                    (onImagClicked)="openPreview(commonService.appendAssetUrl(highlight.imagePath))">
-                                </app-progressive-image>
-                                <button *ngIf="checkLastIndex(i) && !loadedAllImage" id="loadMore" class="load-more"
-                                    (click)="loadAllImagesToGallary()">
-                                    Load More Images
-                                </button>
-                            </div>
-                        </ng-container>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Fun Facts -->
         @if (facts && facts.length > 0) {
         <section class="fun-facts">
             <div class="container">
-                <h3>Did You Know?</h3>
+                <h3 class="highlighted-text">Did You Know?</h3>
+                <p class="text-center">Interesting Facts About the {{placeDetails?.postName}} You Should Know
+                    Before Visiting</p>
                 <ul>
                     @for (fact of facts; track $index) {
                     <li>{{fact}}</li>

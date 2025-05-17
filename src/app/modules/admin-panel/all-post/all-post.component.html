@@ -4,11 +4,13 @@
     <div class="container">
         <div class="section-header">
             <h2>Places</h2>
-            <p class="section-desc">Discover your next adventure with our friendly places list — explore top travel spots, hidden gems, and must-visit destinations in one click!</p>
+            <p class="section-desc">Discover your next adventure with our friendly places list — explore top travel
+                spots, hidden gems, and must-visit destinations in one click!</p>
             <div class="place-information">
                 <p><small> Total {{places.length || 0}} Places Found</small></p>
                 <div class="local-search">
-                    <input type="text" class="form-control" name="localSearch" id="localSearch" placeholder="Search Places" (input)="onLocalSearch($event)">
+                    <input type="text" class="form-control" name="localSearch" id="localSearch"
+                        placeholder="Search Places" (input)="onLocalSearch($event)">
                 </div>
             </div>
         </div>
@@ -53,4 +55,9 @@
 @if (showHidePostForm) {
 <app-add-post [placeDetails]="selectedCard" (onCloseModal)="closePostPopup()"
     (onPostUpdate)="onPostUpdate()"></app-add-post>
+}
+
+@if (commonService.isAddHighlightModal) {
+<app-highlights-modal [isModalOpen]="commonService.isAddHighlightModal" [cardDetails]="commonService.selectedCard"
+    (onCloseModal)="closeHighlightModal()"></app-highlights-modal>
 }

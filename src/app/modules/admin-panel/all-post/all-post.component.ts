@@ -99,4 +99,8 @@ export class AllPostComponent {
       place.location.toLowerCase().includes(searchTerm)
     );
   }
+
+  closeHighlightModal() {
+    this.commonService.isAddHighlightModal = false;
+  }
 }

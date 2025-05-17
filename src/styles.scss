@@ -578,6 +578,7 @@ p {
         transition: transform 0.2s;
         color: var(--text-color);
         text-wrap: auto;
+        flex-shrink: 0;
         margin-right: 16px;
         cursor: pointer;
 
@@ -626,9 +627,11 @@ p {
     }
 
     @media (max-width: 768px) {
-        .card {
-            width: 90% !important;
-            margin: auto;
+        .grid-view {
+            .card {
+                width: 90% !important;
+                margin: auto;
+            }
         }
     }
 }

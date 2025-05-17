@@ -16,8 +16,67 @@ footer {
     padding: 0 20px;
     color: white;
     font-size: 12px;
+    position: relative;
+    margin-top: 100px;
+    width: 100%;
 
-    @media (max-width : 900px) {
+    &::before {
+        content: '';
+        position: absolute;
+        top: 35%;
+        left: 30%;
+        width: 500px;
+        height: 400px;
+        background: url('../../../assets/world.svg') no-repeat center;
+        background-size: contain;
+        opacity: 0.15;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 1;
+        transition: all 0.3s;
+    }
+
+    &:hover {
+        &::before {
+            opacity: 0.5 !important;
+        }
+    }
+
+    .triangle-container {
+        position: absolute;
+        top: -98px; // Move it *above* the footer
+        left: 0;
+        width: 100%;
+        height: 100px;
+        overflow: hidden;
+
+        svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .triangle {
+            fill: $sidebar-bg-color; // You can change this to match the background or contrast it
+            stroke: $sidebar-bg-color;
+            stroke-width: 2;
+        }
+    }
+
+    @media (max-width : 990px) {
+        &::before {
+            top: 50%;
+            left: 50%;
+        }
+
+        &:hover {
+            &::before {
+                opacity: 0.15 !important;
+            }
+        }
+    }
+
+    @media (max-width : 990px) {
         .content {
             flex-direction: column;
             align-items: center !important;
@@ -40,7 +99,7 @@ footer {
         justify-content: space-between;
         padding: 40px 0;
 
-        @media (max-width: 768px) {
+        @media (max-width: 990px) {
             padding: 0 !important;
 
             .section1 {
@@ -75,17 +134,22 @@ footer {
         .section2 {
             display: flex;
             flex: 1;
-            justify-content: space-evenly;
-            // gap: 80px;
+            justify-content: end;
+            gap: 80px;
 
             @media (max-width: 990px) {
                 width: 100%;
                 border-top: 2px solid #525252;
+                justify-content: space-evenly;
+                gap: auto !important;
             }
+
             @media (max-width: 768px) {
                 width: 100%;
                 // justify-content: center;
                 border-top: 2px solid #525252;
+                justify-content: space-between;
+                gap: auto !important;
             }
 
             a {

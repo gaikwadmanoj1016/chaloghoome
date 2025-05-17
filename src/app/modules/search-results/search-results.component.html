@@ -38,13 +38,13 @@
             </div>
             }
         </div>
-        @if (sections && sections.length > 0) {
-        <div style="margin-top: 30px;">
-            <h3>Recommended Places</h3>
-            @for (section of sections; track $index) {
-            <h4>
-                <a href="#" [routerLink]="['/places', section.sectionId]">
-                    {{ section?.sectionName }}
+        <!-- @if (sections && sections.length > 0) {
+            <div class="recommended">
+                <h3>Recommended Places</h3>
+                @for (section of sections; track $index) {
+                    <h4>
+                        <a href="#" [routerLink]="['/places', section.sectionId]">
+                            {{ section?.sectionName }}
                 </a>
             </h4>
             <div class="card-grid">
@@ -63,6 +63,43 @@
             </div>
             }
         </div>
+        } -->
+        @if (sections && sections.length > 0) {
+        <div class="recommended">
+            <h3>Recommended Places</h3>
+
+            <!-- Check if sections exist -->
+            @if (sections && sections.length > 0) {
+            @for (section of sections; track $index) {
+            <h4>
+                <a [routerLink]="['/places', section.sectionId]">
+                    {{ section?.sectionName }}
+                </a>
+            </h4>
+
+            <!-- Scroll Container with Arrows -->
+            <div class="scroll-container">
+                <button class="scroll-btn left" (click)="scroll('left', $index)">←</button>
+                <div class="card-grid" #cardGrid>
+                    @for (post of section.posts?.content; track $index) {
+                    <div class="card">
+                        <a [routerLink]="['/place', post.slugifiedPostName]" class="link">
+                            <img [src]="post.thumbnailImg ? commonService.appendAssetUrl(post.thumbnailImg) : '../../../assets/imgs/image-placeholder.jpg'"
+                                alt="{{ post.postName }} {{ post.location }}" />
+                            <h4 class="place-name" [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
+                            <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
+                            <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
+                            <button type="button" class="btn btn-center">View Details</button>
+                        </a>
+                    </div>
+                    }
+                </div>
+                <button class="scroll-btn right" (click)="scroll('right', $index)">→</button>
+            </div>
+            }
+            }
+        </div>
         }
+
     </div>
 </section>

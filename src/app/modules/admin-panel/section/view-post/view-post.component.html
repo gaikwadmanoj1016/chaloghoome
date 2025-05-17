@@ -41,9 +41,9 @@
     </div>
 </section>
 
-@if (showHidePostForm && sectionId) {
+@if (showHidePostForm && section.id) {
 <app-add-post [placeDetails]="selectedCard" (onCloseModal)="closePostPopup()" (onPostUpdate)="onPostUpdate()"
-    [sectionId]="sectionId"></app-add-post>
+    [sectionId]="section.id"></app-add-post>
 }
 
 

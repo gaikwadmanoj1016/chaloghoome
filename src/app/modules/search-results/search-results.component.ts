@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { PlaceDetails } from '../landing-page/place-list/place-details/place-details.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SeoService } from '../../services/seo.service';
@@ -35,6 +35,13 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       this.commonService.searchedQueryString.next(this.query);
       this.searchData();
     });
+
+    this.commonService.subscribeSectionsData.subscribe((flag) => {
+      if (flag) {
+        console.log(this.commonService.sections);
+        this.getRecommendedSections();
+      }
+    })
   }
 
   searchData(): void {
@@ -48,7 +55,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
             this.seoService.addCanonicalTag();
             this.seoService.setSEO({
-              postName: `Search Results for "${this.query}" - Chalo Ghoome`,
+              postName: `Search Results for "${this.query}"`,
               summary: `Search for ${this.query} and discover top places and attractions with Chalo Ghoome.`,
               originalThumbnailImg: this.commonService.appendAssetUrl(this.searchResults[0].thumbnailImg)
             });
@@ -57,33 +64,48 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
           }
 
           this.isLoading = false;
-          this.getRecommendedSections();
         },
         error: (error) => {
           console.error("API error: ", error);
           this.searchResults = [];
           this.isLoading = false;
-          this.getRecommendedSections();
         }
       });
     } else {
       this.searchResults = [];
       this.isLoading = false;
     }
+    this.commonService.scrollToTop();
   }
 
   getRecommendedSections() {
-    this.apiRequest.getSectionWithPosts(10).subscribe((response: any) => {
-      if (response.result && response.data && response.data.length > 0) {
-        this.sections = response.data.sort((a: any, b: any) => a.order - b.order);
-        this.sections = response.data.map((item: any) => {
-          item.sectionId = slugify(item.sectionName, '-');
-          return item;
-        });
+    this.sections = this.commonService.sections;
+    // this.apiRequest.getSectionWithPosts(10).subscribe((response: any) => {
+    //   if (response.result && response.data && response.data.length > 0) {
+    //     this.sections = response.data.sort((a: any, b: any) => a.order - b.order);
+    //     this.sections = response.data.map((item: any) => {
+    //       item.sectionId = slugify(item.sectionName, '-');
+    //       return item;
+    //     });
+    //   } else {
+    //     this.sections = [];
+    //   }
+    // })
+  }
+
+  @ViewChildren('cardGrid') cardGrids!: QueryList<ElementRef>;
+
+  scroll(direction: 'left' | 'right', index: number): void {
+    const scrollAmount = 300;
+    const cardGrid = this.cardGrids.toArray()[index]?.nativeElement;
+
+    if (cardGrid) {
+      if (direction === 'left') {
+        cardGrid.scrollLeft -= scrollAmount;
       } else {
-        this.sections = [];
+        cardGrid.scrollLeft += scrollAmount;
       }
-    })
+    }
   }
 
   ngOnDestroy(): void {

@@ -1,4 +1,11 @@
 <footer>
+    <div class="triangle-container">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+            <!-- Right-angled triangle across the top -->
+            <polygon points="0,100 100,100 0,0" class="triangle" />
+        </svg>
+    </div>
+
     <div class="content">
         <div class="section1">
             <div class="logo">
@@ -12,7 +19,8 @@
                     <!-- <li><a (click)="navigateTo('/')">Travel Stories</a></li> -->
                     @for (section of sections; track $index) {
                     <li class="para-sm">
-                        <a routerLink="home" (click)="scrollTo(section.sectionId)">
+                        <a [routerLink]="['places', section.slugifiedSectionName]"
+                            (click)="scrollTo(section.sectionId)">
                             {{section?.sectionName}}
                         </a>
                     </li>
@@ -23,7 +31,8 @@
                 <h5>Referances</h5>
                 <ul>
                     <li class="para-sm"><a href="https://www.wikipedia.com" target="_blank">Wikipedia</a></li>
-                    <li class="para-sm"><a href="https://www.travelindia.gov.in" target="_blank">travelindia.gov.in</a></li>
+                    <li class="para-sm"><a href="https://www.travelindia.gov.in" target="_blank">travelindia.gov.in</a>
+                    </li>
                 </ul>
             </div>
         </div>

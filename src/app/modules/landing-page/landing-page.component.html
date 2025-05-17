@@ -28,7 +28,8 @@
             </span>
             <h2 class="headline small">Explore Better with Chalo Ghoome!</h2>
             <p class="para-md">Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and
-                travelers. Our platform serves as a hub where tourists can easily access a wealth of information about tour guides,
+                travelers. Our platform serves as a hub where tourists can easily access a wealth of information about
+                tour guides,
                 their services, and available packages. Conversely, tour guides can efficiently showcase their
                 offerings directly to interested travelers, facilitating a direct and transparent exchange of
                 information...</p>
@@ -161,6 +162,49 @@
         </div>
     </section>
     }
+    <!-- 
+    <div class="background-image-div">
+        <small class="byline">
+            Image by <a href="https://unsplash.com" target="_blank">Unsplash</a>
+        </small>
+    </div>
+    <svg height="0" width="0" class="svg-clip">
+        <defs>
+            <clipPath id="rect-clip" clipPathUnits="objectBoundingBox">
+
+                <path d="
+                    M0,0.3333 
+                    Q0.25,0 0.5,0.2 
+                    Q0.75,0.4 1,0.1333 
+                    L1,0.75 
+                    Q0.75,0.9333 0.5,0.8 
+                    Q0.25,0.6666 0,0.8666 
+                    Z" />
+            </clipPath>
+        </defs>
+    </svg>
+     -->
+<!-- 
+    <svg width="100%" height="700" viewBox="0 0 3000 700" xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid slice">
+
+        <defs>
+            <clipPath id="rect-clip">
+                <path id="wavePath" fill="none" stroke="none"
+                    d="M 0 350 C 2000 560 2000 140 3000 350 L 3000 700 L 0 700 L 0 350">
+                    <animate attributeName="d" dur="5s" repeatCount="indefinite" values="
+            M 0 350 C 2000 560 2000 140 3000 350 L 3000 700 L 0 700 L 0 350;
+            M 0 350 C 400 140 400 560 3000 350 L 3000 700 L 0 700 L 0 350;
+            M 0 350 C 2000 560 2000 140 3000 350 L 3000 700 L 0 700 L 0 350
+          " />
+                </path>
+            </clipPath>
+        </defs>
+
+        <image href="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=3000&q=80"
+            x="0" y="0" width="3000" height="700" clip-path="url(#rect-clip)" preserveAspectRatio="xMidYMid slice" />
+    </svg> -->
+
     <div class="featured">
         @for (section of sections; track $index) {
         <section [id]="section?.sectionId" [class]="section?.class" [style.background]="section?.background">
@@ -172,7 +216,9 @@
                     </video>
                 </div>
                 }
-                <h2 class="section-title">{{section?.sectionName}}</h2>
+                <h2 class="section-title"> 
+                    <a class="link" [routerLink]="['/places', section?.slugifiedSectionName]">{{section?.sectionName}}</a> 
+                </h2>
                 @if (section?.description) {
                 <p class="section-description"> {{section?.description}} </p>
                 }

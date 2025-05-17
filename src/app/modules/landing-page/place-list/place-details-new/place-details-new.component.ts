@@ -10,6 +10,7 @@ import { SharedModule } from '../../../../shared/shared.module';
 import { DOCUMENT } from '@angular/common';
 import { convertSlugToNormal, slugify } from '../../../../utils/slugify';
 import { BreadcrumbSchemaService } from '../../../../services/breadcrumb-schema.service';
+import { AriaDescriber } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-place-details-new',
