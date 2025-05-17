@@ -16,11 +16,11 @@
                     [class.floating-search]="isScrolled">
                     <div class="search-bar">
                         <input type="text" #searchInput [(ngModel)]="searchQuery" title="Shortcut: Ctrl + /"
-                            name="searchQuery" (input)="onInputChange()"
-                            (focus)="connectWebsocket();" class="search-input"
-                            placeholder="Search places..." required autocomplete="off" />
+                            name="searchQuery" (input)="onInputChange()" (focus)="connectWebsocket();"
+                            class="search-input" placeholder="Search places..." required autocomplete="off" />
                         @if (!isExpanded()) {
-                        <button type="button" aria-labelledby="Search Button" title="Search" (click)="expandSearchBar()" class="search-btn">
+                        <button type="button" aria-labelledby="Search Button" title="Search" (click)="expandSearchBar()"
+                            class="search-btn">
                             <i class="fa fa-search icon"></i>
                         </button>
                         } @else {
@@ -131,6 +131,9 @@
                 <a [routerLink]="['places', section.slugifiedSectionName]" (click)="closeSidebar()">
                     {{ section?.sectionName }}
                 </a>
+            </li>
+            <li #menuItem class="nav-item">
+                <a class="nav-link" routerLink="/places" (click)="closeSidebar()">Places</a>
             </li>
             <li #menuItem class="nav-item">
                 <a class="nav-link" routerLink="/about_us" (click)="closeSidebar()">About</a>
