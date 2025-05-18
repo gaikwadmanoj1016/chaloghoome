@@ -426,6 +426,7 @@
             </div>
         </div>
     </section> -->
+        <!-- 
         <section class="speciality" *ngIf="placeDetails?.specialities?.length">
             <div class="container">
                 <h3 *ngIf="placeDetails?.postName" class="highlighted-text">Why Visit the {{ placeDetails?.postName }}?
@@ -449,6 +450,31 @@
                     </div>
                 </div>
             </div>
+        </section> -->
+        <section class="speciality" *ngIf="placeDetails?.specialities?.length">
+            <div class="container">
+                <h3 *ngIf="placeDetails?.postName" class="highlighted-text">
+                    Why Visit the {{ placeDetails?.postName }}?
+                </h3>
+
+                <div class="seo-accordion">
+                    <div class="item" *ngFor="let speciality of placeDetails?.specialities; let i = index">
+                        <input type="checkbox" checked [id]="'accordion-' + i" hidden>
+                        <label class="title" [for]="'accordion-' + i">
+                            {{ speciality.speciality }}
+                            <span class="icon">
+                                <!-- Chevron SVG icon -->
+                                <svg class="chevron" width="16" height="16" viewBox="0 0 24 24">
+                                    <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" />
+                                </svg>
+                            </span>
+                        </label>
+                        <div class="content">
+                            {{ speciality.description }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Travel Guide -->
@@ -462,7 +488,8 @@
             <div class="container">
                 <h3 *ngIf="placeDetails?.postName" class="highlighted-text">Plan Your Visit: {{ placeDetails?.postName
                     }}</h3>
-                <p class="text-center">Everything You Need to Know Before Visiting the {{ placeDetails?.postName }}: Stay Options, Activities, and Packing Tips</p>
+                <p class="text-center">Everything You Need to Know Before Visiting the {{ placeDetails?.postName }}:
+                    Stay Options, Activities, and Packing Tips</p>
                 <div class="guide-grid">
                     <div class="guide-card" *ngIf="placeDetails?.bestTimeToVisit">
                         <h4 class="border-bottom pb-3">Best Time to Visit</h4>

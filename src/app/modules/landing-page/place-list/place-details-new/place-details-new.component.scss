@@ -751,3 +751,70 @@ main {
         background-color: var(--header-bg-color);
     }
 }
+
+.seo-accordion {
+    .item {
+        border: 1px solid var(--primary-color);
+        border-radius: 6px;
+        margin-bottom: 10px;
+        overflow: hidden;
+
+        .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            // background: #f9f9f9;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+
+            .icon {
+                display: flex;
+                align-items: center;
+                padding: 8px;
+                border-radius: 4px;
+
+                .chevron {
+                    transition: transform 0.3s ease;
+                }
+
+                &:hover {
+                    background-color: var(--secondary-color);
+                }
+            }
+        }
+
+        &:hover {
+            background-color: var(--header-bg-color);
+        }
+
+        input:checked~.title .chevron {
+            transform: rotate(180deg); // Makes it look like a dropup
+        }
+
+        .content {
+            padding: 15px 20px;
+            display: none;
+            // background: #fff;
+            animation: expand 0.3s ease;
+        }
+
+        input:checked~.content {
+            display: block;
+        }
+    }
+}
+
+// Optional: Smooth expand animation
+@keyframes expand {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
