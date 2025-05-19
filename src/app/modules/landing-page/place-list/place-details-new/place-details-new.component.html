@@ -278,14 +278,13 @@
         <section>
             <div class="container">
                 <h4 class="border-bottom section-title" style="text-align: start;">Most Visited Places</h4>
-                <div class="section-details">
+                <div class="section-details hideScrollbar">
                     <ul>
                         @for (post of section?.posts; track $index) {
                         <li class="item">
                             <div class="places">
                                 <a class="link image-wrapper" [routerLink]="['/place', post.slugifiedPostName]">
-                                    <img *ngIf="post.thumbnailImg"
-                                        [src]="commonService.appendAssetUrl(post.thumbnailImg)" class="post-image" />
+                                    <img *ngIf="post.thumbnailImg" [src]="commonService.appendAssetUrl(post.thumbnailImg)" [alt]="post.postName + post.summary" class="post-image" />
                                 </a>
                                 <div class="post-info">
                                     <a class="link" [routerLink]="['/place', post.slugifiedPostName]">
@@ -311,31 +310,27 @@
             <div class="container">
                 <div class="tags-categories">
                     <div class="tags-categories-wrapper">
-                        <!-- Categories -->
                         @if (placeDetails?.postCatList && placeDetails?.postCatList?.length) {
                         <div class="category-box">
                             <h4>Categories</h4>
-                            <ul class="category-list">
-                                <li *ngFor="let category of placeDetails?.postCatList">
-                                    <a class="link" [routerLink]="['/search', category.category.catName]">
+                            <div class="category-list hideScrollbar">
+                                <!-- <li *ngFor="let category of placeDetails?.postCatList"> -->
+                                    <a *ngFor="let category of placeDetails?.postCatList" class="link" [routerLink]="['/search', category.category.catName]">
                                         <span class="category-item">{{ category.category.catName }}</span>
                                     </a>
-                                </li>
-                            </ul>
+                                <!-- </li> -->
+                            </div>
                         </div>
                         }
 
-                        <!-- Tags -->
                         @if (placeDetails?.postTagList && placeDetails?.postTagList?.length) {
                         <div class="tags-box">
                             <h4>Tags</h4>
-                            <ul class="tags-list">
-                                <li *ngFor="let tag of placeDetails?.postTagList">
-                                    <a class="link" [routerLink]="['/search', tag.tagName]">
-                                        <span class="tag-item">#{{ tag.tagName }}</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="tags-list hideScrollbar">
+                                <a *ngFor="let tag of placeDetails?.postTagList" class="link" [routerLink]="['/search', tag.tagName]">
+                                    <span class="tag-item">#{{ tag.tagName }}</span>
+                                </a>
+                            </div>
                         </div>
                         }
                     </div>
@@ -557,7 +552,7 @@
         <section class="fun-facts">
             <div class="container">
                 <h3 class="highlighted-text">Did You Know?</h3>
-                <p class="text-center">Interesting Facts About the {{placeDetails?.postName}} You Should Know
+                <p class="text-center">Interesting Facts About {{placeDetails?.postName}} You Should Know
                     Before Visiting</p>
                 <ul>
                     @for (fact of facts; track $index) {

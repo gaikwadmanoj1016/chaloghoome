@@ -465,6 +465,16 @@ p {
     }
 }
 
+.hideScrollbar {
+
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-track {
+        height: 0px;
+        width: 0;
+    }
+}
+
 // used in landing page only
 .travel-card-container {
     display: flex;

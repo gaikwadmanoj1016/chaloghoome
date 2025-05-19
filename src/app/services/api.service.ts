@@ -63,7 +63,7 @@ export class ApiService {
     )
   }
   public triggerContactUsEmail(req: any) {
-    let API = environment.apiUrl + 'api/contact';
+    let API = environment.apiUrl + 'api/contact/message';
     return this.httpRequest.post(API, req, this.commonService.getRequestOptionArgs()).pipe(
       map((data) => {
         return data;

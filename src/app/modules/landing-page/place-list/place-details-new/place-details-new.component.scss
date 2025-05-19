@@ -205,6 +205,8 @@ main {
                                 display: flex;
                                 flex-wrap: wrap;
                                 gap: 10px;
+                                max-height: 200px;
+                                overflow: auto;
 
                                 .category-item,
                                 .tag-item {
@@ -324,13 +326,6 @@ main {
                             }
                         }
                     }
-
-                    &::-webkit-scrollbar,
-                    &::-webkit-scrollbar-thumb,
-                    &::-webkit-scrollbar-track {
-                        height: 0px;
-                        width: 0;
-                    }
                 }
             }
         }
@@ -355,7 +350,7 @@ main {
             .feature-grid,
             .guide-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
                 gap: 20px;
 
                 .feature-card,
