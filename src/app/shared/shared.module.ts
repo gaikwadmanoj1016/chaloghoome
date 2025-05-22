@@ -25,6 +25,7 @@ import { RouterModule } from '@angular/router';
 import { HighlightsModalComponent } from './place-card/highlights-modal/highlights-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routes } from '../app.routes';
+import { TravelMapComponent } from './travel-map/travel-map.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { routes } from '../app.routes';
     TruncatePipe,
     PlaceCardComponent,
     ProgressiveImageComponent,
-    HighlightsModalComponent
+    HighlightsModalComponent,
+    TravelMapComponent
   ],
   imports: [
     CommonModule,
@@ -71,7 +73,8 @@ import { routes } from '../app.routes';
     TruncatePipe,
     PlaceCardComponent,
     ProgressiveImageComponent,
-    HighlightsModalComponent
+    HighlightsModalComponent,
+    TravelMapComponent
   ],
   providers: [ApiService]
 })

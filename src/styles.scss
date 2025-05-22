@@ -670,3 +670,30 @@ p {
         transform: translateX(-50%);
     }
 }
+
+
+
+// from backend
+.table-wrapper {
+    overflow: auto;
+    width: 100%;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0;
+        font-size: 14px;
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--header-bg-color);
+            color: white;
+        }
+    }
+}

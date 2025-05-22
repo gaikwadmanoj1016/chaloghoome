@@ -524,8 +524,13 @@
 
         <section class="routes" *ngIf="placeDetails?.routes">
             <div class="container">
-                <h3 *ngIf="placeDetails?.postName" class="highlighted-text">Routes for {{ placeDetails?.postName }}</h3>
-                <p [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.routes)"></p>
+                <h3 *ngIf="placeDetails?.postName" class="highlighted-text" [attr.aria-labelledby]="'How to go ' + placeDetails?.postName">Routes for {{ placeDetails?.postName }}</h3>
+                <!-- <div class=""> -->
+                    <!-- <div style="display: block;height: 40vh;width: 100%;">
+                        <app-travel-map></app-travel-map>
+                    </div> -->
+                <!-- </div> -->
+                <div [innerHTML]="commonService.sanitizeInnerHtml(placeDetails?.routes)"></div>
             </div>
         </section>
 
