@@ -1,8 +1,8 @@
 import { AfterViewInit, Component } from '@angular/core';
 import * as L from 'leaflet';
 // Fix missing marker icons in Angular
-import 'leaflet/dist/images/marker-icon.png';
-import 'leaflet/dist/images/marker-shadow.png';
+// import 'leaflet/dist/images/marker-icon.png';
+// import 'leaflet/dist/images/marker-shadow.png';
 
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 
@@ -27,7 +27,7 @@ export class TravelMapComponent implements AfterViewInit {
   };
 
   ngAfterViewInit(): void {
-    this.initMap();
+    // this.initMap();
   }
 
   private initMap(): void {
