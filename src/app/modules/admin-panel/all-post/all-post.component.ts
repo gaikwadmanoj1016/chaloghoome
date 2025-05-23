@@ -26,6 +26,7 @@ export class AllPostComponent {
   }
 
   ngOnInit(): void {
+    this.commonService.setCanonicalURL();
     this.cardEditable = this.route.snapshot.routeConfig?.path?.includes('sections') || false;
     this.getAllplaces();
   }

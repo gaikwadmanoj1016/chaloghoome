@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -9,10 +10,13 @@ import { ApiService } from '../../services/api.service';
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.scss'
 })
-export class ContactUsComponent {
+export class ContactUsComponent implements OnInit {
   requiredPattern = /^[a-z0-9._%+!$&*=^|~#%'`?{}\-]+@([a-z0-9\-]+\.)+[a-z]{2,16}$/;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, public commonService: CommonService) { }
+  ngOnInit(): void {
+    this.commonService.setCanonicalURL();
+  }
   onSubmit(form: any) {
     if (form.valid) {
       console.log(form.value);

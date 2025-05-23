@@ -1,9 +1,10 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { Inject, Injectable, signal } from '@angular/core';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { environment } from '../../../environment';
 import { BehaviorSubject } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -63,10 +64,20 @@ export class CommonService {
   constructor(private router: Router,
     private sanitizer: DomSanitizer,
     private titleService: Title,
-    private metaService: Meta
+    private metaService: Meta,
+    @Inject(DOCUMENT) private dom: Document
   ) { }
 
   // 
+  setCanonicalURL(url?: string) {
+    let link: HTMLLinkElement = this.dom.querySelector("link[rel='canonical']") || this.dom.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    link.setAttribute('href', url || this.dom.URL);
+    console.log(link);
+    
+    this.dom.head.appendChild(link);
+  }
+
   setMetaData(title: string, data?: any) {
     let imageUrl = this.appendAssetUrl(data?.originalThumbnailImg || '');
     // Dynamically set page title and meta description

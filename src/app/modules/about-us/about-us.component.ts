@@ -19,6 +19,7 @@ export class AboutUsComponent implements OnInit, AfterViewInit {
   constructor(private route: ActivatedRoute, private el: ElementRef, public commonService: CommonService) { }
 
   ngOnInit(): void {
+    this.commonService.setCanonicalURL();
     console.log(this.route.snapshot.routeConfig?.path);
     this.currentRoute = this.route.snapshot.routeConfig?.path || '';
   }
