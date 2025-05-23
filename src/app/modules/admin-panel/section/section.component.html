@@ -1,7 +1,7 @@
 <main>
     <div class="container">
         <h2>{{section?.sectionName || convertSlugToNormal(sectionName, '-')}}</h2>
-        <p class="header-desc"> {{section.sectionDesc}} </p>
+        <p class="header-desc"> {{section?.sectionDesc || ''}} </p>
         <!-- @if (cardEditable) {
         <div class="head">
             <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>

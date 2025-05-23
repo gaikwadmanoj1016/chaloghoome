@@ -49,6 +49,7 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
   ) { }
 
   ngOnInit(): void {
+    this.commonService.setCanonicalURL();
     this.route.params.subscribe((param: any) => {
       if (param && param['postName']) {
         this.postName = param['postName'];

@@ -52,6 +52,8 @@ export class SectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.commonService.setCanonicalURL();
+
     console.log(this.route.snapshot.routeConfig?.path?.includes('admin-panel'));
     this.cardEditable = this.route.snapshot.routeConfig?.path?.includes('admin-panel') || false;
     this.route.params.subscribe(params => {
