@@ -1,0 +1,258 @@
+<div class="container">
+    <div class="sidebar">
+      <img src="https://i.imgur.com/6VBx3io.png" alt="Ravi Joshi" />
+      <h2>Ravi Joshi</h2>
+      <nav>
+        <a (click)="commonService.scrollToDiv('profile')" class="active">Profile</a>
+        <a (click)="commonService.scrollToDiv('services')">Services</a>
+        <a (click)="commonService.scrollToDiv('gallery')">Gallery</a>
+        <a (click)="commonService.scrollToDiv('social')">Social Links</a>
+      </nav>
+    </div>
+
+    <div class="main">
+      <h1>Edit Guide Profile</h1>
+
+      <div class="form-section" id="profile">
+        <div class="form-group inline-group">
+          <div>
+            <label>First Name</label>
+            <input type="text" value="Ravi" />
+          </div>
+          <div>
+            <label>Last Name</label>
+            <input type="text" value="Joshi" />
+          </div>
+        </div>
+
+        <div class="form-group inline-group">
+          <div>
+            <label>Date of Birth</label>
+            <input type="date" value="1988-03-05" />
+          </div>
+          <div>
+            <label>Gender</label>
+            <select>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group inline-group">
+          <div>
+            <label>Phone</label>
+            <input type="text" value="9988776655" />
+          </div>
+          <div>
+            <label>Email</label>
+            <input type="email" value="ravi.guide@example.com" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Bio</label>
+          <textarea rows="3">Certified adventure guide with 10+ years of experience across Himachal and Uttarakhand.</textarea>
+        </div>
+
+        <div class="form-group inline-group">
+          <div>
+            <label>Experience</label>
+            <input type="text" value="10 years" />
+          </div>
+          <div>
+            <label>Certification</label>
+            <input type="text" value="Mountain Guide (Indian Mountaineering Foundation)" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section" id="locations">
+        <h2>Residential Location</h2>
+        <div class="form-group inline-group">
+          <div>
+            <label>City</label>
+            <input type="text" value="Dehradun" />
+          </div>
+          <div>
+            <label>State</label>
+            <input type="text" value="Uttarakhand" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <input type="text" value="Tapkeshwar Road" />
+        </div>
+        <div class="form-group">
+          <label>Pin Code</label>
+          <input type="text" value="248001" />
+        </div>
+
+        <h2>Working Locations</h2>
+        <div class="form-group inline-group">
+          <div>
+            <label>Rishikesh, Uttarakhand</label>
+            <input type="text" value="Rafting and Yoga tours" />
+          </div>
+          <div>
+            <label>Kasol, Himachal Pradesh</label>
+            <input type="text" value="Trekking and camping" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section" id="languages">
+        <h2>Languages</h2>
+        <div class="form-group multi-input">
+          <input type="text" value="Hindi (native)" />
+          <input type="text" value="English" />
+        </div>
+      </div>
+
+      <div class="form-section" id="services">
+        <h2>Services</h2>
+        <div class="form-group multi-input">
+          <input type="text" value="Trekking & Camping" />
+          <input type="text" value="River Rafting" />
+          <input type="text" value="Jungle Safari" />
+          <input type="text" value="Mountaineering Basics" />
+        </div>
+      </div>
+
+      <div class="form-section" id="categories">
+        <h2>Categories</h2>
+        <div class="form-group multi-input">
+          <input type="text" value="Mountain Adventures" />
+          <input type="text" value="Trekking" />
+          <input type="text" value="Camping" />
+          <input type="text" value="River Rafting" />
+        </div>
+      </div>
+
+      <div class="form-section" id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery">
+          <img src="https://via.placeholder.com/100" alt="gallery image" />
+          <img src="https://via.placeholder.com/100" alt="gallery image" />
+          <img src="https://via.placeholder.com/100" alt="gallery image" />
+          <img src="https://via.placeholder.com/100" alt="gallery image" />
+        </div>
+      </div>
+
+      <div class="form-section" id="social">
+        <h2>Social Links</h2>
+        <div class="form-group inline-group">
+          <div>
+            <label>Facebook</label>
+            <input type="url" value="https://facebook.com/ravi.guide" />
+          </div>
+          <div>
+            <label>Instagram</label>
+            <input type="url" value="https://instagram.com/ravi.guide" />
+          </div>
+          <div>
+            <label>Twitter</label>
+            <input type="url" value="https://twitter.com/ravi_guide" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- <div class="container">
+  <aside class="sidebar">
+    <img src="https://i.imgur.com/8Km9tLL.jpg" alt="Profile" class="profile-pic" />
+    <h2>Ravi Joshi</h2>
+    <nav>
+      <ul>
+        <li class="active">Profile</li>
+        <li>Services</li>
+        <li>Gallery</li>
+        <li>Testimonials</li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="profile-form">
+    <h1>Edit Guide Profile</h1>
+    <h3>GUIDE DETAILS</h3>
+    <form>
+      <div class="form-grid">
+        <div>
+          <label>Name</label>
+          <input type="text" value="Ravi Joshi" />
+        </div>
+        <div>
+          <label>Role</label>
+          <select>
+            <option selected>GUIDE</option>
+          </select>
+        </div>
+        <div>
+          <label>Age</label>
+          <input type="number" value="35" />
+        </div>
+        <div>
+          <label>Phone</label>
+          <input type="text" value="9985776655" />
+        </div>
+        <div class="full-width">
+          <label>Email</label>
+          <input type="email" value="ravi.guide@cxample.com" />
+        </div>
+        <div class="full-width">
+          <label>Bio</label>
+          <textarea rows="3">Certified adventure guide with 10+ years of experience across Himacand</textarea>
+        </div>
+      </div>
+
+      <h3>WORKING LOCATIONS</h3>
+      <div class="form-grid">
+        <div>
+          <label>Location</label>
+          <select>
+            <option>Rishikesh</option>
+          </select>
+        </div>
+        <div>
+          <label>State</label>
+          <input type="text" value="Uttarakhand" />
+        </div>
+        <div>
+          <label>Location</label>
+          <input type="text" value="Kasol" />
+        </div>
+        <div>
+          <label>State</label>
+          <input type="text" value="Himachal Pradesh" />
+        </div>
+      </div>
+      <a href="#" class="add-location">+ Add Location</a>
+
+      <h3>LANGUAGES & EXPERIENCE</h3>
+      <div class="form-grid">
+        <div class="full-width">
+          <label>Languages</label>
+          <div class="tags">
+            <span>Hindi</span>
+            <span>English</span>
+          </div>
+        </div>
+        <div>
+          <label>Experience</label>
+          <input type="text" value="10 years" />
+        </div>
+        <div class="full-width">
+          <label>Available Seasons</label>
+          <input type="text" value="Summer, Autumn" />
+        </div>
+        <div class="full-width">
+          <label>Certification</label>
+          <input type="text" value="Mountain Guide (Indian Mountaineering Foundation)" />
+        </div>
+      </div>
+    </form>
+  </main>
+</div> -->

@@ -3,7 +3,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { ActivatedRoute } from '@angular/router';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { CommonService } from '../../services/common.service';
+import { CommonService } from '../../shared/services/common.service';
 
 gsap.registerPlugin(ScrollTrigger);
 @Component({

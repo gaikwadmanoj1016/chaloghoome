@@ -1,9 +1,9 @@
 import { Component, HostListener, OnDestroy, OnInit, signal } from '@angular/core';
-import { ApiService } from './services/api.service';
-import { CommonService } from './services/common.service';
+import { ApiService } from './shared/services/api.service';
+import { CommonService } from './shared/services/common.service';
 import { HeaderComponent } from './root/header/header.component';
 import { FooterComponent } from './root/footer/footer.component';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { slugify } from './utils/slugify';
 // import gsap from 'gsap';
@@ -79,7 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   user = this.users()[1];
   profileModal: boolean = false;
-  constructor(public commonService: CommonService, private apiService: ApiService) { }
+  constructor(public commonService: CommonService, private apiService: ApiService, private route: ActivatedRoute) { }
   // cards = Array.from({ length: 6 }, (_, i) => ({
   //   title: `Card ${i + 1}`,
   //   content: `Content for card ${i + 1}`
@@ -96,6 +96,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     // this.getSectionList();
+    this.route.params.subscribe((param) => {
+      console.log(param);
+      
+    })
     this.getSections();
   }
 

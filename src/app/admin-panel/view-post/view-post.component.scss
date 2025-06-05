@@ -1,0 +1,43 @@
+@use '../../../styles/variables' as *;
+
+$box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
+
+section {
+  background-color: var(--bg-color);
+  padding-top: var(--header-height);
+
+  .container {
+    padding: 50px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+
+    // .travel-card-container {
+    //   display: grid;
+    //   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    //   gap: 1rem;
+    // }
+  }
+}
+
+// ✅ Below 768px (Tablet)
+// @media only screen and (max-width: 990) {
+//   .travel-card-container {
+//     width: 100% !important;
+//     grid-template-columns: repeat(2, 1fr);
+//   }
+// }
+
+// // ✅ Below 550px (Mobile - 2 Columns)
+// @media only screen and (max-width: 550px) {
+//   .travel-card-container {
+//     grid-template-columns: repeat(2, 1fr);
+//   }
+// }
+
+// // ✅ Below 400px (Small phones - 1 Column)
+// @media only screen and (max-width: 400px) {
+//   .travel-card-container {
+//     grid-template-columns: 1fr;
+//   }
+// }

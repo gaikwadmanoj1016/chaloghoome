@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonService } from '../../services/common.service';
+import { Router, RouterModule } from '@angular/router';
+import { CommonService } from '../../shared/services/common.service';
 
 @Component({
   selector: 'app-footer',
@@ -13,9 +13,14 @@ import { CommonService } from '../../services/common.service';
 export class FooterComponent {
   @Input() sections: any[] = [];
 
-  constructor(public commonService: CommonService) {}
-  
+  constructor(public commonService: CommonService, private router: Router) { }
+
   scrollTo(sectionId: string) {
     this.commonService.scrollToDiv(sectionId);
+  }
+
+  showFooter(): boolean {
+    const currentRoute = this.router.url;
+    return !currentRoute.includes('login') && !currentRoute.includes('register');
   }
 }

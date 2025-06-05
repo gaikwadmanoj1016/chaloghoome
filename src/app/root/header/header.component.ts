@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, QueryList, Renderer2, signal, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { CommonService } from '../../services/common.service';
+import { CommonService } from '../../shared/services/common.service';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
 import { FormsModule } from '@angular/forms';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../shared/services/api.service';
 import { convertSlugToNormal } from '../../utils/slugify';
 import gsap from 'gsap';
 import { environment } from '../../../../environment';

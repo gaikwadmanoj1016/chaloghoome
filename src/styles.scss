@@ -697,3 +697,38 @@ p {
         }
     }
 }
+
+.mat-mdc-form-field-hint-wrapper,
+.mat-mdc-form-field-error-wrapper {
+    padding: 0 !important;
+}
+
+.language-skills {
+    color: #fff !important;
+
+    mdc-label {
+        color: #fff !important;
+    }
+}
+:root {
+    --mdc-filled-text-field-container-color: transparent !important;
+    --mat-select-enabled-arrow-color: rgb(255 255 255 / 54%) !important;
+    --mdc-outlined-text-field-input-text-color: var(--white) !important;
+}
+
+// #region snackbar 
+.success-snackbar {
+  background-color: #4caf50 !important; // green
+  color: #fff;
+}
+
+.error-snackbar {
+  background-color: #f44336 !important; // red
+  color: #fff;
+}
+
+.info-snackbar {
+  background-color: #2196f3 !important; // blue
+  color: #fff;
+}
+// #endregion snackbar 

@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ImagePreviewComponent } from '../../../../shared/image-preview/image-preview.component';
+import { ImagePreviewComponent } from '../../../../shared/components/image-preview/image-preview.component';
 import { ActivatedRoute } from '@angular/router';
-import { CommonService } from '../../../../services/common.service';
-import { ApiService } from '../../../../services/api.service';
+import { CommonService } from '../../../../shared/services/common.service';
+import { ApiService } from '../../../../shared/services/api.service';
 import { SharedModule } from '../../../../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgStyle } from '@angular/common';
@@ -34,6 +34,7 @@ export interface PlaceDetails {
   postCatList: any[];
   postTagList: any[];
   createdAt: string;
+  sectionId: number;
 }
 
 export interface Speciality {

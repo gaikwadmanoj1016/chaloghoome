@@ -2,8 +2,8 @@ import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, 
 import { SharedModule } from '../../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { CommonService } from '../../services/common.service';
-import { ApiService } from '../../services/api.service';
+import { CommonService } from '../../shared/services/common.service';
+import { ApiService } from '../../shared/services/api.service';
 import { ContactUsComponent } from "../contact-us/contact-us.component";
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import gsap from 'gsap';
@@ -11,7 +11,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { AboutUsComponent } from "../about-us/about-us.component";
 import { FormsModule } from '@angular/forms';
 import { slugify } from '../../utils/slugify';
-import { Category } from '../admin-panel/master-category-list/master-category-list.component';
+import { Category } from '../../admin-panel/master-category-list/master-category-list.component';
 import { Subscription } from 'rxjs';
 
 gsap.registerPlugin(ScrollTrigger);

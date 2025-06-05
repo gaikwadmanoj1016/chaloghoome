@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { CommonService } from '../../services/common.service';
+import { CommonService } from '../../shared/services/common.service';
 
 @Component({
   selector: 'app-profile',

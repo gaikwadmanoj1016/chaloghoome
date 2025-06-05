@@ -1,0 +1,37 @@
+.fb-button {
+    // margin-top: 15px;
+    width: 100%;
+    padding: 0px;
+    // background-color: #1877f2;
+    background-color: transparent;
+    border-radius: 100px;
+    border: none;
+    outline: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    span {
+        flex: 1;
+    }
+
+    &:hover {
+        // background-color: #5b9df2;
+
+        svg {
+
+            path {
+                transition: all 0.3s;
+            }
+
+            .bg {
+                fill: #1877f2 !important;
+            }
+
+            .logo {
+                fill: var(--white) !important;
+            }
+        }
+    }
+}

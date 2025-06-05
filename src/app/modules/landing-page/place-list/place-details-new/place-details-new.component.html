@@ -277,7 +277,7 @@
         @if (section?.posts && section.posts.length > 0) {
         <section>
             <div class="container">
-                <h4 class="border-bottom section-title" style="text-align: start;">Most Visited Places</h4>
+                <h4 class="border-bottom section-title" style="text-align: start;"> {{section.sectionName}} </h4>
                 <div class="section-details hideScrollbar">
                     <ul>
                         @for (post of section?.posts; track $index) {
