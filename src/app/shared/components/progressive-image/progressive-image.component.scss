@@ -80,9 +80,9 @@
     background-position: center;
     transition: filter 0.3s ease;
 
-    &.placeholder-loaded {
-        filter: blur(5px); // Apply blur on placeholder
-    }
+    // &.placeholder-loaded {
+    //     filter: blur(5px); // Apply blur on placeholder
+    // }
 
     .progressive-img {
         width: 100%;

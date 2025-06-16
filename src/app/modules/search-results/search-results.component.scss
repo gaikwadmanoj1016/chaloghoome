@@ -5,20 +5,15 @@ section {
     overflow: auto;
     // background-color: rgb(23, 42, 60);
     background-color: var(--bg-color);
-    color: $color-white;
-    padding-top: var(--header-height);
+    color: var(--text-color);
+    // padding-top: var(--header-height);
 
     h3 {
         padding-bottom: 20px;
         color: var(--text-color);
-        border-bottom: 2px solid var(--primary-color);
+        border-bottom: 2px solid var(--section-border-color);
         text-align: center;
     }
-
-    // h2 {
-    //     color: #ffffff;
-    //     margin-bottom: 20px;
-    // }
 
     .container {
         text-align: left !important;
@@ -27,7 +22,7 @@ section {
             padding-block: 50px 20px;
 
             .para-xl {
-                border-bottom: 2px solid var(--primary-color);
+                border-bottom: 2px solid var(--section-border-color);
             }
 
             .result-grid {
@@ -36,9 +31,9 @@ section {
                 gap: 1.5rem;
 
                 .card {
-                    background: #fff;
+                    background: var(--card-bg-color);
                     border-radius: 12px;
-                    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+                    box-shadow: 0 0 12px var(--shadow-color);
                     padding: 1rem;
                     transition: transform 0.2s;
 
@@ -52,7 +47,7 @@ section {
                     }
 
                     a {
-                        color: #007BFF;
+                        color: var(--text-color);
                         font-weight: bold;
                         display: inline-block;
                         margin-top: 0.5rem;
@@ -113,6 +108,10 @@ section {
         flex: 1;
         padding: 0 20px;
         margin: 0 !important;
+
+        .card {
+            margin: 15px 15px 15px 0 !important;
+        }
     }
 
     .scroll-btn {
@@ -120,8 +119,8 @@ section {
         border: none;
         font-size: 24px;
         font-weight: 800;
-        color: #000;
-        background-color: aliceblue;
+        color: var(--black);
+        background-color: var(--highlight-color);
         border-radius: 100px;
         // width: 60px;
         aspect-ratio: 1;
@@ -134,7 +133,7 @@ section {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        opacity: 0.5;
+        opacity: 0.8;
 
         &:hover {
             opacity: 1;

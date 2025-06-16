@@ -21,6 +21,7 @@ import { MasterCategoryListComponent } from './admin-panel/master-category-list/
 import { AllPostComponent } from './admin-panel/all-post/all-post.component';
 import { GuideProfileComponent } from './modules/guide-profile/guide-profile.component';
 import { EditProfileComponent } from './modules/edit-profile/edit-profile.component';
+import { AddPostComponent } from './admin-panel/view-post/add-post/add-post.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -30,6 +31,7 @@ export const routes: Routes = [
             { path: 'sections', component: SettingSectionComponent },
             { path: 'sections/places/:sectionName', component: ViewPostComponent },
             { path: 'sections/places', component: AllPostComponent },
+            { path: 'sections/places/add-place/:id', component: AddPostComponent },
             { path: 'tags', component: MasterTagListComponent },
             { path: 'categories', component: MasterCategoryListComponent },
             // { path: 'guides', component: GuidesComponent },

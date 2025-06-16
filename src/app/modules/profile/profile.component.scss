@@ -295,7 +295,7 @@
                 button {
                     border-radius: 4px;
                     padding: 8px 18px;
-                    box-shadow: 0 2px 4px 0 #dcdcdc;
+                    box-shadow: 0 2px 4px 0 var(--shadow-color);
 
                     span {
                         margin-left: 5px;
@@ -319,7 +319,7 @@
                     flex-direction: row;
                     padding: 10px 20px;
                     flex: 1;
-                    box-shadow: 0 2px 2px 0 #dcdcdc;
+                    box-shadow: 0 2px 2px 0 var(--shadow-color);
                     cursor: pointer;
 
                     &:hover {
@@ -459,7 +459,7 @@
         .suggestions-section {
             margin-bottom: 20px;
             padding: 10px;
-            box-shadow: 0 0 4px 1px #dcdcdc;
+            box-shadow: 0 0 4px 1px var(--shadow-color);
             border-radius: 5px;
 
             .section-header {

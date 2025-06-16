@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, signal } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Validators } from 'ngx-editor';
 // import { SharedModule } from '../../../shared/shared.module';
 import { CommonService } from '../../../shared/services/common.service';
@@ -10,7 +10,7 @@ import { slugify } from '../../../utils/slugify';
 @Component({
   selector: 'app-add-post',
   standalone: true,
-  imports: [ReactiveFormsModule, NgFor],
+  imports: [ReactiveFormsModule, NgFor, FormsModule],
   templateUrl: './add-post.component.html',
   styleUrl: './add-post.component.scss'
 })
@@ -30,12 +30,22 @@ export class AddPostComponent implements OnInit {
   selctionExist: boolean = false;
   isEditing: boolean = false;
   // Selected
-  categories: string[] = [];
-  tags: string[] = [];
+  categories: any[] = [];
+  tags: any[] = [];
 
   // Filtered suggestions
+  
+  // category
   filteredCategories: any[] = [];
+  showCategoryModal = signal(false);
+  searchCategory: string = '';
+  tempCategorySelected: any[] = [];
+  
+  // tags
   filteredTags: any[] = [];
+  showTagModal = signal(false);
+  searchTag: string = '';
+  tempTagSelected: any[] = [];
 
   constructor(private fb: FormBuilder, public commonService: CommonService, private apiService: ApiService, private cdref: ChangeDetectorRef) { }
 
@@ -73,10 +83,10 @@ export class AddPostComponent implements OnInit {
       this.selctionExist = false;
     }
     this.getCountryList();
+    this.getAllCategory();
+    this.getAllTags();
     if (this.placeDetails && Object.keys(this.placeDetails).length > 0) {
       this.refillPostForm();
-      this.getAllCategory();
-      this.getAllTags();
       this.isEditing = true;
     } else {
       this.isEditing = false;
@@ -86,7 +96,7 @@ export class AddPostComponent implements OnInit {
   refillPostForm() {
     this.postForm.patchValue({
       postName: this.placeDetails.postName,
-      slugifiedPostName: '/'+this.placeDetails.slugifiedPostName,
+      slugifiedPostName: '/' + this.placeDetails.slugifiedPostName,
       summary: this.placeDetails.summary || '',
       location: this.placeDetails.location || '',
       history: this.placeDetails.history || '',
@@ -213,22 +223,24 @@ export class AddPostComponent implements OnInit {
               }
             });
           } else if (key === 'tags') {
-            this.tags.forEach((tagName: any, index: number) => {
-              let tagId = this.allTags?.find((item: any) => item.tagName === tagName)?.id || -1;
+            this.tags.forEach((tag: any, index: number) => {
+              // let tagId = this.allTags?.find((item: any) => item.tagName === tagName)?.id || -1;
+              let tagId = tag.id;
               if (tagId > 0) {
                 formData.append(`tagList[${index}].id`, tagId);
               } else {
-                formData.append(`tagList[${index}].tagName`, tagName ? tagName.trim() : '');
+                formData.append(`tagList[${index}].tagName`, tag.tagName ? tag.tagName.trim() : '');
               }
               // formData.append(`tagList[${index}].tagName`, tag || '');
             });
           } else if (key === 'categories') {
             this.categories.forEach((category: any, index: number) => {
-              let catId = this.allCategories?.find((item: any) => item.catName === category)?.id || -1;
-              if (catId > 0) {
+              // let catId = this.allCategories?.find((item: any) => item.catName === category)?.id || -1;
+              let catId = category.id;
+              if (catId && catId > 0) {
                 formData.append(`catList[${index}].id`, catId);
               } else {
-                formData.append(`catList[${index}].catName`, category ? category.trim() : '');
+                formData.append(`catList[${index}].catName`, category.catName ? category.catName.trim() : '');
               }
             });
           } else if (key === 'slugifiedPostName') {
@@ -265,8 +277,9 @@ export class AddPostComponent implements OnInit {
 
   closePopup(): void {
     // this.showHidePostForm = false;
-    this.onCloseModal.emit();
+    // this.onCloseModal.emit();
     this.postForm.reset();
+    this.commonService.goBack();
   }
 
   onImageSelected(event: Event): void {
@@ -362,88 +375,6 @@ export class AddPostComponent implements OnInit {
     this.selectedImage = null; // Clear the selected image
   }
 
-  filterCategories() {
-    const input = this.postForm.get('categories')?.value.toLowerCase() || '';
-    this.filteredCategories = this.allCategories
-      .filter((c: any) => c.catName.toLowerCase().includes(input) && !this.categories.includes(c));
-    this.sortFilteredCategory();
-
-  }
-
-  selectCategory(value: any) {
-    if (!this.categories.includes(value)) {
-      this.categories.push(value.catName);
-    }
-    this.postForm.get('categories')?.setValue('');
-    this.filteredCategories = [];
-  }
-
-  addCategory(event: any) {
-    event.preventDefault();
-    const value = this.postForm.get('categories')?.value.trim();
-    if (value && !this.categories.includes(value)) {
-      this.categories.push(value);
-    }
-    this.postForm.get('categories')?.setValue('');
-    this.filteredCategories = [];
-  }
-
-  removeCategory(value: string) {
-    // this.categories = this.categories.filter(c => c !== value);
-    let category = this.placeDetails?.postCatList?.find((t: any) => t.category === value);
-    if (category) {
-      this.apiService.deletePostCat(category.id).subscribe((response: any) => {
-        if (response && response.result) {
-          this.categories = this.categories.filter(t => t !== value);
-        } else {
-
-        }
-      })
-    } else {
-      this.categories = this.categories.filter(t => t !== value);
-    }
-  }
-
-  filterTags() {
-    const input = this.postForm.get('tags')?.value.toLowerCase() || '';
-    this.filteredTags = this.allTags
-      .filter((t: any) => t.tagName.toLowerCase().includes(input) && !this.tags.includes(t));
-    this.sortFilteredTags();
-  }
-
-  selectTag(value: any) {
-    if (!this.tags.includes(value)) {
-      this.tags.push(value.tagName);
-    }
-    this.postForm.get('tags')?.setValue('');
-    this.filteredTags = [];
-  }
-
-  addTag(event: any) {
-    event.preventDefault();
-    const value = this.postForm.get('tags')?.value.trim();
-    if (value && !this.tags.includes(value)) {
-      this.tags.push(value);
-    }
-    this.postForm.get('tags')?.setValue('');
-    this.filteredTags = [];
-  }
-
-  removeTag(value: string) {
-    let tag = this.placeDetails?.postTagList?.find((t: any) => t.tagName === value);
-    if (tag) {
-      this.apiService.deletePostTag(tag.id).subscribe((response: any) => {
-        if (response && response.result) {
-          this.tags = this.tags.filter(t => t !== value);
-        } else {
-
-        }
-      })
-    } else {
-      this.tags = this.tags.filter(t => t !== value);
-    }
-  }
-
   getCountryList() {
     this.apiService.getCountryList().subscribe((response: any) => {
       if (response.result) {
@@ -523,4 +454,168 @@ export class AddPostComponent implements OnInit {
     let text = event.target.value || '';
     this.postForm.patchValue({ slugifiedPostName: '/' + slugify(text) });
   }
+
+  // #region category selection using modal
+  filteringCategories(): any[] {
+    return this.allCategories.filter(c =>
+      c.catName.toLowerCase().includes(this.searchCategory.toLowerCase())
+    );
+  }
+
+  selectCategory(value: any) {
+    if (!this.categories.includes(value)) {
+      this.categories.push(value.catName);
+    }
+    this.postForm.get('categories')?.setValue('');
+    this.filteredCategories = [];
+  }
+
+  addCategory(event?: any) {
+    event?.preventDefault();
+    const value = this.postForm.get('categories')?.value.trim();
+    if (value && !this.categories.includes(value)) {
+      this.categories.push({catName: value});
+    }
+    this.postForm.get('categories')?.setValue('');
+    this.filteredCategories = [];
+  }
+
+  removeCategory(value: string) {
+    // this.categories = this.categories.filter(c => c !== value);
+    let category = this.placeDetails?.postCatList?.find((t: any) => t.category === value);
+    if (category) {
+      this.apiService.deletePostCat(category.id).subscribe((response: any) => {
+        if (response && response.result) {
+          this.categories = this.categories.filter(t => t !== value);
+        } else {
+
+        }
+      })
+    } else {
+      this.categories = this.categories.filter(t => t !== value);
+    }
+  }
+
+  isCategoryChecked(cat: any): boolean {
+    return this.tempCategorySelected.some(s => s.catName === cat.catName);
+  }
+
+  toggleCategorySelection(cat: any) {
+    if (this.isCategoryChecked(cat)) {
+      this.tempCategorySelected = this.tempCategorySelected.filter(c => c.catName !== cat.catName);
+    } else {
+      this.tempCategorySelected.push(cat);
+    }
+  }
+
+  addCustomCategory() {
+    const trimmed = this.searchCategory.trim();
+    if (trimmed && !this.tempCategorySelected.find(c => c.catName === trimmed)) {
+      this.tempCategorySelected.push({ catName: trimmed });
+      this.searchCategory = '';
+    }
+    
+  }
+
+  openCategoryModal() {
+    this.tempCategorySelected = this.categories;
+    this.showCategoryModal.set(true);
+  }
+  
+  updateSelectedCategories() {
+    this.categories = this.tempCategorySelected;
+    console.log(this.tempCategorySelected);
+    this.showCategoryModal.set(false);
+  }
+  // #endregion category selection using modal
+
+
+  // #region tags selection using modal
+  filteringTags(): any[] {
+    return this.allTags.filter(c =>
+      c.tagName.toLowerCase().includes(this.searchTag.toLowerCase())
+    );
+  }
+
+  selectTags(value: any) {
+    if (!this.tags.includes(value)) {
+      this.tags.push(value.tagName);
+    }
+    this.postForm.get('tags')?.setValue('');
+    this.filteredTags = [];
+  }
+
+  isTagChecked(cat: any): boolean {
+    return this.tempTagSelected.some(s => s.tagName === cat.tagName);
+  }
+
+  toggleTagSelection(cat: any) {
+    if (this.isTagChecked(cat)) {
+      this.tempTagSelected = this.tempTagSelected.filter(c => c.tagName !== cat.tagName);
+    } else {
+      this.tempTagSelected.push(cat);
+    }
+  }
+
+  addCustomTag() {
+    const trimmed = this.searchTag.trim();
+    if (trimmed && !this.tempTagSelected.find(c => c.tagName === trimmed)) {
+      this.tempTagSelected.push({ tagName: trimmed });
+      this.searchTag = '';
+    }
+  }
+
+  openTagModal() {
+    this.tempTagSelected = this.tags;
+    this.showTagModal.set(true);
+  }
+  
+  updateSelectedTags() {
+    this.tags = this.tempTagSelected;
+    console.log(this.tempTagSelected);
+    this.showTagModal.set(false);
+  }
+
+  
+  filterTags() {
+    const input = this.postForm.get('tags')?.value.toLowerCase() || '';
+    this.filteredTags = this.allTags
+      .filter((t: any) => t.tagName.toLowerCase().includes(input) && !this.tags.includes(t));
+    this.sortFilteredTags();
+  }
+
+  selectTag(value: any) {
+    if (!this.tags.includes(value)) {
+      this.tags.push(value.tagName);
+    }
+    this.postForm.get('tags')?.setValue('');
+    this.filteredTags = [];
+  }
+
+  addTag(event?: any) {
+    event?.preventDefault();
+    const value = this.postForm.get('tags')?.value.trim();
+    if (value && !this.tags.includes(value)) {
+      this.tags.push({tagName: value});
+    }
+    this.postForm.get('tags')?.setValue('');
+    this.filteredTags = [];
+  }
+
+  removeTag(value: string) {
+    let tag = this.placeDetails?.postTagList?.find((t: any) => t.tagName === value);
+    if (tag) {
+      this.apiService.deletePostTag(tag.id).subscribe((response: any) => {
+        if (response && response.result) {
+          this.tags = this.tags.filter(t => t !== value);
+        } else {
+
+        }
+      })
+    } else {
+      this.tags = this.tags.filter(t => t !== value);
+    }
+  }
+
+  // #endregion tags selection using modal
 }

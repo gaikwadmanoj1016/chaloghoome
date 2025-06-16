@@ -1,6 +1,44 @@
 @import url(../view-post/view-post.component.scss);
 @import url(../view-post/add-post/add-post.component.scss);
 
+main {
+    aside {
+        display: none;
+        flex: 1;
+        position: sticky;
+        top: var(--header-height); // Leave room for sticky header
+        align-self: flex-start;
+        height: fit-content; // Prevent stretching to container
+        transition: all 0.3s;
+
+        section {
+            .container {
+                border-right: 2px solid var(--shadow-color);
+
+                .filter-wrapper {
+
+                    .filters {
+                        border: 1px solid var(--shadow-color);
+
+                        ul {
+                            margin: 0;
+                            padding: 0;
+
+                            li {
+
+                                .form-group {
+                                    padding: 6px 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    section {}
+}
 
 .section-header {
 
@@ -30,10 +68,10 @@
 
             input {
                 border: none;
-                border-bottom: 2px solid var(--white);
+                border-bottom: 2px solid var(--primary-color);
                 border-radius: 0;
                 background: transparent;
-                color: var(--white);
+                color: var(--text-color);
 
                 &::placeholder {
                     color: var(--secondary-color);

@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   staticPlaces: string[] = [];
 
 
-  constructor(private router: Router, public commonService: CommonService, private apiService: ApiService) {
+  constructor(private router: Router, public commonService: CommonService, private renderer: Renderer2) {
   }
 
   @HostListener('document:keydown', ['$event'])
@@ -166,6 +166,19 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   scrollTo(sectionId: string) {
     this.commonService.scrollToDiv(sectionId);
+  }
+
+  toggleDropdown(event: Event) {
+    this.commonService.isDropdownOpen.set(!this.commonService.isDropdownOpen());
+  }
+  closeDropdown() {
+    this.commonService.isDropdownOpen.set(false);
+  }
+  toggleSidebarDropdown(event: Event) {
+    this.commonService.isSidebarDropdownOpen.set(!this.commonService.isSidebarDropdownOpen());
+  }
+  closeSidebarDropdown() {
+    this.commonService.isSidebarDropdownOpen.set(false);
   }
 
   toggleSidebar(event: Event) {
@@ -322,5 +335,22 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       duration: 0.4,
       ease: 'power2.out'
     });
+  }
+
+  setTheme(theme: 'light' | 'dark'): void {
+    this.commonService.selectedTheme = theme;
+
+    // Remove both if present
+    this.renderer.removeClass(document.body, 'light-theme');
+    this.renderer.removeClass(document.body, 'dark-theme');
+
+    // Add selected
+    this.renderer.addClass(document.body, `${theme}-theme`);
+  }
+
+  toggleTheme(): void {
+    const nextTheme = this.commonService.selectedTheme === 'light' ? 'dark' : 'light';
+    this.setTheme(nextTheme);
+    // this.closeSidebar();
   }
 }

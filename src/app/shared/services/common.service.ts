@@ -5,12 +5,16 @@ import { Router } from '@angular/router';
 import { environment } from '../../../../environment';
 import { BehaviorSubject } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
+import {Location} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
+  selectedTheme: 'light' | 'dark' = 'dark'; // default theme
   isSidebarOpen = signal(false);
+  isDropdownOpen = signal(false);
+  isSidebarDropdownOpen = signal(false);
   showHideCertificateModal: boolean = false;
   isAddHighlightModal: boolean = false;
   public searchedQueryString: BehaviorSubject<string> = new BehaviorSubject('');
@@ -60,11 +64,13 @@ export class CommonService {
   ];
   sections: { sectionName: string, sectionId: string; id: number, posts: any }[] = [];
   subscribeSectionsData: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  currentRoute: string = '';
 
   constructor(private router: Router,
     private sanitizer: DomSanitizer,
     private titleService: Title,
     private metaService: Meta,
+    private _location: Location,
     @Inject(DOCUMENT) private dom: Document
   ) { }
 
@@ -135,6 +141,10 @@ export class CommonService {
   //   //  logic here
   // }
   // 
+
+  goBack() {
+    this._location.back();
+  }
   navigateTo(path: string) {
     this.router.navigate([path]).then(() => {
       window.scrollTo(0, 0);

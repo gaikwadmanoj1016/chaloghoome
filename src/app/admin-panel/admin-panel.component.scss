@@ -1,6 +1,6 @@
 @use '../../styles/variables' as *;
 
-// // $primary-color: #007bff;
+// // $primary-color: var(--section-border-color);
 // $primary-hover: #0056b3;
 // // $success-color: #28a745;
 // $success-hover: #218838;
@@ -76,7 +76,7 @@
   // padding-top: 50px;
   background-color: var(--bg-color);
   width: 100%;
-  padding-top: var(--header-height);
+  // padding-top: var(--header-height);
 
   aside {
     height: calc(100vh - var(--header-height));

@@ -20,7 +20,7 @@ export class AboutUsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.commonService.setCanonicalURL();
-    console.log(this.route.snapshot.routeConfig?.path);
+    this.commonService.setMetaData("About us", { summary: `Welcome to Chalo Ghoome, the premier destination for travel enthusiasts worldwide. We're here to fuel your wanderlust and connect you with extraordinary experiences that transcend the ordinary.` });
     this.currentRoute = this.route.snapshot.routeConfig?.path || '';
   }
 

@@ -2,31 +2,35 @@
 // ==================================
 // Color Variables
 // ==================================
-$primary-color: #007BFF;
-$primary-dark: #4141f5;
+$primary-color: var(--section-border-color);
 $header-color: var(--text-color);
 $text-color: var(--text-color);
-$secondary-background-color: rgb(74 126 246);
 $background-color: var(--bg-color);
 $section-bg: var(--bg-color);
-$section-shadow: rgba(0, 0, 0, 0.1);
+$section-shadow: var(--shadow-color);
+$fun-fact-bg: var(--primary-color);
+$testimonial-bg: var(--primary-color);
+$primary-dark: #4141f5;
+$secondary-background-color: rgb(74 126 246);
 $gallery-shadow: rgba(0, 0, 0, 0.1);
 $gallery-hover-shadow: rgba(0, 0, 0, 0.2);
 $blur-overlay: rgba(0, 0, 0, 0.3);
-$fun-fact-bg: $primary-color;
-$testimonial-bg: $primary-color;
 $testimonial-border: #4141f5;
 $attraction-title: #4141f5;
 $attraction-text: #555;
 $hero-overlay: #0404048e;
 $load-more-bg: #0000007a;
 
+:root {
+    --bs-accordion-bg: --header-bg-color;
+}
+
 h3 {
     // font-size: 1.5em;
     // margin-bottom: 10px;
     padding-bottom: 20px;
     color: var(--text-color);
-    border-bottom: 2px solid #007BFF;
+    border-bottom: 2px solid var(--section-border-color);
     text-align: center;
 }
 
@@ -38,8 +42,7 @@ h3 {
     justify-content: center;
     text-align: center;
     overflow: hidden;
-    color: white;
-    padding-top: var(--header-height);
+    // padding-top: var(--header-height);
     transition: all 0.3s;
 
     @media (max-width: 768px) {
@@ -80,7 +83,6 @@ h3 {
         // padding-top: 50px;
 
         h1 {
-            color: #fff;
             margin: 0;
             // font-size: 2rem;
             position: absolute;
@@ -119,7 +121,7 @@ main {
     gap: 5px;
 
     &.hero-image-not-found {
-        padding-top: var(--header-height);
+        // padding-top: var(--header-height);
     }
 
     .container {
@@ -139,9 +141,6 @@ main {
 
         .metadata {
             background-color: var(--header-bg-color);
-            box-shadow: 0 4px 4px 5px rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 12px;
             margin-block: 25px;
             transition: all 0.3s;
 
@@ -151,8 +150,12 @@ main {
             }
 
             &:hover {
-                box-shadow: 0 2px 2px 4px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 2px 2px 4px var(--shadow-color);
             }
+        }
+
+        h2, h3 {
+            text-align: left !important;
         }
     }
 
@@ -195,7 +198,7 @@ main {
                             // min-width: 280px;
                             h4 {
                                 margin-bottom: 10px;
-                                color: $color-white;
+                                color: var(--text-color);
                             }
 
                             .category-list,
@@ -239,15 +242,9 @@ main {
                 }
 
                 .section-title {
-                    // font-size: 13px;
-                    // font-weight: 600;
-                    // padding: 8px 24px;
-                    // color: #555;
-                    // background: #f6f7f8;
                     text-transform: uppercase;
                     letter-spacing: 0.5px;
                     margin-bottom: 15px;
-                    // border-top: 1px solid #eee;
                 }
 
                 .section-details {
@@ -264,14 +261,7 @@ main {
                         transition: all 0.3s;
 
                         &:hover {
-                            box-shadow: 0 4px 4px 5px rgba(0, 0, 0, 0.3);
-                        }
-
-                        span {
-                            display: block;
-                            font-size: 15px;
-                            color: #333;
-                            font-weight: 500;
+                            box-shadow: 0 4px 4px 5px var(--shadow-color);
                         }
 
                         .places {
@@ -292,7 +282,7 @@ main {
                                     object-fit: cover;
                                     border-radius: 6px;
                                     flex-shrink: 0;
-                                    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+                                    box-shadow: 0 2px 6px var(--shadow-color);
                                 }
                             }
 
@@ -311,13 +301,6 @@ main {
                                     flex-wrap: wrap;
                                     gap: 10px;
                                     // border-bottom: 1px solid var(--primary-color);
-
-                                    .dot {
-                                        width: 5px;
-                                        height: 5px;
-                                        background-color: #93afa2;
-                                        border-radius: 10px;
-                                    }
                                 }
 
                                 .post-location {
@@ -336,12 +319,6 @@ main {
 
         section {
             background: var(--bg-color);
-            // background: $section-bg;
-            // border-radius: 8px;
-            // box-shadow: 0 2px 10px $section-shadow;
-            // margin: 20px 0;
-            // padding: 20px;
-            background: var(--bg-color);
 
             &:not(:last-child) {
                 margin-bottom: 5px;
@@ -355,7 +332,7 @@ main {
 
                 .feature-card,
                 .guide-card {
-                    background: $primary-color;
+                    background: var(--primary-color);
                     color: var(--text-color) !important;
                     padding: 15px;
                     border-radius: 8px;
@@ -437,7 +414,7 @@ main {
                     height: 100%;
                     width: 100%;
                     background-color: $load-more-bg;
-                    color: white;
+                    color: var(--text-color);
                     border: none;
                     border-radius: 15px;
                     cursor: pointer;
@@ -500,10 +477,10 @@ main {
                 padding: 20px;
 
                 .attraction-card {
-                    background: #fff;
+                    background: var(--text-color);
                     border-radius: 10px;
                     overflow: hidden;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    box-shadow: 0 4px 8px var(--shadow-color);
                     transition: transform 0.3s ease-in-out;
 
                     &:hover {
@@ -530,50 +507,6 @@ main {
                 }
             }
         }
-
-        .accordion {
-            border-radius: 4px;
-            overflow: hidden;
-
-            .accordion-item {
-                border: none;
-
-                .accordion-header {
-                    margin: 0;
-                    padding: 0;
-                    background: $primary-color;
-                    color: var(--white);
-
-                    .accordion-button {
-                        background: $primary-color;
-
-                        &:not(.collapsed) {
-                            background: $primary-color;
-                            color: var(--white);
-                            box-shadow: none;
-                        }
-
-                        &::after {
-                            filter: brightness(0) invert(1);
-                            /* To make the arrow icon white */
-                        }
-                    }
-
-                }
-
-                &:not(:last-child) {
-                    border-bottom: 1px solid var(--white);
-                }
-
-                .accordion-body {
-                    background-color: var(--bg-color);
-                    /* Light grey body, optional */
-                    color: var(--text-color);
-                    border: 1px solid var(--primary-color);
-                }
-            }
-        }
-
     }
 
     @media (max-width: 550px) {
@@ -624,12 +557,8 @@ main {
     }
 }
 
-:root {
-    --bs-accordion-bg: --header-bg-color;
-}
-
 .place-not-found {
-    padding-top: var(--header-height);
+    // padding-top: var(--header-height);
 
     .not-found-container {
         padding: 60px 20px !important;
@@ -671,7 +600,7 @@ main {
 
 
 .loading-place-details {
-    padding-top: var(--header-height);
+    // padding-top: var(--header-height);
 
     .loading-container {
         // padding: 50px 0px;

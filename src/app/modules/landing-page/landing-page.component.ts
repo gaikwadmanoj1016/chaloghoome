@@ -13,13 +13,14 @@ import { FormsModule } from '@angular/forms';
 import { slugify } from '../../utils/slugify';
 import { Category } from '../../admin-panel/master-category-list/master-category-list.component';
 import { Subscription } from 'rxjs';
+import { NgFor } from '@angular/common';
 
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [SharedModule, MatIconModule, RouterModule, CarouselModule, SharedModule, ContactUsComponent, AboutUsComponent, FormsModule],
+  imports: [NgFor, SharedModule, MatIconModule, RouterModule, CarouselModule, SharedModule, ContactUsComponent, AboutUsComponent, FormsModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
@@ -211,13 +212,13 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
           // section.background = "linear-gradient(to right, rgba(0, 119, 182, 0.8), rgba(244, 162, 97, 0.8)), url('../../../assets/imgs/hidden-gems/faroe-islands-2.jpg') center/cover no-repeat";
           section.description = "Explore the world’s most breathtaking destinations, handpicked for adventurous travelers.";
           section.class = "section-new";
-          section.isBackgroundVideo = true;
-          section.backgroundVideoSource = "../../../assets/videos/253436_tiny.mp4";
+          // section.isBackgroundVideo = true;
+          // section.backgroundVideoSource = "../../../assets/videos/253436_tiny.mp4";
         } else if (section.sectionId === 'wonders-of-the-world') {
           section.class = "galactic-wonders";
           section.description = "Embark on an adventure like never before! Discover hidden gems, breathtaking landscapes, and stories waiting to be told";
-          section.isBackgroundVideo = true;
-          section.backgroundVideoSource = "../../../assets/videos/wonders.mp4";
+          // section.isBackgroundVideo = true;
+          // section.backgroundVideoSource = "../../../assets/videos/wonders.mp4";
         } else {
           // section.background = "linear-gradient(to right, rgba(0, 119, 182, 0.8), rgba(244, 162, 97, 0.8)), url("+section.posts[0].imageUrl || section.posts[0].imageUrl+") center/cover no-repeat";
           section.description = "Explore breathtaking destinations, immerse yourself in cultures, and create memories that last a lifetime.";

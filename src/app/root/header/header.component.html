@@ -3,9 +3,19 @@
     <nav #navbar class="navbar navbar-expand-lg navbar-light" [class.shadow]="isScrolled || isMobileView">
         <div class="custom-container bgColor">
             <a class="navbar-brand" routerLink="/home">
-                <img loading="lazy" src="../assets/icons/chalo-ghoome-title-logo.png" alt="Chalo Ghoome logo"
-                    class="image1">
-                <img loading="lazy" src="assets/icons/ChaloGhoome-logo-new.png" alt="Chalo Ghoome logo" class="image2">
+                @if (commonService.selectedTheme === 'dark') {
+                <img loading="lazy" src="https://github.com/gaikwadmanoj1016/Assets/blob/main/001_02psd.jpg?raw=true"
+                    alt="Chalo Ghoome logo" class="image1">
+                <div>
+                    <p class="text logo">
+                        Chalo <strong>Ghoome</strong>
+                    </p>
+                </div>
+                } @else {
+                <img loading="lazy" src="https://github.com/gaikwadmanoj1016/Assets/blob/main/001.jpg?raw=true"
+                    alt="Chalo Ghoome logo" class="image1">
+                }
+                <!-- <img loading="lazy" src="assets/icons/ChaloGhoome-logo-new.png" alt="Chalo Ghoome logo" class="image2"> -->
                 <!-- <picture>
                     <source srcset="assets/icons/ChaloGhoome-logo-new.webp" type="image/webp">
                     <img src="assets/icons/ChaloGhoome-logo-new.png" alt="Description">
@@ -88,8 +98,24 @@
                         <li class="nav-item">
                             <a class="nav-link" routerLink="/places">Places</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" (click)="toggleSidebar($event)">Featured</a>
+                        <li class="nav-item" (clickOutside)="closeDropdown()">
+                            <a class="nav-link" (click)="toggleDropdown($event)">Featured
+                                <span class="icon">
+                                    <!-- Chevron SVG icon -->
+                                    <svg class="chevron" width="16" height="16" viewBox="0 0 24 24">
+                                        <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu" [class.active]="commonService.isDropdownOpen()">
+                                <li #menuItem *ngFor="let section of sections; trackBy: trackByIndex">
+                                    <!-- (click)="scrollTo(section.sectionId); closeSidebar()" -->
+                                    <a class="link" [routerLink]="['places', section.slugifiedSectionName]"
+                                        (click)="closeSidebar()">
+                                        {{ section?.sectionName }}
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLink="/about_us">About</a>
@@ -97,11 +123,17 @@
                         <li class="nav-item">
                             <a class="nav-link" routerLink="/contact_us">Contact</a>
                         </li>
-                        @if (true) {
+                        @if (false) {
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)" routerLink="/login">Sign In</a>
                         </li>
                         }
+                        <li>
+                            <button class="premium-toggle" (click)="toggleTheme()">
+                                <span>{{ commonService.selectedTheme === 'dark' ? '☀️' : '🌙' }}</span>
+                            </button>
+                        </li>
+
                         <!-- <div class="d-flex align-items-center profile-section" (click)="toggleProfileMenu()"
                             (clickOutside)="closeProfileMenu()">
                             <img loading="lazy" src="../assets/avatars/2.jpg" alt="Profile Picture" class="profile-pic">
@@ -126,11 +158,30 @@
         <button class="close-btn left-arrow" (click)="closeSidebar()">&leftarrow;</button>
         <button class="close-btn right-icon" (click)="closeSidebar()">&Cross;</button>
         <ul class="sidebar-menu">
-            <li #menuItem *ngFor="let section of sections; trackBy: trackByIndex">
-                <!-- (click)="scrollTo(section.sectionId); closeSidebar()" -->
+            <!-- (click)="scrollTo(section.sectionId); closeSidebar()" -->
+            <!-- <li #menuItem *ngFor="let section of sections; trackBy: trackByIndex">
                 <a [routerLink]="['places', section.slugifiedSectionName]" (click)="closeSidebar()">
                     {{ section?.sectionName }}
                 </a>
+            </li> -->
+            <li #menuItem class="nav-item" (clickOutside)="closeSidebarDropdown()">
+                <a class="nav-link" (click)="toggleSidebarDropdown($event)">Featured
+                    <span class="icon">
+                        <!-- Chevron SVG icon -->
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24">
+                            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" [class.active]="commonService.isSidebarDropdownOpen()">
+                    <li class="nav-item" *ngFor="let section of sections; trackBy: trackByIndex">
+                        <!-- (click)="scrollTo(section.sectionId); closeSidebar()" -->
+                        <a class="link" [routerLink]="['places', section.slugifiedSectionName]"
+                            (click)="closeSidebar()">
+                            {{ section?.sectionName }}
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li #menuItem class="nav-item">
                 <a class="nav-link" routerLink="/places" (click)="closeSidebar()">Places</a>
@@ -146,6 +197,9 @@
                 <a class="nav-link" href="javascript:void(0)" routerLink="/register">Sign In</a>
             </li>
             }
+            <button class="premium-toggle" (click)="toggleTheme()">
+                <span>{{ commonService.selectedTheme === 'dark' ? '☀️' : '🌙' }}</span>
+            </button>
         </ul>
     </div>
     }

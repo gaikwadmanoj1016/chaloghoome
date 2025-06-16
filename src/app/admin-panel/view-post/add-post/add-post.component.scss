@@ -1,58 +1,79 @@
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
+main {
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
+    position: relative;
 
-    &.show {
-        display: flex;
-    }
+    .content {
+        width: 100%;
 
-    .modal-content {
-        max-width: 800px;
-        margin: auto;
-        background: var(--white);
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 20px 30px;
-
-            h2 {
-                margin: 0;
-                color: var(--black);
-                padding: 0;
-            }
-
-            h3 {
-                margin: 0;
-                color: var(--black);
-                padding: 0;
-            }
-
-            .close {
-                cursor: pointer;
-                font-size: 24px;
-                color: var(--black);
-            }
-        }
-
-        /* General Form Styling */
         form {
+            .header {
+                position: fixed;
+                top: var(--header-height, 60px);
+                background: white;
+                z-index: 500;
+                flex: 1;
+                // margin-bottom: 20px;
+                padding: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: calc(100% - 250px);
+
+                @media (max-width: 768px) {
+                    width: 100% !important;
+                }
+
+                .left {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+
+                    h2 {
+                        margin: 0;
+                        color: var(--black);
+                        padding: 0;
+                    }
+
+                    h3 {
+                        margin: 0;
+                        color: var(--black);
+                        padding: 0;
+                    }
+
+                    .close {
+                        cursor: pointer;
+                        font-size: 34px;
+                        color: var(--black);
+                        text-decoration: none;
+                    }
+                }
+
+                .right {
+
+                    // flex: 1;
+                    /* Add Specialty Button Styling */
+                    .submit-btn {
+                        display: block;
+                        width: 100%;
+                        background: var(--primary-color);
+                        margin: 15px 0;
+                        color: white;
+                        font-weight: bold;
+
+                        &:hover {
+                            background: #218838;
+                        }
+                    }
+                }
+            }
+
+            /* General Form Styling */
 
             .form-body {
-                height: calc(100vh - 150px);
-                overflow: auto;
-                padding: 0 20px;
+                padding-block: calc(var(--header-height) + 30px);
+                // height: calc(100vh - 150px);
+                // overflow: auto;
+                // padding: 0 20px;
                 margin: 0;
             }
 
@@ -81,7 +102,7 @@
                 color: #333;
 
                 &:focus {
-                    border-color: #007bff;
+                    border-color: var(--section-border-color);
                     outline: none;
                     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
                 }
@@ -91,7 +112,7 @@
                 display: inline-block;
                 padding: 10px 20px;
                 margin: 10px 5px 0 0;
-                background: #007bff;
+                background: var(--section-border-color);
                 color: #fff;
                 font-size: 14px;
                 font-weight: 600;
@@ -100,7 +121,7 @@
                 cursor: pointer;
                 transition: background-color 0.3s ease;
                 display: inline-block;
-                background-color: #007bff;
+                background-color: var(--section-border-color);
                 color: white;
                 border: none;
                 padding: 10px 20px;
@@ -141,7 +162,7 @@
 
             // button {
             //     display: inline-block;
-            //     background-color: #007bff;
+            //     background-color: var(--section-border-color);
             //     color: white;
             //     border: none;
             //     padding: 10px 20px;
@@ -161,7 +182,7 @@
                 width: 100%;
                 margin: 0;
                 background: #f2f2f2;
-                border: 2px solid #dcdcdc;
+                border: 2px solid var(--shadow-color);
 
                 .add-icon {
                     color: black;
@@ -267,55 +288,69 @@
                 }
             }
         }
-
-        /* Add Specialty Button Styling */
-        .submit-btn {
-            display: block;
-            width: 100%;
-            background: #28a745;
-            margin: 15px 0;
-            color: white;
-            font-weight: bold;
-
-            &:hover {
-                background: #218838;
-            }
-        }
     }
 }
 
 .relative {
     position: relative;
 
-    .suggestions {
-        position: absolute;
-        width: 100%;
-        top: calc(100% - 20px);
-        background: var(--bg-color);
-        border: 1px solid #ccc;
-        margin-top: 5px;
-        list-style: none;
-        padding: 0;
-        max-height: 150px;
-        overflow-y: auto;
-        z-index: 1000;
+    .label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-        li {
-            padding: 8px;
-            cursor: pointer;
-            color: var(--white);
+        .cta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
 
-            &:hover {
-                background-color: var(--secondary-bg-color);
+            .pencil-icon {
+                width: 30px;
+                font-size: 24px;
+                padding: 5px;
+                border-radius: 6px;
+                margin-bottom: 6px;
+                aspect-ratio: 1;
+                background-color: transparent !important;
+                border: 1px solid var(--primary-color) !important;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
             }
         }
     }
+
+    // .suggestions {
+    //     // position: absolute;
+    //     width: 100%;
+    //     // top: calc(100% - 20px);
+    //     // background: black;
+    //     border: 1px solid #ccc;
+    //     margin-top: 5px;
+    //     list-style: none;
+    //     padding: 0;
+    //     max-height: 150px;
+    //     overflow-y: auto;
+    //     // z-index: 1000;
+
+    //     li {
+    //         padding: 8px;
+    //         cursor: pointer;
+    //         color: var(--text-color);
+
+    //         &:hover {
+    //             background-color: var(--secondary-bg-color);
+    //         }
+    //     }
+    // }
 
     .selected-categories,
     .selected-tags {
         .tag {
             display: inline-block;
-            background-color: #007bff;
+            background-color: var(--section-border-color);
             color: white;
             padding: 4px 10px;
             margin: 5px 5px 0 0;
@@ -332,5 +367,50 @@
                 cursor: pointer;
             }
         }
+    }
+}
+
+// category modal
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+
+    .category-list,
+    .tag-list {
+        max-height: 400px;
+        overflow-y: auto;
+        list-style: none;
+        padding: 0;
+
+        li {
+            margin-bottom: 5px;
+        }
+    }
+
+    button {
+        margin-top: 10px;
+        float: right;
     }
 }

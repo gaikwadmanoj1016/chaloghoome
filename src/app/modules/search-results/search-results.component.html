@@ -88,7 +88,7 @@
                                 alt="{{ post.postName }} {{ post.location }}" />
                             <h4 class="place-name" [title]="post.postName">{{ post.postName | truncate: 20 }}</h4>
                             <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
-                            <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p>
+                            <p class="summary" [innerHtml]="commonService.sanitizeInnerHtml(post.summary, 100)"></p>
                             <button type="button" class="btn btn-center">View Details</button>
                         </a>
                     </div>

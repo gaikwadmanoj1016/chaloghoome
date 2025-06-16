@@ -36,10 +36,10 @@ export class AllPostComponent {
         this.places = response.data;
         if (this.places && this.places.length > 0) {
           this.places.forEach((item: any) => {
-            item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);
+            item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg) || '../../../assets/imgs/image-placeholder.jpg';
           });
           // this.commonService.setMetaData(`${this.places.length} Places information`, {summary: "Explore breathtaking destinations, immerse yourself in cultures, and create memories that last a lifetime.", originalThumbnailImg: this.places[0].thumbnailImg});
-          this.commonService.setMetaData(`Top Places List – Explore Destinations, Attractions & Hidden Gems`, { summary: "Discover your next adventure with our friendly places list — explore top travel spots, hidden gems, and must-visit destinations in one click!", originalThumbnailImg: this.places[0].thumbnailImg });
+          this.commonService.setMetaData(`Places – Explore Destinations, Attractions & Hidden Gems`, { summary: "Discover your next adventure with our friendly places list — explore top travel spots, hidden gems, and must-visit destinations in one click!", originalThumbnailImg: this.places[0].imageUrl });
         }
         this.filteredPlaces = [...this.places];
       } else {
@@ -76,7 +76,7 @@ export class AllPostComponent {
     })
   }
   public showHideAddPostForm() {
-    this.showHidePostForm = !this.showHidePostForm;
+    // this.showHidePostForm = !this.showHidePostForm;
   }
   public closePostPopup() {
     this.showHidePostForm = false;

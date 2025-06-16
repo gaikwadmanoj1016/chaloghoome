@@ -1,13 +1,11 @@
-import { Component, HostListener, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, Renderer2, signal } from '@angular/core';
 import { ApiService } from './shared/services/api.service';
 import { CommonService } from './shared/services/common.service';
 import { HeaderComponent } from './root/header/header.component';
 import { FooterComponent } from './root/footer/footer.component';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { slugify } from './utils/slugify';
-// import gsap from 'gsap';
-// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ActivatedRoute, NavigationEnd, Router, Event as RouterEvent, RouterOutlet } from '@angular/router';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { filter } from 'rxjs';
 
 interface UserInterface {
   id: number,
@@ -79,7 +77,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   user = this.users()[1];
   profileModal: boolean = false;
-  constructor(public commonService: CommonService, private apiService: ApiService, private route: ActivatedRoute) { }
+  constructor(public commonService: CommonService, private router: Router, private apiService: ApiService, private route: ActivatedRoute, private renderer: Renderer2) { }
   // cards = Array.from({ length: 6 }, (_, i) => ({
   //   title: `Card ${i + 1}`,
   //   content: `Content for card ${i + 1}`
@@ -96,11 +94,36 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     // this.getSectionList();
+    this.setTheme(this.commonService.selectedTheme); // force apply on load
+    this.router.events
+      .pipe(
+        filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd)
+      )
+      .subscribe((event: NavigationEnd) => {
+        // 🔥 Logic here - runs every time route changes
+        console.log('Route changed to:', event.urlAfterRedirects);
+        this.commonService.currentRoute = event.urlAfterRedirects;
+      });
     this.route.params.subscribe((param) => {
       console.log(param);
-      
     })
     this.getSections();
+  }
+
+  setTheme(theme: 'light' | 'dark'): void {
+    this.commonService.selectedTheme = theme;
+
+    // Remove both if present
+    this.renderer.removeClass(document.body, 'light-theme');
+    this.renderer.removeClass(document.body, 'dark-theme');
+
+    // Add selected
+    this.renderer.addClass(document.body, `${theme}-theme`);
+  }
+
+  toggleTheme(): void {
+    const nextTheme = this.commonService.selectedTheme === 'light' ? 'dark' : 'light';
+    this.setTheme(nextTheme);
   }
 
   private getSections() {

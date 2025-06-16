@@ -6,16 +6,9 @@
 ></app-progressive-image> -->
 
 <main>
-    <div class="go-to-top" [class.show]="isScrolled">
-        <button type="button" class="up-btn" style="--i:#FF9966;--j:#FF5E62" (click)="commonService.scrollToTop()">
-            <span class="icon">
-                &uparrow;
-            </span>
-        </button>
-    </div>
     <section class="hero-section">
         <div class="background">
-            <video autoplay muted playsinline loop>
+            <video autoplay muted plays-inline loop>
                 <source #myVideo src="../../../assets/videos/6981411-hd_1920_1080_25fps.mp4" type="video/mp4">
             </video>
             <div class="overlay"></div> <!-- Add this -->
@@ -23,11 +16,10 @@
 
         <div class="hero-container">
             <span class="title-line">
-                <!-- <span class="emoji">🌍</span> -->
                 <h1 class="headline">Travel Smarter</h1>
             </span>
             <h2 class="headline small">Explore Better with Chalo Ghoome!</h2>
-            <p class="para-md">Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and
+            <p class="para-sm">Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and
                 travelers. Our platform serves as a hub where tourists can easily access a wealth of information about
                 tour guides,
                 their services, and available packages. Conversely, tour guides can efficiently showcase their
@@ -121,15 +113,6 @@
             <div class="right">
                 <div class="card-grid">
                     @for (post of selectedRegionPlaces.places; track $index) {
-                    <!-- <div class="place-card">
-                        <div class="image-container">
-                            <img [src]="place.image" [alt]="place.name" />
-                        </div>
-                        <div class="info">
-                            <h4>{{ place.name }}</h4>
-                            <p>{{ place.description }}</p>
-                        </div>
-                    </div> -->
                     <div class="card">
                         <img [src]="post.image" [alt]="post.name" />
                         <h4 class="place-name" [title]="post.name">{{ post.name | truncate: 20 }}</h4>
@@ -162,42 +145,19 @@
         </div>
     </section>
     }
-    <!-- 
-    <div class="background-image-div">
-        <small class="byline">
-            Image by <a href="https://unsplash.com" target="_blank">Unsplash</a>
-        </small>
-    </div>
-    <svg height="0" width="0" class="svg-clip">
-        <defs>
-            <clipPath id="rect-clip" clipPathUnits="objectBoundingBox">
-
-                <path d="
-                    M0,0.3333 
-                    Q0.25,0 0.5,0.2 
-                    Q0.75,0.4 1,0.1333 
-                    L1,0.75 
-                    Q0.75,0.9333 0.5,0.8 
-                    Q0.25,0.6666 0,0.8666 
-                    Z" />
-            </clipPath>
-        </defs>
-    </svg>
-     -->
-<!-- 
-    <svg width="100%" height="700" viewBox="0 0 3000 700" xmlns="http://www.w3.org/2000/svg"
+    <!-- important ** use in future -->
+    <!-- <svg width="100%" height="700" viewBox="0 0 3000 700" xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid slice">
-
         <defs>
             <clipPath id="rect-clip">
-                <path id="wavePath" fill="none" stroke="none"
-                    d="M 0 350 C 2000 560 2000 140 3000 350 L 3000 700 L 0 700 L 0 350">
-                    <animate attributeName="d" dur="5s" repeatCount="indefinite" values="
-            M 0 350 C 2000 560 2000 140 3000 350 L 3000 700 L 0 700 L 0 350;
-            M 0 350 C 400 140 400 560 3000 350 L 3000 700 L 0 700 L 0 350;
-            M 0 350 C 2000 560 2000 140 3000 350 L 3000 700 L 0 700 L 0 350
-          " />
-                </path>
+                <path d="
+                    M 0 100 
+                    C 500 0 1000 200 1500 100 
+                    C 2000 0 2500 200 3000 100 
+                    L 3000 600 
+                    C 2500 700 2000 500 1500 600 
+                    C 1000 700 500 500 0 600 
+                    Z" />
             </clipPath>
         </defs>
 
@@ -216,8 +176,8 @@
                     </video>
                 </div>
                 }
-                <h2 class="section-title"> 
-                    <a class="link" [routerLink]="['/places', section?.slugifiedSectionName]">{{section?.sectionName}}</a> 
+                <h2 class="section-title">
+                    <a class="link" [routerLink]="['/places', section?.slugifiedSectionName]">{{section?.sectionName}}</a>
                 </h2>
                 @if (section?.description) {
                 <p class="section-description"> {{section?.description}} </p>

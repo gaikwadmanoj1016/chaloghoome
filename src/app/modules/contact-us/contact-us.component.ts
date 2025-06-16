@@ -16,7 +16,9 @@ export class ContactUsComponent implements OnInit {
   constructor(private apiService: ApiService, public commonService: CommonService) { }
   ngOnInit(): void {
     this.commonService.setCanonicalURL();
+    this.commonService.setMetaData("Contact us", { summary: `Welcome to Chalo Ghoome, the premier destination for travel enthusiasts worldwide. We're here to fuel your wanderlust and connect you with extraordinary experiences that transcend the ordinary.` });
   }
+
   onSubmit(form: any) {
     if (form.valid) {
       console.log(form.value);
