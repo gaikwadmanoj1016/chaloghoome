@@ -134,9 +134,9 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
 
   private getPostBySectionId(sectionId?: number) {
     // localStorage.setItem('sections', JSON.stringify(this.commonService.sections));
-    // let sectionId = this.commonService.sections.find((item: any) => item.sectionName.trim().toLowerCase() === this.sectionName.trim().toLowerCase())?.id;
+    sectionId = this.commonService.sections.find((item: any) => item.sectionName.trim().toLowerCase() === this.sectionName.trim().toLowerCase())?.id;
     // // this.list = this.commonService.wonders;
-    // console.log("section id : ", sectionId);
+    console.log("section id : ", sectionId);
 
     if (sectionId) {
       this.apiRequest.getPostBySectionId(sectionId).subscribe((response) => {

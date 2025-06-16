@@ -154,7 +154,8 @@ main {
             }
         }
 
-        h2, h3 {
+        h2,
+        h3 {
             text-align: left !important;
         }
     }
@@ -333,7 +334,7 @@ main {
                 .feature-card,
                 .guide-card {
                     background: var(--primary-color);
-                    color: var(--text-color) !important;
+                    color: var(--white) !important;
                     padding: 15px;
                     border-radius: 8px;
                     text-align: left;
@@ -341,7 +342,7 @@ main {
 
                     h3 {
                         text-align: center;
-                        color: var(--text-color) !important;
+                        color: var(--white) !important;
                     }
 
                     h4 {
@@ -438,6 +439,7 @@ main {
                     margin: 10px 0;
                     padding: 10px;
                     border-radius: 5px;
+                    color: var(--white);
                 }
             }
         }
@@ -659,10 +661,10 @@ main {
 
 .share-button {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 50px;
+    left: 20px;
     z-index: 1000;
-    background-color: var(--primary-color);
+    background-color: var(--shadow-color);
     color: var(--text-color);
     border: none;
     padding: 12px 20px;
@@ -672,7 +674,9 @@ main {
     transition: background-color 0.3s ease;
 
     &:hover {
-        background-color: var(--header-bg-color);
+        // background-color: var(--header-bg-color);
+        box-shadow: 0 0 10px var(--shadow-color);
+        background: rgba(var(--black-rgba), 0.7);
     }
 }
 

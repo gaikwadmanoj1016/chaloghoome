@@ -4,7 +4,7 @@ main {
   .go-to-top {
     position: fixed;
     // display: none;
-    right: 40px;
+    right: 20px;
     bottom: -100px;
     z-index: 10;
     background: var(--header-bg-color);
@@ -46,7 +46,7 @@ main {
     }
 
     &.show {
-      bottom: 40px;
+      bottom: 50px;
       transform: scale(1);
     }
   }

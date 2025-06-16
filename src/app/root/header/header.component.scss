@@ -122,7 +122,7 @@ header {
                     display: flex;
                     gap: 20px;
                     align-items: center;
-                    padding: 0 30px;
+                    padding: 0 0px;
                     border-radius: 100px;
                     transition: all 0.3;
 
@@ -382,8 +382,8 @@ header {
 
         .premium-toggle {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 50px;
+            right: 40px;
             margin-top: 20px;
             float: right;
         }
@@ -762,7 +762,7 @@ header {
 }
 
 .premium-toggle {
-    padding: 12px 24px;
+    padding: 12px;
     font-size: 16px;
     font-weight: 600;
     color: var(--text-color);
