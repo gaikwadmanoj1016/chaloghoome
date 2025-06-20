@@ -157,6 +157,26 @@ export class ApiService {
       })
     )
   }
+  public getTopCategories(limit: number) {
+    let API = environment.apiUrl + 'api/posts/getTopCat?limit=' + limit;
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
+  public getAllplacesByCategory(catName: string) {
+    let API = environment.apiUrl + 'api/posts/getPlacesByCategory/' + catName;
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
   // common
 
   //#region sections

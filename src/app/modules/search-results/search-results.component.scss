@@ -82,14 +82,53 @@ section {
 .recommended {
     margin-top: 30px;
 
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // margin: 0 20px 10px;
+
+        h5{
+            margin: 0;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 8px;
+
+            .scroll-btn {
+                background: linear-gradient(135deg, #f4a261, #e76f51);
+                border: none;
+                color: white;
+                border-radius: 50%;
+                width: 34px;
+                height: 34px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                cursor: pointer;
+                transition: transform 0.2s ease;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+
+                i {
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+
     .scroll-container {
         display: flex;
         align-items: center;
         position: relative;
         margin-bottom: 40px;
-        padding: 0 20px;
+        // padding: 0 20px;
 
-        @media (max-width: 550px) {
+        @media (max-width: 600px) {
             padding: 0 10px;
         }
     }
@@ -114,59 +153,59 @@ section {
         }
     }
 
-    .scroll-btn {
-        background: none;
-        border: none;
-        font-size: 24px;
-        font-weight: 800;
-        color: var(--black);
-        background-color: var(--highlight-color);
-        border-radius: 100px;
-        // width: 60px;
-        aspect-ratio: 1;
-        display: flex;
-        // align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        padding: 10px;
-        transition: opacity 0.3s ease;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        opacity: 0.8;
+    // .scroll-btn {
+    //     background: linear-gradient(135deg, #f4a261, #e76f51);
+    //     border: none;
+    //     font-size: 18px;
+    //     color: #fff;
+    //     border-radius: 50%;
+    //     width: 40px;
+    //     height: 40px;
+    //     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //     cursor: pointer;
+    //     transition: all 0.3s ease-in-out;
+    //     position: absolute;
+    //     top: 50%;
+    //     transform: translateY(-50%);
+    //     opacity: 0.9;
+    //     // background: rgba(255, 255, 255, 0.6);
+    //     // backdrop-filter: blur(6px);
 
-        &:hover {
-            opacity: 1;
-        }
 
-        &.left {
-            left: -25px;
-            z-index: 1;
+    //     &:hover {
+    //         transform: translateY(-50%) scale(1.1);
+    //         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    //     }
 
-            @media (max-width: 990px) {
-                left: 0;
-            }
-        }
+    //     &.left {
+    //         left: -15px;
 
-        &.right {
-            right: -25px;
-            z-index: 1;
+    //         @media (max-width: 990px) {
+    //             left: 0;
+    //         }
+    //     }
 
-            @media (max-width: 990px) {
-                right: 0;
-            }
-        }
+    //     &.right {
+    //         right: -15px;
 
-        @media (max-width: 768px) {
-            display: none;
-        }
-    }
+    //         @media (max-width: 990px) {
+    //             right: 0;
+    //         }
+    //     }
+
+    //     @media (max-width: 768px) {
+    //         display: none;
+    //     }
+    // }
 
     .card {
         scroll-snap-align: start;
         flex: 0 0 auto;
 
-        @media (max-width: 550px) {
+        @media (max-width: 600px) {
             width: 300px !important;
         }
     }

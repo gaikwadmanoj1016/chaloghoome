@@ -55,7 +55,7 @@
 //         }
 //     }
 
-//     @media (max-width: 550px) {
+//     @media (max-width: 600px) {
 //         .place-info {
 //             padding: 15px 15px;
 //             display: flex;
@@ -293,7 +293,7 @@
         height: 320px;
     }
 
-    @media (max-width: 550px) {
+    @media (max-width: 600px) {
         width: 265px;
         height: 280px;
     }
@@ -319,7 +319,7 @@
             margin: 0;
             text-wrap: auto;
 
-            @media (max-width: 550px) {
+            @media (max-width: 600px) {
                 font-size: 1.3rem;
             }
         }
@@ -331,7 +331,7 @@
             line-height: 1.5;
             text-wrap: auto;
 
-            @media (max-width: 550px) {
+            @media (max-width: 600px) {
                 font-size: 0.9rem;
             }
         }
@@ -354,7 +354,7 @@
                 transform: scale(1.1);
             }
 
-            @media (max-width: 550px) {
+            @media (max-width: 600px) {
                 padding: 8px 16px;
                 font-size: 0.9rem;
             }

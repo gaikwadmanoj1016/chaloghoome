@@ -380,8 +380,8 @@
                     <div class="gallery-container">
                         <div class="gallery-grid" id="galleryGrid">
                             <ng-container *ngIf="checkHighlightExist()">
-                                <div class="image-wrapper lastIndex" *ngFor="let highlight of highlights; let i = index"
-                                    >
+                                <div class="image-wrapper lastIndex"
+                                    *ngFor="let highlight of highlights; let i = index">
                                     <!-- [class.lastIndex]="checkLastIndex(i)" -->
                                     <app-progressive-image
                                         [smallImage]="'../../../../../assets/imgs/image-placeholder.jpg'"
@@ -684,38 +684,81 @@
         </section> -->
         </div>
         <div class="right">
-            @if (section?.posts && section.posts.length > 0) {
-            <section>
-                <div class="container">
-                    <h4 class="section-title" style="text-align: start;"> {{section.sectionName}} </h4>
-                    <div class="section-details hideScrollbar">
-                        <ul>
-                            @for (post of section?.posts; track $index) {
-                            <li class="item">
-                                <div class="places">
-                                    <a class="link image-wrapper" [routerLink]="['/place', post.slugifiedPostName]">
-                                        <img *ngIf="post.thumbnailImg"
-                                            [src]="commonService.appendAssetUrl(post.thumbnailImg)"
-                                            [alt]="post.postName + post.summary" class="post-image" />
-                                    </a>
-                                    <div class="post-info">
-                                        <a class="link" [routerLink]="['/place', post.slugifiedPostName]">
-                                            <p class="para-md post-name">
-                                                {{ post.postName }}
-                                            </p>
-                                            <p class="para-xs post-location">{{ post.location }}</p>
-                                        </a>
-                                        <!-- <p class="para-sm post-location">{{ post.location }}</p> -->
-                                        <!-- <p class="para-sm post-summary">{{ post.summary | truncate: 100 }}</p> -->
-                                    </div>
-                                </div>
-                            </li>
-                            }
-                        </ul>
+            <div class="top-categories">
+                <section>
+                    <div class="container">
+                        <h4 class="section-title" style="text-align: start;"><a routerLink="/travel-categories">Top Categories</a> </h4>
+                        <div class="categories-details hideScrollbar">
+                            <ul>
+                                @for (category of topCategories; track $index) {
+                                    <li class="item">
+                                        <a class="link" [routerLink]="['/travel-category', category.slugifiedCatName]"> {{category.catName}} </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </section>
-            }
+                </section>
+            </div>
+            <div class="sections">
+                @if (!sectionLoader()) {
+                @if (section?.posts && section.posts.length > 0) {
+                <section>
+                    <div class="container">
+                        <h4 class="section-title" style="text-align: start;"> {{section.sectionName}} </h4>
+                        <div class="section-details hideScrollbar">
+                            <ul>
+                                @for (post of section?.posts; track $index) {
+                                <li class="item">
+                                    <div class="places">
+                                        <a class="link image-wrapper" [routerLink]="['/place', post.slugifiedPostName]">
+                                            <img *ngIf="post.thumbnailImg"
+                                                [src]="commonService.appendAssetUrl(post.thumbnailImg)"
+                                                [alt]="post.postName + post.summary" class="post-image" />
+                                        </a>
+                                        <div class="post-info">
+                                            <a class="link" [routerLink]="['/place', post.slugifiedPostName]">
+                                                <p class="para-md post-name">
+                                                    {{ post.postName }}
+                                                </p>
+                                                <p class="para-xs post-location">{{ post.location }}</p>
+                                            </a>
+                                            <!-- <p class="para-sm post-location">{{ post.location }}</p> -->
+                                            <!-- <p class="para-sm post-summary">{{ post.summary | truncate: 100 }}</p> -->
+                                        </div>
+                                    </div>
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                }
+                } @else {
+                <!-- Section Skeleton Loader -->
+                <section class="section-skeleton">
+                    <div class="container">
+                        <div class="skeleton-title shimmer"></div>
+
+                        <div class="section-details hideScrollbar">
+                            <ul>
+                                @for (item of [1, 2, 3, 4, 5]; track $index) {
+                                <li class="item skeleton-card shimmer">
+                                    <div class="places">
+                                        <div class="image-wrapper skeleton-image"></div>
+                                        <div class="post-info">
+                                            <div class="skeleton-line title-line"></div>
+                                            <div class="skeleton-line location-line"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                }
+            </div>
         </div>
     </div>
 </main>

@@ -34,6 +34,9 @@
                     <ul class="custom-navbar-nav">
                         <!-- Header -->
                         <li class="nav-item">
+                            <a class="nav-link" routerLink="/travel-categories">Travel Categories</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" routerLink="/places">Places</a>
                         </li>
                         <li class="nav-item" (clickOutside)="closeDropdown()">
@@ -128,6 +131,9 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li #menuItem class="nav-item">
+                <a class="nav-link" routerLink="/travel-categories" (click)="closeSidebar()">Travel Categories</a>
             </li>
             <li #menuItem class="nav-item">
                 <a class="nav-link" routerLink="/places" (click)="closeSidebar()">Places</a>

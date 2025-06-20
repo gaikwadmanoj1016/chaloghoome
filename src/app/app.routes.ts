@@ -22,6 +22,8 @@ import { AllPostComponent } from './admin-panel/all-post/all-post.component';
 import { GuideProfileComponent } from './modules/guide-profile/guide-profile.component';
 import { EditProfileComponent } from './modules/edit-profile/edit-profile.component';
 import { AddPostComponent } from './admin-panel/view-post/add-post/add-post.component';
+import { PlaceByCategoryComponent } from './modules/categories/place-by-category/place-by-category.component';
+import { CategoriesComponent } from './modules/categories/categories.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -54,7 +56,8 @@ export const routes: Routes = [
     { path: 'places', component: PlaceListComponent },
     { path: 'place-details', component: PlaceDetailsComponent },
     { path: 'search/:query', component: SearchResultsComponent }, // Search route
-    
+    { path: 'travel-categories', component: CategoriesComponent },
+    { path: 'travel-category/:catName', component: PlaceByCategoryComponent },
     // { path: 'sitemap.xml', component: SitemapComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect to login by default
     { path: '**', component: NotFoundComponent }

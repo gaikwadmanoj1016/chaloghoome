@@ -13,6 +13,7 @@ import { NgIf } from '@angular/common';
   styleUrl: './search-bar.component.scss'
 })
 export class SearchBarComponent implements OnInit {
+  @Input() customClass: string = '';
   @Input() isScrolled: boolean = false;
   @Input() defaultExpanded: boolean = false;
   @Input() suggestionsOpening: 'up' | 'down' = 'down';
@@ -23,7 +24,7 @@ export class SearchBarComponent implements OnInit {
   searchResults: any[] = [];
   private socket!: WebSocket;
   isSocketConnected: boolean = false;
-  staticPlaces: string[] = [];
+  staticPlaces: any[] = [];
   searchQuery: string = '';
   showSuggestions = false;
   isExpanded = signal(false);
@@ -42,6 +43,11 @@ export class SearchBarComponent implements OnInit {
       ]
     }
   ];
+
+  readonly HISTORY_KEY = 'userSearchHistory';
+  maxHistoryItems = 10; // Optional: limit history size
+  pendingQuery: string = '';
+
   constructor(public commonService: CommonService) { }
 
   @HostListener('document:keydown', ['$event'])
@@ -63,18 +69,32 @@ export class SearchBarComponent implements OnInit {
     })
   }
 
+  onSearchFocus() {
+    this.connectWebsocket();
+
+    // If there's already a query, re-trigger input change manually
+    if (this.searchQuery && this.searchQuery.trim().length > 0) {
+      this.onInputChange();
+    }
+  }
 
   connectWebsocket() {
     this.showSuggestions = true;
-    this.staticPlaces = this.commonService.places;
+    // this.staticPlaces = this.commonService.places;
+    this.fetchStaticPlaceList();
+    this.suggestionsFetched.set(true);
     if (!this.isSocketConnected) {
-
       // this.socket = new WebSocket("wss://api.chaloghoome.com/adminService/ws/search");
       this.socket = new WebSocket(environment.webSocketUrl + "ws/search");
 
       this.socket.onopen = () => {
         console.log("✅ WebSocket connected");
         this.isSocketConnected = true;
+        // Send pending query if available
+        if (this.pendingQuery && this.pendingQuery.length > 2) {
+          this.socket.send(this.pendingQuery);
+          this.pendingQuery = '';
+        }
       };
 
       this.socket.onerror = (error) => {
@@ -84,26 +104,24 @@ export class SearchBarComponent implements OnInit {
 
       this.socket.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        // Call a function to update your UI with `data`
-        console.log(data);
-        // Example: 'data' is the array of post objects received from WebSocket
+
         const grouped = data.reduce((acc: any, item: any) => {
           const section = item.section || 'Other';
-
-          if (!acc[section]) {
-            acc[section] = [];
-          }
-
+          if (!acc[section]) acc[section] = [];
           acc[section].push(item);
           return acc;
         }, {} as Record<string, any[]>);
 
-        // Convert to array of groups (if needed)
-        this.filteredSuggestions = Object.keys(grouped).map(key => ({
+        const updatedSuggestions = Object.keys(grouped).map(key => ({
           label: key,
           list: grouped[key]
         }));
-        console.log(this.filteredSuggestions);
+
+        // Show skeleton for 1 more second before updating
+        setTimeout(() => {
+          this.filteredSuggestions = updatedSuggestions;
+          this.suggestionsFetched.set(true); // ✅ show real content
+        }, 500); // 500 ms = 0.5 second
       };
     }
   }
@@ -120,76 +138,78 @@ export class SearchBarComponent implements OnInit {
     this.searchInput?.nativeElement?.focus();
   }
 
+  // onInputChange() {
+  //   const query = this.searchQuery.toLowerCase().trim();
+  //   const trimmed = query.trim();
 
+  //   if (trimmed.length > 2 && this.socket.readyState === WebSocket.OPEN) {
+  //     console.log("📤 Sending to WebSocket:", trimmed);
+  //     this.socket.send(trimmed);
+  //   } else if (trimmed.length <= 2) {
+  //     this.staticPlaces = this.commonService.places.filter(
+  //       place => place.toLowerCase().includes(query)
+  //     );
+  //   }
+
+  // }
+  // onInputChange() {
+  //   const query = this.searchQuery.toLowerCase().trim();
+  //   const trimmed = query.trim();
+
+  //   this.suggestionsFetched.set(false); // reset
+
+  //   if (trimmed.length > 2 && this.socket.readyState === WebSocket.OPEN) {
+  //     this.socket.send(trimmed);
+  //   } else if (trimmed.length <= 2) {
+  //     this.staticPlaces = this.commonService.places.filter(
+  //       place => place.toLowerCase().includes(query)
+  //     );
+  //   }
+  // }
   onInputChange() {
     const query = this.searchQuery.toLowerCase().trim();
     const trimmed = query.trim();
-
+    this.suggestionsFetched.set(false);
     if (trimmed.length > 2 && this.socket.readyState === WebSocket.OPEN) {
-      console.log("📤 Sending to WebSocket:", trimmed);
       this.socket.send(trimmed);
     } else if (trimmed.length <= 2) {
-      this.staticPlaces = this.commonService.places.filter(
-        place => place.toLowerCase().includes(query)
-      );
+      this.fetchStaticPlaceList();
+      this.suggestionsFetched.set(true);
+    } else {
+      // Socket not ready: store for later
+      this.pendingQuery = query;
     }
-
-    // if (query.length > 0) {
-    //   if (this.suggestionsFetched()) {
-    //     this.filteredSuggestions = this.filterData(query);
-    //     console.log(this.filteredSuggestions);
-    //   } else {
-    //     this.filteredSuggestions = this.commonService.places.filter(
-    //       place => place.toLowerCase().includes(query)
-    //     );
-    //     if (this.apiCallCount === 0) {
-    //       this.getAllSuggestions(query);
-    //     }
-    //   }
-    //   this.showSuggestions = true;
-    // } else {
-    //   this.filteredSuggestions = [];
-    //   this.showSuggestions = false;
-    // }
   }
 
-  // private getAllSuggestions(query: string) {
-  //   this.apiCallCount++;
-  //   this.apiService.getAllSugestions().subscribe((response: any) => {
-  //     if (response.result) {
-  //       this.allSuggestions = [];
+  private fetchStaticPlaceList() {
+    // ✅ Fetch recent history
+    const history = this.getSearchHistory();
 
-  //       if (response.data && Object.keys(response.data).length > 0) {
-  //         const existingLabels = new Set();
+    // ✅ Static popular places (most searched)
+    const popular = this.commonService.places;
 
-  //         for (let key in response.data) {
-  //           const label = convertSlugToNormal(key); // e.g. "categories" → "Categories"
+    // ✅ Build combined list for UI
+    this.staticPlaces = [];
 
-  //           if (!existingLabels.has(label)) {
-  //             this.allSuggestions.push({
-  //               label: label,
-  //               list: response.data[key]
-  //             });
+    if (history.length > 0) {
+      this.staticPlaces.push({
+        label: 'Recent',
+        list: history.map(h => ({ postName: h }))
+      });
+    }
 
-  //             existingLabels.add(label); // Mark as added
-  //           } else {
-  //             console.warn(`Duplicate label skipped: ${label}`);
-  //           }
-  //         }
+    if (popular.length > 0) {
+      this.staticPlaces.push({
+        label: 'Most Searched',
+        list: popular.map(p => ({ postName: p }))
+      });
+    }
 
-  //         // this.suggestionsFetched.set(true);
-  //         // this.filteredSuggestions = this.filterData(query);
-  //       }
-
-  //       console.log(this.allSuggestions);
-  //     } else {
-
-  //     }
-  //   })
-  // }
+  }
 
   onSearch(): void {
     if (this.searchQuery) {
+      this.saveToHistory(this.searchQuery); // ✅ Save to localStorage
       this.commonService.navigateTo('/search/' + this.searchQuery);
       this.showSuggestions = false;
     }
@@ -197,6 +217,7 @@ export class SearchBarComponent implements OnInit {
 
   selectSuggestion(suggestion: string) {
     this.searchQuery = suggestion;
+    this.saveToHistory(suggestion); // ✅ Save to localStorage
     this.showSuggestions = false;
     this.onSearch(); // Optional: auto-submit
   }
@@ -213,6 +234,31 @@ export class SearchBarComponent implements OnInit {
   public collapseSearchBar() {
     this.isExpanded.set(false);
     this.searchQuery = '';
+  }
+
+
+  // user history 
+
+  saveToHistory(query: string) {
+    if (!query) return;
+
+    const history = this.getSearchHistory();
+    const updatedHistory = [query, ...history.filter(q => q !== query)];
+
+    if (updatedHistory.length > this.maxHistoryItems) {
+      updatedHistory.splice(this.maxHistoryItems); // Trim to limit
+    }
+
+    localStorage.setItem(this.HISTORY_KEY, JSON.stringify(updatedHistory));
+  }
+
+  getSearchHistory(): string[] {
+    const stored = localStorage.getItem(this.HISTORY_KEY);
+    return stored ? JSON.parse(stored) : [];
+  }
+
+  clearHistory() {
+    localStorage.removeItem(this.HISTORY_KEY);
   }
 
 }

@@ -1,0 +1,33 @@
+<section class="category-section">
+    <div class="container">
+        <h2 class="main-title">Top Categories</h2>
+
+        <div class="category-grid">
+            <!-- @for loop for each category -->
+            @for (category of topCategoriesData; track $index) {
+            <div class="category-card">
+                <h3 class="category-title">
+                    <a [routerLink]="['/travel-category', category.slugifiedCatName]">{{ category.catName }}</a>
+                </h3>
+                <div class="card-grid">
+                    @for (post of category.items; track $index) {
+                    <div class="card">
+                        <a class="link" [routerLink]="['/place', post.slugifiedPostName]">
+                            <img [src]="post.imageUrl" alt="{{ post.postName }} {{post.location}}" />
+                            <h4 class="place-name" [title]="post.postName">
+                                <a>{{ post.postName | truncate: 20 }}</a>
+                            </h4>
+                            <p class="location" [title]="post.location">{{ post.location | truncate: 30 }}</p>
+                            <!-- <p class="summary" [title]="post.summary">{{ post.summary | truncate: 100 }}</p> -->
+                            <p class="summary" [innerHTML]="commonService.sanitizeInnerHtml(post?.summary, 100)">
+                            </p>
+                            <button type="button" class="btn btn-center">View Details</button>
+                        </a>
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

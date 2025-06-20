@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, Inject } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, Inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ImagePreviewComponent } from '../../../../shared/components/image-preview/image-preview.component';
 import { ActivatedRoute, NavigationEnd, Router, Event as RouterEvent, RouterLink, RouterOutlet } from '@angular/router';
@@ -89,6 +89,8 @@ export class PlaceDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   section: any;
   sectionName: any = "Most Visited Places";
   slugify = slugify;
+  sectionLoader = signal(false);
+  topCategories: any[] = [];
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
@@ -176,6 +178,8 @@ export class PlaceDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
             this.addStructuredData(this.placeDetails);
             this.setGallary();
             this.commonService.scrollToTop();
+            this.sectionLoader.set(true);
+            this.getTopCategories();
             setTimeout(() => {
               this.getPostBySectionId(this.placeDetails?.sectionId);
             }, 2000);
@@ -202,9 +206,9 @@ export class PlaceDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
     sectionId = this.commonService.sections.find((item: any) => item.sectionName.trim().toLowerCase() === this.sectionName.trim().toLowerCase())?.id;
     // // this.list = this.commonService.wonders;
     console.log("section id : ", sectionId);
-
     if (sectionId) {
       this.apiRequest.getPostBySectionId(sectionId).subscribe((response) => {
+        this.sectionLoader.set(false);
         if (response.result) {
           this.section = response.data;
           if (this.section && this.section.posts && this.section.posts.length > 0) {
@@ -358,6 +362,22 @@ export class PlaceDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   //       }
   //     });
   // }
+
+  private getTopCategories() {
+    let limit = 5;
+    this.apiRequest.getTopCategories(limit).subscribe((response: any) => {
+      if (response.result) {
+        if (response.data && response.data.length > 0) {
+          this.topCategories = response.data;
+          this.topCategories.forEach((item: any) => {
+            item.slugifiedCatName = item.catName.split(' ').join('_');
+          });
+        }
+      } else {
+        this.topCategories = [];
+      }
+    })
+  }
 
   ngOnDestroy() {
     this.stopAutoSlide();
