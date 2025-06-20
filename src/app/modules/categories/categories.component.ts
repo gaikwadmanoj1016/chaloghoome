@@ -19,6 +19,8 @@ export class CategoriesComponent implements OnInit {
 
   constructor(private apiRequest: ApiService, public commonService: CommonService) { }
   ngOnInit(): void {
+    this.commonService.setCanonicalURL();
+    this.commonService.setMetaData("Top Travel Categories", 'Here are the top travel categories in the world : Travel Destination, Cultural Heritage, Travel Guide, Historical Landmarks, Nature');
     this.getTopCategoriesWithPosts();
   }
 
