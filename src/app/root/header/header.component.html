@@ -1,97 +1,35 @@
 <header (clickOutside)="closeSidebar()">
     @if (showNav()) {
-    <nav #navbar class="navbar navbar-expand-lg navbar-light" [class.shadow]="isScrolled || isMobileView">
+    <nav #navbar class="navbar navbar-expand-lg navbar-light shadow">
         <div class="custom-container bgColor">
-            <a class="navbar-brand" routerLink="/home">
-                @if (commonService.selectedTheme === 'dark') {
-                <img loading="lazy" src="https://github.com/gaikwadmanoj1016/Assets/blob/main/001_02psd.jpg?raw=true"
-                    alt="Chalo Ghoome logo" class="image1">
-                <div>
-                    <p class="text logo">
-                        Chalo <strong>Ghoome</strong>
+            <div #navbarBrand class="navbar-brand">
+                <a routerLink="/home">
+                    @if (commonService.selectedTheme === 'dark') {
+                    <img loading="lazy"
+                        src="https://github.com/gaikwadmanoj1016/Assets/blob/main/001_02psd.jpg?raw=true"
+                        alt="Chalo Ghoome logo" class="image1">
+                    } @else {
+                    <img loading="lazy" src="https://github.com/gaikwadmanoj1016/Assets/blob/main/001.jpg?raw=true"
+                        alt="Chalo Ghoome logo" class="image1">
+                    }
+                </a>
+
+                <!-- <div class="brand-name">
+                    <p #container class="text brand-logo" aria-hidden="true">
+                        <strong>Chalo <span class="highlighted-text">Ghoome</span></strong>
+                    </p>
+                </div> -->
+                <div class="brand-name">
+                    <p class="text brand-logo" aria-hidden="true">
+                        <strong>
+                            <span class="word">Chalo</span>
+                            <span class="word highlighted-text">Ghoome</span>
+                        </strong>
                     </p>
                 </div>
-                } @else {
-                <img loading="lazy" src="https://github.com/gaikwadmanoj1016/Assets/blob/main/001.jpg?raw=true"
-                    alt="Chalo Ghoome logo" class="image1">
-                }
-                <!-- <img loading="lazy" src="assets/icons/ChaloGhoome-logo-new.png" alt="Chalo Ghoome logo" class="image2"> -->
-                <!-- <picture>
-                    <source srcset="assets/icons/ChaloGhoome-logo-new.webp" type="image/webp">
-                    <img src="assets/icons/ChaloGhoome-logo-new.png" alt="Description">
-                </picture> -->
-            </a>
-            <div class="search-form" [class.expanded]="isExpanded()" (clickOutside)="disconnectWebsocket()">
-                <form (ngSubmit)="onSearch()" (clickOutside)="showSuggestions = false"
-                    [class.floating-search]="isScrolled">
-                    <div class="search-bar">
-                        <input type="text" #searchInput [(ngModel)]="searchQuery" title="Shortcut: Ctrl + /"
-                            name="searchQuery" (input)="onInputChange()" (focus)="connectWebsocket();"
-                            class="search-input" placeholder="Search places..." required autocomplete="off" />
-                        @if (!isExpanded()) {
-                        <button type="button" aria-labelledby="Search Button" title="Search" (click)="expandSearchBar()"
-                            class="search-btn">
-                            <i class="fa fa-search icon"></i>
-                        </button>
-                        } @else {
-                        <button type="submit" aria-labelledby="Search Button" title="Search" class="search-btn">
-                            <i class="fa fa-search icon"></i>
-                        </button>
-                        }
-                    </div>
-                    @if (showSuggestions) {
-                    <div class="suggestions" [class.active]="suggestionsFetched()">
-                        @if (searchQuery && searchQuery.length > 2) {
-                        @if (filteredSuggestions && filteredSuggestions.length > 0) {
-                        <div class="box">
-                            @for (suggestion of filteredSuggestions; track $index) {
-                            @if (suggestion.list?.length > 0) {
-                            <div class="section-title">{{ suggestion.label }}</div>
-                            <ul>
-                                @for (post of suggestion.list; track $index) {
-                                <li class="item">
-                                    <div class="places" (click)="selectSuggestion(post.postName)">
-                                        <img *ngIf="post.thumbnailImg"
-                                            [src]="commonService.appendAssetUrl(post.thumbnailImg)"
-                                            class="post-image" />
-                                        <div class="post-info">
-                                            <div class="post-name">{{ post.postName }}</div>
-                                            <div class="post-location">{{ post.location }}</div>
-                                            <div class="post-summary">{{ post.summary | truncate: 100 }}</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                }
-                            </ul>
-                            }
-                            }
-                        </div>
-                        } @else {
-                        <div class="box">
-                            <div class="section-title">Loading places...</div>
-                        </div>
-                        }
-                        } @else if (staticPlaces && staticPlaces.length > 0) {
-                        <div class="box">
-                            <div class="section-title">Most Searched</div>
-                            <ul>
-                                @for (item of staticPlaces; track $index) {
-                                <li class="item" (click)="selectSuggestion(item)">
-                                    <span>{{ item }}</span>
-                                </li>
-                                }
-                            </ul>
-                        </div>
-                        }
-                    </div>
-                    }
-                </form>
             </div>
             <div class="right" style="text-align: end;">
-                <!-- Hamburger Menu for Mobile -->
-                <button class="hamburger" (click)="toggleSidebar($event);collapseSearchBar()">
-                    &#9776;
-                </button>
+
                 <div class="navbar-wrapper">
                     <ul class="custom-navbar-nav">
                         <!-- Header -->
@@ -128,12 +66,6 @@
                             <a class="nav-link" href="javascript:void(0)" routerLink="/login">Sign In</a>
                         </li>
                         }
-                        <li>
-                            <button class="premium-toggle" (click)="toggleTheme()">
-                                <span>{{ commonService.selectedTheme === 'dark' ? '☀️' : '🌙' }}</span>
-                            </button>
-                        </li>
-
                         <!-- <div class="d-flex align-items-center profile-section" (click)="toggleProfileMenu()"
                             (clickOutside)="closeProfileMenu()">
                             <img loading="lazy" src="../assets/avatars/2.jpg" alt="Profile Picture" class="profile-pic">
@@ -151,6 +83,20 @@
                     </ul>
                 </div>
             </div>
+            <!-- Hamburger Menu for Mobile -->
+            <div class="cta">
+                <div class="search-form">
+                    <app-search-bar [isScrolled]="isScrolled" [defaultExpanded]="false"></app-search-bar>
+                </div>
+                <div class="toggle-btn-wrapper">
+                    <button class="premium-toggle" (click)="toggleTheme()">
+                        <span>{{ commonService.selectedTheme === 'dark' ? '☀️' : '🌙' }}</span>
+                    </button>
+                </div>
+                <button class="hamburger" (click)="toggleSidebar($event);">
+                    &#9776;
+                </button>
+            </div>
         </div>
     </nav>
     <!-- Sidebar -->
@@ -164,7 +110,7 @@
                     {{ section?.sectionName }}
                 </a>
             </li> -->
-            <li #menuItem class="nav-item" (clickOutside)="closeSidebarDropdown()">
+            <li #menuItem class="nav-item" [class.toggle]="commonService.isSidebarDropdownOpen()" (clickOutside)="closeSidebarDropdown()">
                 <a class="nav-link" (click)="toggleSidebarDropdown($event)">Featured
                     <span class="icon">
                         <!-- Chevron SVG icon -->

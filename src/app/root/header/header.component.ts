@@ -1,65 +1,38 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, QueryList, Renderer2, signal, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonService } from '../../shared/services/common.service';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
 import { FormsModule } from '@angular/forms';
-import { ApiService } from '../../shared/services/api.service';
-import { convertSlugToNormal } from '../../utils/slugify';
 import gsap from 'gsap';
 import { environment } from '../../../../environment';
+import { SearchBarComponent } from "../../shared/components/search-bar/search-bar.component";
+declare const SplitText: any;
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule, SharedModule, FormsModule],
+  imports: [CommonModule, RouterModule, SearchBarComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements AfterViewInit {
   // @ViewChild('nav') nav: 
+  @ViewChild('container', { static: false }) containerRef!: ElementRef;
+
+  @ViewChild('normalText', { static: false }) normalText!: ElementRef;
+  @ViewChild('strongText', { static: false }) strongText!: ElementRef;
+  @ViewChild('brandText', { static: false }) brandText!: ElementRef;
+  @ViewChild('brandStrong', { static: false }) brandStrong!: ElementRef;
+  @ViewChild('navbarBrand', { static: false }) navbarBrand!: ElementRef;
   @ViewChildren('menuItem') menuItems!: QueryList<ElementRef>;
-  @ViewChild('searchInput') searchInput!: ElementRef;
   @ViewChild('navbar', { static: false }) nav!: ElementRef;
   @Input() isScrolled: boolean = false;
   @Input() sections: any[] = [];
   isMobileView: boolean = false;
-  searchQuery: string = '';
-  showSuggestions = false;
-  isExpanded = signal(false);
-  filteredSuggestions: any = [];
-  // Sample list, you can fetch from backend too
-  allSuggestions: any = [
-    {
-      label: 'Most Seached',
-      data: [
-        'Taj Mahal',
-        'Eiffel Tower',
-        'Sydney Opera House',
-        'Great Wall of China',
-        'Stonehenge',
-        'Machu Picchu'
-      ]
-    }
-  ];
-  apiCallCount: number = 0;
-  suggestionsFetched = signal(false);
-  // searchQuery = '';
-  searchResults: any[] = [];
-  private socket!: WebSocket;
-  isSocketConnected: boolean = false;
-  staticPlaces: string[] = [];
+  // apiCallCount: number = 0;
 
-
-  constructor(private router: Router, public commonService: CommonService, private renderer: Renderer2) {
-  }
-
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    if (event.ctrlKey && event.key === '/') {
-      event.preventDefault(); // prevent browser's default find functionality
-      this.focusSearch();
-    }
+  constructor(private router: Router, public commonService: CommonService) {
   }
 
   @HostListener('window:resize', ['$event'])
@@ -67,79 +40,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.checkScreenSize();
   }
 
-  ngOnInit(): void {
-    this.commonService.searchedQueryString.subscribe((query: string) => {
-      if (query) {
-        this.searchQuery = query;
-      } else {
-        this.searchQuery = '';
-      }
-    })
-  }
-
-
   ngAfterViewInit() {
     this.checkScreenSize();
     // Wait for sidebar to open
     if (this.commonService.isSidebarOpen()) {
       this.animateMenuItems();
     }
-  }
-
-  connectWebsocket() {
-    this.showSuggestions = true;
-    this.staticPlaces = this.commonService.places;
-    if (!this.isSocketConnected) {
-
-      // this.socket = new WebSocket("wss://api.chaloghoome.com/adminService/ws/search");
-      this.socket = new WebSocket(environment.webSocketUrl + "ws/search");
-
-      this.socket.onopen = () => {
-        console.log("✅ WebSocket connected");
-        this.isSocketConnected = true;
-      };
-
-      this.socket.onerror = (error) => {
-        console.error("❌ WebSocket error:", error);
-        this.isSocketConnected = false;
-      };
-
-      this.socket.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        // Call a function to update your UI with `data`
-        console.log(data);
-        // Example: 'data' is the array of post objects received from WebSocket
-        const grouped = data.reduce((acc: any, item: any) => {
-          const section = item.section || 'Other';
-
-          if (!acc[section]) {
-            acc[section] = [];
-          }
-
-          acc[section].push(item);
-          return acc;
-        }, {} as Record<string, any[]>);
-
-        // Convert to array of groups (if needed)
-        this.filteredSuggestions = Object.keys(grouped).map(key => ({
-          label: key,
-          list: grouped[key]
-        }));
-        console.log(this.filteredSuggestions);
-      };
-    }
-  }
-
-  disconnectWebsocket() {
-    if (this.isSocketConnected) {
-      this.socket.close();
-      console.log("✅ WebSocket connection closed");
-      this.isSocketConnected = false;
-    }
-  }
-
-  focusSearch() {
-    this.searchInput?.nativeElement?.focus();
+    // this.animateBrandLogo();
   }
 
   private checkScreenSize() {
@@ -232,99 +139,33 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   //   return filteredSuggestions;
   // }
 
-  onInputChange() {
-    const query = this.searchQuery.toLowerCase().trim();
-    const trimmed = query.trim();
+  // animateBrandLogo() {
+  //   gsap.registerPlugin(SplitText);
 
-    if (trimmed.length > 2 && this.socket.readyState === WebSocket.OPEN) {
-      console.log("📤 Sending to WebSocket:", trimmed);
-      this.socket.send(trimmed);
-    } else if (trimmed.length <= 2) {
-      this.staticPlaces = this.commonService.places.filter(
-        place => place.toLowerCase().includes(query)
-      );
-    }
+  //   // Wait for fonts to load before animating
+  //   // (document as any).fonts.ready.then(() => {
+  //   // gsap.set(this.containerRef.nativeElement, { opacity: 1 });
+  //   const split = SplitText.create('.brand-logo', {
+  //     type: 'words',
+  //     aria: 'hidden',
+  //   });
+  //   console.log(split.words);
+  //   gsap.to(this.containerRef.nativeElement, {
+  //     x: 0,
+  //     duration: 0.6,
+  //     ease: 'power3.out',
+  //     delay: 1
+  //   });
 
-    // if (query.length > 0) {
-    //   if (this.suggestionsFetched()) {
-    //     this.filteredSuggestions = this.filterData(query);
-    //     console.log(this.filteredSuggestions);
-    //   } else {
-    //     this.filteredSuggestions = this.commonService.places.filter(
-    //       place => place.toLowerCase().includes(query)
-    //     );
-    //     if (this.apiCallCount === 0) {
-    //       this.getAllSuggestions(query);
-    //     }
-    //   }
-    //   this.showSuggestions = true;
-    // } else {
-    //   this.filteredSuggestions = [];
-    //   this.showSuggestions = false;
-    // }
-  }
-
-  // private getAllSuggestions(query: string) {
-  //   this.apiCallCount++;
-  //   this.apiService.getAllSugestions().subscribe((response: any) => {
-  //     if (response.result) {
-  //       this.allSuggestions = [];
-
-  //       if (response.data && Object.keys(response.data).length > 0) {
-  //         const existingLabels = new Set();
-
-  //         for (let key in response.data) {
-  //           const label = convertSlugToNormal(key); // e.g. "categories" → "Categories"
-
-  //           if (!existingLabels.has(label)) {
-  //             this.allSuggestions.push({
-  //               label: label,
-  //               list: response.data[key]
-  //             });
-
-  //             existingLabels.add(label); // Mark as added
-  //           } else {
-  //             console.warn(`Duplicate label skipped: ${label}`);
-  //           }
-  //         }
-
-  //         // this.suggestionsFetched.set(true);
-  //         // this.filteredSuggestions = this.filterData(query);
-  //       }
-
-  //       console.log(this.allSuggestions);
-  //     } else {
-
-  //     }
-  //   })
+  //   gsap.from(split.words, {
+  //     delay: 1,
+  //     opacity: 0,
+  //     duration: 1,
+  //     ease: 'power3.out',
+  //     stagger: 0.5,
+  //   });
+  //   // });
   // }
-
-  onSearch(): void {
-    if (this.searchQuery) {
-      this.commonService.navigateTo('/search/' + this.searchQuery);
-      this.showSuggestions = false;
-    }
-  }
-
-  selectSuggestion(suggestion: string) {
-    this.searchQuery = suggestion;
-    this.showSuggestions = false;
-    this.onSearch(); // Optional: auto-submit
-  }
-
-  hideSuggestionsWithDelay() {
-    setTimeout(() => {
-      this.showSuggestions = false;
-    }, 200); // Timeout so it doesn't hide before click
-  }
-
-  public expandSearchBar() {
-    this.isExpanded.set(true);
-  }
-  public collapseSearchBar() {
-    this.isExpanded.set(false);
-  }
-
   animateMenuItems() {
     this.menuItems.map(item => console.log(item.nativeElement))
     gsap.from(this.menuItems.map(item => item.nativeElement), {
@@ -337,20 +178,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     });
   }
 
-  setTheme(theme: 'light' | 'dark'): void {
-    this.commonService.selectedTheme = theme;
-
-    // Remove both if present
-    this.renderer.removeClass(document.body, 'light-theme');
-    this.renderer.removeClass(document.body, 'dark-theme');
-
-    // Add selected
-    this.renderer.addClass(document.body, `${theme}-theme`);
-  }
-
   toggleTheme(): void {
     const nextTheme = this.commonService.selectedTheme === 'light' ? 'dark' : 'light';
-    this.setTheme(nextTheme);
+    this.commonService.setTheme(nextTheme);
     // this.closeSidebar();
   }
 }

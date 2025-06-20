@@ -1,0 +1,69 @@
+<div class="search-bar" [class.expanded]="isExpanded()" (clickOutside)="disconnectWebsocket()">
+    <form (ngSubmit)="onSearch()" (clickOutside)="showSuggestions = false" [class.floating-search]="isScrolled">
+        <div class="search-panel">
+            <input type="text" #searchInput [(ngModel)]="searchQuery" title="Shortcut: Ctrl + /" name="searchQuery"
+                (input)="onInputChange()" (focus)="connectWebsocket();" class="search-input"
+                placeholder="Search places..." required autocomplete="off" />
+            @if (!isExpanded()) {
+            <button type="button" aria-labelledby="Search Button" title="Search" (click)="expandSearchBar()"
+                class="search-btn">
+                <i class="fa fa-search icon"></i>
+            </button>
+            <!-- } @else if (!defaultExpanded && isExpanded() && !(searchQuery && searchQuery.length > 0)) { -->
+            } @else {
+                <button type="button" aria-labelledby="Cross Button" title="Disable Search" (click)="collapseSearchBar()"
+                class="search-btn remove-bg">
+                <i class="fa fa-remove icon"></i>
+            </button>
+            <button type="submit" aria-labelledby="Search Button" title="Search" class="search-btn">
+                <i class="fa fa-search icon"></i>
+            </button>
+            }
+        </div>
+        @if (showSuggestions) {
+        <div class="suggestions" [class]="suggestionsOpening" [class.active]="suggestionsFetched()">
+            @if (searchQuery && searchQuery.length > 2) {
+            @if (filteredSuggestions && filteredSuggestions.length > 0) {
+            <div class="box">
+                @for (suggestion of filteredSuggestions; track $index) {
+                @if (suggestion.list?.length > 0) {
+                <div class="section-title">{{ suggestion.label }}</div>
+                <ul>
+                    @for (post of suggestion.list; track $index) {
+                    <li class="item">
+                        <div class="places" (click)="selectSuggestion(post.postName)">
+                            <img *ngIf="post.thumbnailImg" [src]="commonService.appendAssetUrl(post.thumbnailImg)"
+                                class="post-image" />
+                            <div class="post-info">
+                                <div class="post-name">{{ post.postName }}</div>
+                                <div class="post-location">{{ post.location }}</div>
+                                <!-- <div class="post-summary">{{ post.summary | truncate: 100 }}</div> -->
+                            </div>
+                        </div>
+                    </li>
+                    }
+                </ul>
+                }
+                }
+            </div>
+            } @else {
+            <div class="box">
+                <div class="section-title">Loading places...</div>
+            </div>
+            }
+            } @else if (staticPlaces && staticPlaces.length > 0) {
+            <div class="box">
+                <div class="section-title">Most Searched</div>
+                <ul>
+                    @for (item of staticPlaces; track $index) {
+                    <li class="item" (click)="selectSuggestion(item)">
+                        <span>{{ item }}</span>
+                    </li>
+                    }
+                </ul>
+            </div>
+            }
+        </div>
+        }
+    </form>
+</div>

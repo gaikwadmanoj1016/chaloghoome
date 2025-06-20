@@ -13,20 +13,25 @@ import { FormsModule } from '@angular/forms';
 import { slugify } from '../../utils/slugify';
 import { Category } from '../../admin-panel/master-category-list/master-category-list.component';
 import { Subscription } from 'rxjs';
-import { NgFor } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
+import { SearchBarComponent } from '../../shared/components/search-bar/search-bar.component';
 
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [NgFor, SharedModule, MatIconModule, RouterModule, CarouselModule, SharedModule, ContactUsComponent, AboutUsComponent, FormsModule],
+  imports: [NgFor, NgClass, SharedModule, MatIconModule, RouterModule, CarouselModule, SharedModule, ContactUsComponent, AboutUsComponent, FormsModule, SearchBarComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
 export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('counter') counters!: QueryList<ElementRef>;
   @ViewChild('myVideo', { static: true }) myVideoRef!: ElementRef<HTMLVideoElement>;
+  @ViewChild('heroSection', { static: false }) heroSection!: ElementRef;
+  @ViewChild('heroContent', { static: false }) heroContent!: ElementRef;
+  @ViewChildren('shape', { read: ElementRef }) shapes!: QueryList<ElementRef>;
+  // @ViewChild('stars', { static: true }) stars!: ElementRef;
 
   placesData = [
     {
@@ -79,57 +84,6 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
   sections: any[] = [];
   regionList: string[] = [];
   selectedRegionPlaces: any = {};
-  // planets = [
-  //   {
-  //     id: 1,
-  //     name: "Neptune",
-  //     description: "A deep blue gas giant with supersonic winds.",
-  //     image: "https://media.istockphoto.com/id/145569757/photo/planet-neptune-elements-of-this-image-furnished-by-nasa.jpg?s=1024x1024&w=is&k=20&c=0xlRIr86LuWOqqM89v4690oAVe3yBbrtCRq-Nq5Pvd8="
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Mars",
-  //     description: "The Red Planet, home to the tallest volcano in the solar system.",
-  //     image: "https://media.istockphoto.com/id/1214890390/photo/planet-mars-in-space.jpg?s=1024x1024&w=is&k=20&c=PLK0sLUiON73M-3KOwfhD56UCmR1W2AAgMTTSUx0oF4="
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Saturn",
-  //     description: "Famous for its stunning rings and numerous moons.",
-  //     image: "https://media.istockphoto.com/id/482675385/photo/saturn-with-stars-in-the-background.jpg?s=1024x1024&w=is&k=20&c=-ERAWSJeLP2fUHQvGJvDaSJmx3IJrpbOpQa3uSPgclM="
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Jupiter",
-  //     description: "The largest planet, with a massive storm known as the Great Red Spot.",
-  //     image: "https://media.istockphoto.com/id/173228030/photo/jupiter-on-star-field.jpg?s=1024x1024&w=is&k=20&c=EUvp1jTz6X9lAF9Sz7UcW7LhFU2JY2--ltXjJqo_GS8="
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Venus",
-  //     description: "A scorching world with a thick, toxic atmosphere.",
-  //     image: "https://media.istockphoto.com/id/1199281415/photo/planet-venus.jpg?s=1024x1024&w=is&k=20&c=9BrGdPKpn5H-uMPBoHSFZ6JiO82txcLv5CpQODx_JHY="
-  //   },
-  //   {
-  //     id: 6,
-  //     name: "Mercury",
-  //     description: "The smallest planet, closest to the Sun, with extreme temperature changes.",
-  //     image: "https://media.istockphoto.com/id/524287351/photo/mercury.jpg?s=1024x1024&w=is&k=20&c=B_iBIp5s9UB7UmWjlzG50v9FehMXk2h-ZNT_k_LlxOs="
-  //   },
-  //   {
-  //     id: 7,
-  //     name: "Uranus",
-  //     description: "An icy giant that rotates on its side.",
-  //     image: "https://media.istockphoto.com/id/1199283538/photo/planet-uranus.jpg?s=1024x1024&w=is&k=20&c=w7aXUMVg_cv8k66xZFjaHuVrlL6bVfHcxgSRIC4RH9Q="
-  //   },
-  //   {
-  //     id: 8,
-  //     name: "Earth",
-  //     description: "The only known planet to support life.",
-  //     // image: "https://media.istockphoto.com/id/1314000171/video/earth-rotation-loopable.mp4?s=mp4-640x640-is&k=20&c=wI4rNMfqQ2k4OfeQddU4bkX-EKzCVW_kr0clHhrbiQ4="
-  //     image: "https://media.istockphoto.com/id/1457206081/photo/earth-planet-at-night-into-the-dark-cities-light-earth-in-deep-space-with-stars-planet-sphere.jpg?s=612x612&w=is&k=20&c=hZng_mgVgLLmPxVQIWnCZxn_sApfa88h-rResmvSL4o="
-  //   }
-  // ];
   videoLoaded = signal(false);
   videoError = signal(false);
   isScrolled = false;
@@ -138,6 +92,15 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
   private routerSubscription!: Subscription;
   slugify = slugify;
   constructor(public commonService: CommonService, private apiService: ApiService, private router: Router) { }
+  overlayVisible = false;
+  expandedImage = '';
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscape(event: KeyboardEvent) {
+    if (this.overlayVisible) {
+      this.closeOverlay();
+    }
+  }
 
   @HostListener('window:scroll', [])
   onScroll(): void {
@@ -145,6 +108,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   ngOnInit(): void {
     this.mapIndiaSection();
+    this.startShootingStars();
     if (this.commonService.sections && this.commonService.sections.length > 0) {
       this.sections = this.commonService.sections;
     } else {
@@ -154,7 +118,18 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.selectedRegionPlaces = this.placesData[0];
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
+    const starContainer = document.querySelector('.stars');
+    const numberOfStars = 100;
+
+    for (let i = 0; i < numberOfStars; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDuration = `${1.5 + Math.random() * 2}s`;
+      starContainer?.appendChild(star);
+    }
     this.animateCounters();
     this.animateUsingGSap();
     // this.routerSubscription = this.router.events.subscribe(event => {
@@ -279,112 +254,136 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   animateUsingGSap() {
     // for hero section
-    this.heroAnimation();
+    // this.heroAnimation();
+    this.animateHeroSection();
     // this.aboutAnimation();
   }
 
-  private heroAnimation() {
-    const tl = gsap.timeline({ defaults: { duration: 1, ease: "power2.out" }, delay: 1.5 });
+  // * important gsap animatino for hero and about us
+  // private heroAnimation() {
+  //   const tl = gsap.timeline({ defaults: { duration: 1, ease: "power2.out" }, delay: 1.5 });
 
-    tl.from(".hero-container .title-line", { y: 100, opacity: 0 })
-      .from(".hero-container h2", { y: 100, opacity: 0 }, "-=0.5")
-      .from(".hero-container p", { y: 100, opacity: 0 }, "-=0.5")
-      .from(".hero-btn", { y: 100, opacity: 0 }, "-=0.5");
+  //   tl.from(".hero-container .title-line", { y: 100, opacity: 0 })
+  //     .from(".hero-container h2", { y: 100, opacity: 0 }, "-=0.5")
+  //     .from(".hero-container p", { y: 100, opacity: 0 }, "-=0.5")
+  //     .from(".hero-btn", { y: 100, opacity: 0 }, "-=0.5");
+  // }
 
-    // gsap.to(".hero-section", {
-    //   scale: 0.8,
-    //   top: 0,
-    //   borderRadius: 100,
-    //   // opacity: 0,
-    //   scrollTrigger: {
-    //     trigger: ".hero-section",
-    //     start: "top top",
-    //     end: "bottom -30%",
-    //     scrub: 2,
-    //     pin: true,
-    //   }
-    // });
-  }
+  // private aboutAnimation() {
+  //   console.log("inside about section animation method");
 
-  private aboutAnimation() {
-    console.log("inside about section animation method");
+  //   document.querySelectorAll(".section").forEach((section) => {
+  //     console.log("current section which will animate ", section);
 
-    document.querySelectorAll(".section").forEach((section) => {
-      console.log("current section which will animate ", section);
+  //     const text = section.querySelector(".text");
+  //     const image = section.querySelector(".image");
+  //     const button = section.querySelector(".explore-about");
 
-      const text = section.querySelector(".text");
-      const image = section.querySelector(".image");
-      const button = section.querySelector(".explore-about");
+  //     const isImageOnRight = section.classList.contains("image-on-right");
+  //     console.log(isImageOnRight, section.classList);
 
-      const isImageOnRight = section.classList.contains("image-on-right");
-      console.log(isImageOnRight, section.classList);
+  //     if (text) {
+  //       console.log("text");
 
-      if (text) {
-        console.log("text");
+  //       gsap.from(text.querySelectorAll("p"), {
+  //         scrollTrigger: {
+  //           trigger: section,
+  //           start: "top 60%",
+  //           toggleActions: "play none none reverse",
+  //           markers: true
+  //         },
+  //         opacity: 0,
+  //         x: isImageOnRight ? -100 : 100,
+  //         duration: 0.6,
+  //         ease: "power2.out",
+  //         stagger: 0.2,
+  //       });
+  //       gsap.from(text.querySelectorAll("li"), {
+  //         scrollTrigger: {
+  //           trigger: section,
+  //           start: "top 60%",
+  //           toggleActions: "play none none reverse",
+  //           markers: true
+  //         },
+  //         opacity: 0,
+  //         x: isImageOnRight ? -100 : 100,
+  //         duration: 0.6,
+  //         ease: "power2.out",
+  //         stagger: 0.2,
+  //       });
+  //     }
 
-        gsap.from(text.querySelectorAll("p"), {
-          scrollTrigger: {
-            trigger: section,
-            start: "top 60%",
-            toggleActions: "play none none reverse",
-            markers: true
-          },
-          opacity: 0,
-          x: isImageOnRight ? -100 : 100,
-          duration: 0.6,
-          ease: "power2.out",
-          stagger: 0.2,
-        });
-        gsap.from(text.querySelectorAll("li"), {
-          scrollTrigger: {
-            trigger: section,
-            start: "top 60%",
-            toggleActions: "play none none reverse",
-            markers: true
-          },
-          opacity: 0,
-          x: isImageOnRight ? -100 : 100,
-          duration: 0.6,
-          ease: "power2.out",
-          stagger: 0.2,
-        });
-      }
+  //     gsap.from(image, {
+  //       scrollTrigger: {
+  //         trigger: section,
+  //         start: "top 60%",
+  //         toggleActions: "play none none reverse",
+  //         markers: true
+  //       },
+  //       opacity: 0,
+  //       x: isImageOnRight ? 100 : -100,
+  //       duration: 1,
+  //       ease: "power3.out",
+  //     });
 
-      gsap.from(image, {
-        scrollTrigger: {
-          trigger: section,
-          start: "top 60%",
-          toggleActions: "play none none reverse",
-          markers: true
-        },
-        opacity: 0,
-        x: isImageOnRight ? 100 : -100,
-        duration: 1,
-        ease: "power3.out",
-      });
+  //     if (button) {
+  //       console.log("button");
+  //       gsap.from(button, {
+  //         scrollTrigger: {
+  //           trigger: section,
+  //           start: "top 55%",
+  //           toggleActions: "play none none reverse",
+  //           markers: true
+  //         },
+  //         opacity: 0,
+  //         scale: 0.8,
+  //         duration: 0.5,
+  //         delay: 0.3,
+  //         ease: "back.out(1.7)",
+  //       });
+  //     }
+  //     console.log("end of about animation");
 
-      if (button) {
-        console.log("button");
-        gsap.from(button, {
-          scrollTrigger: {
-            trigger: section,
-            start: "top 55%",
-            toggleActions: "play none none reverse",
-            markers: true
-          },
-          opacity: 0,
-          scale: 0.8,
-          duration: 0.5,
-          delay: 0.3,
-          ease: "back.out(1.7)",
-        });
-      }
-      console.log("end of about animation");
+  //   });
+  //   console.log("outside of about animation");
+  // }
+  animateHeroSection(): void {
+    const tl = gsap.timeline();
 
+    // Fade in the whole hero section
+    tl.from(this.heroSection.nativeElement, {
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power1.out'
     });
-    console.log("outside of about animation");
-  }
 
+    // Animate shapes with smooth scale and opacity
+    tl.from(this.shapes.map(s => s.nativeElement), {
+      scale: 0.6,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'back.out(1.7)',
+      stagger: 0.2
+    }, '-=0.3');
+
+    // Animate stars fade in
+    // tl.from(this.stars.nativeElement, {
+    //   opacity: 0,
+    //   duration: 0.6,
+    //   y: -20,
+    //   ease: 'power2.out'
+    // }, '-=0.4');
+
+    // Animate hero content with staggered fade-in and slide-up
+    const contentChildren = this.heroContent.nativeElement.children;
+    tl.from(contentChildren, {
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      ease: 'power2.out',
+      stagger: 0.1
+    }, '-=0.4');
+  }
   getStars(rating: number): number[] {
     return Array(5).fill(rating).map((_, i) => i);
   }
@@ -400,7 +399,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
     responsive: {
       0: {
         items: 1
-      },  
+      },
       600: {
         items: 2
       },
@@ -422,6 +421,65 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
     if (el) {
       (el as any).dispatchEvent(new CustomEvent('stop.owl.autoplay'));
     }
+  }
+
+  closeOverlay() {
+    this.overlayVisible = false;
+
+    // Animate shapes back in
+    const shapes = document.querySelectorAll('.hero-shapes .shape');
+    shapes.forEach((shape) => {
+      (shape as HTMLElement).style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+      (shape as HTMLElement).style.opacity = '1';
+      (shape as HTMLElement).style.transform = 'translateY(0) scale(1)';
+    });
+  }
+
+  onShapeClick(imageUrl: string) {
+    this.expandedImage = imageUrl;
+    this.overlayVisible = true;
+
+    // Animate all shapes out
+    const shapes = document.querySelectorAll('.hero-shapes .shape');
+    shapes.forEach((shape, index) => {
+      (shape as HTMLElement).style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+      (shape as HTMLElement).style.opacity = '0';
+      (shape as HTMLElement).style.transform = `translateY(${index % 2 === 0 ? '-200px' : '200px'}) scale(0.5)`;
+    });
+  }
+
+  startShootingStars() {
+    const container = document.querySelector('.shooting-stars');
+    if (!container) return;
+
+    setInterval(() => {
+      const star = document.createElement('div');
+      star.className = 'shooting-star';
+
+      // Random trail type: short or long
+      const isLongTrail = Math.random() > 0.5;
+      const trailLength = isLongTrail ? 100 : 60;
+      const duration = isLongTrail ? 1600 : 1000;
+
+      // Random position and angle
+      const startTop = Math.random() * window.innerHeight * 0.5;
+      const startLeft = window.innerWidth + 100; // offscreen start
+      const angle = 35 + Math.random() * 20; // 35° to 55°
+
+      star.style.width = '2px';
+      star.style.height = `${trailLength}px`;
+      star.style.top = `${startTop}px`;
+      star.style.left = `${startLeft}px`;
+      star.style.transform = `rotate(${angle}deg)`;
+      star.style.animationDuration = `${duration}ms`;
+
+      container.appendChild(star);
+
+      // Remove after animation
+      setTimeout(() => {
+        star.remove();
+      }, duration);
+    }, 2500); // star frequency
   }
 
   ngOnDestroy() {

@@ -1,24 +1,26 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Inject, Injectable, signal } from '@angular/core';
+import { Inject, Injectable, Renderer2, signal } from '@angular/core';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environment';
 import { BehaviorSubject } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
-  selectedTheme: 'light' | 'dark' = 'dark'; // default theme
+  selectedTheme: 'light' | 'dark' = 'light'; // default theme
   isSidebarOpen = signal(false);
   isDropdownOpen = signal(false);
   isSidebarDropdownOpen = signal(false);
   showHideCertificateModal: boolean = false;
   isAddHighlightModal: boolean = false;
   public searchedQueryString: BehaviorSubject<string> = new BehaviorSubject('');
+  public routeChanged: BehaviorSubject<any> = new BehaviorSubject(null);
   places: string[] = [];
+  private renderer!: Renderer2;
 
   selectedCard: any;
   wonders: any[] = [
@@ -80,7 +82,7 @@ export class CommonService {
     link.setAttribute('rel', 'canonical');
     link.setAttribute('href', url || this.dom.URL);
     console.log(link);
-    
+
     this.dom.head.appendChild(link);
   }
 
@@ -90,10 +92,10 @@ export class CommonService {
     this.titleService.setTitle(title + ' - Chalo Ghoome');
     this.metaService.updateTag({ property: 'og:title', content: `${title} – Chalo ghoome` });
     if (data?.summary) {
-      this.metaService.updateTag({ name: 'description', content: data.summary });
+      this.metaService.updateTag({ name: 'description', content: (data.summary.length > 100) ? data.summary.substring(0, 100) + '...' : data.summary });
       this.metaService.updateTag({
         property: 'og:description',
-        content: data.summary
+        content: (data.summary.length > 100) ? data.summary.substring(0, 100) + '...' : data.summary
       });
     }
 
@@ -158,16 +160,23 @@ export class CommonService {
     });;
   }
 
-  scrollToDiv(elementId: string | null): void {
+  scrollToDiv(elementId: string | null, offset = 0): void {
     if (elementId) {
       setTimeout(() => {
         const element = document.getElementById(elementId);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         }
       }, 500);
     }
   }
+
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -238,5 +247,19 @@ export class CommonService {
       }
     }
     return text;
+  }
+
+  setTheme(theme: 'light' | 'dark', renderer?: Renderer2): void {
+    this.selectedTheme = theme;
+    if (!this.renderer && renderer) {
+      this.renderer = renderer;
+    } 
+    // Remove both if present
+    this.renderer.removeClass(document.body, 'light-theme');
+    this.renderer.removeClass(document.body, 'dark-theme');
+    
+    // Add selected
+    this.renderer.addClass(document.body, `${theme}-theme`);
+    localStorage.setItem('theme', theme);
   }
 }

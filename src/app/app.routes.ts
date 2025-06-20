@@ -42,7 +42,7 @@ export const routes: Routes = [
     // { path: 'admin-panel/places/:sectionName', component: SectionComponent },
     { path: 'places', component: AllPostComponent },
     { path: 'places/:sectionName', component: SectionComponent },
-    { path: 'place/:postName', component: PlaceDetailsNewComponent },
+    { path: 'place/:postName', component: PlaceDetailsComponent },
     // { path: '', component: DashboardComponent },
     { path: 'home', component: LandingPageComponent },
     { path: 'about_us', component: AboutUsComponent },

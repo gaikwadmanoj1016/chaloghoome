@@ -16,7 +16,9 @@
         background-color: $color;
     }
 }
-
+html {
+  scroll-behavior: smooth;
+}
 
 // Global styles
 body {
@@ -652,7 +654,7 @@ p {
 
         .card {
             width: 100%;
-            max-width: 330px;
+            max-width: 350px;
             margin: auto;
         }
     }
@@ -784,6 +786,134 @@ p {
             &:hover {
                 text-decoration: underline;
             }
+        }
+    }
+}
+
+// hero section stars
+/* In src/styles.scss */
+.stars .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+
+    animation: glow 2s infinite ease-in-out;
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.shooting-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 4;
+
+    .shooting-star {
+        position: absolute;
+        width: 2px;
+        height: 80px;
+        background: linear-gradient(45deg, white, transparent);
+        opacity: 0;
+        transform: rotate(45deg);
+        animation: shooting 2.2s linear forwards;
+    }
+}
+
+
+@keyframes shooting {
+    0% {
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-100vw, 100vh) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+// 🌙 Dark Theme Styles
+body.dark-theme {
+    .hero {
+        background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        color: #fff;
+
+        .hero-content {
+            .headline {
+                color: #fff;
+
+                &.small {
+                    color: #ccc;
+                }
+            }
+
+            .para-sm {
+                color: #bbb;
+            }
+
+            // 
+
+        }
+    }
+}
+
+// ☀️ Light Theme Styles (default body)
+body:not(.dark-theme) {
+    .hero {
+        background: linear-gradient(to top, #ffffff, #f0f4f8);
+        color: #222;
+
+        .hero-content {
+            .headline {
+                color: #222;
+
+                &.small {
+                    color: #555;
+                }
+            }
+
+            .para-sm {
+                color: #444;
+            }
+
+            // .search-bar {
+            //     input {
+            //         background-color: #fff;
+            //         border: 1px solid #ccc;
+            //         color: #222;
+
+            //         &::placeholder {
+            //             color: #888;
+            //         }
+            //     }
+
+            //     .search-btn {
+            //         background: linear-gradient(135deg, #00c9ff, #92fe9d);
+            //         color: #000;
+
+            //         &:hover {
+            //             transform: scale(1.05);
+            //             box-shadow: 0 6px 15px rgba(0, 201, 255, 0.4);
+            //         }
+            //     }
+            // }
         }
     }
 }

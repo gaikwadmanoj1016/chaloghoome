@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit, Renderer2, signal } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, Renderer2, signal } from '@angular/core';
 import { ApiService } from './shared/services/api.service';
 import { CommonService } from './shared/services/common.service';
 import { HeaderComponent } from './root/header/header.component';
@@ -66,7 +66,7 @@ interface UserInterface {
 //     })
 //   }
 // }
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   isScrolled = false;
   title = 'chalo-ghoome-blogs';
   users = signal<UserInterface[]>([
@@ -86,15 +86,14 @@ export class AppComponent implements OnInit, OnDestroy {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 200;
-    if (this.isScrolled) {
-      document.documentElement.style.setProperty('--header-height', '70px');
-    } else {
-      document.documentElement.style.setProperty('--header-height', '90px');
-    }
+    // if (this.isScrolled) {
+    //   document.documentElement.style.setProperty('--header-height', '70px');
+    // } else {
+    //   document.documentElement.style.setProperty('--header-height', '90px');
+    // }
   }
   ngOnInit(): void {
     // this.getSectionList();
-    this.setTheme(this.commonService.selectedTheme); // force apply on load
     this.router.events
       .pipe(
         filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd)
@@ -103,6 +102,7 @@ export class AppComponent implements OnInit, OnDestroy {
         // 🔥 Logic here - runs every time route changes
         console.log('Route changed to:', event.urlAfterRedirects);
         this.commonService.currentRoute = event.urlAfterRedirects;
+        this.commonService.routeChanged.next(event);
       });
     this.route.params.subscribe((param) => {
       console.log(param);
@@ -110,22 +110,14 @@ export class AppComponent implements OnInit, OnDestroy {
     this.getSections();
   }
 
-  setTheme(theme: 'light' | 'dark'): void {
-    this.commonService.selectedTheme = theme;
-
-    // Remove both if present
-    this.renderer.removeClass(document.body, 'light-theme');
-    this.renderer.removeClass(document.body, 'dark-theme');
-
-    // Add selected
-    this.renderer.addClass(document.body, `${theme}-theme`);
+  ngAfterViewInit(): void {
+    let theme = localStorage.getItem('theme');
+    if (theme === 'light' || theme === 'dark') {
+      this.commonService.setTheme(theme, this.renderer);
+    } else {
+      this.commonService.setTheme(this.commonService.selectedTheme, this.renderer);
+    }
   }
-
-  toggleTheme(): void {
-    const nextTheme = this.commonService.selectedTheme === 'light' ? 'dark' : 'light';
-    this.setTheme(nextTheme);
-  }
-
   private getSections() {
     // this.commonService.sections = [];
     this.apiService.getSectionWithPosts(7).subscribe((response: any) => {

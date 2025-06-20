@@ -1,5 +1,258 @@
 @use '../../../styles/variables' as *;
 
+// Common styles (apply to both themes)
+.hero {
+    // Base layout styles
+    position: relative;
+    overflow: hidden;
+    height: calc(100vh - var(--header-height));
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: transparent;
+            color: white;
+            border: none;
+            border-radius: 100%;
+            font-size: 2.2rem;
+            padding: 15px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+            transform: scale(1.2);
+        }
+
+        &.visible {
+            opacity: 1;
+            z-index: 13; // 🔼 Now in front
+            pointer-events: auto;
+
+            img {
+                transform: scale(1);
+            }
+        }
+    }
+
+    .hero-shapes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 10;
+
+        .shape {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            transition: transform 0.4s ease;
+
+            image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                pointer-events: auto; // ✅ Allow clicks on images only
+                cursor: pointer;
+            }
+
+            &:hover {
+                transform: scale(1.25);
+            }
+        }
+
+
+        .shape-1 {
+            top: 10%;
+            left: 15%;
+        }
+
+        .shape-2 {
+            bottom: 10%;
+            left: 5%;
+        }
+
+        .shape-3 {
+            top: 6%;
+            right: 15%;
+        }
+
+        .shape-4 {
+            bottom: 10%;
+            right: 5%;
+        }
+
+        // Optional: subtle hover animation
+        .shape:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+    }
+
+    .hero-content {
+        z-index: 1;
+        text-align: center;
+        max-width: 700px;
+        padding: 1.5rem;
+        position: relative;
+        z-index: 12;
+        margin-bottom: 30px;
+
+        .title-line {
+            display: inline-block;
+            // margin-bottom: 0.5rem;
+        }
+
+        .headline {
+            text-transform: uppercase;
+
+            &.small {
+                // text-transform: none;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .para-sm {
+            // font-size: 1rem;
+            width: 80%;
+            margin: auto;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+    }
+
+    .search-bar {
+        position: absolute;
+        bottom: -80px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        max-width: 500px;
+        // width: 70%;
+        // max-width: 600px;
+        // padding: 10px;
+        // background: rgba(var(--white-rgba), 0.1); // translucent for dark theme
+        // backdrop-filter: blur(10px); // smooth blur effect
+        // border: 1px solid rgba(var(--white-rgba), 0.2);
+        // border-radius: 50px;
+        // display: flex;
+        // justify-content: space-between;
+        // align-items: center;
+        // box-shadow: 0 4px 20px rgba(var(--black-rgba), 0.15);
+        // transition: all 0.3s ease;
+
+        // input {
+        //     flex: 1;
+        //     padding: 0.75rem 1rem;
+        //     border: none;
+        //     background: transparent;
+        //     font-size: 1rem;
+        //     color: var(--text-color);
+
+        //     &::placeholder {
+        //         color: var(--secondary-text-color);
+        //     }
+
+        //     &:focus {
+        //         outline: none;
+        //     }
+        // }
+
+        // .search-btn {
+        //     background: #f4a261; // or a bright accent color
+        //     // color: #fff;
+        //     padding: 0.75rem 1.5rem;
+        //     border: none;
+        //     border-radius: 50px;
+        //     font-size: 1rem;
+        //     font-weight: 600;
+        //     cursor: pointer;
+        //     transition: all 0.3s ease;
+
+        //     &:hover {
+        //         transform: scale(1.05);
+        //         background: lighten(#f4a261, 5%);
+        //     }
+
+        //     i.icon {
+        //         color: var(--text-color);
+        //     }
+        // }
+    }
+
+    @media (max-width: 990px) {
+
+        .shape-1 {
+            top: 10%;
+            left: 5% !important;
+        }
+
+        .shape-2 {
+            bottom: 10%;
+            left: 5% !important;
+        }
+
+        .shape-3 {
+            top: 6%;
+            right: 5% !important;
+        }
+
+        .shape-4 {
+            bottom: 10%;
+            right: 5%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-content {
+            max-width: 600px !important;
+        }
+    }
+
+    @media (max-width: 550px) {
+
+        .hero-shapes,
+        .image-overlay {
+            display: none;
+        }
+
+        .hero-content {
+            max-width: 100% !important;
+            padding: 0;
+
+            p {
+                width: 100% !important;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+        }
+    }
+}
+
 main {
     position: relative;
     // padding-top: var(--header-height);
@@ -293,7 +546,7 @@ main {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                filter: brightness(60%) blur(2px);
+                // filter: brightness(60%) blur(2px);
             }
         }
 
@@ -480,6 +733,7 @@ main {
                 }
             }
         }
+
         .wonders-grid {
             display: flex;
             gap: 20px;
@@ -547,7 +801,8 @@ main {
                         font-size: 12px;
                     }
 
-                    &:hover, &.active {
+                    &:hover,
+                    &.active {
                         background-color: var(--primary-color);
                     }
                 }
