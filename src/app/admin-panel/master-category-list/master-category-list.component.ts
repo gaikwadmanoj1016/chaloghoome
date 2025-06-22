@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../shared/services/api.service';
 import { SharedModule } from '../../shared/shared.module';
+import { CommonService } from '../../shared/services/common.service';
 
 export class Category {
   catName: string = '';
@@ -18,7 +19,9 @@ export class MasterCategoryListComponent implements OnInit {
   categories: Category[] = [];
   showAddForm = signal(false);
   categoryForm: FormGroup = new FormGroup({});
-  constructor(private apiRequest: ApiService) { }
+  constructor(private apiRequest: ApiService, public commonService: CommonService) {
+    commonService.headerName = "Categories";
+   }
   ngOnInit(): void {
     this.categoryForm = new FormGroup({
       catName: new FormControl('', Validators.required)

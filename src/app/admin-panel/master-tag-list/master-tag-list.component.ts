@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { ApiService } from '../../shared/services/api.service';
 import { SharedModule } from '../../shared/shared.module';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonService } from '../../shared/services/common.service';
 
 export class Tag {
   tagName: string = '';
@@ -20,7 +21,9 @@ export class MasterTagListComponent implements OnInit {
   tags: Tag[] = [];
   showAddForm = signal(false);
   tagForm: FormGroup = new FormGroup({});
-  constructor(private apiRequest: ApiService) { }
+  constructor(private apiRequest: ApiService, public commonService: CommonService) {
+    commonService.headerName = "Tags";
+   }
   ngOnInit(): void {
     this.tagForm = new FormGroup({
       tagName: new FormControl('', Validators.required)

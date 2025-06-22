@@ -93,6 +93,7 @@ export class ViewPostComponent implements OnInit {
       this.apiService.getPostBySectionName(sectionName).subscribe((response) => {
         if (response.result) {
           this.section = response.data;
+          this.commonService.headerName = this.section.sectionName;
           if (this.section && this.section.posts && this.section.posts.length > 0) {
             this.section.posts.forEach((item: any) => {
               item.imageUrl = this.commonService.appendAssetUrl(item.thumbnailImg);

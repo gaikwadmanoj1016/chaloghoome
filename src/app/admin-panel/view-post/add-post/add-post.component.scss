@@ -1,43 +1,3 @@
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px 5px 0 0;
-    background: var(--section-border-color);
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: inline-block;
-    background-color: var(--section-border-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 5px;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-        background-color: #0056b3;
-    }
-
-    &:hover {
-        background: #0056b3;
-    }
-
-    &.remove {
-        background: #dc3545;
-
-        &:hover {
-            background: #b21f2d;
-        }
-    }
-}
-
 main {
     width: 100%;
     position: relative;
@@ -45,9 +5,49 @@ main {
 
     .container {
         // width: 100%;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        // box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 
         form {
+            .btn {
+                display: inline-block;
+                padding: 10px 20px;
+                margin: 10px 5px 0 0;
+                background: var(--section-border-color);
+                color: #fff;
+                font-size: 14px;
+                font-weight: 600;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                display: inline-block;
+                background-color: var(--section-border-color);
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 14px;
+                border-radius: 5px;
+                margin-top: 10px;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background-color: #0056b3;
+                }
+
+                &:hover {
+                    background: #0056b3;
+                }
+
+                &.remove {
+                    background: #dc3545;
+
+                    &:hover {
+                        background: #b21f2d;
+                    }
+                }
+            }
+
             .message {
                 width: 100%;
                 background-color: #ddd;
