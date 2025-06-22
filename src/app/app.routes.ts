@@ -28,6 +28,7 @@ import { CategoriesComponent } from './modules/categories/categories.component';
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'admin-panel', redirectTo: 'admin-panel/sections', pathMatch: 'full' },
     {
         path: 'admin-panel', component: AdminPanelComponent, children: [
             { path: 'sections', component: SettingSectionComponent },

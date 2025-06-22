@@ -290,9 +290,9 @@
                     <h4>Quick Navigation</h4>
                     <div class="content-headings">
                         <ul>
-                            @if (imgSrc) {
+                            <!-- @if (imgSrc) {
                             <li><a [routerLink]="[]" fragment="image">{{ placeDetails?.postName }}</a></li>
-                            }
+                            } -->
                             <li><a [routerLink]="[]" fragment="about">About {{ placeDetails?.postName }}</a></li>
                             <li *ngIf="placeDetails?.history"><a [routerLink]="[]" fragment="history">History of {{
                                     placeDetails?.postName }}</a></li>
@@ -683,24 +683,6 @@
         </section> -->
         </div>
         <div class="right">
-            <div class="top-categories">
-                <section>
-                    <div class="container">
-                        <h4 class="section-title" style="text-align: start;"><a routerLink="/travel-categories">Top
-                                Categories</a> </h4>
-                        <div class="categories-details hideScrollbar">
-                            <ul>
-                                @for (category of topCategories; track $index) {
-                                <li class="item">
-                                    <a class="link" [routerLink]="['/travel-category', category.slugifiedCatName]">
-                                        {{category.catName}} </a>
-                                </li>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-            </div>
             <div class="sections">
                 @if (!sectionLoader()) {
                 @if (section?.posts && section.posts.length > 0) {
@@ -759,6 +741,24 @@
                     </div>
                 </section>
                 }
+            </div>
+            <div class="top-categories">
+                <section>
+                    <div class="container">
+                        <h4 class="section-title" style="text-align: start;"><a routerLink="/travel-categories">Top
+                                Categories</a> </h4>
+                        <div class="categories-details hideScrollbar">
+                            <ul>
+                                @for (category of topCategories; track $index) {
+                                <li class="item">
+                                    <a class="link" [routerLink]="['/travel-category', category.slugifiedCatName]">
+                                        {{category.catName}} </a>
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
     </div>

@@ -364,7 +364,7 @@ export class PlaceDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   // }
 
   private getTopCategories() {
-    let limit = 5;
+    let limit = 10;
     this.apiRequest.getTopCategories(limit).subscribe((response: any) => {
       if (response.result) {
         if (response.data && response.data.length > 0) {
