@@ -33,7 +33,7 @@ export const routes: Routes = [
             { path: 'sections', component: SettingSectionComponent },
             { path: 'sections/places/:sectionName', component: ViewPostComponent },
             { path: 'sections/places', component: AllPostComponent },
-            { path: 'sections/places/add-place/:id', component: AddPostComponent },
+            { path: 'add-place/:id', component: AddPostComponent },
             { path: 'tags', component: MasterTagListComponent },
             { path: 'categories', component: MasterCategoryListComponent },
             // { path: 'guides', component: GuidesComponent },

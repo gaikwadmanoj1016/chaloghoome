@@ -72,7 +72,7 @@
             </div>
             @if (filteredPlaces && filteredPlaces.length > 0) {
             @if (cardEditable) {
-            <button type="button" class="btn btn-primary" [routerLink]="'add-place/'+selectedCard?.id"
+            <button type="button" class="btn btn-primary" [routerLink]="'/admin-panel/add-place/'+selectedCard?.id"
                 (click)="showHideAddPostForm()">+</button>
             <div class="travel-card-container grid-container">
                 @for (item of filteredPlaces; track $index) {
@@ -106,12 +106,12 @@
             }
         </div>
     </section>
+    @if (showHidePostForm) {
+    <app-add-post [placeDetails]="selectedCard" (onCloseModal)="closePostPopup()"
+        (onPostUpdate)="onPostUpdate()"></app-add-post>
+    }
 </main>
 
-@if (showHidePostForm) {
-<app-add-post [placeDetails]="selectedCard" (onCloseModal)="closePostPopup()"
-    (onPostUpdate)="onPostUpdate()"></app-add-post>
-}
 
 @if (commonService.isAddHighlightModal) {
 <app-highlights-modal [isModalOpen]="commonService.isAddHighlightModal" [cardDetails]="commonService.selectedCard"

@@ -6,6 +6,8 @@ import { CommonService } from '../../../shared/services/common.service';
 import { ApiService } from '../../../shared/services/api.service';
 import { NgFor } from '@angular/common';
 import { slugify } from '../../../utils/slugify';
+import { ActivatedRoute } from '@angular/router';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-add-post',
@@ -27,27 +29,33 @@ export class AddPostComponent implements OnInit {
   countryList: any[] = [];
   stateList: any[] = [];
   cityList: any[] = [];
-  selctionExist: boolean = false;
+  // selctionExist: boolean = false;
   isEditing: boolean = false;
   // Selected
   categories: any[] = [];
   tags: any[] = [];
 
   // Filtered suggestions
-  
+
   // category
   filteredCategories: any[] = [];
   showCategoryModal = signal(false);
   searchCategory: string = '';
   tempCategorySelected: any[] = [];
-  
+
   // tags
   filteredTags: any[] = [];
   showTagModal = signal(false);
   searchTag: string = '';
   tempTagSelected: any[] = [];
+  readonly LOCAL_STORAGE_DRAFT_KEY = 'postFormDraft';
+  message: string = '';
+  draftDataRestored: boolean = false;
+  skipNextSave: boolean = false;
 
-  constructor(private fb: FormBuilder, public commonService: CommonService, private apiService: ApiService, private cdref: ChangeDetectorRef) { }
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, public commonService: CommonService, private apiService: ApiService, private cdref: ChangeDetectorRef) {
+    commonService.headerName = 'Add New Post';
+  }
 
   ngOnInit(): void {
     // Initialize the form
@@ -75,22 +83,42 @@ export class AddPostComponent implements OnInit {
       isThumbnail: [true],
       sectionId: ['']
     });
+    // this.restoreDraftIfExists(); // ✅ Restore draft
 
-    if (this.sectionId) {
-      this.selctionExist = true;
-      this.postForm.get('sectionId')?.setValue(this.sectionId);
-    } else {
-      this.selctionExist = false;
-    }
+    // // ✅ Auto-save to localStorage with debounce
+    // this.postForm.valueChanges
+    //   .pipe(debounceTime(3000), distinctUntilChanged())
+    //   .subscribe(formData => {
+    //     if (this.skipNextSave) {
+    //       this.skipNextSave = false; // reset flag
+    //       return; // ⛔ skip saving
+    //     }
+
+    //     console.log('Auto-saving to draft...');
+    //     this.showMessage('Auto-saving to draft...');
+    //     localStorage.setItem(this.LOCAL_STORAGE_DRAFT_KEY, JSON.stringify(formData));
+    //   });
     this.getCountryList();
     this.getAllCategory();
     this.getAllTags();
-    if (this.placeDetails && Object.keys(this.placeDetails).length > 0) {
-      this.refillPostForm();
-      this.isEditing = true;
-    } else {
-      this.isEditing = false;
-    }
+    this.route.params.subscribe((param: any) => {
+      if (param && param['id']) {
+        let query = `id=${param['id']}`;
+        this.isEditing = true;
+        this.commonService.headerName = 'Edit New Post';
+        this.apiService.getPostDetails(query).subscribe((response: any) => {
+          if (response.result) {
+            this.placeDetails = response.data;
+            this.refillPostForm();
+          } else {
+            this.placeDetails = undefined;
+            console.error("place details not found");
+          }
+        })
+      } else {
+        this.isEditing = false;
+      }
+    });
   }
 
   refillPostForm() {
@@ -155,10 +183,12 @@ export class AddPostComponent implements OnInit {
       });
     }
     if (this.placeDetails?.postTagList && this.placeDetails.postTagList.length > 0) {
-      this.tags = this.placeDetails.postTagList.map((item: any) => item.tagName);
+      this.tags = this.placeDetails.postTagList;
     }
     if (this.placeDetails?.postCatList && this.placeDetails.postCatList.length > 0) {
-      this.categories = this.placeDetails.postCatList.map((item: any) => item.category.catName);
+      this.categories = this.placeDetails.postCatList.map((item: any) => item.category);
+      console.log(this.categories);
+
     }
     if (this.placeDetails.city && this.placeDetails.city.countryId) {
       this.getStateListByCountry({ target: { value: this.placeDetails.city.countryId } });
@@ -168,6 +198,23 @@ export class AddPostComponent implements OnInit {
       this.getCityListByState({ target: { value: this.placeDetails.city.stateId } });
     }
   }
+
+  // restoreDraftIfExists() {
+  //   const savedDraft = localStorage.getItem(this.LOCAL_STORAGE_DRAFT_KEY);
+  //   if (savedDraft) {
+  //     try {
+  //       const parsed = JSON.parse(savedDraft);
+  //       this.postForm.patchValue(parsed);
+  //       console.log('Draft restored successfully!');
+  //       this.draftDataRestored = true;
+  //       this.showMessage('Draft restored successfully!')
+  //     } catch (err) {
+  //       this.draftDataRestored = false;
+  //       console.error('Error parsing saved draft:', err);
+  //       this.showMessage('Error parsing saved draft:' + err)
+  //     }
+  //   }
+  // }
 
   async onSubmit(): Promise<void> {
     // if (this.postForm.valid) {
@@ -278,6 +325,8 @@ export class AddPostComponent implements OnInit {
   closePopup(): void {
     // this.showHidePostForm = false;
     // this.onCloseModal.emit();
+    // this.skipNextSave = true;
+    // this.clearDraft();
     this.postForm.reset();
     this.commonService.goBack();
   }
@@ -474,7 +523,7 @@ export class AddPostComponent implements OnInit {
     event?.preventDefault();
     const value = this.postForm.get('categories')?.value.trim();
     if (value && !this.categories.includes(value)) {
-      this.categories.push({catName: value});
+      this.categories.push({ catName: value });
     }
     this.postForm.get('categories')?.setValue('');
     this.filteredCategories = [];
@@ -514,14 +563,14 @@ export class AddPostComponent implements OnInit {
       this.tempCategorySelected.push({ catName: trimmed });
       this.searchCategory = '';
     }
-    
+
   }
 
   openCategoryModal() {
     this.tempCategorySelected = this.categories;
     this.showCategoryModal.set(true);
   }
-  
+
   updateSelectedCategories() {
     this.categories = this.tempCategorySelected;
     console.log(this.tempCategorySelected);
@@ -569,14 +618,14 @@ export class AddPostComponent implements OnInit {
     this.tempTagSelected = this.tags;
     this.showTagModal.set(true);
   }
-  
+
   updateSelectedTags() {
     this.tags = this.tempTagSelected;
     console.log(this.tempTagSelected);
     this.showTagModal.set(false);
   }
 
-  
+
   filterTags() {
     const input = this.postForm.get('tags')?.value.toLowerCase() || '';
     this.filteredTags = this.allTags
@@ -596,7 +645,7 @@ export class AddPostComponent implements OnInit {
     event?.preventDefault();
     const value = this.postForm.get('tags')?.value.trim();
     if (value && !this.tags.includes(value)) {
-      this.tags.push({tagName: value});
+      this.tags.push({ tagName: value });
     }
     this.postForm.get('tags')?.setValue('');
     this.filteredTags = [];
@@ -616,6 +665,15 @@ export class AddPostComponent implements OnInit {
       this.tags = this.tags.filter(t => t !== value);
     }
   }
+  // clearDraft() {
+  //   localStorage.removeItem(this.LOCAL_STORAGE_DRAFT_KEY);
+  // }
 
+  // public showMessage(message: any) {
+  //   this.message = message;
+  //   setTimeout(() => {
+  //     this.message = '';
+  //   }, 3000);
+  // }
   // #endregion tags selection using modal
 }

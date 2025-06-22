@@ -1,5 +1,6 @@
 <div class="search-bar {{customClass}}" [class.expanded]="isExpanded()" (clickOutside)="disconnectWebsocket()">
-    <form (ngSubmit)="onSearch()" (clickOutside)="showSuggestions = false" [class.floating-search]="isScrolled">
+    <!--  [class.floating-search]="isScrolled" -->
+    <form (ngSubmit)="onSearch()" (clickOutside)="showSuggestions = false">
         <div class="search-panel">
             <input type="text" #searchInput [(ngModel)]="searchQuery" title="Shortcut: Ctrl + /" name="searchQuery"
                 (input)="onInputChange()" (focus)="onSearchFocus();" class="search-input"

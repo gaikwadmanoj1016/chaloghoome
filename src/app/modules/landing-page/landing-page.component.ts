@@ -93,6 +93,8 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
   slugify = slugify;
   constructor(public commonService: CommonService, private apiService: ApiService, private router: Router) { }
   overlayVisible = false;
+  clickedShapeIndex: number | null = null;
+
   expandedImage = '';
 
   @HostListener('document:keydown.escape', ['$event'])

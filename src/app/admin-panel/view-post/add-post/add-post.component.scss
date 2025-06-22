@@ -1,14 +1,192 @@
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 5px 0 0;
+    background: var(--section-border-color);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    background-color: var(--section-border-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #0056b3;
+    }
+
+    &:hover {
+        background: #0056b3;
+    }
+
+    &.remove {
+        background: #dc3545;
+
+        &:hover {
+            background: #b21f2d;
+        }
+    }
+}
+
 main {
     width: 100%;
     position: relative;
+    background-color: var(--bg-color);
 
-    .content {
-        width: 100%;
+    .container {
+        // width: 100%;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 
         form {
-            .header {
-                position: fixed;
-                top: var(--header-height, 60px);
+            .message {
+                width: 100%;
+                background-color: #ddd;
+                border-radius: 4px;
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            /* General Form Styling */
+
+            .form-body {
+                padding-top: 30px;
+                padding-bottom: 100px;
+                // max-height: calc(100vh);
+                height: calc(100vh - 240px);
+                overflow: auto;
+                // padding: 0 20px;
+                margin: 0;
+
+                h3 {
+                    text-align: center;
+                    margin-bottom: 20px;
+                    color: #333;
+                }
+
+                label {
+                    display: block;
+                    margin-bottom: 5px;
+                    font-weight: 600;
+                    color: #555;
+                }
+
+                input,
+                select,
+                textarea {
+                    width: 100%;
+                    padding: 10px;
+                    margin-bottom: 15px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    font-size: 14px;
+                    color: #333;
+
+                    &:focus {
+                        border-color: var(--section-border-color);
+                        outline: none;
+                        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+                    }
+                }
+
+                .error-message {
+                    color: #dc3545;
+                    font-size: 12px;
+                    margin-top: -10px;
+                    margin-bottom: 15px;
+                }
+
+                input[type='file'] {
+                    display: none;
+                    /* Hide file input */
+                }
+
+                .add-btn {
+                    height: 200px;
+                    width: 100%;
+                    margin: 0;
+                    background: #f2f2f2;
+                    border: 2px solid var(--shadow-color);
+
+                    .add-icon {
+                        color: black;
+                        font-size: 40px;
+
+                    }
+
+                    &:hover {
+                        em {
+                            color: white;
+                        }
+                    }
+                }
+
+                .image-preview {
+                    position: relative;
+                    border: 1px solid #f2f2f2;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    width: 100%;
+                    max-width: 340px;
+                    max-height: 200px;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                        object-fit: contain;
+                    }
+
+                    .remove-btn {
+                        position: absolute;
+                        top: 5px;
+                        right: 5px;
+                        background: rgba(0, 0, 0, 0.5);
+                        color: white;
+                        border: none;
+                        border-radius: 50%;
+                        font-size: 18px;
+                        width: 30px;
+                        aspect-ratio: 1;
+                        padding: 0;
+                        margin: 0;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: background 0.3s ease;
+
+                        &:hover {
+                            background: rgba(255, 0, 0, 0.7);
+                        }
+                    }
+                }
+
+                label {
+                    font-weight: bold;
+                }
+
+                input,
+                textarea {
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                }
+            }
+
+            .footer {
+                position: relative;
+                bottom: 0;
                 background: white;
                 z-index: 500;
                 flex: 1;
@@ -16,39 +194,18 @@ main {
                 padding: 15px;
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
-                width: calc(100% - 250px);
+                justify-content: center;
+                height: 60px;
+                width: calc(100%);
 
                 @media (max-width: 768px) {
                     width: 100% !important;
                 }
 
-                .left {
+                .right {
                     display: flex;
                     align-items: center;
-                    gap: 15px;
-
-                    h2 {
-                        margin: 0;
-                        color: var(--black);
-                        padding: 0;
-                    }
-
-                    h3 {
-                        margin: 0;
-                        color: var(--black);
-                        padding: 0;
-                    }
-
-                    .close {
-                        cursor: pointer;
-                        font-size: 34px;
-                        color: var(--black);
-                        text-decoration: none;
-                    }
-                }
-
-                .right {
+                    justify-content: center;
 
                     // flex: 1;
                     /* Add Specialty Button Styling */
@@ -56,7 +213,7 @@ main {
                         display: block;
                         width: 100%;
                         background: var(--primary-color);
-                        margin: 15px 0;
+                        // margin: 15px 0;
                         color: white;
                         font-weight: bold;
 
@@ -67,196 +224,6 @@ main {
                 }
             }
 
-            /* General Form Styling */
-
-            .form-body {
-                padding-block: calc(var(--header-height) + 30px);
-                // height: calc(100vh - 150px);
-                // overflow: auto;
-                // padding: 0 20px;
-                margin: 0;
-            }
-
-            h3 {
-                text-align: center;
-                margin-bottom: 20px;
-                color: #333;
-            }
-
-            label {
-                display: block;
-                margin-bottom: 5px;
-                font-weight: 600;
-                color: #555;
-            }
-
-            input,
-            select,
-            textarea {
-                width: 100%;
-                padding: 10px;
-                margin-bottom: 15px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                font-size: 14px;
-                color: #333;
-
-                &:focus {
-                    border-color: var(--section-border-color);
-                    outline: none;
-                    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-                }
-            }
-
-            .btn {
-                display: inline-block;
-                padding: 10px 20px;
-                margin: 10px 5px 0 0;
-                background: var(--section-border-color);
-                color: #fff;
-                font-size: 14px;
-                font-weight: 600;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-                display: inline-block;
-                background-color: var(--section-border-color);
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                cursor: pointer;
-                font-size: 14px;
-                border-radius: 5px;
-                margin-top: 10px;
-                transition: background-color 0.3s ease;
-
-                &:hover {
-                    background-color: #0056b3;
-                }
-
-                &:hover {
-                    background: #0056b3;
-                }
-
-                &.remove {
-                    background: #dc3545;
-
-                    &:hover {
-                        background: #b21f2d;
-                    }
-                }
-            }
-
-            .error-message {
-                color: #dc3545;
-                font-size: 12px;
-                margin-top: -10px;
-                margin-bottom: 15px;
-            }
-
-            input[type='file'] {
-                display: none;
-                /* Hide file input */
-            }
-
-            // button {
-            //     display: inline-block;
-            //     background-color: var(--section-border-color);
-            //     color: white;
-            //     border: none;
-            //     padding: 10px 20px;
-            //     cursor: pointer;
-            //     font-size: 14px;
-            //     border-radius: 5px;
-            //     margin-top: 10px;
-            //     transition: background-color 0.3s ease;
-
-            //     &:hover {
-            //         background-color: #0056b3;
-            //     }
-            // }
-
-            .add-btn {
-                height: 200px;
-                width: 100%;
-                margin: 0;
-                background: #f2f2f2;
-                border: 2px solid var(--shadow-color);
-
-                .add-icon {
-                    color: black;
-                    font-size: 40px;
-
-                }
-
-                &:hover {
-                    em {
-                        color: white;
-                    }
-                }
-            }
-
-            .image-preview {
-                position: relative;
-                border: 1px solid #f2f2f2;
-                border-radius: 5px;
-                overflow: hidden;
-                width: 100%;
-                max-width: 340px;
-                max-height: 200px;
-
-                img {
-                    width: 100%;
-                    height: auto;
-                    display: block;
-                    object-fit: contain;
-                }
-
-                .remove-btn {
-                    position: absolute;
-                    top: 5px;
-                    right: 5px;
-                    background: rgba(0, 0, 0, 0.5);
-                    color: white;
-                    border: none;
-                    border-radius: 50%;
-                    font-size: 18px;
-                    width: 30px;
-                    aspect-ratio: 1;
-                    padding: 0;
-                    margin: 0;
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    transition: background 0.3s ease;
-
-                    &:hover {
-                        background: rgba(255, 0, 0, 0.7);
-                    }
-                }
-            }
-
-            // .col-lg-6 {
-            //     flex: 1 1 48%;
-            // }
-
-            // .col-lg-12 {
-            //     flex: 1 1 100%;
-            // }
-
-            label {
-                font-weight: bold;
-            }
-
-            input,
-            textarea {
-                width: 100%;
-                padding: 8px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
         }
 
         /* specialities Form Group Styling */

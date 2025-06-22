@@ -4,7 +4,7 @@
     <div class="container">
         <h2>{{section?.sectionName || convertSlugToNormal(sectionName, '-')}}</h2>
         @if (cardEditable) {
-        <button type="button" class="btn btn-primary" (click)="showHideAddPostForm()">+</button>
+        <button type="button" class="btn btn-primary" [routerLink]="'/admin-panel/add-place/'+selectedCard?.id">+</button>
         }
 
         @if (section && section.posts && section.posts.length > 0) {
@@ -39,12 +39,12 @@
         </h5>
         }
     </div>
-</section>
+    <!-- @if (showHidePostForm && section.id) {
+    <app-add-post [placeDetails]="selectedCard" (onCloseModal)="closePostPopup()" (onPostUpdate)="onPostUpdate()"
+        [sectionId]="section.id"></app-add-post>
+    } -->
 
-@if (showHidePostForm && section.id) {
-<app-add-post [placeDetails]="selectedCard" (onCloseModal)="closePostPopup()" (onPostUpdate)="onPostUpdate()"
-    [sectionId]="section.id"></app-add-post>
-}
+</section>
 
 
 @if (commonService.isAddHighlightModal) {

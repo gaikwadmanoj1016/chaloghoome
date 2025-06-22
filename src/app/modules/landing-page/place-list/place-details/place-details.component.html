@@ -280,7 +280,7 @@
             @if (false && section?.sectionName) {
             <li><a [routerLink]="'/places/'+section.slugifiedSectionName"> {{section?.sectionName}} </a></li>
             }
-            <li aria-current="page">Taj Mahal</li>
+            <li aria-current="page">{{placeDetails?.postName}}</li>
         </ol>
     </nav>
     <div class="place-details">
@@ -304,7 +304,7 @@
                                     Visit {{ placeDetails?.postName }}</a>
                             </li>
                             <li
-                                *ngIf="placeDetails?.postName || placeDetails?.bestTimeToVisit || placeDetails?.famousFor || placeDetails?.howToGo || (placeDetails?.travelGuide?.length)">
+                                *ngIf="placeDetails?.bestTimeToVisit || placeDetails?.howToGo || (placeDetails?.travelGuide?.length)">
                                 <a [routerLink]="[]" fragment="travelGuide">Plan Your Visit at {{ placeDetails?.postName
                                     }}</a>
                             </li>
@@ -313,7 +313,11 @@
                             <li *ngIf="facts && facts.length > 0"><a [routerLink]="[]" fragment="facts">Facts about {{
                                     placeDetails?.postName }}</a>
                             </li>
+                            @if ((placeDetails?.postTagList && placeDetails?.postTagList?.length) ||
+                            (placeDetails?.postCatList &&
+                            placeDetails?.postCatList?.length)) {
                             <li><a [routerLink]="[]" fragment="category_tags">Categories & Tags</a></li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -443,13 +447,8 @@
             </section>
 
             <!-- Travel Guide -->
-            <section id="travelGuide" class="travel-guide" *ngIf="
-                placeDetails?.postName ||
-                placeDetails?.bestTimeToVisit ||
-                placeDetails?.famousFor ||
-                placeDetails?.howToGo ||
-                (placeDetails?.travelGuide?.length)
-              ">
+            <section id="travelGuide" class="travel-guide"
+                *ngIf="placeDetails?.bestTimeToVisit || placeDetails?.howToGo || (placeDetails?.travelGuide?.length)">
                 <div class="container">
                     <h3 *ngIf="placeDetails?.postName" class="highlighted-text">Plan Your Visit: {{
                         placeDetails?.postName
@@ -687,13 +686,15 @@
             <div class="top-categories">
                 <section>
                     <div class="container">
-                        <h4 class="section-title" style="text-align: start;"><a routerLink="/travel-categories">Top Categories</a> </h4>
+                        <h4 class="section-title" style="text-align: start;"><a routerLink="/travel-categories">Top
+                                Categories</a> </h4>
                         <div class="categories-details hideScrollbar">
                             <ul>
                                 @for (category of topCategories; track $index) {
-                                    <li class="item">
-                                        <a class="link" [routerLink]="['/travel-category', category.slugifiedCatName]"> {{category.catName}} </a>
-                                    </li>
+                                <li class="item">
+                                    <a class="link" [routerLink]="['/travel-category', category.slugifiedCatName]">
+                                        {{category.catName}} </a>
+                                </li>
                                 }
                             </ul>
                         </div>

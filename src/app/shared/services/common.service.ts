@@ -68,6 +68,9 @@ export class CommonService {
   subscribeSectionsData: BehaviorSubject<boolean> = new BehaviorSubject(false);
   currentRoute: string = '';
 
+  // #region admin panel
+  headerName: string = '';
+
   constructor(private router: Router,
     private sanitizer: DomSanitizer,
     private titleService: Title,
@@ -81,8 +84,10 @@ export class CommonService {
     let link: HTMLLinkElement = this.dom.querySelector("link[rel='canonical']") || this.dom.createElement('link');
     link.setAttribute('rel', 'canonical');
     link.setAttribute('href', url || this.dom.URL);
-    console.log(link);
-
+    if (link.href.includes('admin-panel')) {
+      return;
+    }
+    console.log(link.href);
     this.dom.head.appendChild(link);
   }
 

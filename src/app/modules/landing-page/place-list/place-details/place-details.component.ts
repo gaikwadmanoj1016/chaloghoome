@@ -332,7 +332,7 @@ export class PlaceDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
     if (navigator.share) {
       navigator.share({
         title: this.placeDetails?.postName + ' | ' + (this.placeDetails?.location || ''),
-        text: this.placeDetails?.summary,
+        text: (this.placeDetails && this.placeDetails.summary.length > 100) ? this.placeDetails?.summary.substring(0, 100) + '...' : this.placeDetails?.summary,
         url: window.location.href
       })
         .then(() => console.log('Successfully shared'))

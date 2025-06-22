@@ -16,8 +16,9 @@
         background-color: $color;
     }
 }
+
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 // Global styles
@@ -792,15 +793,21 @@ p {
 
 // hero section stars
 /* In src/styles.scss */
-.stars .star {
+.stars {
     position: absolute;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.6;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
 
-    animation: glow 2s infinite ease-in-out;
+    .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.6;
+        animation: glow 2s infinite ease-in-out;
+    }
 }
 
 @keyframes glow {
@@ -823,7 +830,7 @@ p {
     height: 100%;
     pointer-events: none;
     overflow: hidden;
-    z-index: 4;
+    z-index: 13;
 
     .shooting-star {
         position: absolute;

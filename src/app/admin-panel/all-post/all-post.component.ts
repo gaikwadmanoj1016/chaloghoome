@@ -21,7 +21,7 @@ export class AllPostComponent {
   slugify = slugify;
   filteredPlaces: any[] = [];
   constructor(private route: ActivatedRoute, private apiService: ApiService, public commonService: CommonService) {
-
+    commonService.headerName = "Places";
   }
 
   ngOnInit(): void {
@@ -42,6 +42,7 @@ export class AllPostComponent {
           this.commonService.setMetaData(`Places – Explore Destinations, Attractions & Hidden Gems`, { summary: "Discover your next adventure with our friendly places list — explore top travel spots, hidden gems, and must-visit destinations in one click!", originalThumbnailImg: this.places[0].imageUrl });
         }
         this.filteredPlaces = [...this.places];
+        this.commonService.scrollToTop();
       } else {
 
       }
@@ -54,15 +55,7 @@ export class AllPostComponent {
 
   onEditCard(item: any) {
     // this.selectedCard = item;
-    let query = `id=${item.id}`;
-    this.apiService.getPostDetails(query).subscribe((response: any) => {
-      if (response.result) {
-        this.selectedCard = response.data;
-        this.showHidePostForm = true;
-      } else {
-
-      }
-    })
+    this.commonService.navigateTo('/admin-panel/add-place/' + item?.id);
   }
   deletePost(item: any) {
     // this.selectedCard = item;

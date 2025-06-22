@@ -33,15 +33,15 @@
         margin: 0 auto;
         transition: all 0.5s;
 
-        &.floating-search {
-            .search-input {
-                padding: 10px 20px !important;
-            }
+        // &.floating-search {
+        //     .search-input {
+        //         padding: 10px 20px !important;
+        //     }
 
-            .search-btn {
-                padding: 12px !important;
-            }
-        }
+        //     .search-btn {
+        //         padding: 12px !important;
+        //     }
+        // }
 
         .search-panel {
             padding: 2px;
@@ -264,6 +264,14 @@
         transform: translateX(0%);
         left: auto;
         right: 0;
+
+        &.expanded {
+            form {
+                .search-panel {
+                    width: 100%;
+                }
+            }
+        }
 
         form {
             width: 80% !important;

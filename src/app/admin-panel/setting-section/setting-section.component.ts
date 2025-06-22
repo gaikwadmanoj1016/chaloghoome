@@ -23,6 +23,7 @@ export class SettingSectionComponent {
   selectedSection: any;
 
   constructor(public commonService: CommonService, private apiService: ApiService) {
+    this.commonService.headerName = "Sections";
     this.sectionForm = new FormGroup({
       sectionName: new FormControl(''),
       slugifiedSectionName: new FormControl(''),

@@ -1,24 +1,19 @@
-<div class="admin-wrapper">
+<div class="admin-wrapper" [class.sidebar-collapsed]="sidebarCollapsed">
     <aside [class.collapsed]="sidebarCollapsed">
-        <div class="toggle-btn" (click)="toggleSidebar()">
-            ☰
-        </div>
         <ul class="menu">
-            <li [routerLink]="['sections']">Sections</li>
-            <li [routerLink]="['sections/places']">Places</li>
-            <li [routerLink]="['/guides']">Guides</li>
-            <li [routerLink]="['tags']">Tags</li>
-            <li [routerLink]="['categories']">Categories</li>
-            <!-- <li>
-                Features
-                <ul class="submenu">
-                    <li routerLinkActive="active" [routerLink]="['/place-features']">Place Features</li>
-                    <li routerLinkActive="active" [routerLink]="['/unique-features']">Unique Features</li>
-                </ul>
-            </li> -->
+            <li [routerLink]="['sections']" (click)="toggleSidebar()">Sections</li>
+            <li [routerLink]="['sections/places']" (click)="toggleSidebar()">Places</li>
+            <li [routerLink]="['/guides']" (click)="toggleSidebar()">Guides</li>
+            <li [routerLink]="['tags']" (click)="toggleSidebar()">Tags</li>
+            <li [routerLink]="['categories']" (click)="toggleSidebar()">Categories</li>
         </ul>
     </aside>
+
     <main>
-        <router-outlet></router-outlet>
+        <app-admin-panel-header (onToggleSidebar)="toggleSidebar()"
+            (onCloseSidebar)="closeSidebar()"></app-admin-panel-header>
+        <div (click)="closeSidebar()">
+            <router-outlet></router-outlet>
+        </div>
     </main>
 </div>

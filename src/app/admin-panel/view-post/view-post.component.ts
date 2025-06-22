@@ -116,17 +116,9 @@ export class ViewPostComponent implements OnInit {
   }
 
   onEditCard(item: any) {
-    // this.selectedCard = item;
-    let query = `id=${item.id}`;
-    this.apiService.getPostDetails(query).subscribe((response: any) => {
-      if (response.result) {
-        this.selectedCard = response.data;
-        this.showHidePostForm = true;
-      } else {
-
-      }
-    })
+    this.commonService.navigateTo('/admin-panel/add-place/' + item?.id);
   }
+
   deletePost(item: any) {
     // this.selectedCard = item;
     this.apiService.deletePost(item.id).subscribe((response: any) => {

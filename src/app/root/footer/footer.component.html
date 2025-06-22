@@ -11,13 +11,19 @@
             <div class="logo">
                 <!-- <img loading="lazy" src="assets/icons/ChaloGhoome-logo-new.png" alt="Chalo Ghoome logo" class=""> -->
                 <img loading="lazy" src="https://github.com/gaikwadmanoj1016/Assets/blob/main/001_02psd.jpg?raw=true"
-                    alt="Chalo Ghoome logo" class="image1">
+                    alt="Chalo Ghoome logo" class="image1" routerLink="/home">
             </div>
         </div>
         <div class="section2">
             <div class="left">
                 <h5>Important Links </h5>
                 <ul>
+                    <li class="para-sm">
+                        <a routerLink="/travel-categories">Travel Categories</a>
+                    </li>
+                    <li class="para-sm">
+                        <a routerLink="/places">Places</a>
+                    </li>
                     <!-- <li><a (click)="navigateTo('/')">Travel Stories</a></li> -->
                     @for (section of sections; track $index) {
                     <li class="para-sm">

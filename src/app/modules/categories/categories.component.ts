@@ -42,6 +42,7 @@ export class CategoriesComponent implements OnInit {
     const requests = categories.map(cat =>
       this.getPostsByCategoryName(cat.catName)
     );
+    this.commonService.scrollToTop();
 
     forkJoin(requests).subscribe({
       next: (results: any) => {

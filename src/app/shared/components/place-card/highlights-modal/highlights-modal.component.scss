@@ -129,7 +129,7 @@
                 overflow-y: auto;
                 height: 100%;
 
-                h3 {
+                h4 {
                     margin-bottom: 10px;
                 }
 
@@ -165,7 +165,7 @@
             }
 
             @media (max-width: 600px) {
-                height: 90vh;
+                height: 80vh;
                 flex-direction: column-reverse;
 
                 .left,
@@ -188,7 +188,7 @@
                     height: auto;
 
                     ul {
-                        height: 180px !important;
+                        height: 200px !important;
                         overflow: auto;
                     }
                 }

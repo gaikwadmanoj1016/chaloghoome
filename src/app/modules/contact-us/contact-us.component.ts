@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ApiService } from '../../shared/services/api.service';
 import { CommonService } from '../../shared/services/common.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contact-us',
@@ -12,11 +13,15 @@ import { CommonService } from '../../shared/services/common.service';
 })
 export class ContactUsComponent implements OnInit {
   requiredPattern = /^[a-z0-9._%+!$&*=^|~#%'`?{}\-]+@([a-z0-9\-]+\.)+[a-z]{2,16}$/;
+  currentRoute: string = '';
 
-  constructor(private apiService: ApiService, public commonService: CommonService) { }
+  constructor(private apiService: ApiService, public commonService: CommonService, private route: ActivatedRoute) { }
   ngOnInit(): void {
-    this.commonService.setCanonicalURL();
-    this.commonService.setMetaData("Contact us", { summary: `Welcome to Chalo Ghoome, the premier destination for travel enthusiasts worldwide. We're here to fuel your wanderlust and connect you with extraordinary experiences that transcend the ordinary.` });
+    this.currentRoute = this.route.snapshot.routeConfig?.path || '';
+    if (this.currentRoute !== 'home') {
+      this.commonService.setCanonicalURL();
+      this.commonService.setMetaData("Contact us", { summary: `Welcome to Chalo Ghoome, the premier destination for travel enthusiasts worldwide. We're here to fuel your wanderlust and connect you with extraordinary experiences that transcend the ordinary.` });
+    }
   }
 
   onSubmit(form: any) {
