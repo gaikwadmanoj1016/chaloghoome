@@ -15,20 +15,19 @@ export class PushService {
   subscribeToNotifications() {
     console.log("inside service");
     
-    if (!this.swPush.isEnabled) {
-      console.error('Service Worker is not enabled!');
-      return;
-    }
+    // if (!this.swPush.isEnabled) {
+    //   console.error('Service Worker is not enabled!');
+    //   return;
+    // }
     console.log("service worker is enabled");
 
-    this.swPush.requestSubscription({
-      serverPublicKey: this.VAPID_PUBLIC_KEY
-    }).then(subscription => {
+    this.swPush.requestSubscription({serverPublicKey: this.VAPID_PUBLIC_KEY}).then(subscription => {
       const raw = subscription.toJSON();
       const endpoint = raw?.endpoint;
       const p256dh = raw?.keys?.['p256dh'];
       const auth = raw?.keys?.['auth'];
-
+      console.log(subscription);
+      
       if (!endpoint || !p256dh || !auth) {
         console.error('Invalid push subscription format:', raw);
         return;
