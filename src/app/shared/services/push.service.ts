@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,7 @@ export class PushService {
       };
       console.log("below push notification payload", pushSubscription);
 
-      this.http.post('/api/notifications/send', pushSubscription).subscribe({
+      this.http.post(environment.apiUrl + '/api/notifications/send', pushSubscription).subscribe({
         next: () => console.log('✅ Subscription sent to server'),
         error: err => console.error('❌ Error sending subscription', err)
       });
