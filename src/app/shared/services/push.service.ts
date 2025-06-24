@@ -12,10 +12,13 @@ export class PushService {
   constructor(private swPush: SwPush, private http: HttpClient) { }
 
   subscribeToNotifications() {
+    console.log("inside service");
+    
     if (!this.swPush.isEnabled) {
       console.error('Service Worker is not enabled!');
       return;
     }
+    console.log("service worker is enabled");
 
     this.swPush.requestSubscription({
       serverPublicKey: this.VAPID_PUBLIC_KEY
@@ -34,6 +37,7 @@ export class PushService {
         endpoint,
         keys: { p256dh, auth }
       };
+      console.log("below push notification payload", pushSubscription);
 
       this.http.post('/api/notifications/send', pushSubscription).subscribe({
         next: () => console.log('✅ Subscription sent to server'),

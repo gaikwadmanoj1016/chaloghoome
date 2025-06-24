@@ -122,6 +122,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 subscribe() {
+  console.log("subscription clicked");
+  
     this.pushService.subscribeToNotifications();
   }
   subscribeToPush() {
