@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PushService {
 
-  readonly VAPID_PUBLIC_KEY = 'YOUR_PUBLIC_VAPID_KEY_FROM_BACKEND';
+  readonly VAPID_PUBLIC_KEY = 'BO-bvsunEvQemRnWCruaWdPcLOHqK2njvBc9MHniSOXn35bKjeqigmzjNPtMfA0wSHa3pcu5RD-riv_enwjiKAY';
 
   constructor(private swPush: SwPush, private http: HttpClient) { }
 
