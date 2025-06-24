@@ -34,33 +34,32 @@ export class PushService {
 
   subscribeToNotifications() {
     if (!this.swPush.isEnabled) {
-      console.error('[PushService] Service Worker is not enabled in this browser!');
+      console.error('[PushService] Service Worker is not enabled!');
       return;
     }
 
     console.log('[PushService] Service Worker is enabled. Requesting subscription...');
 
-    let convertedVapidKey: any;
-
+    let convertedVapidKey: Uint8Array;
     try {
       convertedVapidKey = this.urlBase64ToUint8Array(this.VAPID_PUBLIC_KEY);
     } catch (err) {
-      console.error('[PushService] Invalid VAPID key provided.');
+      console.error('[PushService] VAPID key conversion failed.');
       return;
     }
 
-    this.swPush.requestSubscription({
-      serverPublicKey: convertedVapidKey
-    }).then(subscription => {
-      console.log('[PushService] Subscription object received from browser:', subscription);
+    console.log('[DEBUG] Is Uint8Array:', convertedVapidKey instanceof Uint8Array);
 
+    this.swPush.requestSubscription({
+      serverPublicKey: this.VAPID_PUBLIC_KEY // ✅ should be Uint8Array
+    }).then(subscription => {
       const raw = subscription.toJSON();
       const endpoint = raw?.endpoint;
       const p256dh = raw?.keys?.['p256dh'];
       const auth = raw?.keys?.['auth'];
 
       if (!endpoint || !p256dh || !auth) {
-        console.error('[PushService] Subscription object is missing required fields:', raw);
+        console.error('[PushService] Subscription is missing required fields:', raw);
         return;
       }
 
@@ -69,15 +68,14 @@ export class PushService {
         keys: { p256dh, auth }
       };
 
-      console.log('[PushService] Sending subscription to backend:', pushSubscription);
-
       this.http.post('/api/notifications/send', pushSubscription).subscribe({
         next: () => console.log('✅ [PushService] Subscription sent to backend successfully.'),
-        error: err => console.error('❌ [PushService] Error sending subscription to backend:', err)
+        error: err => console.error('❌ [PushService] Backend error:', err)
       });
 
     }).catch(err => {
       console.error('❌ [PushService] Subscription failed:', err);
     });
   }
+
 }
