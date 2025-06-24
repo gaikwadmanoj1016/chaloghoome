@@ -177,6 +177,22 @@ export class ApiService {
       })
     )
   }
+
+  public getAllplacesByCategory2(catName: string, country?: string) {
+    let API = '';
+    if (country) {
+      API = environment.apiUrl + 'api/posts/getPlacesByCountryNSection?section=' + catName + '&country=' + country;
+    } else {
+      API = environment.apiUrl + 'api/posts/getPlacesByCountryNSection?section=' + catName;
+    }
+    return this.httpRequest.get(API, this.commonService.getRequestOptionArgs()).pipe(
+      map((data) => {
+        return data;
+      }), catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    )
+  }
   // common
 
   //#region sections

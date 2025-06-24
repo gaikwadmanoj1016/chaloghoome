@@ -7,11 +7,14 @@
             </span>
         </button>
     </div>
-    <app-header [sections]="commonService.sections" [isScrolled]="isScrolled"></app-header>
-    <router-outlet></router-outlet>
+    <!-- <app-header [sections]="commonService.sections" [isScrolled]="isScrolled"></app-header> -->
+    <button (click)="subscribeToPush()">Subscribe to Notifications</button>
+    <button (click)="subscribe()">Enable Push Notification</button>
+
+    <!-- <router-outlet></router-outlet>
     @if (!commonService.currentRoute.includes('admin-panel')) {
         <app-footer [sections]="commonService.sections"></app-footer>
-    }
+    } -->
 </main>
 <!-- <div class="controls">
     <button (click)="playCarousel()">Play</button>

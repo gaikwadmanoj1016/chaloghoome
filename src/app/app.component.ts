@@ -6,6 +6,8 @@ import { FooterComponent } from './root/footer/footer.component';
 import { ActivatedRoute, NavigationEnd, Router, Event as RouterEvent, RouterOutlet } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { filter } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { PushService } from './shared/services/push.service';
 
 interface UserInterface {
   id: number,
@@ -77,7 +79,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   user = this.users()[1];
   profileModal: boolean = false;
-  constructor(public commonService: CommonService, private router: Router, private apiService: ApiService, private route: ActivatedRoute, private renderer: Renderer2) { }
+
+  constructor(private http: HttpClient, private pushService: PushService, public commonService: CommonService, private router: Router, private apiService: ApiService, private route: ActivatedRoute, private renderer: Renderer2) { }
   // cards = Array.from({ length: 6 }, (_, i) => ({
   //   title: `Card ${i + 1}`,
   //   content: `Content for card ${i + 1}`
@@ -118,6 +121,31 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       this.commonService.setTheme(this.commonService.selectedTheme, this.renderer);
     }
   }
+subscribe() {
+    this.pushService.subscribeToNotifications();
+  }
+  subscribeToPush() {
+    Notification.requestPermission().then(async permission => {
+      if (permission === 'granted') {
+        const reg = await navigator.serviceWorker.ready;
+        const sub = await reg.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: this.urlBase64ToUint8Array("BO-bvsunEvQemRnWCruaWdPcLOHqK2njvBc9MHniSOXn35bKjeqigmzjNPtMfA0wSHa3pcu5RD-riv_enwjiKAY")
+        });
+        this.http.post('http://localhost:8080/api/subscribe', sub).subscribe(() => {
+          console.log("Subscription sent to server.");
+        });
+      }
+    });
+  }
+
+  urlBase64ToUint8Array(base64String: string) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+    const raw = window.atob(base64);
+    return new Uint8Array([...raw].map(char => char.charCodeAt(0)));
+  }
+
   private getSections() {
     // this.commonService.sections = [];
     this.apiService.getSectionWithPosts(7).subscribe((response: any) => {
