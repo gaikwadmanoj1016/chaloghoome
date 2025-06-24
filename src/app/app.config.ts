@@ -6,6 +6,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { provideServiceWorker } from '@angular/service-worker';
+import { environment } from '../../environment.prod';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,8 +17,8 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     { provide: LocationStrategy, useClass: PathLocationStrategy },
     provideServiceWorker('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      registrationStrategy: 'registerWhenStable:30000'
+      enabled: true,
+      // registrationStrategy: 'registerWhenStable:30000'
     })
   ],
 };

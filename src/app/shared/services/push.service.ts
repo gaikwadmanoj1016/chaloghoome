@@ -42,7 +42,7 @@ export class PushService {
 
       console.log('[PushService] Sending subscription to backend:', pushSubscription);
 
-      this.http.post('/api/notifications/send', pushSubscription).subscribe({
+      this.http.post(environment.apiUrl + '/api/notifications/send', pushSubscription).subscribe({
         next: () => console.log('✅ Subscription sent to backend successfully.'),
         error: err => console.error('❌ Error sending subscription to backend:', err)
       });
