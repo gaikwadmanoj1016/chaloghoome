@@ -8,28 +8,59 @@ import { environment } from '../../../../environment.prod';
 })
 export class PushService {
 
-  readonly VAPID_PUBLIC_KEY = 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE-iekZ8YF85hhOyO4K7ZgM_Ph99QVz5yT5OS9V_XvQi_ZyV10vwkaeeFYHKlHIWCdyaeoY64xjsqbZQadAHP_Eg';
+  readonly VAPID_PUBLIC_KEY = 'BJ6PutuZ-0n79VbgwfuDNGiau18JDLw_3-W_o6IUZBCVzzT49xae1dmswnR7yLzgakBg7JWSNw3DNuVg_NuyacQ';
 
   constructor(private swPush: SwPush, private http: HttpClient) { }
+  private urlBase64ToUint8Array(base64String: string): any {
+    console.log('[PushService] Converting VAPID key from Base64 to Uint8Array...');
+    const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+    const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+
+    try {
+      const rawData = window.atob(base64);
+      const outputArray = new Uint8Array(rawData.length);
+
+      for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+      }
+
+      console.log('[PushService] Converted VAPID key successfully.');
+      return outputArray;
+    } catch (err) {
+      console.error('[PushService] Failed to decode VAPID key:', err);
+      throw err;
+    }
+  }
 
   subscribeToNotifications() {
-    console.log("inside service");
-    
-    // if (!this.swPush.isEnabled) {
-    //   console.error('Service Worker is not enabled!');
-    //   return;
-    // }
-    console.log("service worker is enabled");
+    if (!this.swPush.isEnabled) {
+      console.error('[PushService] Service Worker is not enabled in this browser!');
+      return;
+    }
 
-    this.swPush.requestSubscription({serverPublicKey: this.VAPID_PUBLIC_KEY}).then(subscription => {
+    console.log('[PushService] Service Worker is enabled. Requesting subscription...');
+
+    let convertedVapidKey: any;
+
+    try {
+      convertedVapidKey = this.urlBase64ToUint8Array(this.VAPID_PUBLIC_KEY);
+    } catch (err) {
+      console.error('[PushService] Invalid VAPID key provided.');
+      return;
+    }
+
+    this.swPush.requestSubscription({
+      serverPublicKey: convertedVapidKey
+    }).then(subscription => {
+      console.log('[PushService] Subscription object received from browser:', subscription);
+
       const raw = subscription.toJSON();
       const endpoint = raw?.endpoint;
       const p256dh = raw?.keys?.['p256dh'];
       const auth = raw?.keys?.['auth'];
-      console.log(subscription);
-      
+
       if (!endpoint || !p256dh || !auth) {
-        console.error('Invalid push subscription format:', raw);
+        console.error('[PushService] Subscription object is missing required fields:', raw);
         return;
       }
 
@@ -37,13 +68,16 @@ export class PushService {
         endpoint,
         keys: { p256dh, auth }
       };
-      console.log("below push notification payload", pushSubscription);
 
-      this.http.post(environment.apiUrl + '/api/notifications/send', pushSubscription).subscribe({
-        next: () => console.log('✅ Subscription sent to server'),
-        error: err => console.error('❌ Error sending subscription', err)
+      console.log('[PushService] Sending subscription to backend:', pushSubscription);
+
+      this.http.post('/api/notifications/send', pushSubscription).subscribe({
+        next: () => console.log('✅ [PushService] Subscription sent to backend successfully.'),
+        error: err => console.error('❌ [PushService] Error sending subscription to backend:', err)
       });
-    }).catch(err => console.error('❌ Subscription failed', err));
-  }
 
+    }).catch(err => {
+      console.error('❌ [PushService] Subscription failed:', err);
+    });
+  }
 }
