@@ -1,54 +1,111 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environment.prod';
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+import { FirebaseApp } from '@angular/fire/app';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PushService {
 
-  readonly VAPID_PUBLIC_KEY = 'BJ6PutuZ-0n79VbgwfuDNGiau18JDLw_3-W_o6IUZBCVzzT49xae1dmswnR7yLzgakBg7JWSNw3DNuVg_NuyacQ';
+  // readonly VAPID_PUBLIC_KEY = 'BJ6PutuZ-0n79VbgwfuDNGiau18JDLw_3-W_o6IUZBCVzzT49xae1dmswnR7yLzgakBg7JWSNw3DNuVg_NuyacQ';
 
-  constructor(private swPush: SwPush, private http: HttpClient) { }
-  
-  subscribeToNotifications() {
-    if (!this.swPush.isEnabled) {
-      console.error('[PushService] Service Worker is not enabled!');
-      return;
-    }
+  // constructor(private swPush: SwPush, private http: HttpClient) { }
 
-    console.log('[PushService] Requesting subscription...');
+  // subscribeToNotifications() {
+  //   if (!this.swPush.isEnabled) {
+  //     console.error('[PushService] Service Worker is not enabled!');
+  //     return;
+  //   }
 
-    this.swPush.requestSubscription({
-      serverPublicKey: this.VAPID_PUBLIC_KEY  // ✅ MUST be string
-    }).then(subscription => {
-      console.log('[PushService] Subscription object:', subscription);
+  //   console.log('[PushService] Requesting subscription...');
 
-      const raw = subscription.toJSON();
-      const endpoint = raw?.endpoint;
-      const p256dh = raw?.keys?.['p256dh'];
-      const auth = raw?.keys?.['auth'];
+  //   this.swPush.requestSubscription({
+  //     serverPublicKey: this.VAPID_PUBLIC_KEY  // ✅ MUST be string
+  //   }).then(subscription => {
+  //     console.log('[PushService] Subscription object:', subscription);
 
-      if (!endpoint || !p256dh || !auth) {
-        console.error('[PushService] Subscription missing fields:', raw);
+  //     const raw = subscription.toJSON();
+  //     const endpoint = raw?.endpoint;
+  //     const p256dh = raw?.keys?.['p256dh'];
+  //     const auth = raw?.keys?.['auth'];
+
+  //     if (!endpoint || !p256dh || !auth) {
+  //       console.error('[PushService] Subscription missing fields:', raw);
+  //       return;
+  //     }
+
+  //     const pushSubscription = {
+  //       endpoint,
+  //       keys: { p256dh, auth }
+  //     };
+
+  //     console.log('[PushService] Sending subscription to backend:', pushSubscription);
+
+  //     this.http.post(environment.apiUrl + '/api/notifications/send', pushSubscription).subscribe({
+  //       next: () => console.log('✅ Subscription sent to backend successfully.'),
+  //       error: err => console.error('❌ Error sending subscription to backend:', err)
+  //     });
+
+  //   }).catch(err => {
+  //     console.error('❌ Subscription failed:', err);
+  //   });
+  // }
+
+  // requestPermission(): void {
+  //   if ('Notification' in window) {
+  //     Notification.requestPermission().then((permission) => {
+  //       console.log('Permission:', permission);
+  //     });
+  //   }
+  // }
+
+  // showNotification(title: string, body: string): void {
+  //   if (Notification.permission === 'granted') {
+  //     new Notification(title, {
+  //       body,
+  //       icon: 'https://angular.io/assets/images/logos/angular/angular.png',
+  //     });
+  //   } else {
+  //     console.warn('Notification permission not granted.');
+  //   }
+  // }
+  private firebaseApp = inject(FirebaseApp); // waits for app initialization
+  private messaging = getMessaging(this.firebaseApp);
+
+  constructor() {
+    this.listen();
+  }
+
+  private listen(): void {
+    Notification.requestPermission().then(permission => {
+      if (permission !== 'granted') {
+        console.warn('[PushService] Notification permission not granted');
         return;
       }
 
-      const pushSubscription = {
-        endpoint,
-        keys: { p256dh, auth }
-      };
-
-      console.log('[PushService] Sending subscription to backend:', pushSubscription);
-
-      this.http.post(environment.apiUrl + '/api/notifications/send', pushSubscription).subscribe({
-        next: () => console.log('✅ Subscription sent to backend successfully.'),
-        error: err => console.error('❌ Error sending subscription to backend:', err)
+      getToken(this.messaging, {
+        vapidKey: environment.firebaseConfig.vapidKey
+      }).then(token => {
+        if (token) {
+          console.log('[PushService] FCM Token:', token);
+          // TODO: Send this token to your backend server
+        } else {
+          console.warn('[PushService] No token received');
+        }
       });
 
-    }).catch(err => {
-      console.error('❌ Subscription failed:', err);
+      onMessage(this.messaging, (payload) => {
+        console.log('[PushService] Message received in foreground:', payload);
+        if (payload.notification?.title) {
+          new Notification(payload.notification.title, {
+            body: payload.notification.body,
+            icon: payload.notification.icon || 'assets/icon.png',
+          });
+        }
+      });
     });
   }
 }

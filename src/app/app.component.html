@@ -11,7 +11,7 @@
     <!-- <button (click)="subscribeToPush()">Subscribe to Notifications</button> -->
     
     <router-outlet></router-outlet>
-    <button (click)="subscribe()">Enable Push Notification</button>
+    <!-- <button (click)="subscribe()">Enable Push Notification</button> -->
     @if (!commonService.currentRoute.includes('admin-panel')) {
         <app-footer [sections]="commonService.sections"></app-footer>
     }

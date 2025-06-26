@@ -80,7 +80,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   user = this.users()[1];
   profileModal: boolean = false;
 
-  constructor(private http: HttpClient, private pushService: PushService, public commonService: CommonService, private router: Router, private apiService: ApiService, private route: ActivatedRoute, private renderer: Renderer2) { }
+  constructor(private http: HttpClient, private pushService: PushService, public commonService: CommonService, private router: Router, private apiService: ApiService, private route: ActivatedRoute, private renderer: Renderer2) { 
+    // this.pushService.requestPermission();
+  }
   // cards = Array.from({ length: 6 }, (_, i) => ({
   //   title: `Card ${i + 1}`,
   //   content: `Content for card ${i + 1}`
@@ -121,11 +123,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       this.commonService.setTheme(this.commonService.selectedTheme, this.renderer);
     }
   }
-subscribe() {
-  console.log("subscription clicked");
-  
-    this.pushService.subscribeToNotifications();
-  }
+
+  // notify(): void {
+  //   this.pushService.showNotification(
+  //     'Hello from Angular!',
+  //     'This is a simple push notification.'
+  //   );
+  // }
+  // subscribe() {
+  //   console.log("subscription clicked");
+
+  //   this.pushService.subscribeToNotifications();
+  // }
   subscribeToPush() {
     Notification.requestPermission().then(async permission => {
       if (permission === 'granted') {
