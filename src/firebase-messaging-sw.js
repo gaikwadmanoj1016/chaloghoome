@@ -33,7 +33,9 @@ messaging.onBackgroundMessage(function (payload) {
 // Optional: Handle push events not using FCM format
 self.addEventListener('push', function (event) {
   try {
-    const data = event.data?.json()?.notification || {};
+    const payload = event.data?.text(); // Read as string
+    const json = JSON.parse(payload);   // Manually parse
+    const data = json.notification || {};
     const title = data.title || 'Notification';
     const options = {
       body: data.body,
