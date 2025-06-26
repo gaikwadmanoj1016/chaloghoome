@@ -80,7 +80,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   user = this.users()[1];
   profileModal: boolean = false;
 
-  constructor(private fcmService: FCMService,private http: HttpClient, public commonService: CommonService, private router: Router, private apiService: ApiService, private route: ActivatedRoute, private renderer: Renderer2) { 
+  constructor(private fcmService: FCMService, private http: HttpClient, public commonService: CommonService, private router: Router, private apiService: ApiService, private route: ActivatedRoute, private renderer: Renderer2) {
     this.fcmService.requestPermission();
   }
   // cards = Array.from({ length: 6 }, (_, i) => ({
@@ -112,7 +112,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.route.params.subscribe((param) => {
       console.log(param);
     })
-    this.fcmService.requestPermission();
     this.getSections();
   }
 
@@ -123,6 +122,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.commonService.setTheme(this.commonService.selectedTheme, this.renderer);
     }
+    setTimeout(() => {
+      this.fcmService.requestPermission();
+    }, 5000);
   }
 
   // notify(): void {
