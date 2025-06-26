@@ -93,7 +93,7 @@ export class PushService {
         vapidKey: environment.firebaseConfig.vapidKey
       }).then((token: any) => {
         if (token) {
-          console.log('[PushService] FCM Token:', token);
+          // console.log('[PushService] FCM Token:', token);
           // TODO: Send this token to your backend server
         } else {
           console.warn('[PushService] No token received');
@@ -105,7 +105,7 @@ export class PushService {
         if (payload.notification?.title) {
           new Notification(payload.notification.title, {
             body: payload.notification.body,
-            icon: payload.notification.icon || 'assets/icon.png',
+            icon: payload.notification.icon || 'https://github.com/gaikwadmanoj1016/Assets/blob/main/001.jpg?raw=true',
           });
         }
       });
