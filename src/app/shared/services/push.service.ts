@@ -75,40 +75,40 @@ export class PushService {
   //     console.warn('Notification permission not granted.');
   //   }
   // }
-  private firebaseApp = inject(FirebaseApp); // waits for app initialization
-  private messaging = getMessaging(this.firebaseApp);
+  // private firebaseApp = inject(FirebaseApp); // waits for app initialization
+  // private messaging = getMessaging(this.firebaseApp);
 
-  constructor() {
-    this.listen();
-  }
+  // constructor() {
+  //   this.listen();
+  // }
 
-  private listen(): void {
-    Notification.requestPermission().then(permission => {
-      if (permission !== 'granted') {
-        console.warn('[PushService] Notification permission not granted');
-        return;
-      }
+  // private listen(): void {
+  //   Notification.requestPermission().then(permission => {
+  //     if (permission !== 'granted') {
+  //       console.warn('[PushService] Notification permission not granted');
+  //       return;
+  //     }
 
-      getToken(this.messaging, {
-        vapidKey: environment.firebaseConfig.vapidKey
-      }).then((token: any) => {
-        if (token) {
-          // console.log('[PushService] FCM Token:', token);
-          // TODO: Send this token to your backend server
-        } else {
-          console.warn('[PushService] No token received');
-        }
-      });
+  //     getToken(this.messaging, {
+  //       vapidKey: environment.firebaseConfig.vapidKey
+  //     }).then((token: any) => {
+  //       if (token) {
+  //         // console.log('[PushService] FCM Token:', token);
+  //         // TODO: Send this token to your backend server
+  //       } else {
+  //         console.warn('[PushService] No token received');
+  //       }
+  //     });
 
-      onMessage(this.messaging, (payload: any) => {
-        console.log('[PushService] Message received in foreground:', payload);
-        if (payload.notification?.title) {
-          new Notification(payload.notification.title, {
-            body: payload.notification.body,
-            icon: payload.notification.icon || 'https://github.com/gaikwadmanoj1016/Assets/blob/main/001.jpg?raw=true',
-          });
-        }
-      });
-    });
-  }
+  //     onMessage(this.messaging, (payload: any) => {
+  //       console.log('[PushService] Message received in foreground:', payload);
+  //       if (payload.notification?.title) {
+  //         new Notification(payload.notification.title, {
+  //           body: payload.notification.body,
+  //           icon: payload.notification.icon || 'https://github.com/gaikwadmanoj1016/Assets/blob/main/001.jpg?raw=true',
+  //         });
+  //       }
+  //     });
+  //   });
+  // }
 }

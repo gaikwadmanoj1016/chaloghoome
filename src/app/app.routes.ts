@@ -24,6 +24,7 @@ import { EditProfileComponent } from './modules/edit-profile/edit-profile.compon
 import { AddPostComponent } from './admin-panel/view-post/add-post/add-post.component';
 import { PlaceByCategoryComponent } from './modules/categories/place-by-category/place-by-category.component';
 import { CategoriesComponent } from './modules/categories/categories.component';
+import { PushNotificationSetupComponent } from './admin-panel/push-notification-setup/push-notification-setup.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -37,6 +38,7 @@ export const routes: Routes = [
             { path: 'add-place/:id', component: AddPostComponent },
             { path: 'tags', component: MasterTagListComponent },
             { path: 'categories', component: MasterCategoryListComponent },
+            { path: 'notification-setup', component: PushNotificationSetupComponent },
             // { path: 'guides', component: GuidesComponent },
             // { path: 'place-features', component: PlaceFeaturesComponent },
             // { path: 'unique-features', component: UniqueFeaturesComponent },

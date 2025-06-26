@@ -7,7 +7,7 @@ import { ActivatedRoute, NavigationEnd, Router, Event as RouterEvent, RouterOutl
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { filter } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { PushService } from './shared/services/push.service';
+import { FCMService } from './shared/services/fcm.service';
 
 interface UserInterface {
   id: number,
@@ -80,8 +80,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   user = this.users()[1];
   profileModal: boolean = false;
 
-  constructor(private http: HttpClient, private pushService: PushService, public commonService: CommonService, private router: Router, private apiService: ApiService, private route: ActivatedRoute, private renderer: Renderer2) { 
-    // this.pushService.requestPermission();
+  constructor(private fcmService: FCMService,private http: HttpClient, public commonService: CommonService, private router: Router, private apiService: ApiService, private route: ActivatedRoute, private renderer: Renderer2) { 
+    this.fcmService.requestPermission();
   }
   // cards = Array.from({ length: 6 }, (_, i) => ({
   //   title: `Card ${i + 1}`,
@@ -112,6 +112,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.route.params.subscribe((param) => {
       console.log(param);
     })
+    this.fcmService.requestPermission();
     this.getSections();
   }
 
