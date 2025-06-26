@@ -2,8 +2,11 @@ import { inject, Injectable } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environment.prod';
-import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 import { FirebaseApp } from '@angular/fire/app';
+import { getMessaging, getToken, onMessage } from '@angular/fire/messaging';
+// import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+// import { FirebaseApp } from '@angular/fire/app';
+// import { FirebaseApp } from 'firebase/app'; // ✅ CORRECT
 
 @Injectable({
   providedIn: 'root'
@@ -88,7 +91,7 @@ export class PushService {
 
       getToken(this.messaging, {
         vapidKey: environment.firebaseConfig.vapidKey
-      }).then(token => {
+      }).then((token: any) => {
         if (token) {
           console.log('[PushService] FCM Token:', token);
           // TODO: Send this token to your backend server
@@ -97,7 +100,7 @@ export class PushService {
         }
       });
 
-      onMessage(this.messaging, (payload) => {
+      onMessage(this.messaging, (payload: any) => {
         console.log('[PushService] Message received in foreground:', payload);
         if (payload.notification?.title) {
           new Notification(payload.notification.title, {

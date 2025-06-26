@@ -3,9 +3,8 @@
 /* @ts-nocheck */
 
 console.log('[firebase-messaging-sw.js] Loaded');
-
-importScripts('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js');
-importScripts('https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/9.23.0/firebase-messaging-compat.js');
 
 firebase.initializeApp({
   apiKey: 'AIzaSyCMNjzE84F-Hvk4YDj3IFCM9NEsu42Y2xU',
@@ -19,7 +18,7 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 // Optional: Handle background messages via Firebase's own handler
-messaging.onBackgroundMessage(function(payload) {
+messaging.onBackgroundMessage(function (payload) {
   console.log('[firebase-messaging-sw.js] onBackgroundMessage: ', payload);
 
   const notificationTitle = payload.notification?.title || 'Background Message Title';
@@ -32,7 +31,7 @@ messaging.onBackgroundMessage(function(payload) {
 });
 
 // Optional: Handle push events not using FCM format
-self.addEventListener('push', function(event) {
+self.addEventListener('push', function (event) {
   try {
     const data = event.data?.json()?.notification || {};
     const title = data.title || 'Notification';
