@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonService } from '../../services/common.service';
+import { CommonService } from '../../shared/services/common.service';
 
 @Component({
   selector: 'app-dashboard',

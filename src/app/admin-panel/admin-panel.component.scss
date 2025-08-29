@@ -1,0 +1,81 @@
+@use '../../styles/variables' as *;
+
+.admin-wrapper {
+  display: flex;
+  width: 100%;
+  background-color: var(--bg-color);
+
+  aside {
+    height: calc(100vh - var(--header-height));
+    position: sticky;
+    top: var(--header-height);
+    width: 150px;
+    background-color: $sidebar-bg-color;
+    color: white;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    z-index: 1000;
+
+    &.collapsed {
+      width: 0;
+      padding: 0;
+    }
+
+    .menu {
+      list-style: none;
+      padding: 0;
+      color: white;
+
+      li {
+        padding: 10px 20px;
+        cursor: pointer;
+
+        &:hover,
+        &.active {
+          background-color: #57606f;
+        }
+
+        .submenu {
+          list-style: none;
+          padding-left: 20px;
+
+          li {
+            padding: 5px 0;
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    flex: 1;
+    background-color: #f1f2f6;
+    overflow-y: auto;
+    transition: margin-left 0.3s ease;
+  }
+}
+
+// Mobile styles
+@media (max-width: 768px) {
+  .admin-wrapper {
+    flex-direction: column;
+
+    aside {
+      position: absolute;
+      left: -150px;
+      // top: 0;
+      width: 0;
+      height: 100vh;
+      transition: left 0.3s ease;
+
+      &.collapsed {
+        width: 150px;
+        left: 0;
+      }
+    }
+
+    main {
+      margin-left: 0;
+    }
+  }
+}

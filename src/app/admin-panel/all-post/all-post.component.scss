@@ -1,0 +1,92 @@
+@import url(../view-post/view-post.component.scss);
+@import url(../view-post/add-post/add-post.component.scss);
+
+main {
+    aside {
+        display: none;
+        flex: 1;
+        position: sticky;
+        top: var(--header-height); // Leave room for sticky header
+        align-self: flex-start;
+        height: fit-content; // Prevent stretching to container
+        transition: all 0.3s;
+
+        section {
+            .container {
+                border-right: 2px solid var(--shadow-color);
+
+                .filter-wrapper {
+
+                    .filters {
+                        border: 1px solid var(--shadow-color);
+
+                        ul {
+                            margin: 0;
+                            padding: 0;
+
+                            li {
+
+                                .form-group {
+                                    padding: 6px 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    section {}
+}
+
+.section-header {
+
+    .section-desc {
+        width: 60%;
+        text-align: center;
+        margin: auto;
+        margin-bottom: 20px;
+
+        @media (max-width: 990px) {
+            width: 100%;
+        }
+    }
+
+    .place-information {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .local-search {
+
+            input {
+                border: none;
+                border-bottom: 2px solid var(--primary-color);
+                border-radius: 0;
+                background: transparent;
+                color: var(--text-color);
+
+                &::placeholder {
+                    color: var(--secondary-color);
+                }
+
+                &:focus {
+                    // border: none;
+                    // outline: none;
+                    box-shadow: none !important;
+                }
+            }
+
+            @media (max-width: 768px) {
+                width: 40%;
+            }
+        }
+    }
+}

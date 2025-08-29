@@ -1,4 +1,4 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
+/* tsconfig.json */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -22,8 +22,13 @@
       "ES2022",
       "dom"
     ],
-    "types": ["@kolkov/angular-editor"]
+    "types": [
+      "@kolkov/angular-editor"
+    ]
   },
+  "files": [
+    "src/custom-typings.d.ts"  // ✅ moved outside compilerOptions
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

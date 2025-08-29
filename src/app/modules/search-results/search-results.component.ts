@@ -1,11 +1,11 @@
 import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { PlaceDetails } from '../landing-page/place-list/place-details/place-details.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { SeoService } from '../../services/seo.service';
-import { ApiService } from '../../services/api.service';
+import { SeoService } from '../../shared/services/seo.service';
+import { ApiService } from '../../shared/services/api.service';
 import { SharedModule } from '../../shared/shared.module';
 import { slugify } from '../../utils/slugify';
-import { CommonService } from '../../services/common.service';
+import { CommonService } from '../../shared/services/common.service';
 
 @Component({
   selector: 'app-search-results',

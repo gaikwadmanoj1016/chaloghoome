@@ -17,9 +17,9 @@
 // 1
 $primary: #0d1b2a;
 $secondary: #f5f3ea;
-$textColor: #0d1b2a;
-$highlight: #ff8000;
-$boxBg: #ffffff;
+// $textColor: #0d1b2a;
+// $highlight: #ff8000;
+// $boxBg: #ffffff;
 
 // font-family: var(--font-family);
 $bodyFont: 'Lora', serif;
@@ -38,7 +38,7 @@ p,
 .contact-header {
     font-family: var(--font-family);
     color: $primary;
-    font-weight: 600;
+    // font-weight: 600;
 }
 
 // 3
@@ -60,7 +60,7 @@ p,
     // background: linear-gradient(45deg, var(--header-bg-color), var(--bg-color));
     background: var(--bg-color);
     color: var(--text-color);
-    padding-top: var(--header-height);
+    // padding-top: var(--header-height);
     font-family: var(--font-family);
 
     .container {
@@ -71,15 +71,12 @@ p,
             margin-bottom: 40px;
 
             h2 {
-                // font-size: 3rem;
-                // font-weight: 700;
-                // margin-bottom: 20px;
                 color: var(--text-color);
             }
 
             p {
                 // font-size: 1rem;
-                color: $secondary;
+                color: var(--secondary-text-color);
             }
         }
 
@@ -91,7 +88,7 @@ p,
             justify-content: space-between;
             background: linear-gradient(5deg, #f0f0f5, lighten(#5c2ded, 40%));
             // background: linear-gradient(5deg, #bebeff, lighten(#4021a0, 40%));
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 20px var(--shadow-color);
             border-radius: 15px;
 
             .contact-left {
@@ -132,16 +129,16 @@ p,
                             color: var(--black);
 
                             i {
-                                color: $primary;
+                                color: var(--dark);
                                 width: 20px;
                             }
 
                             a {
-                                color: #333;
+                                color: var(--secondary-dark-text-color);
                                 text-decoration: none;
 
                                 &:hover {
-                                    color: #5c2ded;
+                                    color: var(--primary-color);
                                 }
                             }
 
@@ -160,7 +157,7 @@ p,
                 background: linear-gradient(5deg, $secondary, lighten($primary, 40%));
                 padding: 30px;
                 border-radius: 15px;
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+                box-shadow: 0 2px 10px var(--shadow-color);
 
                 form {
                     display: flex;
@@ -258,10 +255,12 @@ p,
         }
 
         @media (max-width: 750px) {
-            padding: 50px 0px;
+            padding: 50px 20px;
 
             .contact-body {
                 flex-direction: column;
+                padding: 0 !important;
+                gap: 0 !important;
             }
 
             .contact-map {
@@ -270,144 +269,3 @@ p,
         }
     }
 }
-
-
-// .section6 {
-//     background: linear-gradient(to right, #f5f3ea, #ffffff);
-//     padding: 80px 0;
-//     color: var(--text-color);
-//     font-family: $bodyFont;
-
-//     .content {
-//         width: 85%;
-//         margin: auto;
-
-//         .head {
-//             text-align: center;
-//             margin-bottom: 40px;
-
-//             h2 {
-// font-family: var(--font-family);
-//                 font-size: 36px;
-//                 color: $primary;
-//                 font-weight: 600;
-//                 margin: 0;
-//             }
-//         }
-
-//         .body {
-//             display: flex;
-//             gap: 40px;
-//             justify-content: space-between;
-//             flex-wrap: wrap;
-
-//             .left,
-//             .right {
-//                 width: 48%;
-//                 background: $boxBg;
-//                 border-radius: 12px;
-//                 padding: 30px;
-//                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-//             }
-
-//             .left {
-//                 .contact-info {
-//                     display: flex;
-//                     flex-direction: column;
-//                     gap: 12px;
-
-//                     h3 {
-// font-family: var(--font-family);
-//                         font-size: 20px;
-//                         font-weight: 600;
-//                         color: $primary;
-//                     }
-
-//                     p,
-//                     a {
-//                         font-size: 16px;
-//                         color: var(--text-color);
-//                         text-decoration: none;
-
-//                         a:hover {
-//                             color: $highlight;
-//                         }
-//                     }
-
-//                     .map-link {
-//                         margin-top: 10px;
-//                         display: inline-block;
-//                         background: $highlight;
-//                         padding: 8px 16px;
-//                         border-radius: 50px;
-//                         color: #fff;
-//                         font-weight: bold;
-//                         transition: background 0.3s;
-
-//                         &:hover {
-//                             background: darken($highlight, 10%);
-//                         }
-//                     }
-
-//                     .social-icons {
-//                         font-size: 20px;
-//                         display: flex;
-//                         gap: 8px;
-//                     }
-//                 }
-//             }
-
-//             .right {
-//                 form {
-//                     display: flex;
-//                     flex-direction: column;
-//                     gap: 20px;
-
-//                     .form-control {
-//                         padding: 12px;
-//                         border-radius: 8px;
-//                         border: 1px solid #ccc;
-//                         font-size: 16px;
-//                         font-family: $bodyFont;
-//                         background-color: #fafafa;
-//                         transition: border 0.3s;
-
-//                         &:focus {
-//                             border-color: $highlight;
-//                             outline: none;
-//                         }
-//                     }
-
-//                     .btn {
-//                         background: $primary;
-//                         color: #fff;
-//                         border: none;
-//                         padding: 12px;
-//                         border-radius: 50px;
-//                         font-size: 16px;
-//                         font-weight: 600;
-//                         text-transform: uppercase;
-// font-family: var(--font-family);
-//                         cursor: pointer;
-//                         transition: background 0.3s;
-
-//                         &:hover {
-//                             background: darken($primary, 10%);
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-
-//         @media (max-width: 768px) {
-//             .body {
-//                 flex-direction: column;
-
-//                 .left,
-//                 .right {
-//                     width: 100%;
-//                 }
-//             }
-//         }
-//     }
-// }

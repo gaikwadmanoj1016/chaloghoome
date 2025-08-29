@@ -1,0 +1,51 @@
+{
+  "firstName": "Aanya",
+  "lastName": "Sharma",
+  "phone": "9876543210",
+  "email": "aanya.sharma@example.com",
+  "isGuide": false,
+  "dateOfBirth": "1995-06-12",
+  "gender": "female",
+  "profilePictureUrl": "https://example.com/profiles/aanya.jpg",
+  "bio": "Nature lover and avid hiker exploring Indian terrains.",
+  "languages": [
+    {
+      "name": "Hindi",
+      "code": "hi",
+      "skills": {
+        "read": true,
+        "write": false,
+        "speak": true,
+        "native": true
+      }
+    },
+    {
+      "name": "English",
+      "code": "en",
+      "skills": {
+        "read": true,
+        "write": true,
+        "speak": true,
+        "native": false
+      }
+    }
+  ],
+  "residentialLocation": {
+    "country": "India",
+    "state": "Delhi",
+    "city": "New Delhi",
+    "addressLine": "Sector 21 Dwarka",
+    "pinCode": "110075"
+  },
+  "travelPreferences": {
+    "interests": ["mountains", "temples", "local food"],
+    "preferredClimate": "cold",
+    "budgetRange": "medium",
+    "travelFrequency": "monthly"
+  },
+  "socialLinks": {
+    "instagram": "https://instagram.com/aanya_travels",
+    "facebook": "https://facebook.com/aanya.sharma"
+  },
+  "joinedDate": "2023-05-10"
+}

@@ -1,0 +1,108 @@
+{
+    "firstName": "Ravi",
+    "lastName": "Joshi",
+    "role": "GUIDE",
+    "phone": "9988776655",
+    "email": "ravi.guide@example.com",
+    "isGuide": true,
+    "dateOfBirth": "1988-03-05",
+    "age": 35,
+    "gender": "male",
+    "profileImage": "https://i.imgur.com/6VBx3io.png",
+    "experienceYears": 10,
+    "certification": "Mountain Guide (Indian Mountaineering Foundation)",
+    "bio": "Certified adventure guide with 10+ years of experience across Himachal and Uttarakhand.",
+    "rating": 4.7,
+    "languages": [
+        {
+            "name": "Hindi",
+            "code": "hi",
+            "skills": {
+                "read": true,
+                "write": true,
+                "speak": true,
+                "native": true
+            }
+        },
+        {
+            "name": "English",
+            "code": "en",
+            "skills": {
+                "read": true,
+                "write": true,
+                "speak": true,
+                "native": false
+            }
+        }
+    ],
+    "residentialLocation": {
+        "country": "India",
+        "state": "Uttarakhand",
+        "city": "Dehradun",
+        "addressLine": "Tapkeshwar Road",
+        "pinCode": "248001"
+    },
+    "workingLocations": [
+        {
+            "country": "India",
+            "state": "Uttarakhand",
+            "city": "Rishikesh",
+            "areaDescription": "Rafting and Yoga tours"
+        },
+        {
+            "country": "India",
+            "state": "Himachal Pradesh",
+            "city": "Kasol",
+            "areaDescription": "Trekking and camping"
+        }
+    ],
+    "categories": [
+        "Mountain Adventures",
+        "Trekking",
+        "Camping",
+        "River Rafting"
+    ],
+    "guideDetails": {
+        "businessName": "Mountain Adventures",
+        "about": "Ravi Joshi is passionate about the mountains and thrives in adventure tourism. He has guided numerous trekking expeditions, rafting trips, and high-altitude explorations with unmatched safety and care.",
+        "experience": 10,
+        "certifications": [
+            {
+                "name": "Certified Mountain Guide",
+                "issuedBy": "Indian Mountaineering Foundation",
+                "issueDate": "2017-04-20"
+            }
+        ],
+        "services": [
+            "Trekking & Camping",
+            "River Rafting",
+            "Jungle Safari",
+            "Mountaineering Basics"
+        ],
+        "availableSeasons": [
+            "summer",
+            "autumn"
+        ],
+        "languagesOffered": [
+            "English",
+            "Hindi"
+        ],
+        "rating": 4.7,
+        "reviews": 123
+    },
+    "galleryImages": [
+        "https://via.placeholder.com/100",
+        "https://via.placeholder.com/100",
+        "https://via.placeholder.com/100",
+        "https://via.placeholder.com/100"
+    ],
+    "testimonials": [
+        "Ravi was a fantastic guide during our trip to Himachal. Felt safe and had so much fun!",
+        "Highly recommend Ravi for all adventure tours. His knowledge is top-notch!"
+    ],
+    "socialLinks": {
+        "website": "https://raviadventures.in",
+        "facebook": "https://facebook.com/raviadventureguide"
+    },
+    "joinedDate": "2022-11-15"
+}

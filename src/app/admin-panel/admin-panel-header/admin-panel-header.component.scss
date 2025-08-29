@@ -1,0 +1,26 @@
+nav {
+    background-color: var(--header-bg-color);
+    padding: 10px 15px;
+    width: 100%;
+    height: var(--header-height);
+
+    .header {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        .toggle-btn {
+            // background-color: #1e272e;
+            padding: 20px;
+            cursor: pointer;
+            text-align: end;
+            font-size: 24px;
+        }
+        
+        .pageName {
+            color: var(--text-color);
+            padding: 0;
+            margin: 0;
+        }
+    }
+}

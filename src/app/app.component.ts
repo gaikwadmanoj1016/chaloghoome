@@ -1,13 +1,13 @@
-import { Component, HostListener, OnDestroy, OnInit, signal } from '@angular/core';
-import { ApiService } from './services/api.service';
-import { CommonService } from './services/common.service';
+import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, Renderer2, signal } from '@angular/core';
+import { ApiService } from './shared/services/api.service';
+import { CommonService } from './shared/services/common.service';
 import { HeaderComponent } from './root/header/header.component';
 import { FooterComponent } from './root/footer/footer.component';
-import { RouterOutlet } from '@angular/router';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { slugify } from './utils/slugify';
-// import gsap from 'gsap';
-// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ActivatedRoute, NavigationEnd, Router, Event as RouterEvent, RouterOutlet } from '@angular/router';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { filter } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { FCMService } from './shared/services/fcm.service';
 
 interface UserInterface {
   id: number,
@@ -68,7 +68,7 @@ interface UserInterface {
 //     })
 //   }
 // }
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   isScrolled = false;
   title = 'chalo-ghoome-blogs';
   users = signal<UserInterface[]>([
@@ -79,7 +79,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   user = this.users()[1];
   profileModal: boolean = false;
-  constructor(public commonService: CommonService, private apiService: ApiService) { }
+
+  constructor(private fcmService: FCMService, private http: HttpClient, public commonService: CommonService, private router: Router, private apiService: ApiService, private route: ActivatedRoute, private renderer: Renderer2) {
+    this.fcmService.requestPermission();
+  }
   // cards = Array.from({ length: 6 }, (_, i) => ({
   //   title: `Card ${i + 1}`,
   //   content: `Content for card ${i + 1}`
@@ -88,15 +91,73 @@ export class AppComponent implements OnInit, OnDestroy {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 200;
-    if (this.isScrolled) {
-      document.documentElement.style.setProperty('--header-height', '70px');
-    } else {
-      document.documentElement.style.setProperty('--header-height', '90px');
-    }
+    // if (this.isScrolled) {
+    //   document.documentElement.style.setProperty('--header-height', '70px');
+    // } else {
+    //   document.documentElement.style.setProperty('--header-height', '90px');
+    // }
   }
   ngOnInit(): void {
     // this.getSectionList();
+    this.router.events
+      .pipe(
+        filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd)
+      )
+      .subscribe((event: NavigationEnd) => {
+        // 🔥 Logic here - runs every time route changes
+        console.log('Route changed to:', event.urlAfterRedirects);
+        this.commonService.currentRoute = event.urlAfterRedirects;
+        this.commonService.routeChanged.next(event);
+      });
+    this.route.params.subscribe((param) => {
+      console.log(param);
+    })
     this.getSections();
+  }
+
+  ngAfterViewInit(): void {
+    let theme = localStorage.getItem('theme');
+    if (theme === 'light' || theme === 'dark') {
+      this.commonService.setTheme(theme, this.renderer);
+    } else {
+      this.commonService.setTheme(this.commonService.selectedTheme, this.renderer);
+    }
+    setTimeout(() => {
+      this.fcmService.requestPermission();
+    }, 5000);
+  }
+
+  // notify(): void {
+  //   this.pushService.showNotification(
+  //     'Hello from Angular!',
+  //     'This is a simple push notification.'
+  //   );
+  // }
+  // subscribe() {
+  //   console.log("subscription clicked");
+
+  //   this.pushService.subscribeToNotifications();
+  // }
+  subscribeToPush() {
+    Notification.requestPermission().then(async permission => {
+      if (permission === 'granted') {
+        const reg = await navigator.serviceWorker.ready;
+        const sub = await reg.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: this.urlBase64ToUint8Array("BO-bvsunEvQemRnWCruaWdPcLOHqK2njvBc9MHniSOXn35bKjeqigmzjNPtMfA0wSHa3pcu5RD-riv_enwjiKAY")
+        });
+        this.http.post('http://localhost:8080/api/subscribe', sub).subscribe(() => {
+          console.log("Subscription sent to server.");
+        });
+      }
+    });
+  }
+
+  urlBase64ToUint8Array(base64String: string) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+    const raw = window.atob(base64);
+    return new Uint8Array([...raw].map(char => char.charCodeAt(0)));
   }
 
   private getSections() {

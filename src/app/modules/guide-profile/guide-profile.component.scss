@@ -1,0 +1,125 @@
+main {
+    position: relative;
+    top: 100px;
+
+    .container {
+        display: flex;
+        // max-width: 1200px;
+        width: 100%;
+        // background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        flex-direction: row;
+        gap: 20px;
+        padding-bottom: 50px;
+        // padding: 20px;
+    }
+
+    /* Left Card */
+    .left {
+        width: 35%;
+        background: var(--header-bg-color);
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .left img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .left h2 {
+        margin: 5px 0;
+        font-size: 24px;
+    }
+
+    .left .subtitle {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .left .info {
+        margin-bottom: 15px;
+        font-size: 15px;
+    }
+
+    .left .info i {
+        margin-right: 5px;
+    }
+
+    .section-title {
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 8px;
+    }
+
+    .left ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .left ul li {
+        margin-bottom: 6px;
+    }
+
+    .rating {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    .rating span {
+        margin-left: 5px;
+    }
+
+    /* Right Info Panel */
+    .right {
+        width: 65%;
+        padding: 10px;
+    }
+
+    .right section {
+        margin-bottom: 30px;
+    }
+
+    .right h3 {
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .gallery img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 6px;
+    }
+
+    .review {
+        // background: #f7f7f7;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    @media(max-width: 768px) {
+        .container {
+            flex-direction: column;
+        }
+
+        .left,
+        .right {
+            width: 100%;
+        }
+    }
+}

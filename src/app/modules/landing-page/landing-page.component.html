@@ -6,16 +6,121 @@
 ></app-progressive-image> -->
 
 <main>
-    <div class="go-to-top" [class.show]="isScrolled">
-        <button type="button" class="up-btn" style="--i:#FF9966;--j:#FF5E62" (click)="commonService.scrollToTop()">
-            <span class="icon">
-                &uparrow;
+    <div class="shooting-stars"></div>
+    @if (true) {
+    <section class="hero night" #heroSection>
+        <div class="hero-shapes">
+
+            <!-- Shape 1 -->
+            <svg #shape class="shape shape-1" width="200" height="200" viewBox="0 0 200 200" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="paint1" x1="100" y1="0" x2="100" y2="200" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#A7B5FF" />
+                        <stop offset="1" stop-color="#F3ACFF" />
+                    </linearGradient>
+                    <clipPath id="clip-shape-1">
+                        <path d="M0 0H100C155.228 0 200 44.7715 200 100V200H100C44.7715 200 0 155.228 0 100V0Z" />
+                    </clipPath>
+                </defs>
+                <path d="M0 0H100C155.228 0 200 44.7715 200 100V200H100C44.7715 200 0 155.228 0 100V0Z"
+                    fill="url(#paint1)" />
+                <image href="../../../assets/imgs/wonders/chichen-itza.jpg" width="100%" height="100%"
+                    clip-path="url(#clip-shape-1)" preserveAspectRatio="xMidYMid slice"
+                    (click)="onShapeClick('assets/imgs/wonders/chichen-itza.jpg')" />
+            </svg>
+
+            <svg #shape class="shape shape-2" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                    <clipPath id="clip1">
+                        <circle cx="50" cy="50" r="50" />
+                    </clipPath>
+                </defs>
+                <image href="../../../assets/imgs/hidden-gems/faroe-islands-2.jpg" width="100%" height="100%"
+                    (click)="onShapeClick('assets/imgs/custom/star-shape.jpg')" clip-path="url(#clip1)"
+                    preserveAspectRatio="xMidYMid slice" />
+            </svg>
+
+            <!-- Shape 3 -->
+            <svg #shape class="shape shape-3" width="200" height="200" viewBox="0 0 200 200" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="paint3" x1="100" y1="0" x2="100" y2="200" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#DF99F7" />
+                        <stop offset="1" stop-color="#FFDBB0" />
+                    </linearGradient>
+                    <clipPath id="clip-shape-3">
+                        <path
+                            d="M127.14 200C99.9942 200 99.9943 167.423 72.8487 167.423C41.6048 167.423 0 158.386 0 127.133C0 99.9885 32.5678 99.9885 32.5678 72.8445C32.5678 41.6139 41.6048 0 72.8602 0C100.006 0 100.006 32.5774 127.151 32.5774C158.384 32.5774 200 41.6139 200 72.8675C200 100.012 167.421 100.012 167.421 127.156C167.409 158.444 158.384 200 127.14 200Z" />
+                    </clipPath>
+                </defs>
+                <path
+                    d="M127.14 200C99.9942 200 99.9943 167.423 72.8487 167.423C41.6048 167.423 0 158.386 0 127.133C0 99.9885 32.5678 99.9885 32.5678 72.8445C32.5678 41.6139 41.6048 0 72.8602 0C100.006 0 100.006 32.5774 127.151 32.5774C158.384 32.5774 200 41.6139 200 72.8675C200 100.012 167.421 100.012 167.421 127.156C167.409 158.444 158.384 200 127.14 200Z"
+                    fill="url(#paint3)" />
+                <image href="../../../assets/imgs/wonders/petra-3.jpg" width="100%" height="100%"
+                    clip-path="url(#clip-shape-3)" preserveAspectRatio="xMidYMid slice"
+                    (click)="onShapeClick('assets/imgs/wonders/petra-3.jpg')" />
+            </svg>
+
+            <!-- Shape 4 -->
+            <svg #shape class="shape shape-4" width="200" height="200" viewBox="0 0 200 200" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="paint4" x1="44.35" y1="20.0459" x2="138.831" y2="176.559"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#ACAAFF" />
+                        <stop offset="1" stop-color="#C0E8FF" />
+                    </linearGradient>
+                    <clipPath id="clip-shape-4">
+                        <path
+                            d="M170 129.496C170 168.434 138.66 200 100 200C61.3401 200 30 168.434 30 129.496C30 92.6391 65.8392 48.2064 95.1126 6.95421C97.5122 3.57266 102.538 3.53875 104.974 6.89421C135.351 48.7369 170 92.5911 170 129.496Z" />
+                    </clipPath>
+                </defs>
+                <path
+                    d="M170 129.496C170 168.434 138.66 200 100 200C61.3401 200 30 168.434 30 129.496C30 92.6391 65.8392 48.2064 95.1126 6.95421C97.5122 3.57266 102.538 3.53875 104.974 6.89421C135.351 48.7369 170 92.5911 170 129.496Z"
+                    fill="url(#paint4)" />
+                <image href="../../../assets/imgs/most-visited/niagara-falls-4.jpg" width="100%" height="100%"
+                    clip-path="url(#clip-shape-4)" preserveAspectRatio="xMidYMid slice"
+                    (click)="onShapeClick('assets/imgs/most-visited/niagara-falls-4.jpg')" />
+            </svg>
+
+        </div>
+
+        <div class="stars" #stars></div>
+
+        <div class="image-overlay" [ngClass]="{ 'visible': overlayVisible }">
+            <img [src]="expandedImage" alt="Expanded Shape" />
+            <button class="close-btn" (click)="closeOverlay()">✕</button>
+        </div>
+
+        <div class="hero-content" #heroContent>
+            <span class="title-line">
+                <h1 class="headline">Travel Smarter</h1>
             </span>
-        </button>
-    </div>
+            <h2 class="headline small">Explore Better with Chalo Ghoome!</h2>
+            <p class="para-sm">
+                Chalo Ghoome connects curious travelers with trusted tour guides—seamlessly. Discover guides, explore
+                their packages, and plan your trip with ease. For guides, it’s the perfect place to showcase their
+                services and connect directly with travelers.
+                <!-- <span><a class="explore-btn">Explore</a></span> -->
+            </p>
+            <div class="search-bar">
+                <app-search-bar [isScrolled]="isScrolled" [customClass]="'hero-section'" [defaultExpanded]="true" [suggestionsOpening]="'down'"></app-search-bar>
+            </div>
+        </div>
+        <!-- <div class="search-bar">
+            <input type="text" placeholder="Search destinations..." />
+            <button class="search-btn">
+                <i class="fa fa-search icon"></i>
+            </button>
+        </div> -->
+    </section>
+    }
+
+    @if (false) {
     <section class="hero-section">
         <div class="background">
-            <video autoplay muted playsinline loop>
+            <video autoplay muted plays-inline loop>
                 <source #myVideo src="../../../assets/videos/6981411-hd_1920_1080_25fps.mp4" type="video/mp4">
             </video>
             <div class="overlay"></div> <!-- Add this -->
@@ -23,11 +128,10 @@
 
         <div class="hero-container">
             <span class="title-line">
-                <!-- <span class="emoji">🌍</span> -->
                 <h1 class="headline">Travel Smarter</h1>
             </span>
             <h2 class="headline small">Explore Better with Chalo Ghoome!</h2>
-            <p class="para-md">Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and
+            <p class="para-sm">Chalo Ghoome is a comprehensive platform that seamlessly connects both tour guides and
                 travelers. Our platform serves as a hub where tourists can easily access a wealth of information about
                 tour guides,
                 their services, and available packages. Conversely, tour guides can efficiently showcase their
@@ -36,55 +140,56 @@
             <button class="explore-btn hero-btn" style="--i:#FF9966;--j:#FF5E62"
                 (click)="commonService.scrollToDiv('about')">
                 <!-- <span class="icon">
-                    <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
-                    </svg>
-                </span> -->
+                        <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
+                        </svg>
+                    </span> -->
                 <span class="title">Explore</span>
             </button>
         </div>
         <!-- <button class="explore-btn hero-btn" style="--i:#a955ff;--j:#ea51ff">
-            <span class="icon">
-                <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
-                </svg>
-            </span>
-            <span class="title">Home</span>
-        </button>
-        <button class="explore-btn hero-btn" style="--i:#56CCF2;--j:#2F80ED">
-            <span class="icon">
-                <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
-                </svg>
-            </span>
-            <span class="title">Video</span>
-        </button>
-        <button class="explore-btn hero-btn" style="--i:#FF9966;--j:#FF5E62">
-            <span class="icon">
-                <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
-                </svg>
-            </span>
-            <span class="title">Photo</span>
-        </button>
-        <button class="explore-btn hero-btn" style="--i:#80FF72;--j:#7EE8FA">
-            <span class="icon">
-                <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
-                </svg>
-            </span>
-            <span class="title">Share</span>
-        </button>
-        <button class="explore-btn hero-btn" style="--i:#ffa9c6;--j:#f434e2">
-            <span class="icon">
-                <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
-                </svg>
-            </span>
-            <span class="title">Like</span>
-        </button> -->
+                <span class="icon">
+                    <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
+                    </svg>
+                </span>
+                <span class="title">Home</span>
+            </button>
+            <button class="explore-btn hero-btn" style="--i:#56CCF2;--j:#2F80ED">
+                <span class="icon">
+                    <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
+                    </svg>
+                </span>
+                <span class="title">Video</span>
+            </button>
+            <button class="explore-btn hero-btn" style="--i:#FF9966;--j:#FF5E62">
+                <span class="icon">
+                    <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
+                    </svg>
+                </span>
+                <span class="title">Photo</span>
+            </button>
+            <button class="explore-btn hero-btn" style="--i:#80FF72;--j:#7EE8FA">
+                <span class="icon">
+                    <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
+                    </svg>
+                </span>
+                <span class="title">Share</span>
+            </button>
+            <button class="explore-btn hero-btn" style="--i:#ffa9c6;--j:#f434e2">
+                <span class="icon">
+                    <svg width="24.7" height="18.2" viewBox="0 0 24.7 18.2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.22 0H23.47L12.38 18.2L0.22 0Z" fill="#6D6D6D" />
+                    </svg>
+                </span>
+                <span class="title">Like</span>
+            </button> -->
     </section>
+    }
     <!-- todo
     <section>
         <div class="stats-section">
@@ -121,15 +226,6 @@
             <div class="right">
                 <div class="card-grid">
                     @for (post of selectedRegionPlaces.places; track $index) {
-                    <!-- <div class="place-card">
-                        <div class="image-container">
-                            <img [src]="place.image" [alt]="place.name" />
-                        </div>
-                        <div class="info">
-                            <h4>{{ place.name }}</h4>
-                            <p>{{ place.description }}</p>
-                        </div>
-                    </div> -->
                     <div class="card">
                         <img [src]="post.image" [alt]="post.name" />
                         <h4 class="place-name" [title]="post.name">{{ post.name | truncate: 20 }}</h4>
@@ -162,42 +258,19 @@
         </div>
     </section>
     }
-    <!-- 
-    <div class="background-image-div">
-        <small class="byline">
-            Image by <a href="https://unsplash.com" target="_blank">Unsplash</a>
-        </small>
-    </div>
-    <svg height="0" width="0" class="svg-clip">
-        <defs>
-            <clipPath id="rect-clip" clipPathUnits="objectBoundingBox">
-
-                <path d="
-                    M0,0.3333 
-                    Q0.25,0 0.5,0.2 
-                    Q0.75,0.4 1,0.1333 
-                    L1,0.75 
-                    Q0.75,0.9333 0.5,0.8 
-                    Q0.25,0.6666 0,0.8666 
-                    Z" />
-            </clipPath>
-        </defs>
-    </svg>
-     -->
-<!-- 
-    <svg width="100%" height="700" viewBox="0 0 3000 700" xmlns="http://www.w3.org/2000/svg"
+    <!-- important ** use in future -->
+    <!-- <svg width="100%" height="700" viewBox="0 0 3000 700" xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid slice">
-
         <defs>
             <clipPath id="rect-clip">
-                <path id="wavePath" fill="none" stroke="none"
-                    d="M 0 350 C 2000 560 2000 140 3000 350 L 3000 700 L 0 700 L 0 350">
-                    <animate attributeName="d" dur="5s" repeatCount="indefinite" values="
-            M 0 350 C 2000 560 2000 140 3000 350 L 3000 700 L 0 700 L 0 350;
-            M 0 350 C 400 140 400 560 3000 350 L 3000 700 L 0 700 L 0 350;
-            M 0 350 C 2000 560 2000 140 3000 350 L 3000 700 L 0 700 L 0 350
-          " />
-                </path>
+                <path d="
+                    M 0 100 
+                    C 500 0 1000 200 1500 100 
+                    C 2000 0 2500 200 3000 100 
+                    L 3000 600 
+                    C 2500 700 2000 500 1500 600 
+                    C 1000 700 500 500 0 600 
+                    Z" />
             </clipPath>
         </defs>
 
@@ -216,8 +289,9 @@
                     </video>
                 </div>
                 }
-                <h2 class="section-title"> 
-                    <a class="link" [routerLink]="['/places', section?.slugifiedSectionName]">{{section?.sectionName}}</a> 
+                <h2 class="section-title">
+                    <a class="link"
+                        [routerLink]="['/places', section?.slugifiedSectionName]">{{section?.sectionName}}</a>
                 </h2>
                 @if (section?.description) {
                 <p class="section-description"> {{section?.description}} </p>

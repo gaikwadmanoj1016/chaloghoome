@@ -1,0 +1,90 @@
+<div class="search-bar {{customClass}}" [class.expanded]="isExpanded()" (clickOutside)="disconnectWebsocket()">
+    <!--  [class.floating-search]="isScrolled" -->
+    <form (ngSubmit)="onSearch()" (clickOutside)="showSuggestions = false">
+        <div class="search-panel">
+            <input type="text" #searchInput [(ngModel)]="searchQuery" title="Shortcut: Ctrl + /" name="searchQuery"
+                (input)="onInputChange()" (focus)="onSearchFocus();" class="search-input"
+                placeholder="Search places..." required autocomplete="off" />
+            @if (!isExpanded()) {
+            <button type="button" aria-labelledby="Search Button" title="Search" (click)="expandSearchBar()"
+                class="search-btn">
+                <i class="fa fa-search icon"></i>
+            </button>
+            <!-- } @else if (!defaultExpanded && isExpanded() && !(searchQuery && searchQuery.length > 0)) { -->
+            } @else {
+            <button type="button" aria-labelledby="Cross Button" title="Disable Search" (click)="collapseSearchBar()"
+                class="search-btn remove-bg">
+                <i class="fa fa-remove icon"></i>
+            </button>
+            <button type="submit" aria-labelledby="Search Button" title="Search" class="search-btn">
+                <i class="fa fa-search icon"></i>
+            </button>
+            }
+        </div>
+        @if (showSuggestions) {
+        <div class="suggestions" [class]="suggestionsOpening" [class.active]="suggestionsFetched()">
+            @if (searchQuery && searchQuery.length > 2) {
+            @if (!suggestionsFetched()) {
+            <!-- Skeletons here -->
+            <div class="box skeleton-box">
+                <ul>
+                    @for (data of [1,2,3,4]; track $index) {
+                    <li class="skeleton-item">
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-info">
+                            <div class="skeleton-line short"></div>
+                            <div class="skeleton-line"></div>
+                        </div>
+                    </li>
+                    }
+                </ul>
+            </div>
+            } @else if (filteredSuggestions && filteredSuggestions.length > 0) {
+            <div class="box">
+                @for (suggestion of filteredSuggestions; track $index) {
+                @if (suggestion.list?.length > 0) {
+                <div class="section-title">{{ suggestion.label }}</div>
+                <ul>
+                    @for (post of suggestion.list; track $index) {
+                    <li class="item">
+                        <div class="places" (click)="selectSuggestion(post.postName)">
+                            <img *ngIf="post.thumbnailImg" [src]="commonService.appendAssetUrl(post.thumbnailImg)"
+                                class="post-image" />
+                            <div class="post-info">
+                                <div class="post-name">{{ post.postName }}</div>
+                                <div class="post-location">{{ post.location }}</div>
+                                <!-- <div class="post-summary">{{ post.summary | truncate: 100 }}</div> -->
+                            </div>
+                        </div>
+                    </li>
+                    }
+                </ul>
+                }
+                }
+            </div>
+            } @else {
+            <div class="box">
+                <div class="section-title">No places found</div>
+            </div>
+            }
+            } @else if (staticPlaces && staticPlaces.length > 0) {
+            <!-- Show when user hasn’t typed yet -->
+            <div class="box">
+                @for (suggestion of staticPlaces; track $index) {
+                @if (suggestion.list?.length > 0) {
+                <div class="section-title">{{ suggestion.label }}</div>
+                <ul>
+                    @for (post of suggestion.list; track $index) {
+                    <li class="item" (click)="selectSuggestion(post.postName)">
+                        <span>{{ post.postName }}</span>
+                    </li>
+                    }
+                </ul>
+                }
+                }
+            </div>
+            }
+        </div>
+        }
+    </form>
+</div>

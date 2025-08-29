@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonService } from '../../services/common.service';
+import { CommonService } from '../../shared/services/common.service';
 import { SharedModule } from '../../shared/shared.module';
 
 @Component({

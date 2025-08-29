@@ -1,0 +1,241 @@
+:host {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+.title {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+.card {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.card-title {
+    color: #0056b3;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn-primary {
+    background: linear-gradient(145deg, #007bff, #0056b3);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+    margin-top: 15px;
+    display: inline-block;
+    width: auto;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(145deg, #0056b3, #003d80);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.token-display {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.token-textarea {
+    width: 95%;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    background-color: #f4f4f4;
+    resize: vertical;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.instruction {
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.no-token-message,
+.no-messages-message {
+    color: #888;
+    font-style: italic;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.messages-card {
+    margin-top: 30px;
+}
+
+.message-item {
+    background-color: #e6f7ff;
+    border: 1px solid #b3e0ff;
+    border-left: 5px solid #007bff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.message-item strong {
+    color: #0056b3;
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.message-item p {
+    color: #333;
+    margin: 0 0 5px 0;
+}
+
+.message-item small {
+    color: #666;
+    font-size: 0.85em;
+}
+
+.instructions {
+    text-align: left;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.instructions h2 {
+    color: #333;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.instructions ol {
+    list-style-type: decimal;
+    padding-left: 25px;
+    line-height: 1.6;
+}
+
+.instructions li {
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.instructions li a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.instructions li a:hover {
+    text-decoration: underline;
+}
+
+/* Code block styling */
+pre {
+    background-color: #eef2f5;
+    border-radius: 6px;
+    padding: 10px 15px;
+    overflow-x: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 1.8em;
+    }
+
+    .card-title {
+        font-size: 1.3em;
+    }
+
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .title {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .card-title {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .token-textarea {
+        width: 100%;
+    }
+
+    .message-item {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+
+    .instructions ol {
+        padding-left: 20px;
+    }
+}

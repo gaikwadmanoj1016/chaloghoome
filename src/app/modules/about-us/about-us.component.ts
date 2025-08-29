@@ -3,7 +3,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { ActivatedRoute } from '@angular/router';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { CommonService } from '../../services/common.service';
+import { CommonService } from '../../shared/services/common.service';
 
 gsap.registerPlugin(ScrollTrigger);
 @Component({
@@ -19,9 +19,11 @@ export class AboutUsComponent implements OnInit, AfterViewInit {
   constructor(private route: ActivatedRoute, private el: ElementRef, public commonService: CommonService) { }
 
   ngOnInit(): void {
-    this.commonService.setCanonicalURL();
-    console.log(this.route.snapshot.routeConfig?.path);
     this.currentRoute = this.route.snapshot.routeConfig?.path || '';
+    if (this.currentRoute !== 'home') {
+      this.commonService.setCanonicalURL();
+      this.commonService.setMetaData("About us", { summary: `Welcome to Chalo Ghoome, the premier destination for travel enthusiasts worldwide. We're here to fuel your wanderlust and connect you with extraordinary experiences that transcend the ordinary.` });
+    }
   }
 
   ngAfterViewInit(): void {

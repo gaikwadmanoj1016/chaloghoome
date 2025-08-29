@@ -1,0 +1,20 @@
+<div class="admin-wrapper" [class.sidebar-collapsed]="sidebarCollapsed">
+    <aside [class.collapsed]="sidebarCollapsed">
+        <ul class="menu">
+            <li [routerLink]="['sections']" (click)="toggleSidebar()">Sections</li>
+            <li [routerLink]="['sections/places']" (click)="toggleSidebar()">Places</li>
+            <li [routerLink]="['/guides']" (click)="toggleSidebar()">Guides</li>
+            <li [routerLink]="['tags']" (click)="toggleSidebar()">Tags</li>
+            <li [routerLink]="['categories']" (click)="toggleSidebar()">Categories</li>
+            <li [routerLink]="['notification-setup']" (click)="toggleSidebar()">Push Notification</li>
+        </ul>
+    </aside>
+
+    <main>
+        <app-admin-panel-header (onToggleSidebar)="toggleSidebar()"
+            (onCloseSidebar)="closeSidebar()"></app-admin-panel-header>
+        <div (click)="closeSidebar()">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+</div>

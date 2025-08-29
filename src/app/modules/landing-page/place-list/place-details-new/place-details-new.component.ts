@@ -1,15 +1,15 @@
 import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ApiService } from '../../../../services/api.service';
-import { CommonService } from '../../../../services/common.service';
-import { ImagePreviewComponent } from '../../../../shared/image-preview/image-preview.component';
+import { ApiService } from '../../../../shared/services/api.service';
+import { CommonService } from '../../../../shared/services/common.service';
+import { ImagePreviewComponent } from '../../../../shared/components/image-preview/image-preview.component';
 import { Highlight, PlaceDetails } from '../place-details/place-details.component';
 import { NgFor, NgIf, NgStyle } from '@angular/common';
 import { SharedModule } from '../../../../shared/shared.module';
 import { DOCUMENT } from '@angular/common';
 import { convertSlugToNormal, slugify } from '../../../../utils/slugify';
-import { BreadcrumbSchemaService } from '../../../../services/breadcrumb-schema.service';
+import { BreadcrumbSchemaService } from '../../../../shared/services/breadcrumb-schema.service';
 import { AriaDescriber } from '@angular/cdk/a11y';
 
 @Component({
@@ -112,7 +112,7 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
             this.setGallary();
             this.commonService.scrollToTop();
             setTimeout(() => {
-              this.getPostBySectionId();
+              this.getPostBySectionId(this.placeDetails?.sectionId);
             }, 2000);
           } else {
             this.placeNotFound = true;
@@ -132,10 +132,10 @@ export class PlaceDetailsNewComponent implements OnInit, AfterViewInit, OnDestro
     });
   }
 
-  private getPostBySectionId() {
-    localStorage.setItem('sections', JSON.stringify(this.commonService.sections));
-    let sectionId = this.commonService.sections.find((item: any) => item.sectionName.trim().toLowerCase() === this.sectionName.trim().toLowerCase())?.id;
-    // this.list = this.commonService.wonders;
+  private getPostBySectionId(sectionId?: number) {
+    // localStorage.setItem('sections', JSON.stringify(this.commonService.sections));
+    sectionId = this.commonService.sections.find((item: any) => item.sectionName.trim().toLowerCase() === this.sectionName.trim().toLowerCase())?.id;
+    // // this.list = this.commonService.wonders;
     console.log("section id : ", sectionId);
 
     if (sectionId) {

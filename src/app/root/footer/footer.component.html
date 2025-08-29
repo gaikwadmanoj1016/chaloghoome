@@ -1,21 +1,29 @@
+@if (showFooter()) {
 <footer>
-    <div class="triangle-container">
+    <!-- <div class="triangle-container">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-            <!-- Right-angled triangle across the top -->
             <polygon points="0,100 100,100 0,0" class="triangle" />
         </svg>
-    </div>
+    </div> -->
 
     <div class="content">
         <div class="section1">
             <div class="logo">
-                <img loading="lazy" src="assets/icons/ChaloGhoome-logo-new.png" alt="Chalo Ghoome logo" class="">
+                <!-- <img loading="lazy" src="assets/icons/ChaloGhoome-logo-new.png" alt="Chalo Ghoome logo" class=""> -->
+                <img loading="lazy" src="https://github.com/gaikwadmanoj1016/Assets/blob/main/001_02psd.jpg?raw=true"
+                    alt="Chalo Ghoome logo" class="image1" routerLink="/home">
             </div>
         </div>
         <div class="section2">
             <div class="left">
                 <h5>Important Links </h5>
                 <ul>
+                    <li class="para-sm">
+                        <a routerLink="/travel-categories">Travel Categories</a>
+                    </li>
+                    <li class="para-sm">
+                        <a routerLink="/places">Places</a>
+                    </li>
                     <!-- <li><a (click)="navigateTo('/')">Travel Stories</a></li> -->
                     @for (section of sections; track $index) {
                     <li class="para-sm">
@@ -31,7 +39,7 @@
                 <h5>Referances</h5>
                 <ul>
                     <li class="para-sm"><a href="https://www.wikipedia.com" target="_blank">Wikipedia</a></li>
-                    <li class="para-sm"><a href="https://www.travelindia.gov.in" target="_blank">travelindia.gov.in</a>
+                    <li class="para-sm"><a href="https://travel.india.com/guide/" target="_blank">travel.india.com</a>
                     </li>
                 </ul>
             </div>
@@ -69,3 +77,4 @@
         <p>&copy; 2025 chaloghoome.com | All Rights Reserved</p>
     </div>
 </footer>
+}

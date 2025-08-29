@@ -1,95 +1,62 @@
 <header (clickOutside)="closeSidebar()">
     @if (showNav()) {
-    <nav #navbar class="navbar navbar-expand-lg navbar-light" [class.shadow]="isScrolled || isMobileView">
+    <nav #navbar class="navbar navbar-expand-lg navbar-light shadow">
         <div class="custom-container bgColor">
-            <a class="navbar-brand" routerLink="/home">
-                <img loading="lazy" src="../assets/icons/chalo-ghoome-title-logo.png" alt="Chalo Ghoome logo"
-                    class="image1">
-                <img loading="lazy" src="assets/icons/ChaloGhoome-logo-new.png" alt="Chalo Ghoome logo" class="image2">
-                <!-- <picture>
-                    <source srcset="assets/icons/ChaloGhoome-logo-new.webp" type="image/webp">
-                    <img src="assets/icons/ChaloGhoome-logo-new.png" alt="Description">
-                </picture> -->
-            </a>
-            <div class="search-form" [class.expanded]="isExpanded()" (clickOutside)="disconnectWebsocket()">
-                <form (ngSubmit)="onSearch()" (clickOutside)="showSuggestions = false"
-                    [class.floating-search]="isScrolled">
-                    <div class="search-bar">
-                        <input type="text" #searchInput [(ngModel)]="searchQuery" title="Shortcut: Ctrl + /"
-                            name="searchQuery" (input)="onInputChange()" (focus)="connectWebsocket();"
-                            class="search-input" placeholder="Search places..." required autocomplete="off" />
-                        @if (!isExpanded()) {
-                        <button type="button" aria-labelledby="Search Button" title="Search" (click)="expandSearchBar()"
-                            class="search-btn">
-                            <i class="fa fa-search icon"></i>
-                        </button>
-                        } @else {
-                        <button type="submit" aria-labelledby="Search Button" title="Search" class="search-btn">
-                            <i class="fa fa-search icon"></i>
-                        </button>
-                        }
-                    </div>
-                    @if (showSuggestions) {
-                    <div class="suggestions" [class.active]="suggestionsFetched()">
-                        @if (searchQuery && searchQuery.length > 2) {
-                        @if (filteredSuggestions && filteredSuggestions.length > 0) {
-                        <div class="box">
-                            @for (suggestion of filteredSuggestions; track $index) {
-                            @if (suggestion.list?.length > 0) {
-                            <div class="section-title">{{ suggestion.label }}</div>
-                            <ul>
-                                @for (post of suggestion.list; track $index) {
-                                <li class="item">
-                                    <div class="places" (click)="selectSuggestion(post.postName)">
-                                        <img *ngIf="post.thumbnailImg"
-                                            [src]="commonService.appendAssetUrl(post.thumbnailImg)"
-                                            class="post-image" />
-                                        <div class="post-info">
-                                            <div class="post-name">{{ post.postName }}</div>
-                                            <div class="post-location">{{ post.location }}</div>
-                                            <div class="post-summary">{{ post.summary | truncate: 100 }}</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                }
-                            </ul>
-                            }
-                            }
-                        </div>
-                        } @else {
-                        <div class="box">
-                            <div class="section-title">Loading places...</div>
-                        </div>
-                        }
-                        } @else if (staticPlaces && staticPlaces.length > 0) {
-                        <div class="box">
-                            <div class="section-title">Most Searched</div>
-                            <ul>
-                                @for (item of staticPlaces; track $index) {
-                                <li class="item" (click)="selectSuggestion(item)">
-                                    <span>{{ item }}</span>
-                                </li>
-                                }
-                            </ul>
-                        </div>
-                        }
-                    </div>
+            <div #navbarBrand class="navbar-brand">
+                <a routerLink="/home">
+                    @if (commonService.selectedTheme === 'dark') {
+                    <img loading="lazy"
+                        src="https://github.com/gaikwadmanoj1016/Assets/blob/main/001_02psd.jpg?raw=true"
+                        alt="Chalo Ghoome logo" class="image1">
+                    } @else {
+                    <img loading="lazy" src="https://github.com/gaikwadmanoj1016/Assets/blob/main/001.jpg?raw=true"
+                        alt="Chalo Ghoome logo" class="image1">
                     }
-                </form>
+                </a>
+
+                <!-- <div class="brand-name">
+                    <p #container class="text brand-logo" aria-hidden="true">
+                        <strong>Chalo <span class="highlighted-text">Ghoome</span></strong>
+                    </p>
+                </div> -->
+                <div class="brand-name">
+                    <p class="text brand-logo" aria-hidden="true">
+                        <strong>
+                            <span class="word">Chalo</span>
+                            <span class="word highlighted-text">Ghoome</span>
+                        </strong>
+                    </p>
+                </div>
             </div>
             <div class="right" style="text-align: end;">
-                <!-- Hamburger Menu for Mobile -->
-                <button class="hamburger" (click)="toggleSidebar($event);collapseSearchBar()">
-                    &#9776;
-                </button>
+
                 <div class="navbar-wrapper">
                     <ul class="custom-navbar-nav">
                         <!-- Header -->
                         <li class="nav-item">
-                            <a class="nav-link" routerLink="/places">Places</a>
+                            <a class="nav-link" routerLink="/travel-categories">Travel Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" (click)="toggleSidebar($event)">Featured</a>
+                            <a class="nav-link" routerLink="/places">Places</a>
+                        </li>
+                        <li class="nav-item" (clickOutside)="closeDropdown()">
+                            <a class="nav-link" (click)="toggleDropdown($event)">Featured
+                                <span class="icon">
+                                    <!-- Chevron SVG icon -->
+                                    <svg class="chevron" width="16" height="16" viewBox="0 0 24 24">
+                                        <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu" [class.active]="commonService.isDropdownOpen()">
+                                <li #menuItem *ngFor="let section of sections; trackBy: trackByIndex">
+                                    <!-- (click)="scrollTo(section.sectionId); closeSidebar()" -->
+                                    <a class="link" [routerLink]="['places', section.slugifiedSectionName]"
+                                        (click)="closeSidebar()">
+                                        {{ section?.sectionName }}
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLink="/about_us">About</a>
@@ -99,7 +66,7 @@
                         </li>
                         @if (false) {
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" routerLink="/register">Sign In</a>
+                            <a class="nav-link" href="javascript:void(0)" routerLink="/login">Sign In</a>
                         </li>
                         }
                         <!-- <div class="d-flex align-items-center profile-section" (click)="toggleProfileMenu()"
@@ -119,6 +86,20 @@
                     </ul>
                 </div>
             </div>
+            <!-- Hamburger Menu for Mobile -->
+            <div class="cta">
+                <div class="search-form">
+                    <app-search-bar [isScrolled]="isScrolled" [defaultExpanded]="false"></app-search-bar>
+                </div>
+                <div class="toggle-btn-wrapper">
+                    <button class="premium-toggle" (click)="toggleTheme()">
+                        <span>{{ commonService.selectedTheme === 'dark' ? '☀️' : '🌙' }}</span>
+                    </button>
+                </div>
+                <button class="hamburger" (click)="toggleSidebar($event);">
+                    &#9776;
+                </button>
+            </div>
         </div>
     </nav>
     <!-- Sidebar -->
@@ -126,11 +107,33 @@
         <button class="close-btn left-arrow" (click)="closeSidebar()">&leftarrow;</button>
         <button class="close-btn right-icon" (click)="closeSidebar()">&Cross;</button>
         <ul class="sidebar-menu">
-            <li #menuItem *ngFor="let section of sections; trackBy: trackByIndex">
-                <!-- (click)="scrollTo(section.sectionId); closeSidebar()" -->
+            <!-- (click)="scrollTo(section.sectionId); closeSidebar()" -->
+            <!-- <li #menuItem *ngFor="let section of sections; trackBy: trackByIndex">
                 <a [routerLink]="['places', section.slugifiedSectionName]" (click)="closeSidebar()">
                     {{ section?.sectionName }}
                 </a>
+            </li> -->
+            <li #menuItem class="nav-item" [class.toggle]="commonService.isSidebarDropdownOpen()" (clickOutside)="closeSidebarDropdown()">
+                <a class="nav-link" (click)="toggleSidebarDropdown($event)">Featured
+                    <span class="icon">
+                        <!-- Chevron SVG icon -->
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24">
+                            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" [class.active]="commonService.isSidebarDropdownOpen()">
+                    <li class="nav-item" *ngFor="let section of sections; trackBy: trackByIndex">
+                        <!-- (click)="scrollTo(section.sectionId); closeSidebar()" -->
+                        <a class="link" [routerLink]="['places', section.slugifiedSectionName]"
+                            (click)="closeSidebar()">
+                            {{ section?.sectionName }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li #menuItem class="nav-item">
+                <a class="nav-link" routerLink="/travel-categories" (click)="closeSidebar()">Travel Categories</a>
             </li>
             <li #menuItem class="nav-item">
                 <a class="nav-link" routerLink="/places" (click)="closeSidebar()">Places</a>
@@ -146,6 +149,9 @@
                 <a class="nav-link" href="javascript:void(0)" routerLink="/register">Sign In</a>
             </li>
             }
+            <button class="premium-toggle" (click)="toggleTheme()">
+                <span>{{ commonService.selectedTheme === 'dark' ? '☀️' : '🌙' }}</span>
+            </button>
         </ul>
     </div>
     }

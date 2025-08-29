@@ -1,0 +1,35 @@
+<div class="container">
+    <h1 class="title">Firebase Push Notifications</h1>
+
+    <div class="card">
+        <h2 class="card-title">FCM Token</h2>
+        <div *ngIf="fcmService.token$ | async as token; else noToken">
+            <p class="token-display">Your FCM Token:</p>
+            <textarea readonly class="token-textarea">{{ token }}</textarea>
+            <p class="instruction">
+                Copy this token and use it in the Firebase Console's "Send test message" option in the Cloud Messaging
+                section.
+            </p>
+        </div>
+        <ng-template #noToken>
+            <p class="no-token-message">No FCM token available yet. Request permission to generate one.</p>
+        </ng-template>
+        <button (click)="requestNotificationPermission()" class="btn-primary">
+            Request Notification Permission
+        </button>
+    </div>
+
+    <div class="card messages-card">
+        <h2 class="card-title">Received Messages (Foreground)</h2>
+        <div *ngIf="fcmService.messages$; else noMessages">
+            <div *ngFor="let message of (fcmService.messages$ | async)" class="message-item">
+                <strong>{{ message.notification?.title || 'No Title' }}</strong>
+                <p>{{ message.notification?.body || 'No Body' }}</p>
+                <small>Data: {{ message.data | json }}</small>
+            </div>
+        </div>
+        <ng-template #noMessages>
+            <p class="no-messages-message">No messages received yet while app is in foreground.</p>
+        </ng-template>
+    </div>
+</div>
